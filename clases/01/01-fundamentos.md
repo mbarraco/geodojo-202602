@@ -7,39 +7,70 @@ Guía para la clase sobre tipos de datos, operadores y funciones básicas.
 ## 1. Temario
 
 ### 1.1 Variables y tipos de datos
-- Qué es una variable y cómo asignar valores
-- Tipos básicos: `str` (texto), `int` (entero), `float` (decimal), `bool` (booleano)
-- Función `type()` para inspeccionar tipos
-- Convención de nombres: snake_case, nombres descriptivos
+
+| Concepto | Descripción |
+|----------|-------------|
+| Variable | Nombre que almacena un valor (`nombre = "Buenos Aires"`) |
+| `str` | Texto, entre comillas (`"hola"`, `'mundo'`) |
+| `int` | Número entero (`42`, `-10`) |
+| `float` | Número decimal (`3.14`, `-34.6`) |
+| `bool` | Booleano (`True`, `False`) |
+| `type()` | Función para ver el tipo de una variable |
+| Nombres | Usar snake_case: `mi_variable`, `latitud_norte` |
 
 ### 1.2 Operadores aritméticos
-- Básicos: `+`, `-`, `*`, `/`
-- División entera: `//`https://www.google.com/maps?q=-34.6037,-58.3816
-- Módulo (resto): `%`
-- Potenciación: `**`
+
+| Operador | Operación | Ejemplo |
+|----------|-----------|---------|
+| `+` | Suma | `5 + 3` → `8` |
+| `-` | Resta | `10 - 4` → `6` |
+| `*` | Multiplicación | `6 * 7` → `42` |
+| `/` | División | `15 / 2` → `7.5` |
+| `//` | División entera | `15 // 2` → `7` |
+| `%` | Módulo (resto) | `15 % 2` → `1` |
+| `**` | Potencia | `2 ** 3` → `8` |
 
 ### 1.3 Funciones numéricas
-- `round(valor, decimales)` - redondeo
-- `abs(valor)` - valor absoluto
-- `int(valor)` - conversión a entero
-- `float(valor)` - conversión a decimal
+
+| Función | Descripción | Ejemplo |
+|---------|-------------|---------|
+| `round(x, n)` | Redondea a n decimales | `round(3.14159, 2)` → `3.14` |
+| `abs(x)` | Valor absoluto | `abs(-34.6)` → `34.6` |
+| `int(x)` | Convierte a entero | `int(3.9)` → `3` |
+| `float(x)` | Convierte a decimal | `float("3.14")` → `3.14` |
 
 ### 1.4 Strings (cadenas de texto)
-- Comillas simples o dobles
-- Concatenación con `+`
-- Repetición con `*`
-- f-strings: `f"texto {variable}"`
-- Métodos: `.upper()`, `.lower()`, `len()`
+
+| Operación | Sintaxis | Ejemplo |
+|-----------|----------|---------|
+| Crear | Comillas simples o dobles | `"hola"` o `'hola'` |
+| Concatenar | `+` | `"Hola" + " mundo"` → `"Hola mundo"` |
+| Repetir | `*` | `"-" * 5` → `"-----"` |
+| f-string | `f"texto {var}"` | `f"Lat: {lat}"` → `"Lat: -34.6"` |
+| Mayúsculas | `.upper()` | `"hola".upper()` → `"HOLA"` |
+| Minúsculas | `.lower()` | `"HOLA".lower()` → `"hola"` |
+| Longitud | `len()` | `len("Python")` → `6` |
 
 ### 1.5 Entrada y salida
-- `print()` - mostrar en pantalla
-- `input()` - pedir datos al usuario
-- Conversión de input (siempre devuelve str)
+
+| Función | Descripción | Ejemplo |
+|---------|-------------|---------|
+| `print()` | Muestra en pantalla | `print("Hola")` |
+| `input()` | Pide dato al usuario (devuelve `str`) | `nombre = input("Tu nombre: ")` |
 
 ### 1.6 Comparaciones y booleanos
-- Operadores: `>`, `<`, `>=`, `<=`, `==`, `!=`
-- Operadores lógicos: `and`, `or`, `not`
-- Resultados: `True` o `False`
+
+| Operador | Significado | Ejemplo |
+|----------|-------------|---------|
+| `>` | Mayor que | `5 > 3` → `True` |
+| `<` | Menor que | `5 < 3` → `False` |
+| `>=` | Mayor o igual | `5 >= 5` → `True` |
+| `<=` | Menor o igual | `3 <= 5` → `True` |
+| `==` | Igual a | `5 == 5` → `True` |
+| `!=` | Distinto de | `5 != 3` → `True` |
+| `and` | Y lógico | `True and False` → `False` |
+| `or` | O lógico | `True or False` → `True` |
+| `not` | Negación | `not True` → `False` |
 
 ---
 
