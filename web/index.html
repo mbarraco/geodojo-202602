@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;

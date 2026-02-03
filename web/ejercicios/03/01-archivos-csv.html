@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -329,19 +396,35 @@
             <h1 id="unidad-3-archivos-y-csv">Unidad 3: Archivos y CSV</h1>
 <p>Ejercicios sobre lectura y escritura de archivos, y manejo del módulo CSV.</p>
 <hr />
-<h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2></summary>
+<div class="section-content">
 <p>Se recomienda hacerlos todos. Están ordenados por dificultad incremental.</p>
 <hr />
-<h3 id="bloque-1-lectura-de-archivos-con-open">Bloque 1: Lectura de archivos con open()</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-1-lectura-de-archivos-con-open">Bloque 1: Lectura de archivos con open()</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a1-leer-archivo-completo">A1. Leer archivo completo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a1-leer-archivo-completo">A1. Leer archivo completo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>ciudad.txt</code> con el texto "Buenos Aires" y luego escribí un programa que lo lea completo usando <code>open()</code> y <code>read()</code>. Mostrá el contenido por pantalla.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido del archivo: <code>Buenos Aires</code><br />
 - Salida esperada: <code>Buenos Aires</code></p>
 <p><strong>Hint</strong>: Usá <code>open("archivo.txt", "r")</code> para abrir en modo lectura y <code>.read()</code> para leer todo el contenido.</p>
 <hr />
-<h3 id="a2-leer-linea-por-linea">A2. Leer línea por línea</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a2-leer-linea-por-linea">A2. Leer línea por línea</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>ciudades.txt</code> con tres ciudades (una por línea): Buenos Aires, Córdoba, Rosario. Leé el archivo y mostrá cada línea numerada.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -352,19 +435,34 @@
 
 <p><strong>Hint</strong>: Usá <code>readlines()</code> para obtener una lista de líneas, y <code>enumerate()</code> para numerarlas.</p>
 <hr />
-<h3 id="a3-leer-con-context-manager">A3. Leer con context manager</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a3-leer-con-context-manager">A3. Leer con context manager</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Reescribí el ejercicio anterior usando <code>with open(...) as f:</code> en lugar de abrir y cerrar manualmente.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: igual que A2</p>
 <p><strong>Hint</strong>: El context manager <code>with</code> cierra automáticamente el archivo al salir del bloque.</p>
 <hr />
-<h3 id="a4-contar-lineas-de-un-archivo">A4. Contar líneas de un archivo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a4-contar-lineas-de-un-archivo">A4. Contar líneas de un archivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>provincias.txt</code> con 5 provincias argentinas (una por línea). Escribí un programa que cuente cuántas líneas tiene el archivo.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>El archivo tiene 5 líneas</code></p>
 <p><strong>Hint</strong>: Usá <code>len(archivo.readlines())</code> para contar las líneas.</p>
 <hr />
-<h3 id="a5-leer-coordenadas-desde-archivo">A5. Leer coordenadas desde archivo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a5-leer-coordenadas-desde-archivo">A5. Leer coordenadas desde archivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>coordenadas.txt</code> con el contenido <code>-34.6,-58.4</code> (latitud y longitud de Buenos Aires). Leé el archivo, separá los valores por la coma, convertí a float y mostrá cada coordenada.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -374,15 +472,30 @@ Longitud: -58.4
 
 <p><strong>Hint</strong>: Usá <code>.split(",")</code> para separar por coma y <code>float()</code> para convertir.</p>
 <hr />
-<h3 id="bloque-2-escritura-de-archivos">Bloque 2: Escritura de archivos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-2-escritura-de-archivos">Bloque 2: Escritura de archivos</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a6-escribir-texto-simple">A6. Escribir texto simple</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a6-escribir-texto-simple">A6. Escribir texto simple</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que cree un archivo <code>destino.txt</code> y escriba el texto "Ushuaia" en él.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido del archivo creado: <code>Ushuaia</code></p>
 <p><strong>Hint</strong>: Usá <code>open("archivo.txt", "w")</code> para abrir en modo escritura y <code>.write()</code> para escribir.</p>
 <hr />
-<h3 id="a7-escribir-multiples-lineas">A7. Escribir múltiples líneas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a7-escribir-multiples-lineas">A7. Escribir múltiples líneas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una lista con tres ciudades: <code>["Mendoza", "Salta", "Tucumán"]</code>. Escribí cada ciudad en una línea separada en un archivo <code>mis_ciudades.txt</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido del archivo:</p>
@@ -393,7 +506,12 @@ Tucumán
 
 <p><strong>Hint</strong>: Agregá <code>\n</code> al final de cada línea, o usá <code>writelines()</code> con una lista que ya incluya los saltos de línea.</p>
 <hr />
-<h3 id="a8-agregar-al-final-de-un-archivo">A8. Agregar al final de un archivo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a8-agregar-al-final-de-un-archivo">A8. Agregar al final de un archivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Teniendo el archivo <code>mis_ciudades.txt</code> del ejercicio anterior, agregá una nueva ciudad "Neuquén" al final sin borrar las existentes.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido final del archivo:</p>
@@ -405,21 +523,41 @@ Neuquén
 
 <p><strong>Hint</strong>: Usá modo <code>"a"</code> (append) en lugar de <code>"w"</code> para agregar sin sobrescribir.</p>
 <hr />
-<h3 id="a9-guardar-coordenadas">A9. Guardar coordenadas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a9-guardar-coordenadas">A9. Guardar coordenadas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dadas las variables <code>lat = -32.89</code> y <code>lon = -68.83</code> (Mendoza), escribí un archivo <code>punto.txt</code> con el formato <code>latitud,longitud</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido del archivo: <code>-32.89,-68.83</code></p>
 <p><strong>Hint</strong>: Usá f-string para formatear: <code>f"{lat},{lon}"</code>.</p>
 <hr />
-<h3 id="a10-copiar-contenido-de-archivo">A10. Copiar contenido de archivo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a10-copiar-contenido-de-archivo">A10. Copiar contenido de archivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que lea el contenido de <code>ciudades.txt</code> y lo copie a un nuevo archivo <code>ciudades_backup.txt</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Si <code>ciudades.txt</code> contiene "Buenos Aires\nCórdoba", <code>ciudades_backup.txt</code> debe contener lo mismo.</p>
 <p><strong>Hint</strong>: Leé con <code>read()</code> y escribí con <code>write()</code>.</p>
 <hr />
-<h3 id="bloque-3-modulo-csv-lectura">Bloque 3: Módulo CSV - Lectura</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-3-modulo-csv-lectura">Bloque 3: Módulo CSV - Lectura</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a11-leer-csv-simple">A11. Leer CSV simple</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a11-leer-csv-simple">A11. Leer CSV simple</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>ciudades.csv</code> con el siguiente contenido:</p>
 <div class="highlight"><pre><span></span><code>nombre,poblacion
 Buenos Aires,2890000
@@ -438,7 +576,12 @@ Rosario,1270000
 
 <p><strong>Hint</strong>: Importá el módulo <code>csv</code> y usá <code>csv.reader(archivo)</code>.</p>
 <hr />
-<h3 id="a12-saltar-encabezado">A12. Saltar encabezado</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a12-saltar-encabezado">A12. Saltar encabezado</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usando el archivo <code>ciudades.csv</code> del ejercicio anterior, leé y mostrá solo las filas de datos, saltando el encabezado.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -449,7 +592,12 @@ Rosario: 1270000 habitantes
 
 <p><strong>Hint</strong>: Usá <code>next(reader)</code> para saltar la primera fila, o convertí a lista y usá slicing.</p>
 <hr />
-<h3 id="a13-csv-con-coordenadas">A13. CSV con coordenadas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a13-csv-con-coordenadas">A13. CSV con coordenadas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>puntos.csv</code>:</p>
 <div class="highlight"><pre><span></span><code>ciudad,latitud,longitud
 Buenos Aires,-34.6,-58.4
@@ -466,21 +614,41 @@ Mendoza está en (-32.9, -68.8)
 </code></pre></div>
 
 <hr />
-<h3 id="a14-calcular-con-datos-de-csv">A14. Calcular con datos de CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a14-calcular-con-datos-de-csv">A14. Calcular con datos de CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usando <code>ciudades.csv</code>, calculá la población total sumando los valores de la columna población.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Población total: 5590000</code></p>
 <p><strong>Hint</strong>: Convertí los valores de población a <code>int()</code> antes de sumar.</p>
 <hr />
-<h3 id="a15-buscar-en-csv">A15. Buscar en CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a15-buscar-en-csv">A15. Buscar en CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usando <code>puntos.csv</code>, escribí un programa que busque la ciudad "Mendoza" y muestre sus coordenadas.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Mendoza: latitud -32.9, longitud -68.8</code></p>
 <p><strong>Hint</strong>: Recorré las filas y usá un <code>if</code> para comparar el nombre.</p>
 <hr />
-<h3 id="bloque-4-dictreader-y-dictwriter">Bloque 4: DictReader y DictWriter</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-4-dictreader-y-dictwriter">Bloque 4: DictReader y DictWriter</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a16-leer-csv-como-diccionarios">A16. Leer CSV como diccionarios</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a16-leer-csv-como-diccionarios">A16. Leer CSV como diccionarios</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usando <code>puntos.csv</code>, leé el archivo con <code>csv.DictReader()</code> y mostrá cada fila como diccionario.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -491,7 +659,12 @@ Mendoza está en (-32.9, -68.8)
 
 <p><strong>Hint</strong>: <code>csv.DictReader()</code> usa la primera fila como claves.</p>
 <hr />
-<h3 id="a17-acceder-por-nombre-de-columna">A17. Acceder por nombre de columna</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a17-acceder-por-nombre-de-columna">A17. Acceder por nombre de columna</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usando <code>DictReader</code>, leé <code>puntos.csv</code> y mostrá solo los nombres de las ciudades accediendo por clave.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -502,7 +675,12 @@ Mendoza
 
 <p><strong>Hint</strong>: Accedé con <code>fila["ciudad"]</code> en lugar de <code>fila[0]</code>.</p>
 <hr />
-<h3 id="a18-escribir-csv-con-dictwriter">A18. Escribir CSV con DictWriter</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a18-escribir-csv-con-dictwriter">A18. Escribir CSV con DictWriter</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una lista de diccionarios con datos de provincias:</p>
 <div class="highlight"><pre><span></span><code><span class="n">provincias</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;capital&quot;</span><span class="p">:</span> <span class="s2">&quot;La Plata&quot;</span><span class="p">},</span>
@@ -522,13 +700,23 @@ Santa Fe,Santa Fe
 
 <p><strong>Hint</strong>: Usá <code>writeheader()</code> para escribir los encabezados y <code>writerows()</code> para los datos.</p>
 <hr />
-<h3 id="a19-agregar-fila-a-csv-existente">A19. Agregar fila a CSV existente</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a19-agregar-fila-a-csv-existente">A19. Agregar fila a CSV existente</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Agregá una nueva provincia al archivo <code>provincias.csv</code>: Mendoza con capital Mendoza.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Nueva línea agregada: <code>Mendoza,Mendoza</code></p>
 <p><strong>Hint</strong>: Abrí en modo <code>"a"</code> y usá <code>writerow()</code> para una sola fila. No escribas el encabezado de nuevo.</p>
 <hr />
-<h3 id="a20-filtrar-y-guardar">A20. Filtrar y guardar</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a20-filtrar-y-guardar">A20. Filtrar y guardar</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé <code>puntos.csv</code> y guardá en un nuevo archivo <code>puntos_sur.csv</code> solo las ciudades con latitud menor a -32 (más al sur).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido de <code>puntos_sur.csv</code>:</p>
@@ -538,9 +726,19 @@ Mendoza,-32.9,-68.8
 </code></pre></div>
 
 <hr />
-<h3 id="bloque-5-combinando-lectura-y-escritura">Bloque 5: Combinando lectura y escritura</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-5-combinando-lectura-y-escritura">Bloque 5: Combinando lectura y escritura</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a21-transformar-datos-de-csv">A21. Transformar datos de CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a21-transformar-datos-de-csv">A21. Transformar datos de CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé <code>puntos.csv</code> y creá un nuevo archivo <code>puntos_absolutos.csv</code> donde las latitudes y longitudes sean valores absolutos (sin signo negativo).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido de <code>puntos_absolutos.csv</code>:</p>
@@ -551,7 +749,12 @@ Mendoza,32.9,68.8
 </code></pre></div>
 
 <hr />
-<h3 id="a22-agregar-columna-calculada">A22. Agregar columna calculada</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a22-agregar-columna-calculada">A22. Agregar columna calculada</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé <code>ciudades.csv</code> y creá <code>ciudades_categoria.csv</code> agregando una columna "categoria" que sea "grande" si la población &gt; 1500000, o "mediana" en caso contrario.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido de <code>ciudades_categoria.csv</code>:</p>
@@ -562,7 +765,12 @@ Rosario,1270000,mediana
 </code></pre></div>
 
 <hr />
-<h3 id="a23-combinar-dos-archivos-csv">A23. Combinar dos archivos CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a23-combinar-dos-archivos-csv">A23. Combinar dos archivos CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Tenés <code>ciudades.csv</code> (nombre, población) y <code>puntos.csv</code> (ciudad, latitud, longitud). Creá <code>ciudades_completas.csv</code> que combine ambos archivos, incluyendo nombre, población, latitud y longitud.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido de <code>ciudades_completas.csv</code>:</p>
@@ -573,7 +781,12 @@ Córdoba,1430000,-31.4,-64.2
 
 <p><strong>Hint</strong>: Leé ambos archivos a diccionarios y combiná por nombre de ciudad.</p>
 <hr />
-<h3 id="a24-generar-reporte-desde-csv">A24. Generar reporte desde CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a24-generar-reporte-desde-csv">A24. Generar reporte desde CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé <code>puntos.csv</code> y generá un archivo <code>reporte.txt</code> (no CSV) con un resumen legible:</p>
 <div class="highlight"><pre><span></span><code>=== REPORTE DE CIUDADES ===
 Total de ciudades: 3
@@ -582,7 +795,12 @@ Ciudad más al sur: Buenos Aires (-34.6)
 </code></pre></div>
 
 <hr />
-<h3 id="a25-exportar-a-formato-google-maps">A25. Exportar a formato Google Maps</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a25-exportar-a-formato-google-maps">A25. Exportar a formato Google Maps</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé <code>puntos.csv</code> y generá un archivo <code>links.txt</code> con un link de Google Maps por cada ciudad.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido de <code>links.txt</code>:</p>
@@ -592,27 +810,52 @@ Mendoza: https://www.google.com/maps?q=-32.9,-68.8
 </code></pre></div>
 
 <hr />
-<h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2></summary>
+<div class="section-content">
 <p>Recomendables para quienes quieran practicar más.</p>
 <hr />
-<h3 id="b1-contar-palabras-en-archivo">B1. Contar palabras en archivo</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="b1-contar-palabras-en-archivo">B1. Contar palabras en archivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>descripcion.txt</code> con una descripción de una ciudad (varias oraciones). Contá cuántas palabras tiene el archivo.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Si el archivo contiene "Buenos Aires es la capital de Argentina."<br />
 - Salida esperada: <code>El archivo tiene 7 palabras</code></p>
 <hr />
-<h3 id="b2-validar-existencia-de-archivo">B2. Validar existencia de archivo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b2-validar-existencia-de-archivo">B2. Validar existencia de archivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que intente leer un archivo <code>datos.csv</code>. Si el archivo no existe, mostrá un mensaje de error amigable en lugar de que el programa falle.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Si el archivo no existe: <code>Error: El archivo datos.csv no fue encontrado</code></p>
 <p><strong>Hint</strong>: Usá <code>try/except FileNotFoundError</code>.</p>
 <hr />
-<h3 id="b3-csv-con-delimitador-personalizado">B3. CSV con delimitador personalizado</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b3-csv-con-delimitador-personalizado">B3. CSV con delimitador personalizado</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>datos.tsv</code> separado por tabulaciones (no comas) con datos de ciudades. Leélo usando el parámetro <code>delimiter</code> de csv.reader.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido: <code>Buenos Aires  -34.6   -58.4</code></p>
 <hr />
-<h3 id="b4-estadisticas-de-coordenadas">B4. Estadísticas de coordenadas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b4-estadisticas-de-coordenadas">B4. Estadísticas de coordenadas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé <code>puntos.csv</code> y calculá: latitud promedio, longitud promedio, y el punto más al este (mayor longitud).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -622,17 +865,37 @@ Punto más al este: Buenos Aires
 </code></pre></div>
 
 <hr />
-<h3 id="b5-ordenar-csv-por-columna">B5. Ordenar CSV por columna</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b5-ordenar-csv-por-columna">B5. Ordenar CSV por columna</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé <code>ciudades.csv</code> y creá <code>ciudades_ordenadas.csv</code> con las ciudades ordenadas de mayor a menor población.</p>
 <hr />
-<h3 id="b6-backup-con-timestamp">B6. Backup con timestamp</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b6-backup-con-timestamp">B6. Backup con timestamp</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que copie <code>puntos.csv</code> a un archivo de backup con la fecha actual en el nombre, por ejemplo <code>puntos_backup_2026-02-03.csv</code>.</p>
 <p><strong>Hint</strong>: Usá el módulo <code>datetime</code> para obtener la fecha.</p>
 <hr />
-<h3 id="b7-validar-formato-de-csv">B7. Validar formato de CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b7-validar-formato-de-csv">B7. Validar formato de CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que verifique si un archivo CSV tiene exactamente 3 columnas en cada fila. Si alguna fila tiene más o menos, mostrá un mensaje de error indicando el número de fila.</p>
 <hr />
-<h3 id="b8-convertir-csv-a-formato-vertical">B8. Convertir CSV a formato vertical</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b8-convertir-csv-a-formato-vertical">B8. Convertir CSV a formato vertical</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé <code>puntos.csv</code> y generá un archivo <code>puntos_vertical.txt</code> con formato:</p>
 <div class="highlight"><pre><span></span><code>--- Buenos Aires ---
 Latitud: -34.6
@@ -644,10 +907,20 @@ Longitud: -64.2
 </code></pre></div>
 
 <hr />
-<h3 id="b9-unir-multiples-archivos-csv">B9. Unir múltiples archivos CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b9-unir-multiples-archivos-csv">B9. Unir múltiples archivos CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Tenés <code>ciudades_norte.csv</code> y <code>ciudades_sur.csv</code> con el mismo formato. Creá un programa que los una en <code>todas_ciudades.csv</code>.</p>
 <hr />
-<h3 id="b10-leer-csv-desde-string">B10. Leer CSV desde string</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b10-leer-csv-desde-string">B10. Leer CSV desde string</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dado un string multilínea que representa un CSV:</p>
 <div class="highlight"><pre><span></span><code><span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;ciudad,lat,lon</span>
 <span class="s2">Buenos Aires,-34.6,-58.4</span>
@@ -656,13 +929,28 @@ Longitud: -64.2
 
 <p>Parseá el string como si fuera un archivo CSV usando <code>io.StringIO</code>.</p>
 <hr />
-<h2 id="categoria-c-desafios">Categoría C - Desafíos</h2>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-c-desafios">Categoría C - Desafíos</h2></summary>
+<div class="section-content">
 <p>Ejercicios opcionales que requieren mayor dificultad o investigación.</p>
 <hr />
-<h3 id="c1-detector-de-encoding">C1. Detector de encoding</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="c1-detector-de-encoding">C1. Detector de encoding</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Algunos archivos CSV pueden tener diferentes encodings (UTF-8, Latin-1, etc.). Escribí un programa que intente abrir un archivo con UTF-8 primero, y si falla, pruebe con Latin-1.</p>
 <hr />
-<h3 id="c2-csv-con-campos-multilinea">C2. CSV con campos multilínea</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c2-csv-con-campos-multilinea">C2. CSV con campos multilínea</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Los campos CSV pueden contener saltos de línea si están entre comillas. Creá un archivo donde una celda contenga texto con saltos de línea y leélo correctamente.</p>
 <p><strong>Ejemplo</strong>:</p>
 <div class="highlight"><pre><span></span><code>ciudad,descripcion
@@ -671,10 +959,20 @@ Ciudad más poblada.&quot;
 </code></pre></div>
 
 <hr />
-<h3 id="c3-comparar-dos-versiones-de-csv">C3. Comparar dos versiones de CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c3-comparar-dos-versiones-de-csv">C3. Comparar dos versiones de CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Tenés <code>ciudades_v1.csv</code> y <code>ciudades_v2.csv</code>. Escribí un programa que muestre qué ciudades fueron agregadas, eliminadas o modificadas entre ambas versiones.</p>
 <hr />
-<h3 id="c4-generar-csv-desde-api-simulada">C4. Generar CSV desde API simulada</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c4-generar-csv-desde-api-simulada">C4. Generar CSV desde API simulada</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una función <code>obtener_ciudades()</code> que simule una respuesta de API retornando una lista de diccionarios. Luego guardá esos datos en un archivo CSV.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">obtener_ciudades</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">[</span>
@@ -684,7 +982,12 @@ Ciudad más poblada.&quot;
 </code></pre></div>
 
 <hr />
-<h3 id="c5-sistema-de-log-en-archivo">C5. Sistema de log en archivo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c5-sistema-de-log-en-archivo">C5. Sistema de log en archivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un sistema simple de logging que agregue mensajes con timestamp a un archivo <code>log.txt</code>. Cada vez que se ejecute el programa, debe agregar una nueva línea sin borrar las anteriores.</p>
 <p><strong>Ejemplo</strong> de contenido después de varias ejecuciones:</p>
 <div class="highlight"><pre><span></span><code>2026-02-03 10:30:15 - Programa iniciado
@@ -694,6 +997,10 @@ Ciudad más poblada.&quot;
 
 <hr />
 <p><em>Fin de los ejercicios de la Unidad 3 - Archivos y CSV</em></p>
+</div>
+</details>
+</div>
+</details>
         </main>
     </div>
 </body>

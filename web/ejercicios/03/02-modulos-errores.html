@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -329,153 +396,294 @@
             <h1 id="unidad-3-modulos-y-manejo-de-errores">Unidad 3: Módulos y Manejo de Errores</h1>
 <p>Ejercicios sobre importación de módulos y manejo de excepciones con try/except.</p>
 <hr />
-<h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2></summary>
+<div class="section-content">
 <p>Se recomienda hacerlos todos. Están ordenados por dificultad incremental.</p>
 <hr />
-<h3 id="bloque-1-importar-modulos">Bloque 1: Importar módulos</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-1-importar-modulos">Bloque 1: Importar módulos</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a1-importar-modulo-completo">A1. Importar módulo completo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a1-importar-modulo-completo">A1. Importar módulo completo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Importá el módulo <code>math</code> y usá <code>math.sqrt()</code> para calcular la raíz cuadrada de 144.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>12.0</code></p>
 <p><strong>Hint</strong>: Usá <code>import math</code> y luego <code>math.sqrt(144)</code>.</p>
 <hr />
-<h3 id="a2-importar-funcion-especifica">A2. Importar función específica</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a2-importar-funcion-especifica">A2. Importar función específica</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Importá solo la función <code>sqrt</code> del módulo <code>math</code> y usala para calcular la raíz cuadrada de 225.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>15.0</code></p>
 <p><strong>Hint</strong>: Usá <code>from math import sqrt</code> y luego <code>sqrt(225)</code> directamente.</p>
 <hr />
-<h3 id="a3-importar-con-alias">A3. Importar con alias</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a3-importar-con-alias">A3. Importar con alias</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Importá el módulo <code>math</code> con el alias <code>m</code> y usá <code>m.pi</code> para mostrar el valor de π.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>3.141592653589793</code></p>
 <p><strong>Hint</strong>: Usá <code>import math as m</code>.</p>
 <hr />
-<h3 id="a4-importar-multiples-funciones">A4. Importar múltiples funciones</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a4-importar-multiples-funciones">A4. Importar múltiples funciones</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Importá <code>sqrt</code>, <code>pow</code> y <code>pi</code> del módulo <code>math</code> en una sola línea. Calculá la circunferencia de un círculo de radio 5 (2 × π × r).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>31.41592653589793</code></p>
 <p><strong>Hint</strong>: <code>from math import sqrt, pow, pi</code>.</p>
 <hr />
-<h3 id="a5-listar-contenido-de-modulo">A5. Listar contenido de módulo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a5-listar-contenido-de-modulo">A5. Listar contenido de módulo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>dir(math)</code> para ver todas las funciones disponibles en el módulo math. Mostrá las primeras 10.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: lista de nombres de funciones</p>
 <p><strong>Hint</strong>: <code>dir()</code> devuelve una lista de nombres disponibles en un módulo.</p>
 <hr />
-<h3 id="bloque-2-modulos-estandar-utiles">Bloque 2: Módulos estándar útiles</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-2-modulos-estandar-utiles">Bloque 2: Módulos estándar útiles</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a6-modulo-os-directorio-actual">A6. Módulo os - directorio actual</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a6-modulo-os-directorio-actual">A6. Módulo os - directorio actual</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá el módulo <code>os</code> para mostrar el directorio de trabajo actual.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>/home/usuario/proyecto</code> (o similar)</p>
 <p><strong>Hint</strong>: Usá <code>os.getcwd()</code>.</p>
 <hr />
-<h3 id="a7-modulo-os-listar-archivos">A7. Módulo os - listar archivos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a7-modulo-os-listar-archivos">A7. Módulo os - listar archivos</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>os.listdir()</code> para listar los archivos del directorio actual.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>['archivo1.py', 'datos.csv', ...]</code></p>
 <hr />
-<h3 id="a8-modulo-random-numero-aleatorio">A8. Módulo random - número aleatorio</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a8-modulo-random-numero-aleatorio">A8. Módulo random - número aleatorio</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá el módulo <code>random</code> para generar una coordenada de latitud aleatoria entre -90 y 90.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>-34.567</code> (número aleatorio diferente cada vez)</p>
 <p><strong>Hint</strong>: Usá <code>random.uniform(-90, 90)</code>.</p>
 <hr />
-<h3 id="a9-modulo-random-eleccion-aleatoria">A9. Módulo random - elección aleatoria</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a9-modulo-random-eleccion-aleatoria">A9. Módulo random - elección aleatoria</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada una lista de ciudades <code>["Buenos Aires", "Córdoba", "Rosario", "Mendoza"]</code>, usá <code>random.choice()</code> para elegir una ciudad al azar.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Córdoba</code> (o cualquier ciudad de la lista)</p>
 <hr />
-<h3 id="a10-modulo-datetime-fecha-actual">A10. Módulo datetime - fecha actual</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a10-modulo-datetime-fecha-actual">A10. Módulo datetime - fecha actual</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá el módulo <code>datetime</code> para obtener y mostrar la fecha y hora actual.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>2026-02-03 14:30:45.123456</code></p>
 <p><strong>Hint</strong>: Usá <code>datetime.datetime.now()</code>.</p>
 <hr />
-<h3 id="bloque-3-tryexcept-basico">Bloque 3: Try/except básico</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-3-tryexcept-basico">Bloque 3: Try/except básico</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a11-capturar-error-de-division">A11. Capturar error de división</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a11-capturar-error-de-division">A11. Capturar error de división</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que intente dividir 10 por 0. Usá try/except para capturar el error y mostrar un mensaje amigable.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Error: No se puede dividir por cero</code></p>
 <p><strong>Hint</strong>: El error de división por cero es <code>ZeroDivisionError</code>.</p>
 <hr />
-<h3 id="a12-capturar-error-de-conversion">A12. Capturar error de conversión</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a12-capturar-error-de-conversion">A12. Capturar error de conversión</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Intentá convertir el string "abc" a entero usando <code>int()</code>. Capturá el error y mostrá un mensaje apropiado.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Error: No se puede convertir 'abc' a número</code></p>
 <p><strong>Hint</strong>: El error de conversión es <code>ValueError</code>.</p>
 <hr />
-<h3 id="a13-capturar-error-de-archivo">A13. Capturar error de archivo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a13-capturar-error-de-archivo">A13. Capturar error de archivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Intentá abrir un archivo que no existe (<code>archivo_inexistente.txt</code>). Capturá el error y mostrá un mensaje.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Error: El archivo no fue encontrado</code></p>
 <p><strong>Hint</strong>: El error es <code>FileNotFoundError</code>.</p>
 <hr />
-<h3 id="a14-capturar-error-de-indice">A14. Capturar error de índice</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a14-capturar-error-de-indice">A14. Capturar error de índice</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>ciudades = ["Buenos Aires", "Córdoba"]</code>, intentá acceder al índice 10. Capturá el error.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Error: Índice fuera de rango</code></p>
 <p><strong>Hint</strong>: El error es <code>IndexError</code>.</p>
 <hr />
-<h3 id="a15-capturar-error-de-clave">A15. Capturar error de clave</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a15-capturar-error-de-clave">A15. Capturar error de clave</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dado el diccionario <code>punto = {"lat": -34.6, "lon": -58.4}</code>, intentá acceder a la clave "nombre". Capturá el error.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Error: La clave 'nombre' no existe</code></p>
 <p><strong>Hint</strong>: El error es <code>KeyError</code>.</p>
 <hr />
-<h3 id="bloque-4-excepciones-especificas-y-elsefinally">Bloque 4: Excepciones específicas y else/finally</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-4-excepciones-especificas-y-elsefinally">Bloque 4: Excepciones específicas y else/finally</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a16-multiples-excepciones">A16. Múltiples excepciones</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a16-multiples-excepciones">A16. Múltiples excepciones</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que pida al usuario un número y lo use como divisor de 100. Manejá tanto el caso de división por cero como de entrada inválida (texto en lugar de número).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Entrada: <code>0</code> → Salida: <code>Error: División por cero</code><br />
 - Entrada: <code>abc</code> → Salida: <code>Error: Entrada inválida</code><br />
 - Entrada: <code>5</code> → Salida: <code>Resultado: 20.0</code></p>
 <hr />
-<h3 id="a17-bloque-else-en-try">A17. Bloque else en try</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a17-bloque-else-en-try">A17. Bloque else en try</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que intente abrir y leer un archivo. Si tiene éxito (no hay error), mostrá "Archivo leído correctamente" en el bloque <code>else</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Si el archivo existe: <code>Contenido: ... Archivo leído correctamente</code><br />
 - Si no existe: <code>Error: Archivo no encontrado</code></p>
 <p><strong>Hint</strong>: El bloque <code>else</code> se ejecuta solo si no hubo excepciones.</p>
 <hr />
-<h3 id="a18-bloque-finally">A18. Bloque finally</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a18-bloque-finally">A18. Bloque finally</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que intente abrir un archivo y use <code>finally</code> para mostrar "Operación finalizada" siempre, haya o no error.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Si el archivo existe: <code>Contenido: ... Operación finalizada</code><br />
 - Si no existe: <code>Error: ... Operación finalizada</code></p>
 <p><strong>Hint</strong>: El bloque <code>finally</code> se ejecuta siempre, haya o no excepción.</p>
 <hr />
-<h3 id="a19-obtener-mensaje-de-error">A19. Obtener mensaje de error</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a19-obtener-mensaje-de-error">A19. Obtener mensaje de error</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Capturá un error de archivo y mostrá el mensaje de error original usando <code>as e</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Error: [Errno 2] No such file or directory: 'noexiste.txt'</code></p>
 <p><strong>Hint</strong>: Usá <code>except FileNotFoundError as e:</code> y luego <code>print(e)</code>.</p>
 <hr />
-<h3 id="a20-capturar-cualquier-excepcion">A20. Capturar cualquier excepción</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a20-capturar-cualquier-excepcion">A20. Capturar cualquier excepción</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Escribí un programa que capture cualquier tipo de excepción usando <code>except Exception</code>. Probalo con una división por cero.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Ocurrió un error: division by zero</code></p>
 <p><strong>Hint</strong>: <code>Exception</code> es la clase base de la mayoría de errores.</p>
 <hr />
-<h3 id="bloque-5-funciones-robustas-con-manejo-de-errores">Bloque 5: Funciones robustas con manejo de errores</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-5-funciones-robustas-con-manejo-de-errores">Bloque 5: Funciones robustas con manejo de errores</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a21-funcion-con-validacion">A21. Función con validación</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a21-funcion-con-validacion">A21. Función con validación</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una función <code>convertir_coordenada(texto)</code> que convierta un string a float. Si falla, debe retornar <code>None</code> en lugar de fallar.</p>
 <p><strong>Ejemplo</strong>:<br />
 - <code>convertir_coordenada("-34.6")</code> → <code>-34.6</code><br />
 - <code>convertir_coordenada("invalido")</code> → <code>None</code></p>
 <hr />
-<h3 id="a22-leer-archivo-seguro">A22. Leer archivo seguro</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a22-leer-archivo-seguro">A22. Leer archivo seguro</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una función <code>leer_archivo_seguro(path)</code> que retorne el contenido del archivo, o un string vacío si el archivo no existe.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Si el archivo existe: retorna contenido<br />
 - Si no existe: retorna <code>""</code></p>
 <hr />
-<h3 id="a23-obtener-valor-de-diccionario-seguro">A23. Obtener valor de diccionario seguro</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a23-obtener-valor-de-diccionario-seguro">A23. Obtener valor de diccionario seguro</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una función <code>obtener_valor(diccionario, clave, default=None)</code> que retorne el valor de la clave, o el valor por defecto si la clave no existe.</p>
 <p><strong>Ejemplo</strong>:<br />
 - <code>obtener_valor({"a": 1}, "a")</code> → <code>1</code><br />
@@ -483,76 +691,175 @@
 - <code>obtener_valor({"a": 1}, "b", 0)</code> → <code>0</code></p>
 <p><strong>Hint</strong>: Python ya tiene esto: <code>dict.get()</code>. Implementalo vos usando try/except.</p>
 <hr />
-<h3 id="a24-validar-coordenadas">A24. Validar coordenadas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a24-validar-coordenadas">A24. Validar coordenadas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una función <code>validar_coordenada(lat, lon)</code> que verifique si las coordenadas son válidas (lat entre -90 y 90, lon entre -180 y 180). Si recibe valores no numéricos, debe capturar el error y retornar <code>False</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - <code>validar_coordenada(-34.6, -58.4)</code> → <code>True</code><br />
 - <code>validar_coordenada(-100, 50)</code> → <code>False</code><br />
 - <code>validar_coordenada("abc", -58.4)</code> → <code>False</code></p>
 <hr />
-<h3 id="a25-parsear-linea-de-csv-manualmente">A25. Parsear línea de CSV manualmente</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a25-parsear-linea-de-csv-manualmente">A25. Parsear línea de CSV manualmente</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una función <code>parsear_punto(linea)</code> que reciba un string con formato "ciudad,lat,lon" y retorne un diccionario. Si el formato es incorrecto, debe retornar <code>None</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - <code>parsear_punto("Buenos Aires,-34.6,-58.4")</code> → <code>{"ciudad": "Buenos Aires", "lat": -34.6, "lon": -58.4}</code><br />
 - <code>parsear_punto("datos_invalidos")</code> → <code>None</code></p>
 <hr />
-<h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2></summary>
+<div class="section-content">
 <p>Recomendables para quienes quieran practicar más.</p>
 <hr />
-<h3 id="b1-modulo-ospath">B1. Módulo os.path</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="b1-modulo-ospath">B1. Módulo os.path</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>os.path.exists()</code> para verificar si un archivo existe antes de intentar abrirlo.</p>
 <hr />
-<h3 id="b2-generar-coordenadas-aleatorias">B2. Generar coordenadas aleatorias</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b2-generar-coordenadas-aleatorias">B2. Generar coordenadas aleatorias</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá el módulo <code>random</code> para generar 5 puntos geográficos aleatorios (cada uno con lat y lon válidas).</p>
 <hr />
-<h3 id="b3-formatear-fecha">B3. Formatear fecha</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b3-formatear-fecha">B3. Formatear fecha</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>datetime.strftime()</code> para mostrar la fecha actual en formato "03/02/2026".</p>
 <p><strong>Hint</strong>: El formato es <code>"%d/%m/%Y"</code>.</p>
 <hr />
-<h3 id="b4-calcular-distancia-con-math">B4. Calcular distancia con math</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b4-calcular-distancia-con-math">B4. Calcular distancia con math</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>math.sqrt()</code> y <code>math.pow()</code> para calcular la distancia euclidiana entre dos puntos geográficos.</p>
 <hr />
-<h3 id="b5-re-lanzar-excepcion">B5. Re-lanzar excepción</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b5-re-lanzar-excepcion">B5. Re-lanzar excepción</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Capturá una excepción, registrá el error en una variable, y luego re-lanzá la excepción usando <code>raise</code>.</p>
 <hr />
-<h3 id="b6-validar-multiples-archivos">B6. Validar múltiples archivos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b6-validar-multiples-archivos">B6. Validar múltiples archivos</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada una lista de nombres de archivos, verificá cuáles existen y cuáles no, mostrando un reporte.</p>
 <hr />
-<h3 id="b7-timeout-simulado">B7. Timeout simulado</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b7-timeout-simulado">B7. Timeout simulado</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>time.sleep()</code> para simular una operación que tarda. Si tarda más de 2 segundos, mostrá un mensaje.</p>
 <hr />
-<h3 id="b8-parsear-fecha-de-string">B8. Parsear fecha de string</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b8-parsear-fecha-de-string">B8. Parsear fecha de string</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>datetime.strptime()</code> para convertir el string "03-02-2026" a un objeto datetime. Manejá el error si el formato es incorrecto.</p>
 <hr />
-<h3 id="b9-crear-directorio-seguro">B9. Crear directorio seguro</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b9-crear-directorio-seguro">B9. Crear directorio seguro</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>os.makedirs()</code> con el parámetro <code>exist_ok=True</code> para crear un directorio solo si no existe.</p>
 <hr />
-<h3 id="b10-encadenar-excepciones">B10. Encadenar excepciones</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b10-encadenar-excepciones">B10. Encadenar excepciones</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Capturá un error y lanzá otro error personalizado usando <code>raise ... from e</code>.</p>
 <hr />
-<h2 id="categoria-c-desafios">Categoría C - Desafíos</h2>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-c-desafios">Categoría C - Desafíos</h2></summary>
+<div class="section-content">
 <p>Ejercicios opcionales que requieren mayor dificultad o investigación.</p>
 <hr />
-<h3 id="c1-crear-tu-propio-modulo">C1. Crear tu propio módulo</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="c1-crear-tu-propio-modulo">C1. Crear tu propio módulo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>geo_utils.py</code> con funciones para calcular distancia y validar coordenadas. Luego importalo desde otro archivo y usá las funciones.</p>
 <hr />
-<h3 id="c2-excepcion-personalizada">C2. Excepción personalizada</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c2-excepcion-personalizada">C2. Excepción personalizada</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una clase <code>CoordenadaInvalidaError</code> que herede de <code>Exception</code>. Usala en una función de validación que lance este error específico.</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CoordenadaInvalidaError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span>
 </code></pre></div>
 
 <hr />
-<h3 id="c3-context-manager-personalizado">C3. Context manager personalizado</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c3-context-manager-personalizado">C3. Context manager personalizado</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un context manager usando <code>__enter__</code> y <code>__exit__</code> que registre cuánto tiempo tardó un bloque de código en ejecutarse.</p>
 <hr />
-<h3 id="c4-reintentar-operacion-fallida">C4. Reintentar operación fallida</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c4-reintentar-operacion-fallida">C4. Reintentar operación fallida</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una función <code>reintentar(funcion, intentos=3)</code> que ejecute una función y, si falla, reintente hasta N veces antes de rendirse.</p>
 <hr />
-<h3 id="c5-sistema-de-logging-con-niveles">C5. Sistema de logging con niveles</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c5-sistema-de-logging-con-niveles">C5. Sistema de logging con niveles</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá el módulo <code>logging</code> de Python para crear un sistema de logs con niveles DEBUG, INFO, WARNING y ERROR. Configurá para que escriba a un archivo.</p>
 <hr />
 <p><em>Fin de los ejercicios de la Unidad 3 - Módulos y Manejo de Errores</em></p>
+</div>
+</details>
+</div>
+</details>
         </main>
     </div>
 </body>

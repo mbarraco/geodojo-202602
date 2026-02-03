@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -289,7 +356,10 @@
             <h1 id="proyecto-integrador-planificador-de-ruta-geografica">Proyecto Integrador: Planificador de Ruta Geográfica</h1>
 <p>Un proyecto paso a paso para construir un programa interactivo que gestiona rutas de viaje con múltiples destinos.</p>
 <hr />
-<h2 id="descripcion-del-proyecto">Descripción del proyecto</h2>
+
+<details class="section-collapsible">
+<summary><h2 id="descripcion-del-proyecto">Descripción del proyecto</h2></summary>
+<div class="section-content">
 <p>Vamos a construir un programa que:<br />
 - Permite agregar destinos a una ruta (con validación de coordenadas)<br />
 - Muestra la lista de destinos de la ruta<br />
@@ -299,7 +369,12 @@
 - Usa un menú interactivo que se repite hasta que el usuario decida salir</p>
 <p>Este proyecto integra conceptos de la Unidad 2: listas, tuplas, diccionarios, condicionales y bucles. También reutiliza funciones de la Unidad 1.</p>
 <hr />
-<h2 id="paso-1-estructura-de-datos-basica">Paso 1: Estructura de datos básica</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-1-estructura-de-datos-basica">Paso 1: Estructura de datos básica</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear la estructura de datos para almacenar la ruta. Usaremos una lista de diccionarios, donde cada diccionario representa un destino.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear una lista vacía llamada <code>ruta</code><br />
@@ -328,7 +403,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-2-funcion-para-validar-coordenadas">Paso 2: Función para validar coordenadas</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-2-funcion-para-validar-coordenadas">Paso 2: Función para validar coordenadas</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función que verifique si las coordenadas son válidas antes de agregar un destino.</p>
 <p><strong>Reglas</strong>:<br />
 - Latitud válida: entre -90 y 90<br />
@@ -344,7 +424,12 @@
 
 <p><strong>Hint</strong>: Usá <code>and</code> para combinar las dos condiciones (latitud válida Y longitud válida).</p>
 <hr />
-<h2 id="paso-3-funcion-para-agregar-destino">Paso 3: Función para agregar destino</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-3-funcion-para-agregar-destino">Paso 3: Función para agregar destino</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función que pida los datos de un destino al usuario, los valide, y lo agregue a la ruta.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>agregar_destino(ruta)</code> que modifique la lista recibida<br />
@@ -366,7 +451,12 @@ Longitud: 50
 
 <p><strong>Hint</strong>: Usá <code>if</code> para verificar si las coordenadas son válidas antes de hacer <code>append()</code>.</p>
 <hr />
-<h2 id="paso-4-funcion-para-mostrar-la-ruta">Paso 4: Función para mostrar la ruta</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-4-funcion-para-mostrar-la-ruta">Paso 4: Función para mostrar la ruta</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función que muestre todos los destinos de la ruta, numerados.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>mostrar_ruta(ruta)</code><br />
@@ -385,7 +475,12 @@ Longitud: 50
 
 <p><strong>Hint</strong>: Usá <code>len(ruta) == 0</code> o simplemente <code>not ruta</code> para verificar si está vacía.</p>
 <hr />
-<h2 id="paso-5-funcion-para-calcular-distancia-entre-dos-puntos">Paso 5: Función para calcular distancia entre dos puntos</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-5-funcion-para-calcular-distancia-entre-dos-puntos">Paso 5: Función para calcular distancia entre dos puntos</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear (o reutilizar de la Unidad 1) una función que calcule la distancia entre dos coordenadas.</p>
 <p><strong>Fórmula euclidiana simplificada</strong>:</p>
 <div class="highlight"><pre><span></span><code>distancia = √[(lat2-lat1)² + (lon2-lon1)²]
@@ -406,7 +501,12 @@ Distancia aproximada: 741 km
 </code></pre></div>
 
 <hr />
-<h2 id="paso-6-funcion-para-calcular-distancia-total-de-la-ruta">Paso 6: Función para calcular distancia total de la ruta</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-6-funcion-para-calcular-distancia-total-de-la-ruta">Paso 6: Función para calcular distancia total de la ruta</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función que recorra la lista de destinos y sume las distancias entre puntos consecutivos.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>distancia_total(ruta)</code> que retorne la distancia total<br />
@@ -423,7 +523,12 @@ Distancia aproximada: 741 km
 
 <p><strong>Hint</strong>: Recorré con <code>range(len(ruta) - 1)</code> para acceder a pares consecutivos: <code>ruta[i]</code> y <code>ruta[i+1]</code>.</p>
 <hr />
-<h2 id="paso-7-funcion-para-encontrar-extremos">Paso 7: Función para encontrar extremos</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-7-funcion-para-encontrar-extremos">Paso 7: Función para encontrar extremos</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función que encuentre el destino más al norte y más al sur de la ruta.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>encontrar_extremos(ruta)</code> que retorne una tupla con dos diccionarios: (más_norte, más_sur)<br />
@@ -442,7 +547,12 @@ Más al sur: Buenos Aires (lat: -34.6)
 
 <p><strong>Hint</strong>: Recordá que en el hemisferio sur, una latitud mayor (menos negativa) está más al norte.</p>
 <hr />
-<h2 id="paso-8-funcion-para-eliminar-destino">Paso 8: Función para eliminar destino</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-8-funcion-para-eliminar-destino">Paso 8: Función para eliminar destino</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función que permita eliminar un destino de la ruta por su nombre.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>eliminar_destino(ruta, nombre)</code><br />
@@ -460,7 +570,12 @@ Más al sur: Buenos Aires (lat: -34.6)
 
 <p><strong>Hint</strong>: Podés usar <code>break</code> para salir del bucle una vez que encontrás el destino.</p>
 <hr />
-<h2 id="paso-9-menu-interactivo">Paso 9: Menú interactivo</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-9-menu-interactivo">Paso 9: Menú interactivo</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear un menú que se repita hasta que el usuario elija salir, usando un bucle <code>while</code>.</p>
 <p><strong>Opciones del menú</strong>:<br />
 1. Agregar destino<br />
@@ -493,7 +608,12 @@ Más al sur: Buenos Aires (lat: -34.6)
 
 <p><strong>Hint</strong>: Usá <code>break</code> para salir del bucle cuando el usuario elige la opción de salir.</p>
 <hr />
-<h2 id="paso-10-programa-completo">Paso 10: Programa completo</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-10-programa-completo">Paso 10: Programa completo</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Integrar todas las funciones en un programa completo con un reporte final bien formateado.</p>
 <p><strong>Ejemplo de ejecución completa</strong>:</p>
 <div class="highlight"><pre><span></span><code>╔════════════════════════════════════════════════════╗
@@ -579,7 +699,12 @@ Opción: 7
 </code></pre></div>
 
 <hr />
-<h2 id="conceptos-utilizados">Conceptos utilizados</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="conceptos-utilizados">Conceptos utilizados</h2></summary>
+<div class="section-content">
 <table>
 <thead>
 <tr>
@@ -639,7 +764,12 @@ Opción: 7
 </tbody>
 </table>
 <hr />
-<h2 id="desafios-extra">Desafíos extra</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="desafios-extra">Desafíos extra</h2></summary>
+<div class="section-content">
 <ol>
 <li>
 <p><strong>Reordenar destinos</strong>: Agregar opción para mover un destino a otra posición en la ruta.</p>
@@ -664,7 +794,12 @@ Opción: 7
 </li>
 </ol>
 <hr />
-<h2 id="conexion-con-la-unidad-1">Conexión con la Unidad 1</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="conexion-con-la-unidad-1">Conexión con la Unidad 1</h2></summary>
+<div class="section-content">
 <p>Este proyecto es una evolución del <strong>Proyecto Integrador de la Unidad 1</strong> (Calculadora de Coordenadas):</p>
 <table>
 <thead>
@@ -702,6 +837,8 @@ Opción: 7
 - <code>generar_link_maps()</code></p>
 <hr />
 <p><em>Fin del proyecto integrador - Unidad 2</em></p>
+</div>
+</details>
         </main>
     </div>
 </body>

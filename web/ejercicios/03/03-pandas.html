@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -329,12 +396,23 @@
             <h1 id="unidad-3-pandas-para-datos-geograficos">Unidad 3: Pandas para Datos Geográficos</h1>
 <p>Ejercicios sobre lectura y manipulación de datos con Pandas.</p>
 <hr />
-<h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2></summary>
+<div class="section-content">
 <p>Se recomienda hacerlos todos. Están ordenados por dificultad incremental.</p>
 <hr />
-<h3 id="bloque-1-cargar-datos-y-exploracion-basica">Bloque 1: Cargar datos y exploración básica</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-1-cargar-datos-y-exploracion-basica">Bloque 1: Cargar datos y exploración básica</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a1-leer-csv-con-pandas">A1. Leer CSV con pandas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a1-leer-csv-con-pandas">A1. Leer CSV con pandas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un archivo <code>ciudades.csv</code> con columnas nombre, latitud, longitud y población. Leélo con <code>pd.read_csv()</code> y mostrá el DataFrame.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Contenido del CSV:</p>
@@ -349,13 +427,23 @@ Rosario,-33.0,-60.7,1270000
 </ul>
 <p><strong>Hint</strong>: <code>import pandas as pd</code> y luego <code>pd.read_csv("archivo.csv")</code>.</p>
 <hr />
-<h3 id="a2-ver-primeras-y-ultimas-filas">A2. Ver primeras y últimas filas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a2-ver-primeras-y-ultimas-filas">A2. Ver primeras y últimas filas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usando el DataFrame del ejercicio anterior, mostrá las primeras 2 filas con <code>head()</code> y las últimas 2 con <code>tail()</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - <code>df.head(2)</code> muestra las primeras 2 filas<br />
 - <code>df.tail(2)</code> muestra las últimas 2 filas</p>
 <hr />
-<h3 id="a3-informacion-del-dataframe">A3. Información del DataFrame</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a3-informacion-del-dataframe">A3. Información del DataFrame</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>df.shape</code>, <code>df.columns</code> y <code>df.dtypes</code> para explorar la estructura del DataFrame.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -365,12 +453,22 @@ Tipos: nombre: object, latitud: float64, ...
 </code></pre></div>
 
 <hr />
-<h3 id="a4-estadisticas-basicas">A4. Estadísticas básicas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a4-estadisticas-basicas">A4. Estadísticas básicas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>df.describe()</code> para ver estadísticas de las columnas numéricas (latitud, longitud, población).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: tabla con count, mean, std, min, max, etc.</p>
 <hr />
-<h3 id="a5-acceder-a-una-columna">A5. Acceder a una columna</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a5-acceder-a-una-columna">A5. Acceder a una columna</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Extraé la columna "nombre" del DataFrame y mostrá sus valores.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -382,9 +480,19 @@ Name: nombre, dtype: object
 
 <p><strong>Hint</strong>: Usá <code>df["nombre"]</code> o <code>df.nombre</code>.</p>
 <hr />
-<h3 id="bloque-2-seleccion-con-loc-e-iloc">Bloque 2: Selección con loc e iloc</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-2-seleccion-con-loc-e-iloc">Bloque 2: Selección con loc e iloc</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a6-seleccionar-fila-por-indice">A6. Seleccionar fila por índice</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a6-seleccionar-fila-por-indice">A6. Seleccionar fila por índice</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>iloc[0]</code> para obtener la primera fila del DataFrame como Serie.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -396,67 +504,132 @@ Name: 0, dtype: object
 </code></pre></div>
 
 <hr />
-<h3 id="a7-seleccionar-rango-de-filas">A7. Seleccionar rango de filas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a7-seleccionar-rango-de-filas">A7. Seleccionar rango de filas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>iloc[0:2]</code> para obtener las primeras 2 filas como DataFrame.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con Buenos Aires y Córdoba</p>
 <hr />
-<h3 id="a8-seleccionar-columnas-especificas">A8. Seleccionar columnas específicas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a8-seleccionar-columnas-especificas">A8. Seleccionar columnas específicas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un nuevo DataFrame con solo las columnas "nombre" y "poblacion".</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con 2 columnas</p>
 <p><strong>Hint</strong>: <code>df[["nombre", "poblacion"]]</code> (doble corchete).</p>
 <hr />
-<h3 id="a9-seleccionar-con-loc-por-etiqueta">A9. Seleccionar con loc por etiqueta</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a9-seleccionar-con-loc-por-etiqueta">A9. Seleccionar con loc por etiqueta</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Establecé la columna "nombre" como índice con <code>set_index()</code>. Luego usá <code>loc["Córdoba"]</code> para obtener los datos de Córdoba.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: Serie con latitud, longitud y población de Córdoba</p>
 <hr />
-<h3 id="a10-seleccionar-celda-especifica">A10. Seleccionar celda específica</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a10-seleccionar-celda-especifica">A10. Seleccionar celda específica</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Obtené la población de la primera ciudad usando <code>iloc[0, 3]</code> o <code>loc</code> con el nombre de columna.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>2890000</code></p>
 <hr />
-<h3 id="bloque-3-filtrado-de-datos">Bloque 3: Filtrado de datos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-3-filtrado-de-datos">Bloque 3: Filtrado de datos</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a11-filtrar-por-condicion-simple">A11. Filtrar por condición simple</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a11-filtrar-por-condicion-simple">A11. Filtrar por condición simple</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Filtrá el DataFrame para mostrar solo las ciudades con población mayor a 1.5 millones.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con solo Buenos Aires</p>
 <p><strong>Hint</strong>: <code>df[df["poblacion"] &gt; 1500000]</code>.</p>
 <hr />
-<h3 id="a12-filtrar-por-condicion-de-texto">A12. Filtrar por condición de texto</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a12-filtrar-por-condicion-de-texto">A12. Filtrar por condición de texto</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Filtrá para mostrar solo las ciudades cuyo nombre empieza con "B".</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con Buenos Aires</p>
 <p><strong>Hint</strong>: Usá <code>df["nombre"].str.startswith("B")</code>.</p>
 <hr />
-<h3 id="a13-filtrar-con-multiples-condiciones">A13. Filtrar con múltiples condiciones</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a13-filtrar-con-multiples-condiciones">A13. Filtrar con múltiples condiciones</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Filtrá ciudades con latitud menor a -32 Y población mayor a 1 millón.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con Buenos Aires y Rosario</p>
 <p><strong>Hint</strong>: Usá <code>&amp;</code> para AND y <code>|</code> para OR. Cada condición entre paréntesis.</p>
 <hr />
-<h3 id="a14-filtrar-con-query">A14. Filtrar con query()</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a14-filtrar-con-query">A14. Filtrar con query()</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá el método <code>query()</code> para filtrar ciudades con longitud menor a -60.</p>
 <p><strong>Ejemplo</strong>:<br />
 - <code>df.query("longitud &lt; -60")</code> → ciudades al oeste de -60°</p>
 <hr />
-<h3 id="a15-filtrar-con-isin">A15. Filtrar con isin()</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a15-filtrar-con-isin">A15. Filtrar con isin()</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Filtrá para mostrar solo las ciudades que están en la lista <code>["Buenos Aires", "Rosario"]</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con 2 ciudades</p>
 <p><strong>Hint</strong>: <code>df[df["nombre"].isin(["Buenos Aires", "Rosario"])]</code>.</p>
 <hr />
-<h3 id="bloque-4-agrupacion-y-agregacion">Bloque 4: Agrupación y agregación</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-4-agrupacion-y-agregacion">Bloque 4: Agrupación y agregación</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a16-agregar-columna-de-categoria">A16. Agregar columna de categoría</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a16-agregar-columna-de-categoria">A16. Agregar columna de categoría</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Agregá una columna "region" al DataFrame con valores "Pampeana" para todas las ciudades (por ahora el mismo valor).</p>
 <p><strong>Ejemplo</strong>:<br />
 - El DataFrame debe tener una nueva columna "region"</p>
 <p><strong>Hint</strong>: <code>df["region"] = "Pampeana"</code>.</p>
 <hr />
-<h3 id="a17-agrupar-y-contar">A17. Agrupar y contar</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a17-agrupar-y-contar">A17. Agrupar y contar</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un DataFrame con varias ciudades y regiones (Pampeana, Cuyo, Norte). Usá <code>groupby("region").size()</code> para contar ciudades por región.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -468,108 +641,242 @@ dtype: int64
 </code></pre></div>
 
 <hr />
-<h3 id="a18-agrupar-y-sumar">A18. Agrupar y sumar</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a18-agrupar-y-sumar">A18. Agrupar y sumar</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Agrupá por región y calculá la población total de cada región con <code>sum()</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: Serie con población total por región</p>
 <hr />
-<h3 id="a19-multiples-agregaciones">A19. Múltiples agregaciones</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a19-multiples-agregaciones">A19. Múltiples agregaciones</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Agrupá por región y calculá tanto la suma como el promedio de población usando <code>agg()</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con columnas sum y mean por región</p>
 <p><strong>Hint</strong>: <code>df.groupby("region")["poblacion"].agg(["sum", "mean"])</code>.</p>
 <hr />
-<h3 id="a20-estadisticas-por-grupo">A20. Estadísticas por grupo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a20-estadisticas-por-grupo">A20. Estadísticas por grupo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Para cada región, encontrá la ciudad con mayor población usando <code>idxmax()</code> o filtrado.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: nombre de la ciudad más poblada de cada región</p>
 <hr />
-<h3 id="bloque-5-guardar-y-combinar-dataframes">Bloque 5: Guardar y combinar DataFrames</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-5-guardar-y-combinar-dataframes">Bloque 5: Guardar y combinar DataFrames</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a21-guardar-a-csv">A21. Guardar a CSV</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a21-guardar-a-csv">A21. Guardar a CSV</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Guardá el DataFrame en un nuevo archivo <code>ciudades_procesado.csv</code> sin incluir el índice.</p>
 <p><strong>Ejemplo</strong>:<br />
 - El archivo se crea correctamente</p>
 <p><strong>Hint</strong>: <code>df.to_csv("archivo.csv", index=False)</code>.</p>
 <hr />
-<h3 id="a22-ordenar-dataframe">A22. Ordenar DataFrame</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a22-ordenar-dataframe">A22. Ordenar DataFrame</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Ordená el DataFrame por población de mayor a menor y guardalo.</p>
 <p><strong>Ejemplo</strong>:<br />
 - La primera fila debe ser la ciudad más poblada</p>
 <p><strong>Hint</strong>: <code>df.sort_values("poblacion", ascending=False)</code>.</p>
 <hr />
-<h3 id="a23-combinar-con-concat">A23. Combinar con concat</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a23-combinar-con-concat">A23. Combinar con concat</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá dos DataFrames pequeños (ciudades del norte y del sur) y combinalos en uno solo con <code>pd.concat()</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con todas las ciudades de ambos DataFrames</p>
 <hr />
-<h3 id="a24-combinar-con-merge">A24. Combinar con merge</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a24-combinar-con-merge">A24. Combinar con merge</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Tenés un DataFrame con ciudades y población, y otro con ciudades y área. Combinalos por nombre de ciudad usando <code>merge()</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: DataFrame con nombre, población y área</p>
 <p><strong>Hint</strong>: <code>pd.merge(df1, df2, on="nombre")</code>.</p>
 <hr />
-<h3 id="a25-crear-columna-calculada">A25. Crear columna calculada</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a25-crear-columna-calculada">A25. Crear columna calculada</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Agregá una columna "densidad" calculada como población / área (asumiendo que tenés la columna área).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Si Buenos Aires tiene 2890000 habitantes y 203 km², la densidad es ~14236</p>
 <p><strong>Hint</strong>: <code>df["densidad"] = df["poblacion"] / df["area"]</code>.</p>
 <hr />
-<h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2></summary>
+<div class="section-content">
 <p>Recomendables para quienes quieran practicar más.</p>
 <hr />
-<h3 id="b1-leer-csv-con-opciones">B1. Leer CSV con opciones</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="b1-leer-csv-con-opciones">B1. Leer CSV con opciones</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé un CSV especificando el separador (<code>;</code>), encoding (<code>latin-1</code>) y columnas a usar.</p>
 <p><strong>Hint</strong>: Parámetros <code>sep</code>, <code>encoding</code>, <code>usecols</code> de <code>read_csv()</code>.</p>
 <hr />
-<h3 id="b2-manejar-valores-nulos">B2. Manejar valores nulos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b2-manejar-valores-nulos">B2. Manejar valores nulos</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un DataFrame con algunos valores nulos. Usá <code>fillna()</code> para reemplazarlos y <code>dropna()</code> para eliminar filas con nulos.</p>
 <hr />
-<h3 id="b3-renombrar-columnas">B3. Renombrar columnas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b3-renombrar-columnas">B3. Renombrar columnas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Renombrá las columnas del DataFrame de inglés a español usando <code>rename()</code>.</p>
 <hr />
-<h3 id="b4-aplicar-funcion-a-columna">B4. Aplicar función a columna</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b4-aplicar-funcion-a-columna">B4. Aplicar función a columna</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>apply()</code> para crear una columna "hemisferio" que sea "Sur" si latitud &lt; 0, "Norte" si no.</p>
 <hr />
-<h3 id="b5-pivotear-datos">B5. Pivotear datos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b5-pivotear-datos">B5. Pivotear datos</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una tabla pivote que muestre la población promedio por región y año.</p>
 <hr />
-<h3 id="b6-fechas-en-pandas">B6. Fechas en pandas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b6-fechas-en-pandas">B6. Fechas en pandas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé un CSV con una columna de fecha. Convertila a datetime y extraé el año y mes.</p>
 <hr />
-<h3 id="b7-exportar-a-excel">B7. Exportar a Excel</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b7-exportar-a-excel">B7. Exportar a Excel</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Guardá el DataFrame en formato Excel usando <code>to_excel()</code>.</p>
 <p><strong>Hint</strong>: Necesitás instalar <code>openpyxl</code>.</p>
 <hr />
-<h3 id="b8-leer-multiples-csvs">B8. Leer múltiples CSVs</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b8-leer-multiples-csvs">B8. Leer múltiples CSVs</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Leé todos los archivos CSV de un directorio y combinalos en un solo DataFrame.</p>
 <hr />
-<h3 id="b9-valores-unicos-y-conteos">B9. Valores únicos y conteos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b9-valores-unicos-y-conteos">B9. Valores únicos y conteos</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>unique()</code> y <code>value_counts()</code> para analizar los valores de la columna región.</p>
 <hr />
-<h3 id="b10-crear-dataframe-desde-diccionario">B10. Crear DataFrame desde diccionario</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b10-crear-dataframe-desde-diccionario">B10. Crear DataFrame desde diccionario</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un DataFrame a partir de un diccionario de listas o una lista de diccionarios.</p>
 <hr />
-<h2 id="categoria-c-desafios">Categoría C - Desafíos</h2>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-c-desafios">Categoría C - Desafíos</h2></summary>
+<div class="section-content">
 <p>Ejercicios opcionales que requieren mayor dificultad o investigación.</p>
 <hr />
-<h3 id="c1-leer-datos-de-url">C1. Leer datos de URL</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="c1-leer-datos-de-url">C1. Leer datos de URL</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>pd.read_csv()</code> para leer un CSV directamente desde una URL de internet.</p>
 <hr />
-<h3 id="c2-analisis-de-correlacion">C2. Análisis de correlación</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c2-analisis-de-correlacion">C2. Análisis de correlación</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Calculá la matriz de correlación entre latitud, longitud y población. Interpretá los resultados.</p>
 <p><strong>Hint</strong>: <code>df.corr()</code>.</p>
 <hr />
-<h3 id="c3-datos-geoespaciales">C3. Datos geoespaciales</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c3-datos-geoespaciales">C3. Datos geoespaciales</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Instalá <code>geopandas</code> y creá un GeoDataFrame a partir de coordenadas. Visualizá los puntos en un mapa simple.</p>
 <hr />
-<h3 id="c4-optimizar-memoria">C4. Optimizar memoria</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c4-optimizar-memoria">C4. Optimizar memoria</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Analizá el uso de memoria del DataFrame con <code>df.memory_usage()</code>. Convertí columnas a tipos más eficientes (category, int32, etc.).</p>
 <hr />
-<h3 id="c5-pipeline-de-transformacion">C5. Pipeline de transformación</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c5-pipeline-de-transformacion">C5. Pipeline de transformación</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un pipeline que lea un CSV, limpie datos, agregue columnas calculadas, filtre, agrupe y exporte a un nuevo CSV. Todo en una secuencia encadenada usando el estilo de pandas con <code>.pipe()</code> o encadenamiento de métodos.</p>
 <hr />
 <p><em>Fin de los ejercicios de la Unidad 3 - Pandas</em></p>
+</div>
+</details>
+</div>
+</details>
         </main>
     </div>
 </body>

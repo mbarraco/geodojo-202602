@@ -197,6 +197,73 @@ CUSTOM_STYLE = """
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -321,6 +388,78 @@ def preprocess_markdown(content: str) -> str:
     return '\n'.join(result)
 
 
+def wrap_headings_in_details(html: str, level: int) -> str:
+    """
+    Envuelve los headings de un nivel específico en elementos <details>.
+    Procesa recursivamente los niveles inferiores dentro del contenido.
+    """
+    tag = f'h{level}'
+    pattern = re.compile(rf'<{tag}([^>]*)>(.*?)</{tag}>', re.DOTALL)
+    
+    matches = list(pattern.finditer(html))
+    if not matches:
+        return html
+    
+    result = []
+    last_end = 0
+    
+    for i, match in enumerate(matches):
+        # Agregar contenido antes de este heading
+        result.append(html[last_end:match.start()])
+        
+        # Determinar dónde termina el contenido de esta sección
+        if i + 1 < len(matches):
+            section_end = matches[i + 1].start()
+        else:
+            section_end = len(html)
+        
+        # Contenido de la sección (después del heading)
+        section_content = html[match.end():section_end]
+        
+        # Si hay nivel inferior, procesar recursivamente
+        if level < 3:
+            section_content = wrap_headings_in_details(section_content, level + 1)
+        
+        # Crear el elemento details
+        attrs = match.group(1)
+        title = match.group(2)
+        
+        result.append(f'<details class="section-collapsible">')
+        result.append(f'<summary><{tag}{attrs}>{title}</{tag}></summary>')
+        result.append(f'<div class="section-content">')
+        result.append(section_content.strip())
+        result.append('</div>')
+        result.append('</details>')
+        
+        last_end = section_end
+    
+    # Agregar cualquier contenido restante después del último heading
+    if last_end < len(html):
+        result.append(html[last_end:])
+    
+    return '\n'.join(result)
+
+
+def make_sections_collapsible(html_body: str) -> str:
+    """
+    Post-procesa el HTML para convertir secciones h2/h3 en elementos <details> colapsables.
+    El h1 (título principal) no se colapsa.
+    """
+    # Encontrar dónde empieza el primer h2
+    first_h2 = re.search(r'<h2[^>]*>', html_body)
+    if not first_h2:
+        return html_body
+    
+    # Dividir: contenido antes del primer h2 (incluye h1) y el resto
+    before_h2 = html_body[:first_h2.start()]
+    from_h2 = html_body[first_h2.start():]
+    
+    # Procesar h2 (y recursivamente h3 dentro de cada h2)
+    processed = wrap_headings_in_details(from_h2, 2)
+    
+    return before_h2 + processed
+
+
 def convert_md_to_html(md_path: Path, depth: int = 2) -> str:
     """Convierte un archivo Markdown a HTML con estilo.
     
@@ -339,6 +478,9 @@ def convert_md_to_html(md_path: Path, depth: int = 2) -> str:
         extension_configs=MD_EXTENSION_CONFIGS
     )
     html_body = md.convert(md_content)
+    
+    # Hacer las secciones colapsables (h2, h3)
+    html_body = make_sections_collapsible(html_body)
     
     # Obtener tabla de contenidos generada por la extensión toc
     # El atributo 'toc' es añadido dinámicamente por la extensión

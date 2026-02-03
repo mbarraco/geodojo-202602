@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -290,7 +357,10 @@
             <h1 id="proyecto-integrador-analisis-de-vegetacion-con-ndvi">Proyecto Integrador: Análisis de Vegetación con NDVI</h1>
 <p>Un proyecto paso a paso para construir un analizador de imágenes satelitales que calcula índices de vegetación.</p>
 <hr />
-<h2 id="descripcion-del-proyecto">Descripción del proyecto</h2>
+
+<details class="section-collapsible">
+<summary><h2 id="descripcion-del-proyecto">Descripción del proyecto</h2></summary>
+<div class="section-content">
 <p>Vamos a construir un programa que:<br />
 - Carga datos de bandas espectrales desde archivos CSV<br />
 - Calcula el índice NDVI (Normalized Difference Vegetation Index)<br />
@@ -300,7 +370,12 @@
 - Exporta resultados procesados</p>
 <p>Este proyecto integra conceptos de la Unidad 4: NumPy arrays, operaciones vectorizadas, máscaras booleanas y funciones estadísticas. También reutiliza conceptos de archivos y Pandas de la Unidad 3.</p>
 <hr />
-<h2 id="contexto-que-es-el-ndvi">Contexto: ¿Qué es el NDVI?</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="contexto-que-es-el-ndvi">Contexto: ¿Qué es el NDVI?</h2></summary>
+<div class="section-content">
 <p>El <strong>NDVI</strong> (Índice de Vegetación de Diferencia Normalizada) es un indicador que se calcula a partir de imágenes satelitales:</p>
 <div class="highlight"><pre><span></span><code>NDVI = (NIR - RED) / (NIR + RED)
 </code></pre></div>
@@ -317,7 +392,12 @@
 | 0.4 a 0.6 | Vegetación moderada |<br />
 | 0.6 a 1.0 | Vegetación densa y saludable |</p>
 <hr />
-<h2 id="paso-1-estructura-de-datos">Paso 1: Estructura de datos</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-1-estructura-de-datos">Paso 1: Estructura de datos</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Entender cómo representamos una imagen satelital como arrays NumPy.</p>
 <p><strong>Concepto</strong>: Una imagen satelital es una matriz donde cada celda (pixel) tiene valores para diferentes bandas espectrales.</p>
 <p><strong>Tareas</strong>:<br />
@@ -339,7 +419,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-2-cargar-datos-desde-csv">Paso 2: Cargar datos desde CSV</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-2-cargar-datos-desde-csv">Paso 2: Cargar datos desde CSV</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear y cargar datos de bandas espectrales desde archivos CSV.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear un CSV con columnas: fila, columna, nir, red<br />
@@ -377,7 +462,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-3-calcular-ndvi">Paso 3: Calcular NDVI</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-3-calcular-ndvi">Paso 3: Calcular NDVI</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Implementar el cálculo del NDVI de forma vectorizada.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>calcular_ndvi(nir, red)</code> que retorne la matriz NDVI<br />
@@ -411,7 +501,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-4-clasificar-vegetacion">Paso 4: Clasificar vegetación</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-4-clasificar-vegetacion">Paso 4: Clasificar vegetación</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Clasificar cada pixel según su valor de NDVI.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>clasificar_vegetacion(ndvi)</code> que retorne matriz de categorías<br />
@@ -445,7 +540,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-5-estadisticas-por-zona">Paso 5: Estadísticas por zona</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-5-estadisticas-por-zona">Paso 5: Estadísticas por zona</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Calcular estadísticas de NDVI agrupadas por zona geográfica.</p>
 <p><strong>Tareas</strong>:<br />
 1. Cargar o crear array de zonas (A, B, C, etc.)<br />
@@ -471,7 +571,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-6-detectar-cambios">Paso 6: Detectar cambios</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-6-detectar-cambios">Paso 6: Detectar cambios</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Comparar dos imágenes NDVI de diferentes fechas para detectar cambios.</p>
 <p><strong>Tareas</strong>:<br />
 1. Cargar datos de dos fechas diferentes<br />
@@ -500,7 +605,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-7-filtrar-datos-validos">Paso 7: Filtrar datos válidos</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-7-filtrar-datos-validos">Paso 7: Filtrar datos válidos</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Manejar valores nulos o fuera de rango en los datos.</p>
 <p><strong>Tareas</strong>:<br />
 1. Identificar pixels con valores -999 (dato faltante) o NaN<br />
@@ -531,7 +641,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-8-exportar-resultados">Paso 8: Exportar resultados</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-8-exportar-resultados">Paso 8: Exportar resultados</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Guardar los resultados del análisis en diferentes formatos.</p>
 <p><strong>Tareas</strong>:<br />
 1. Exportar NDVI a CSV con coordenadas<br />
@@ -571,7 +686,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-9-visualizacion-opcional">Paso 9: Visualización (opcional)</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-9-visualizacion-opcional">Paso 9: Visualización (opcional)</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear visualización del mapa de NDVI usando matplotlib.</p>
 <p><strong>Nota</strong>: Este paso requiere <code>pip install matplotlib</code>.</p>
 <p><strong>Ejemplo de código</strong>:</p>
@@ -597,7 +717,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-10-programa-completo">Paso 10: Programa completo</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-10-programa-completo">Paso 10: Programa completo</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Integrar todo en un programa con menú interactivo.</p>
 <p><strong>Menú del programa</strong>:</p>
 <div class="highlight"><pre><span></span><code>╔════════════════════════════════════════════════════╗
@@ -659,7 +784,12 @@ Opción: 9
 </code></pre></div>
 
 <hr />
-<h2 id="conceptos-utilizados">Conceptos utilizados</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="conceptos-utilizados">Conceptos utilizados</h2></summary>
+<div class="section-content">
 <table>
 <thead>
 <tr>
@@ -715,7 +845,12 @@ Opción: 9
 </tbody>
 </table>
 <hr />
-<h2 id="desafios-extra">Desafíos extra</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="desafios-extra">Desafíos extra</h2></summary>
+<div class="section-content">
 <ol>
 <li>
 <p><strong>Histograma de NDVI</strong>: Crear un histograma que muestre la distribución de valores NDVI.</p>
@@ -740,7 +875,12 @@ Opción: 9
 </li>
 </ol>
 <hr />
-<h2 id="conexion-con-la-unidad-anterior">Conexión con la Unidad anterior</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="conexion-con-la-unidad-anterior">Conexión con la Unidad anterior</h2></summary>
+<div class="section-content">
 <p>Este proyecto es una evolución del <strong>Proyecto Integrador de la Unidad 3</strong> (Gestor de Rutas con Persistencia):</p>
 <table>
 <thead>
@@ -786,6 +926,8 @@ Opción: 9
 - Aplicación real de NumPy en ciencias de la Tierra</p>
 <hr />
 <p><em>Fin del proyecto integrador - Unidad 4</em></p>
+</div>
+</details>
         </main>
     </div>
 </body>

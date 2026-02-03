@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -289,7 +356,10 @@
             <h1 id="proyecto-integrador-gestor-de-rutas-con-persistencia">Proyecto Integrador: Gestor de Rutas con Persistencia</h1>
 <p>Un proyecto paso a paso para construir un gestor de rutas geográficas que guarda y carga datos desde archivos.</p>
 <hr />
-<h2 id="descripcion-del-proyecto">Descripción del proyecto</h2>
+
+<details class="section-collapsible">
+<summary><h2 id="descripcion-del-proyecto">Descripción del proyecto</h2></summary>
+<div class="section-content">
 <p>Vamos a construir un programa que:<br />
 - Carga rutas guardadas desde archivos CSV<br />
 - Permite agregar, editar y eliminar destinos<br />
@@ -299,7 +369,12 @@
 - Analiza datos con Pandas</p>
 <p>Este proyecto integra conceptos de la Unidad 3: archivos, CSV, módulos, manejo de errores y Pandas. También reutiliza funciones de las unidades anteriores.</p>
 <hr />
-<h2 id="paso-1-estructura-del-proyecto">Paso 1: Estructura del proyecto</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-1-estructura-del-proyecto">Paso 1: Estructura del proyecto</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear la estructura de archivos del proyecto con módulos separados.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear un directorio <code>planificador/</code><br />
@@ -320,7 +395,12 @@
 
 <p><strong>Hint</strong>: Empezá creando archivos vacíos y luego agregá funciones gradualmente.</p>
 <hr />
-<h2 id="paso-2-modulo-de-validacion">Paso 2: Módulo de validación</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-2-modulo-de-validacion">Paso 2: Módulo de validación</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear funciones de validación reutilizables en <code>validacion.py</code>.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>es_coordenada_valida(lat, lon)</code> que retorne True/False<br />
@@ -347,7 +427,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-3-modulo-de-calculos">Paso 3: Módulo de cálculos</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-3-modulo-de-calculos">Paso 3: Módulo de cálculos</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Mover las funciones de cálculo de unidades anteriores a <code>calculos.py</code>.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>distancia_entre(lat1, lon1, lat2, lon2)</code><br />
@@ -371,7 +456,12 @@
 </code></pre></div>
 
 <hr />
-<h2 id="paso-4-guardar-ruta-a-csv">Paso 4: Guardar ruta a CSV</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-4-guardar-ruta-a-csv">Paso 4: Guardar ruta a CSV</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear función para guardar una ruta a archivo CSV en <code>datos.py</code>.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>guardar_ruta(ruta, nombre_archivo)</code><br />
@@ -404,7 +494,12 @@ Mendoza,-32.9,-68.8
 </code></pre></div>
 
 <hr />
-<h2 id="paso-5-cargar-ruta-desde-csv">Paso 5: Cargar ruta desde CSV</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-5-cargar-ruta-desde-csv">Paso 5: Cargar ruta desde CSV</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear función para cargar una ruta desde archivo CSV.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>cargar_ruta(nombre_archivo)</code> que retorne lista de diccionarios<br />
@@ -434,7 +529,12 @@ Mendoza,-32.9,-68.8
 </code></pre></div>
 
 <hr />
-<h2 id="paso-6-listar-rutas-guardadas">Paso 6: Listar rutas guardadas</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-6-listar-rutas-guardadas">Paso 6: Listar rutas guardadas</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Mostrar todas las rutas guardadas en el directorio.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>listar_rutas(directorio)</code> que retorne lista de archivos .csv<br />
@@ -462,7 +562,12 @@ Mendoza,-32.9,-68.8
 </code></pre></div>
 
 <hr />
-<h2 id="paso-7-autoguardado">Paso 7: Autoguardado</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-7-autoguardado">Paso 7: Autoguardado</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Implementar guardado automático después de cada cambio.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear variable global o parámetro para el archivo actual<br />
@@ -478,7 +583,12 @@ Longitud: -65.4
 </code></pre></div>
 
 <hr />
-<h2 id="paso-8-analisis-con-pandas">Paso 8: Análisis con Pandas</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-8-analisis-con-pandas">Paso 8: Análisis con Pandas</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Agregar funciones de análisis usando Pandas.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>analizar_ruta(nombre_archivo)</code> que use pandas<br />
@@ -507,7 +617,12 @@ Longitud: -65.4
 </code></pre></div>
 
 <hr />
-<h2 id="paso-9-exportar-reporte">Paso 9: Exportar reporte</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-9-exportar-reporte">Paso 9: Exportar reporte</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Generar reportes en formato texto y CSV.</p>
 <p><strong>Tareas</strong>:<br />
 1. Crear función <code>exportar_reporte_txt(ruta, nombre_archivo)</code><br />
@@ -539,7 +654,12 @@ Ciudad más al sur: Buenos Aires
 </code></pre></div>
 
 <hr />
-<h2 id="paso-10-programa-completo">Paso 10: Programa completo</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-10-programa-completo">Paso 10: Programa completo</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Integrar todos los módulos en un programa con menú interactivo.</p>
 <p><strong>Menú del programa</strong>:</p>
 <div class="highlight"><pre><span></span><code>╔════════════════════════════════════════╗
@@ -586,7 +706,12 @@ Opción: 8
 </code></pre></div>
 
 <hr />
-<h2 id="conceptos-utilizados">Conceptos utilizados</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="conceptos-utilizados">Conceptos utilizados</h2></summary>
+<div class="section-content">
 <table>
 <thead>
 <tr>
@@ -646,7 +771,12 @@ Opción: 8
 </tbody>
 </table>
 <hr />
-<h2 id="desafios-extra">Desafíos extra</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="desafios-extra">Desafíos extra</h2></summary>
+<div class="section-content">
 <ol>
 <li>
 <p><strong>Backup automático</strong>: Antes de sobrescribir un archivo, crear una copia de respaldo con fecha.</p>
@@ -671,7 +801,12 @@ Opción: 8
 </li>
 </ol>
 <hr />
-<h2 id="conexion-con-la-unidad-anterior">Conexión con la Unidad anterior</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="conexion-con-la-unidad-anterior">Conexión con la Unidad anterior</h2></summary>
+<div class="section-content">
 <p>Este proyecto es una evolución del <strong>Proyecto Integrador de la Unidad 2</strong> (Planificador de Ruta):</p>
 <table>
 <thead>
@@ -710,6 +845,8 @@ Opción: 8
 - Estructura de menú → en <code>main.py</code></p>
 <hr />
 <p><em>Fin del proyecto integrador - Unidad 3</em></p>
+</div>
+</details>
         </main>
     </div>
 </body>

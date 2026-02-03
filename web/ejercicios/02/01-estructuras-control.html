@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -329,23 +396,44 @@
             <h1 id="unidad-2-estructuras-de-datos-y-control-de-flujo">Unidad 2: Estructuras de datos y control de flujo</h1>
 <p>Ejercicios sobre listas, tuplas, diccionarios, condicionales y bucles.</p>
 <hr />
-<h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2></summary>
+<div class="section-content">
 <p>Se recomienda hacerlos todos. Están ordenados por dificultad incremental.</p>
 <hr />
-<h3 id="bloque-1-listas-basicas">Bloque 1: Listas básicas</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-1-listas-basicas">Bloque 1: Listas básicas</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a1-lista-de-ciudades">A1. Lista de ciudades</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a1-lista-de-ciudades">A1. Lista de ciudades</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una lista llamada <code>ciudades</code> que contenga los nombres: "Buenos Aires", "Córdoba", "Rosario". Mostrala por pantalla.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>['Buenos Aires', 'Córdoba', 'Rosario']</code></p>
 <p><strong>Hint</strong>: Las listas se crean con corchetes: <code>[elemento1, elemento2, ...]</code></p>
 <hr />
-<h3 id="a2-coordenadas-en-lista">A2. Coordenadas en lista</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a2-coordenadas-en-lista">A2. Coordenadas en lista</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una lista llamada <code>coordenadas</code> con los valores -34.6, -58.4 (latitud y longitud de Buenos Aires). Mostrá la lista completa.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>[-34.6, -58.4]</code></p>
 <hr />
-<h3 id="a3-acceso-por-indice">A3. Acceso por índice</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a3-acceso-por-indice">A3. Acceso por índice</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>provincias = ["Mendoza", "Salta", "Tucumán", "Jujuy"]</code>, mostrá el primer elemento y el último elemento.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -355,27 +443,52 @@ Jujuy
 
 <p><strong>Hint</strong>: El primer elemento tiene índice 0, el último tiene índice -1.</p>
 <hr />
-<h3 id="a4-longitud-de-una-lista">A4. Longitud de una lista</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a4-longitud-de-una-lista">A4. Longitud de una lista</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>altitudes = [6962, 6893, 6779, 6720, 6658]</code> (alturas de los 5 cerros más altos de Argentina), mostrá cuántos elementos tiene usando <code>len()</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>5</code></p>
 <hr />
-<h3 id="a5-agregar-elementos">A5. Agregar elementos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a5-agregar-elementos">A5. Agregar elementos</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una lista vacía llamada <code>capitales</code>. Agregá "La Plata", "Córdoba" y "Santa Fe" usando el método <code>append()</code>. Mostrá la lista final.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>['La Plata', 'Córdoba', 'Santa Fe']</code></p>
 <p><strong>Hint</strong>: Usá <code>lista.append(elemento)</code> para agregar al final.</p>
 <hr />
-<h3 id="bloque-2-tuplas-y-diccionarios">Bloque 2: Tuplas y diccionarios</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-2-tuplas-y-diccionarios">Bloque 2: Tuplas y diccionarios</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a6-coordenada-como-tupla">A6. Coordenada como tupla</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a6-coordenada-como-tupla">A6. Coordenada como tupla</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una tupla llamada <code>punto</code> con la latitud y longitud de Ushuaia: (-54.8, -68.3). Mostrá la tupla y luego intentá cambiar el primer valor (observá qué error aparece).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>(-54.8, -68.3)</code><br />
 - Error al modificar: <code>TypeError</code></p>
 <p><strong>Hint</strong>: Las tuplas se crean con paréntesis y son inmutables.</p>
 <hr />
-<h3 id="a7-desempaquetar-tupla">A7. Desempaquetar tupla</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a7-desempaquetar-tupla">A7. Desempaquetar tupla</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la tupla <code>ubicacion = ("Mendoza", -32.89, -68.83)</code>, desempaquetá sus valores en tres variables: <code>ciudad</code>, <code>lat</code>, <code>lon</code>. Mostrá cada variable.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -386,13 +499,23 @@ Jujuy
 
 <p><strong>Hint</strong>: Usá <code>var1, var2, var3 = tupla</code> para desempaquetar.</p>
 <hr />
-<h3 id="a8-diccionario-de-ciudad">A8. Diccionario de ciudad</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a8-diccionario-de-ciudad">A8. Diccionario de ciudad</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un diccionario llamado <code>buenos_aires</code> con las claves "nombre", "latitud" y "longitud", con los valores correspondientes. Mostrá el diccionario completo.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>{'nombre': 'Buenos Aires', 'latitud': -34.6, 'longitud': -58.4}</code></p>
 <p><strong>Hint</strong>: Los diccionarios se crean con llaves: <code>{clave: valor, ...}</code></p>
 <hr />
-<h3 id="a9-acceder-a-valores-del-diccionario">A9. Acceder a valores del diccionario</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a9-acceder-a-valores-del-diccionario">A9. Acceder a valores del diccionario</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dado el diccionario <code>cerro = {"nombre": "Aconcagua", "altura": 6962, "provincia": "Mendoza"}</code>, mostrá el nombre y la altura accediendo por clave.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -402,20 +525,40 @@ Jujuy
 
 <p><strong>Hint</strong>: Usá <code>diccionario["clave"]</code> para acceder.</p>
 <hr />
-<h3 id="a10-agregar-clave-al-diccionario">A10. Agregar clave al diccionario</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a10-agregar-clave-al-diccionario">A10. Agregar clave al diccionario</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dado el diccionario <code>pais = {"nombre": "Argentina", "capital": "Buenos Aires"}</code>, agregá una nueva clave "poblacion" con el valor 45000000. Mostrá el diccionario actualizado.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>{'nombre': 'Argentina', 'capital': 'Buenos Aires', 'poblacion': 45000000}</code></p>
 <p><strong>Hint</strong>: Usá <code>diccionario["nueva_clave"] = valor</code> para agregar.</p>
 <hr />
-<h3 id="bloque-3-condicionales">Bloque 3: Condicionales</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-3-condicionales">Bloque 3: Condicionales</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a11-hemisferio-norte-o-sur">A11. Hemisferio norte o sur</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a11-hemisferio-norte-o-sur">A11. Hemisferio norte o sur</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada una variable <code>latitud = -34.6</code>, usá un condicional <code>if-else</code> para mostrar "Hemisferio Sur" si la latitud es negativa, o "Hemisferio Norte" si es positiva o cero.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Hemisferio Sur</code></p>
 <hr />
-<h3 id="a12-altitud-con-elif">A12. Altitud con elif</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a12-altitud-con-elif">A12. Altitud con elif</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada una variable <code>altitud = 2500</code>, clasificala usando <code>if-elif-else</code>:<br />
 - Menor a 500: "Zona baja"<br />
 - Entre 500 y 2000: "Zona media"<br />
@@ -423,25 +566,50 @@ Jujuy
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Zona alta</code></p>
 <hr />
-<h3 id="a13-validar-latitud">A13. Validar latitud</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a13-validar-latitud">A13. Validar latitud</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Pedí al usuario una latitud. Si está entre -90 y 90 (inclusive), mostrá "Latitud válida". Si no, mostrá "Latitud inválida".</p>
 <p><strong>Ejemplo</strong>:<br />
 - Entrada: <code>-45.5</code><br />
 - Salida esperada: <code>Latitud válida</code></p>
 <hr />
-<h3 id="a14-ciudad-costera">A14. Ciudad costera</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a14-ciudad-costera">A14. Ciudad costera</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dado un diccionario <code>ciudad = {"nombre": "Mar del Plata", "costera": True}</code>, verificá si la ciudad es costera y mostrá un mensaje apropiado.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Mar del Plata es una ciudad costera</code></p>
 <hr />
-<h3 id="a15-comparar-alturas">A15. Comparar alturas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a15-comparar-alturas">A15. Comparar alturas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dados dos cerros con sus alturas: <code>cerro1 = 6962</code> (Aconcagua) y <code>cerro2 = 6893</code> (Ojos del Salado), mostrá cuál es más alto o si son iguales.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>El cerro 1 es más alto</code></p>
 <hr />
-<h3 id="bloque-4-bucles-for">Bloque 4: Bucles for</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-4-bucles-for">Bloque 4: Bucles for</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a16-iterar-lista-de-ciudades">A16. Iterar lista de ciudades</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a16-iterar-lista-de-ciudades">A16. Iterar lista de ciudades</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>ciudades = ["Salta", "Jujuy", "Tucumán"]</code>, usá un bucle <code>for</code> para mostrar cada ciudad en una línea separada.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -451,13 +619,23 @@ Tucumán
 </code></pre></div>
 
 <hr />
-<h3 id="a17-sumar-altitudes">A17. Sumar altitudes</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a17-sumar-altitudes">A17. Sumar altitudes</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>altitudes = [1200, 850, 2100, 1500]</code>, usá un bucle <code>for</code> para calcular la suma total de todas las altitudes.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>5650</code></p>
 <p><strong>Hint</strong>: Creá una variable acumuladora inicializada en 0.</p>
 <hr />
-<h3 id="a18-numerar-con-enumerate">A18. Numerar con enumerate</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a18-numerar-con-enumerate">A18. Numerar con enumerate</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>paises = ["Argentina", "Chile", "Uruguay", "Paraguay"]</code>, usá <code>enumerate()</code> para mostrar cada país con su número (empezando en 1).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -469,7 +647,12 @@ Tucumán
 
 <p><strong>Hint</strong>: Usá <code>enumerate(lista, start=1)</code> para empezar desde 1.</p>
 <hr />
-<h3 id="a19-recorrer-con-range">A19. Recorrer con range</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a19-recorrer-con-range">A19. Recorrer con range</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá <code>range()</code> para mostrar los números del 1 al 5, que representan los 5 continentes habitados.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -481,7 +664,12 @@ Tucumán
 </code></pre></div>
 
 <hr />
-<h3 id="a20-filtrar-con-for-e-if">A20. Filtrar con for e if</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a20-filtrar-con-for-e-if">A20. Filtrar con for e if</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>temperaturas = [25, -5, 18, -12, 30, 0]</code>, usá un bucle <code>for</code> para mostrar solo las temperaturas positivas (mayores a 0).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -491,9 +679,19 @@ Tucumán
 </code></pre></div>
 
 <hr />
-<h3 id="bloque-5-bucles-while-y-combinaciones">Bloque 5: Bucles while y combinaciones</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="bloque-5-bucles-while-y-combinaciones">Bloque 5: Bucles while y combinaciones</h3></summary>
+<div class="section-content">
 <hr />
-<h3 id="a21-contador-con-while">A21. Contador con while</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a21-contador-con-while">A21. Contador con while</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Usá un bucle <code>while</code> para mostrar los números del 1 al 5.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -506,17 +704,32 @@ Tucumán
 
 <p><strong>Hint</strong>: Necesitás una variable contador y una condición de parada.</p>
 <hr />
-<h3 id="a22-buscar-en-lista">A22. Buscar en lista</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a22-buscar-en-lista">A22. Buscar en lista</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>capitales = ["Lima", "Santiago", "Buenos Aires", "Montevideo"]</code>, usá un bucle <code>while</code> para encontrar en qué posición está "Buenos Aires".</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Buenos Aires está en la posición 2</code></p>
 <hr />
-<h3 id="a23-salir-con-break">A23. Salir con break</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a23-salir-con-break">A23. Salir con break</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>altitudes = [500, 1200, 3500, 800, 2000]</code>, usá un bucle <code>for</code> con <code>break</code> para encontrar y mostrar la primera altitud mayor a 2000, y luego salir del bucle.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Primera altitud alta encontrada: 3500</code></p>
 <hr />
-<h3 id="a24-saltar-con-continue">A24. Saltar con continue</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a24-saltar-con-continue">A24. Saltar con continue</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>coordenadas = [(-34.6, -58.4), (0, 0), (-31.4, -64.2), (0, 0), (-32.9, -68.8)]</code>, usá un bucle <code>for</code> con <code>continue</code> para mostrar solo las coordenadas que NO sean (0, 0).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -526,7 +739,12 @@ Tucumán
 </code></pre></div>
 
 <hr />
-<h3 id="a25-tabla-de-multiplicar">A25. Tabla de multiplicar</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="a25-tabla-de-multiplicar">A25. Tabla de multiplicar</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Pedí al usuario un número entre 1 y 10 (validá con <code>while</code> que esté en ese rango). Luego mostrá su tabla de multiplicar del 1 al 10 usando un bucle <code>for</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Entrada: <code>5</code><br />
@@ -538,10 +756,20 @@ Tucumán
 </code></pre></div>
 
 <hr />
-<h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2></summary>
+<div class="section-content">
 <p>Recomendables para quienes quieran practicar más.</p>
 <hr />
-<h3 id="b1-lista-de-coordenadas">B1. Lista de coordenadas</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="b1-lista-de-coordenadas">B1. Lista de coordenadas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una lista que contenga 3 tuplas, cada una con el nombre y coordenadas de una ciudad argentina. Mostrá cada ciudad con sus coordenadas usando un bucle <code>for</code>.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -551,7 +779,12 @@ Mendoza: (-32.9, -68.8)
 </code></pre></div>
 
 <hr />
-<h3 id="b2-diccionario-de-altitudes">B2. Diccionario de altitudes</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b2-diccionario-de-altitudes">B2. Diccionario de altitudes</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un diccionario donde las claves sean nombres de cerros y los valores sean sus altitudes. Recorré el diccionario e imprimí cada cerro con su altura.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -562,7 +795,12 @@ Monte Pissis: 6795 m
 
 <p><strong>Hint</strong>: Usá <code>.items()</code> para recorrer claves y valores.</p>
 <hr />
-<h3 id="b3-maximo-y-minimo">B3. Máximo y mínimo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b3-maximo-y-minimo">B3. Máximo y mínimo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>poblaciones = [2890000, 1430000, 950000, 800000, 600000]</code> (poblaciones de ciudades argentinas), encontrá el valor máximo y mínimo usando bucles (sin usar <code>max()</code> ni <code>min()</code>).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -571,7 +809,12 @@ Mínimo: 600000
 </code></pre></div>
 
 <hr />
-<h3 id="b4-contar-elementos">B4. Contar elementos</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b4-contar-elementos">B4. Contar elementos</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>hemisferios = ["Sur", "Norte", "Sur", "Sur", "Norte", "Sur"]</code>, contá cuántas veces aparece "Sur" y cuántas "Norte".</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -580,12 +823,22 @@ Norte: 2
 </code></pre></div>
 
 <hr />
-<h3 id="b5-invertir-lista">B5. Invertir lista</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b5-invertir-lista">B5. Invertir lista</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>ciudades = ["A", "B", "C", "D"]</code>, creá una nueva lista con los elementos en orden inverso usando un bucle (sin usar <code>.reverse()</code> ni slicing).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>['D', 'C', 'B', 'A']</code></p>
 <hr />
-<h3 id="b6-menu-interactivo">B6. Menú interactivo</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b6-menu-interactivo">B6. Menú interactivo</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un menú que muestre 3 opciones (1. Ver ciudades, 2. Ver países, 3. Salir). Usá un bucle <code>while</code> para repetir el menú hasta que el usuario elija salir.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -600,12 +853,22 @@ Opción: 3
 </code></pre></div>
 
 <hr />
-<h3 id="b7-promedio-de-temperaturas">B7. Promedio de temperaturas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b7-promedio-de-temperaturas">B7. Promedio de temperaturas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>temperaturas = [22.5, 25.0, 19.3, 28.1, 21.7]</code>, calculá el promedio usando un bucle <code>for</code> y mostralo redondeado a 1 decimal.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>Promedio: 23.3°C</code></p>
 <hr />
-<h3 id="b8-filtrar-diccionarios">B8. Filtrar diccionarios</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b8-filtrar-diccionarios">B8. Filtrar diccionarios</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada una lista de diccionarios de ciudades, filtrá y mostrá solo las que tienen más de 1 millón de habitantes.</p>
 <div class="highlight"><pre><span></span><code><span class="n">ciudades</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;poblacion&quot;</span><span class="p">:</span> <span class="mi">2890000</span><span class="p">},</span>
@@ -621,13 +884,23 @@ Córdoba: 1430000 habitantes
 </code></pre></div>
 
 <hr />
-<h3 id="b9-crear-diccionario-desde-listas">B9. Crear diccionario desde listas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b9-crear-diccionario-desde-listas">B9. Crear diccionario desde listas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dadas dos listas <code>paises = ["Argentina", "Chile", "Uruguay"]</code> y <code>capitales = ["Buenos Aires", "Santiago", "Montevideo"]</code>, creá un diccionario donde cada país sea la clave y su capital el valor.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>{'Argentina': 'Buenos Aires', 'Chile': 'Santiago', 'Uruguay': 'Montevideo'}</code></p>
 <p><strong>Hint</strong>: Usá <code>zip()</code> para combinar las listas.</p>
 <hr />
-<h3 id="b10-validacion-completa">B10. Validación completa</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="b10-validacion-completa">B10. Validación completa</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Pedí al usuario latitud y longitud. Validá que ambas estén en rangos correctos (lat: -90 a 90, lon: -180 a 180). Si alguna es inválida, pedí que la ingrese de nuevo hasta que sea correcta.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Entrada: <code>100</code> (inválida), <code>-34.6</code> (válida)<br />
@@ -635,10 +908,20 @@ Córdoba: 1430000 habitantes
 - Entrada: <code>-34.6</code><br />
 - Salida: <code>Coordenadas válidas: (-34.6, -58.4)</code></p>
 <hr />
-<h2 id="categoria-c-desafios">Categoría C - Desafíos</h2>
+</div>
+</details>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="categoria-c-desafios">Categoría C - Desafíos</h2></summary>
+<div class="section-content">
 <p>Ejercicios opcionales que requieren mayor dificultad o investigación.</p>
 <hr />
-<h3 id="c1-matriz-de-distancias">C1. Matriz de distancias</h3>
+
+<details class="section-collapsible">
+<summary><h3 id="c1-matriz-de-distancias">C1. Matriz de distancias</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá una matriz (lista de listas) de 3x3 que represente las distancias entre 3 ciudades. Mostrá la matriz formateada como tabla.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
@@ -650,13 +933,23 @@ Mza    1000  500     0
 
 <p><strong>Hint</strong>: Usá bucles anidados para recorrer filas y columnas.</p>
 <hr />
-<h3 id="c2-ordenar-lista-bubble-sort">C2. Ordenar lista (bubble sort)</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c2-ordenar-lista-bubble-sort">C2. Ordenar lista (bubble sort)</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Dada la lista <code>numeros = [64, 34, 25, 12, 22, 11, 90]</code>, implementá el algoritmo de ordenamiento burbuja (bubble sort) para ordenarla de menor a mayor.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>[11, 12, 22, 25, 34, 64, 90]</code></p>
 <p><strong>Hint</strong>: Bubble sort compara pares adyacentes y los intercambia si están desordenados, repitiendo hasta que no haya intercambios.</p>
 <hr />
-<h3 id="c3-diccionario-anidado">C3. Diccionario anidado</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c3-diccionario-anidado">C3. Diccionario anidado</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un diccionario anidado que represente información completa de un país:<br />
 - Nombre, capital, coordenadas de la capital (como diccionario), lista de provincias/regiones</p>
 <p>Luego accedé a la latitud de la capital y mostrá la tercera provincia.</p>
@@ -679,7 +972,12 @@ Tercera provincia: Santa Fe
 </code></pre></div>
 
 <hr />
-<h3 id="c4-comprension-de-listas">C4. Comprensión de listas</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c4-comprension-de-listas">C4. Comprensión de listas</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Investigá las "list comprehensions" de Python. Usá una comprensión de lista para:<br />
 1. Crear una lista con los cuadrados de los números del 1 al 10<br />
 2. Filtrar una lista de altitudes dejando solo las mayores a 1000</p>
@@ -690,7 +988,12 @@ Altitudes altas: [1200, 3500, 2000]
 </code></pre></div>
 
 <hr />
-<h3 id="c5-sistema-de-registro-de-ciudades">C5. Sistema de registro de ciudades</h3>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h3 id="c5-sistema-de-registro-de-ciudades">C5. Sistema de registro de ciudades</h3></summary>
+<div class="section-content">
 <p><strong>Enunciado</strong>: Creá un programa que permita:<br />
 1. Agregar ciudades (nombre, latitud, longitud) a una lista de diccionarios<br />
 2. Listar todas las ciudades registradas<br />
@@ -722,6 +1025,10 @@ Opción: 5
 
 <hr />
 <p><em>Fin de los ejercicios de la Unidad 2</em></p>
+</div>
+</details>
+</div>
+</details>
         </main>
     </div>
 </body>

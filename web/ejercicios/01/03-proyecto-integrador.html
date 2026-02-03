@@ -164,6 +164,73 @@
         font-size: 0.8125rem;
     }
     
+    /* Secciones colapsables en contenido */
+    .section-collapsible {
+        border: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-collapsible .section-collapsible {
+        margin-bottom: 1rem;
+    }
+    
+    .section-collapsible > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .section-collapsible > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .section-collapsible > summary::before {
+        content: "›";
+        font-size: 1rem;
+        color: var(--pico-muted-color);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        opacity: 0.5;
+    }
+    
+    .section-collapsible[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    
+    .section-collapsible > summary h2,
+    .section-collapsible > summary h3 {
+        margin: 0;
+        display: inline;
+        font-weight: 400;
+        color: var(--pico-muted-color);
+    }
+    
+    .section-collapsible > summary h2 {
+        font-size: 1rem;
+    }
+    
+    .section-collapsible > summary h3 {
+        font-size: 0.875rem;
+    }
+    
+    .section-collapsible > summary:hover h2,
+    .section-collapsible > summary:hover h3 {
+        color: var(--pico-color);
+    }
+    
+    .section-collapsible .section-content {
+        padding-left: 1.25rem;
+        margin-top: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-left: 1px solid var(--pico-muted-border-color);
+        margin-left: 0.25rem;
+    }
+    
     /* Navegación en sidebar */
     .nav-home {
         margin-bottom: 1.5rem;
@@ -285,7 +352,10 @@
             <h1 id="proyecto-integrador-calculadora-de-coordenadas">Proyecto Integrador: Calculadora de Coordenadas</h1>
 <p>Un proyecto paso a paso para construir una calculadora que trabaja con puntos geográficos.</p>
 <hr />
-<h2 id="descripcion-del-proyecto">Descripción del proyecto</h2>
+
+<details class="section-collapsible">
+<summary><h2 id="descripcion-del-proyecto">Descripción del proyecto</h2></summary>
+<div class="section-content">
 <p>Vamos a construir un programa que:<br />
 - Pide al usuario dos puntos geográficos (nombre, latitud, longitud)<br />
 - Calcula la distancia entre ellos<br />
@@ -295,7 +365,12 @@
 <p>Este proyecto integra conceptos de las Unidades 1 y 2: variables, tipos, operadores, strings, f-strings, input/output y funciones.</p>
 <p><strong>Nota</strong>: Este proyecto NO usa estructuras de control de flujo (<code>if/else</code>, <code>for</code>, <code>while</code>). Es un programa lineal que se ejecuta de principio a fin.</p>
 <hr />
-<h2 id="paso-1-pedir-el-primer-punto">Paso 1: Pedir el primer punto</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-1-pedir-el-primer-punto">Paso 1: Pedir el primer punto</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Pedir al usuario los datos de un punto geográfico (nombre, latitud, longitud) y mostrarlos.</p>
 <p><strong>Ejemplo de ejecución</strong>:</p>
 <div class="highlight"><pre><span></span><code>=== Punto 1 ===
@@ -309,7 +384,12 @@ Coordenadas: (-34.6, -58.4)
 
 <p><strong>Hint</strong>: Usá <code>input()</code> para pedir texto y <code>float()</code> para convertir las coordenadas a números.</p>
 <hr />
-<h2 id="paso-2-pedir-el-segundo-punto">Paso 2: Pedir el segundo punto</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-2-pedir-el-segundo-punto">Paso 2: Pedir el segundo punto</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Agregar el ingreso del segundo punto y mostrar ambos puntos al final.</p>
 <p><strong>Ejemplo de ejecución</strong>:</p>
 <div class="highlight"><pre><span></span><code>=== Punto 1 ===
@@ -329,7 +409,12 @@ Punto 2: Córdoba (-31.4, -64.2)
 
 <p><strong>Hint</strong>: Repetí la estructura del paso 1 pero con variables diferentes (<code>nombre2</code>, <code>lat2</code>, <code>lon2</code>).</p>
 <hr />
-<h2 id="paso-3-funcion-para-calcular-distancia">Paso 3: Función para calcular distancia</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-3-funcion-para-calcular-distancia">Paso 3: Función para calcular distancia</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función <code>distancia_euclidiana</code> que reciba las coordenadas de dos puntos y retorne la distancia simplificada.</p>
 <p><strong>Fórmula</strong>: distancia = √[(lat2-lat1)² + (lon2-lon1)²]</p>
 <p><strong>Ejemplo de uso</strong>:</p>
@@ -342,7 +427,12 @@ Distancia aproximada: 741 km
 - Para convertir grados a km aproximados, multiplicá por 111 (1 grado ≈ 111 km)<br />
 - Usá type hints: <code>def distancia_euclidiana(lat1: float, lon1: float, ...) -&gt; float:</code></p>
 <hr />
-<h2 id="paso-4-funcion-para-calcular-punto-medio">Paso 4: Función para calcular punto medio</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-4-funcion-para-calcular-punto-medio">Paso 4: Función para calcular punto medio</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función <code>punto_medio</code> que reciba las coordenadas de dos puntos y retorne el punto medio como una tupla.</p>
 <p><strong>Fórmula</strong>: El punto medio es el promedio de las latitudes y el promedio de las longitudes.</p>
 <p><strong>Ejemplo de uso</strong>:</p>
@@ -351,7 +441,12 @@ Distancia aproximada: 741 km
 
 <p><strong>Hint</strong>: Retorná una tupla con <code>return (lat_media, lon_media)</code>. Después podés acceder a los valores con <code>resultado[0]</code> y <code>resultado[1]</code>.</p>
 <hr />
-<h2 id="paso-5-funcion-para-generar-link-de-google-maps">Paso 5: Función para generar link de Google Maps</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-5-funcion-para-generar-link-de-google-maps">Paso 5: Función para generar link de Google Maps</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función <code>generar_link_maps</code> que reciba latitud y longitud, y retorne un link de Google Maps.</p>
 <p><strong>Formato del link</strong>: <code>https://www.google.com/maps?q=LATITUD,LONGITUD</code></p>
 <p><strong>Ejemplo de uso</strong>:</p>
@@ -360,7 +455,12 @@ Distancia aproximada: 741 km
 
 <p><strong>Hint</strong>: Usá f-strings para construir la URL.</p>
 <hr />
-<h2 id="paso-6-funcion-para-formatear-coordenadas">Paso 6: Función para formatear coordenadas</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-6-funcion-para-formatear-coordenadas">Paso 6: Función para formatear coordenadas</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Crear una función <code>formatear_coordenada</code> que reciba latitud y longitud, y retorne un string con el formato <code>34.6°S, 58.4°W</code>.</p>
 <p><strong>Reglas</strong>:<br />
 - Si la latitud es negativa → Sur (S), si es positiva → Norte (N)<br />
@@ -372,7 +472,12 @@ Distancia aproximada: 741 km
 
 <p><strong>Hint avanzado</strong>: Sin usar <code>if/else</code>, podés aprovechar que en Python <code>True</code> se comporta como <code>1</code> y <code>False</code> como <code>0</code> al multiplicar strings. Por ejemplo: <code>"S" * (lat &lt; 0)</code> da <code>"S"</code> si lat es negativo, o <code>""</code> si no lo es.</p>
 <hr />
-<h2 id="paso-7-programa-completo">Paso 7: Programa completo</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-7-programa-completo">Paso 7: Programa completo</h2></summary>
+<div class="section-content">
 <p><strong>Objetivo</strong>: Integrar todas las funciones en un programa que genera un reporte completo y bien formateado.</p>
 <p><strong>Ejemplo de ejecución completa</strong>:</p>
 <div class="highlight"><pre><span></span><code>==================================================
@@ -421,7 +526,12 @@ Distancia aproximada: 741 km
 - Finalmente mostrá el reporte usando f-strings<br />
 - Podés crear una función <code>linea(caracter, largo)</code> para generar las líneas decorativas</p>
 <hr />
-<h2 id="conceptos-utilizados">Conceptos utilizados</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="conceptos-utilizados">Conceptos utilizados</h2></summary>
+<div class="section-content">
 <table>
 <thead>
 <tr>
@@ -473,7 +583,12 @@ Distancia aproximada: 741 km
 </tbody>
 </table>
 <hr />
-<h2 id="desafios-extra">Desafíos extra</h2>
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="desafios-extra">Desafíos extra</h2></summary>
+<div class="section-content">
 <ol>
 <li>
 <p><strong>Agregar un tercer punto</strong> y calcular las tres distancias entre ellos.</p>
@@ -490,6 +605,8 @@ Distancia aproximada: 741 km
 </ol>
 <hr />
 <p><em>Fin del proyecto integrador - Unidad 1</em></p>
+</div>
+</details>
         </main>
     </div>
 </body>
