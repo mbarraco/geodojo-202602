@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 Proyecto Integrador</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="proyecto-integrador-calculadora-de-coordenadas">Proyecto Integrador: Calculadora de Coordenadas</h1>
+<p>Un proyecto paso a paso para construir una calculadora que trabaja con puntos geográficos.</p>
+<hr />
+<h2 id="descripcion-del-proyecto">Descripción del proyecto</h2>
+<p>Vamos a construir un programa que:<br />
+- Pide al usuario dos puntos geográficos (nombre, latitud, longitud)<br />
+- Calcula la distancia entre ellos<br />
+- Calcula el punto medio<br />
+- Genera links de Google Maps<br />
+- Muestra un reporte completo</p>
+<p>Este proyecto integra conceptos de las Unidades 1 y 2: variables, tipos, operadores, strings, f-strings, input/output y funciones.</p>
+<p><strong>Nota</strong>: Este proyecto NO usa estructuras de control de flujo (<code>if/else</code>, <code>for</code>, <code>while</code>). Es un programa lineal que se ejecuta de principio a fin.</p>
+<hr />
+<h2 id="paso-1-pedir-el-primer-punto">Paso 1: Pedir el primer punto</h2>
+<p><strong>Objetivo</strong>: Pedir al usuario los datos de un punto geográfico (nombre, latitud, longitud) y mostrarlos.</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>=== Punto 1 ===
+Nombre del lugar: Buenos Aires
+Latitud: -34.6
+Longitud: -58.4
+
+Punto 1: Buenos Aires
+Coordenadas: (-34.6, -58.4)
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>input()</code> para pedir texto y <code>float()</code> para convertir las coordenadas a números.</p>
+<hr />
+<h2 id="paso-2-pedir-el-segundo-punto">Paso 2: Pedir el segundo punto</h2>
+<p><strong>Objetivo</strong>: Agregar el ingreso del segundo punto y mostrar ambos puntos al final.</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>=== Punto 1 ===
+Nombre del lugar: Buenos Aires
+Latitud: -34.6
+Longitud: -58.4
+
+=== Punto 2 ===
+Nombre del lugar: Córdoba
+Latitud: -31.4
+Longitud: -64.2
+
+------------------------------
+Punto 1: Buenos Aires (-34.6, -58.4)
+Punto 2: Córdoba (-31.4, -64.2)
+</code></pre></div>
+
+<p><strong>Hint</strong>: Repetí la estructura del paso 1 pero con variables diferentes (<code>nombre2</code>, <code>lat2</code>, <code>lon2</code>).</p>
+<hr />
+<h2 id="paso-3-funcion-para-calcular-distancia">Paso 3: Función para calcular distancia</h2>
+<p><strong>Objetivo</strong>: Crear una función <code>distancia_euclidiana</code> que reciba las coordenadas de dos puntos y retorne la distancia simplificada.</p>
+<p><strong>Fórmula</strong>: distancia = √[(lat2-lat1)² + (lon2-lon1)²]</p>
+<p><strong>Ejemplo de uso</strong>:</p>
+<div class="highlight"><pre><span></span><code>Distancia: 6.68 grados
+Distancia aproximada: 741 km
+</code></pre></div>
+
+<p><strong>Hints</strong>:<br />
+- La raíz cuadrada se puede calcular con <code>** 0.5</code><br />
+- Para convertir grados a km aproximados, multiplicá por 111 (1 grado ≈ 111 km)<br />
+- Usá type hints: <code>def distancia_euclidiana(lat1: float, lon1: float, ...) -&gt; float:</code></p>
+<hr />
+<h2 id="paso-4-funcion-para-calcular-punto-medio">Paso 4: Función para calcular punto medio</h2>
+<p><strong>Objetivo</strong>: Crear una función <code>punto_medio</code> que reciba las coordenadas de dos puntos y retorne el punto medio como una tupla.</p>
+<p><strong>Fórmula</strong>: El punto medio es el promedio de las latitudes y el promedio de las longitudes.</p>
+<p><strong>Ejemplo de uso</strong>:</p>
+<div class="highlight"><pre><span></span><code>Punto medio: (-33.0, -61.3)
+</code></pre></div>
+
+<p><strong>Hint</strong>: Retorná una tupla con <code>return (lat_media, lon_media)</code>. Después podés acceder a los valores con <code>resultado[0]</code> y <code>resultado[1]</code>.</p>
+<hr />
+<h2 id="paso-5-funcion-para-generar-link-de-google-maps">Paso 5: Función para generar link de Google Maps</h2>
+<p><strong>Objetivo</strong>: Crear una función <code>generar_link_maps</code> que reciba latitud y longitud, y retorne un link de Google Maps.</p>
+<p><strong>Formato del link</strong>: <code>https://www.google.com/maps?q=LATITUD,LONGITUD</code></p>
+<p><strong>Ejemplo de uso</strong>:</p>
+<div class="highlight"><pre><span></span><code>Link: https://www.google.com/maps?q=-34.6,-58.4
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá f-strings para construir la URL.</p>
+<hr />
+<h2 id="paso-6-funcion-para-formatear-coordenadas">Paso 6: Función para formatear coordenadas</h2>
+<p><strong>Objetivo</strong>: Crear una función <code>formatear_coordenada</code> que reciba latitud y longitud, y retorne un string con el formato <code>34.6°S, 58.4°W</code>.</p>
+<p><strong>Reglas</strong>:<br />
+- Si la latitud es negativa → Sur (S), si es positiva → Norte (N)<br />
+- Si la longitud es negativa → Oeste (W), si es positiva → Este (E)<br />
+- Mostrar el valor absoluto (sin signo)</p>
+<p><strong>Ejemplo de uso</strong>:</p>
+<div class="highlight"><pre><span></span><code>Coordenadas: 34.6°S, 58.4°W
+</code></pre></div>
+
+<p><strong>Hint avanzado</strong>: Sin usar <code>if/else</code>, podés aprovechar que en Python <code>True</code> se comporta como <code>1</code> y <code>False</code> como <code>0</code> al multiplicar strings. Por ejemplo: <code>"S" * (lat &lt; 0)</code> da <code>"S"</code> si lat es negativo, o <code>""</code> si no lo es.</p>
+<hr />
+<h2 id="paso-7-programa-completo">Paso 7: Programa completo</h2>
+<p><strong>Objetivo</strong>: Integrar todas las funciones en un programa que genera un reporte completo y bien formateado.</p>
+<p><strong>Ejemplo de ejecución completa</strong>:</p>
+<div class="highlight"><pre><span></span><code>==================================================
+       CALCULADORA DE COORDENADAS
+==================================================
+
+&gt;&gt;&gt; Ingresá el primer punto:
+    Nombre: Buenos Aires
+    Latitud: -34.6
+    Longitud: -58.4
+
+&gt;&gt;&gt; Ingresá el segundo punto:
+    Nombre: Córdoba
+    Latitud: -31.4
+    Longitud: -64.2
+
+==================================================
+                 REPORTE
+==================================================
+
+📍 PUNTO 1: Buenos Aires
+   Coordenadas: 34.6°S, 58.4°W
+   Google Maps: https://www.google.com/maps?q=-34.6,-58.4
+
+📍 PUNTO 2: Córdoba
+   Coordenadas: 31.4°S, 64.2°W
+   Google Maps: https://www.google.com/maps?q=-31.4,-64.2
+
+📏 DISTANCIA:
+   6.68 grados
+   ~741 km (aproximado)
+
+📌 PUNTO MEDIO:
+   Coordenadas: 33.0°S, 61.3°W
+   Google Maps: https://www.google.com/maps?q=-33.0,-61.3
+
+==================================================
+         Gracias por usar la calculadora!
+==================================================
+</code></pre></div>
+
+<p><strong>Hints</strong>:<br />
+- Primero definí todas las funciones<br />
+- Después pedí los datos al usuario<br />
+- Luego hacé todos los cálculos y guardalos en variables<br />
+- Finalmente mostrá el reporte usando f-strings<br />
+- Podés crear una función <code>linea(caracter, largo)</code> para generar las líneas decorativas</p>
+<hr />
+<h2 id="conceptos-utilizados">Conceptos utilizados</h2>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Dónde se usa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variables</td>
+<td>Almacenar nombres, coordenadas, resultados</td>
+</tr>
+<tr>
+<td>Tipos (str, float)</td>
+<td>Inputs y cálculos</td>
+</tr>
+<tr>
+<td>Operadores aritméticos</td>
+<td>Distancia, punto medio</td>
+</tr>
+<tr>
+<td>Operador <code>**</code></td>
+<td>Potencia y raíz cuadrada</td>
+</tr>
+<tr>
+<td>Strings y f-strings</td>
+<td>Formateo de salida</td>
+</tr>
+<tr>
+<td><code>input()</code> / <code>print()</code></td>
+<td>Interacción con usuario</td>
+</tr>
+<tr>
+<td><code>abs()</code> / <code>round()</code></td>
+<td>Funciones numéricas</td>
+</tr>
+<tr>
+<td>Funciones definidas</td>
+<td>Encapsular lógica</td>
+</tr>
+<tr>
+<td>Type hints</td>
+<td>Documentar tipos esperados</td>
+</tr>
+<tr>
+<td>Tuplas</td>
+<td>Retornar múltiples valores</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="desafios-extra">Desafíos extra</h2>
+<ol>
+<li>
+<p><strong>Agregar un tercer punto</strong> y calcular las tres distancias entre ellos.</p>
+</li>
+<li>
+<p><strong>Mejorar la distancia</strong> usando la fórmula de Haversine que considera la curvatura de la Tierra (requiere <code>import math</code> e investigar la fórmula).</p>
+</li>
+<li>
+<p><strong>Calcular el área</strong> de un rectángulo formado por los dos puntos como esquinas opuestas.</p>
+</li>
+<li>
+<p><strong>Agregar velocidad</strong>: pedir una velocidad en km/h y calcular el tiempo de viaje estimado.</p>
+</li>
+</ol>
+<hr />
+<p><em>Fin del proyecto integrador - Unidad 1</em></p>
+</body>
+</html>

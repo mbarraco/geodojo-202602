@@ -3,11 +3,16 @@ Repositorio de contenidos para las clases del curso inical de Python en GeoDojo,
 
 
 # Programa
+
+0. Virtualenv, black, pep8
+
 1. Introducción a Python y entorno de trabajo: tipos de datos, operadores, funciones básicas.
 
 2. Estructuras de datos y control de flujo: listas, tuplas, diccionarios, condicionales y bucles.
 
-3. Archivos, módulos y buenas prácticas: lectura/escritura CSV, manejo de errores, estilo PEP8.
+3. Archivos, módulos y buenas prácticas: lectura/escritura CSV, manejo de errores.
+
+4. Numpy: arrays, cálculos numéricos y vectorización, cálculo de NDVI.
 
 # Ejercitación
 

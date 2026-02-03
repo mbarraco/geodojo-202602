@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Fundamentos</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="clase-1-fundamentos-de-python">Clase 1: Fundamentos de Python</h1>
+<p>Guía para la clase sobre tipos de datos, operadores y funciones básicas.</p>
+<hr />
+<h2 id="1-temario">1. Temario</h2>
+<h3 id="11-variables-y-tipos-de-datos">1.1 Variables y tipos de datos</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variable</td>
+<td>Nombre que almacena un valor (<code>nombre = "Buenos Aires"</code>)</td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td>Texto, entre comillas (<code>"hola"</code>, <code>'mundo'</code>)</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>Número entero (<code>42</code>, <code>-10</code>)</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>Número decimal (<code>3.14</code>, <code>-34.6</code>)</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>Booleano (<code>True</code>, <code>False</code>)</td>
+</tr>
+<tr>
+<td><code>type()</code></td>
+<td>Función para ver el tipo de una variable</td>
+</tr>
+<tr>
+<td>Nombres</td>
+<td>Usar snake_case: <code>mi_variable</code>, <code>latitud_norte</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-operadores-aritmeticos">1.2 Operadores aritméticos</h3>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Operación</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>Suma</td>
+<td><code>5 + 3</code> → <code>8</code></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Resta</td>
+<td><code>10 - 4</code> → <code>6</code></td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Multiplicación</td>
+<td><code>6 * 7</code> → <code>42</code></td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>División</td>
+<td><code>15 / 2</code> → <code>7.5</code></td>
+</tr>
+<tr>
+<td><code>//</code></td>
+<td>División entera</td>
+<td><code>15 // 2</code> → <code>7</code></td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>Módulo (resto)</td>
+<td><code>15 % 2</code> → <code>1</code></td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>Potencia</td>
+<td><code>2 ** 3</code> → <code>8</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-funciones-numericas">1.3 Funciones numéricas</h3>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>round(x, n)</code></td>
+<td>Redondea a n decimales</td>
+<td><code>round(3.14159, 2)</code> → <code>3.14</code></td>
+</tr>
+<tr>
+<td><code>abs(x)</code></td>
+<td>Valor absoluto</td>
+<td><code>abs(-34.6)</code> → <code>34.6</code></td>
+</tr>
+<tr>
+<td><code>int(x)</code></td>
+<td>Convierte a entero</td>
+<td><code>int(3.9)</code> → <code>3</code></td>
+</tr>
+<tr>
+<td><code>float(x)</code></td>
+<td>Convierte a decimal</td>
+<td><code>float("3.14")</code> → <code>3.14</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-strings-cadenas-de-texto">1.4 Strings (cadenas de texto)</h3>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Sintaxis</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crear</td>
+<td>Comillas simples o dobles</td>
+<td><code>"hola"</code> o <code>'hola'</code></td>
+</tr>
+<tr>
+<td>Concatenar</td>
+<td><code>+</code></td>
+<td><code>"Hola" + " mundo"</code> → <code>"Hola mundo"</code></td>
+</tr>
+<tr>
+<td>Repetir</td>
+<td><code>*</code></td>
+<td><code>"-" * 5</code> → <code>"-----"</code></td>
+</tr>
+<tr>
+<td>f-string</td>
+<td><code>f"texto {var}"</code></td>
+<td><code>f"Lat: {lat}"</code> → <code>"Lat: -34.6"</code></td>
+</tr>
+<tr>
+<td>Mayúsculas</td>
+<td><code>.upper()</code></td>
+<td><code>"hola".upper()</code> → <code>"HOLA"</code></td>
+</tr>
+<tr>
+<td>Minúsculas</td>
+<td><code>.lower()</code></td>
+<td><code>"HOLA".lower()</code> → <code>"hola"</code></td>
+</tr>
+<tr>
+<td>Longitud</td>
+<td><code>len()</code></td>
+<td><code>len("Python")</code> → <code>6</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-entrada-y-salida">1.5 Entrada y salida</h3>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>print()</code></td>
+<td>Muestra en pantalla</td>
+<td><code>print("Hola")</code></td>
+</tr>
+<tr>
+<td><code>input()</code></td>
+<td>Pide dato al usuario (devuelve <code>str</code>)</td>
+<td><code>nombre = input("Tu nombre: ")</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="16-comparaciones-y-booleanos">1.6 Comparaciones y booleanos</h3>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt;</code></td>
+<td>Mayor que</td>
+<td><code>5 &gt; 3</code> → <code>True</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>Menor que</td>
+<td><code>5 &lt; 3</code> → <code>False</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>Mayor o igual</td>
+<td><code>5 &gt;= 5</code> → <code>True</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>Menor o igual</td>
+<td><code>3 &lt;= 5</code> → <code>True</code></td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>Igual a</td>
+<td><code>5 == 5</code> → <code>True</code></td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>Distinto de</td>
+<td><code>5 != 3</code> → <code>True</code></td>
+</tr>
+<tr>
+<td><code>and</code></td>
+<td>Y lógico</td>
+<td><code>True and False</code> → <code>False</code></td>
+</tr>
+<tr>
+<td><code>or</code></td>
+<td>O lógico</td>
+<td><code>True or False</code> → <code>True</code></td>
+</tr>
+<tr>
+<td><code>not</code></td>
+<td>Negación</td>
+<td><code>not True</code> → <code>False</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-ejemplos-para-la-clase">2. Ejemplos para la clase</h2>
+<p>10 ejemplos progresivos para hacer en vivo, cubriendo todos los temas.</p>
+<hr />
+<h3 id="21-enunciados-para-mostrar-en-clase">2.1 Enunciados (para mostrar en clase)</h3>
+<hr />
+<h4 id="ejemplo-1-variables-basicas">Ejemplo 1: Variables básicas</h4>
+<p>Crear variables para almacenar el nombre, latitud y longitud de Buenos Aires. Mostrar cada una.</p>
+<hr />
+<h4 id="ejemplo-2-tipos-de-datos">Ejemplo 2: Tipos de datos</h4>
+<p>Usando las variables anteriores, mostrar el tipo de cada una con <code>type()</code>.</p>
+<hr />
+<h4 id="ejemplo-3-operaciones-aritmeticas">Ejemplo 3: Operaciones aritméticas</h4>
+<p>Calcular el promedio de tres temperaturas: 25.5, 28.3 y 22.1 grados. Mostrar el resultado redondeado a 1 decimal.</p>
+<hr />
+<h4 id="ejemplo-4-potenciacion-y-raiz-cuadrada">Ejemplo 4: Potenciación y raíz cuadrada</h4>
+<p>Dado un terreno cuadrado de 150 m de lado, calcular:<br />
+- El área (lado²)<br />
+- La diagonal (lado × √2, usando potenciación)</p>
+<hr />
+<h4 id="ejemplo-5-division-entera-y-modulo">Ejemplo 5: División entera y módulo</h4>
+<p>Un vuelo de 2750 km se divide en tramos de 400 km. Calcular cuántos tramos completos hay y cuántos km quedan.</p>
+<hr />
+<h4 id="ejemplo-6-strings-y-concatenacion">Ejemplo 6: Strings y concatenación</h4>
+<p>Crear variables para país y ciudad. Mostrar el texto "Ciudad: [ciudad], País: [país]" de dos formas: con <code>+</code> y con f-string.</p>
+<hr />
+<h4 id="ejemplo-7-metodos-de-string">Ejemplo 7: Métodos de string</h4>
+<p>Dado el nombre "cerro aconcagua", mostrarlo en mayúsculas, en formato título (primera letra de cada palabra en mayúscula), y mostrar su longitud.</p>
+<hr />
+<h4 id="ejemplo-8-input-y-conversion">Ejemplo 8: Input y conversión</h4>
+<p>Pedir al usuario una latitud, convertirla a número, y mostrar su valor absoluto (para saber la distancia al ecuador).</p>
+<hr />
+<h4 id="ejemplo-9-comparaciones-simples">Ejemplo 9: Comparaciones simples</h4>
+<p>Dadas dos altitudes (Aconcagua: 6962 m, Everest: 8849 m), mostrar:<br />
+- ¿Es Aconcagua más alto que 6000?<br />
+- ¿Son iguales?<br />
+- ¿Cuál es más alto?</p>
+<hr />
+<h4 id="ejemplo-10-booleanos-y-operadores-logicos">Ejemplo 10: Booleanos y operadores lógicos</h4>
+<p>Verificar si las coordenadas (-34.6, -58.4) representan un punto válido:<br />
+- Latitud entre -90 y 90<br />
+- Longitud entre -180 y 180<br />
+Mostrar si ambas condiciones se cumplen.</p>
+<hr />
+<h3 id="22-enunciados-soluciones-referencia-del-docente">2.2 Enunciados + Soluciones (referencia del docente)</h3>
+<hr />
+<h4 id="ejemplo-1-variables-basicas_1">Ejemplo 1: Variables básicas</h4>
+<p><strong>Enunciado</strong>: Crear variables para almacenar el nombre, latitud y longitud de Buenos Aires. Mostrar cada una.</p>
+<div class="highlight"><pre><span></span><code><span class="n">nombre</span> <span class="o">=</span> <span class="s2">&quot;Buenos Aires&quot;</span>
+<span class="n">latitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">34.6</span>
+<span class="n">longitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">58.4</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">latitud</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">longitud</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Buenos Aires
+-34.6
+-58.4
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-2-tipos-de-datos_1">Ejemplo 2: Tipos de datos</h4>
+<p><strong>Enunciado</strong>: Usando las variables anteriores, mostrar el tipo de cada una con <code>type()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">nombre</span> <span class="o">=</span> <span class="s2">&quot;Buenos Aires&quot;</span>
+<span class="n">latitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">34.6</span>
+<span class="n">longitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">58.4</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">latitud</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">longitud</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>&lt;class &#39;str&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-3-operaciones-aritmeticas_1">Ejemplo 3: Operaciones aritméticas</h4>
+<p><strong>Enunciado</strong>: Calcular el promedio de tres temperaturas: 25.5, 28.3 y 22.1 grados. Mostrar el resultado redondeado a 1 decimal.</p>
+<div class="highlight"><pre><span></span><code><span class="n">temp1</span> <span class="o">=</span> <span class="mf">25.5</span>
+<span class="n">temp2</span> <span class="o">=</span> <span class="mf">28.3</span>
+<span class="n">temp3</span> <span class="o">=</span> <span class="mf">22.1</span>
+
+<span class="n">promedio</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp1</span> <span class="o">+</span> <span class="n">temp2</span> <span class="o">+</span> <span class="n">temp3</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="n">promedio_redondeado</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">promedio</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Promedio: </span><span class="si">{</span><span class="n">promedio_redondeado</span><span class="si">}</span><span class="s2">°C&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Promedio: 25.3°C
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-4-potenciacion-y-raiz-cuadrada_1">Ejemplo 4: Potenciación y raíz cuadrada</h4>
+<p><strong>Enunciado</strong>: Dado un terreno cuadrado de 150 m de lado, calcular el área (lado²) y la diagonal (lado × √2).</p>
+<div class="highlight"><pre><span></span><code><span class="n">lado</span> <span class="o">=</span> <span class="mi">150</span>
+
+<span class="n">area</span> <span class="o">=</span> <span class="n">lado</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">diagonal</span> <span class="o">=</span> <span class="n">lado</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># raíz de 2 = 2^0.5</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Área: </span><span class="si">{</span><span class="n">area</span><span class="si">}</span><span class="s2"> m²&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Diagonal: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">diagonal</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Área: 22500 m²
+Diagonal: 212.13 m
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-5-division-entera-y-modulo_1">Ejemplo 5: División entera y módulo</h4>
+<p><strong>Enunciado</strong>: Un vuelo de 2750 km se divide en tramos de 400 km. Calcular cuántos tramos completos hay y cuántos km quedan.</p>
+<div class="highlight"><pre><span></span><code><span class="n">distancia_total</span> <span class="o">=</span> <span class="mi">2750</span>
+<span class="n">km_por_tramo</span> <span class="o">=</span> <span class="mi">400</span>
+
+<span class="n">tramos_completos</span> <span class="o">=</span> <span class="n">distancia_total</span> <span class="o">//</span> <span class="n">km_por_tramo</span>
+<span class="n">km_restantes</span> <span class="o">=</span> <span class="n">distancia_total</span> <span class="o">%</span> <span class="n">km_por_tramo</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tramos completos: </span><span class="si">{</span><span class="n">tramos_completos</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Km restantes: </span><span class="si">{</span><span class="n">km_restantes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Tramos completos: 6
+Km restantes: 350
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-6-strings-y-concatenacion_1">Ejemplo 6: Strings y concatenación</h4>
+<p><strong>Enunciado</strong>: Crear variables para país y ciudad. Mostrar el texto "Ciudad: [ciudad], País: [país]" de dos formas.</p>
+<div class="highlight"><pre><span></span><code><span class="n">pais</span> <span class="o">=</span> <span class="s2">&quot;Argentina&quot;</span>
+<span class="n">ciudad</span> <span class="o">=</span> <span class="s2">&quot;Mendoza&quot;</span>
+
+<span class="c1"># Forma 1: concatenación con +</span>
+<span class="n">mensaje1</span> <span class="o">=</span> <span class="s2">&quot;Ciudad: &quot;</span> <span class="o">+</span> <span class="n">ciudad</span> <span class="o">+</span> <span class="s2">&quot;, País: &quot;</span> <span class="o">+</span> <span class="n">pais</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mensaje1</span><span class="p">)</span>
+
+<span class="c1"># Forma 2: f-string (recomendada)</span>
+<span class="n">mensaje2</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Ciudad: </span><span class="si">{</span><span class="n">ciudad</span><span class="si">}</span><span class="s2">, País: </span><span class="si">{</span><span class="n">pais</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mensaje2</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ciudad: Mendoza, País: Argentina
+Ciudad: Mendoza, País: Argentina
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-7-metodos-de-string_1">Ejemplo 7: Métodos de string</h4>
+<p><strong>Enunciado</strong>: Dado el nombre "cerro aconcagua", mostrarlo en mayúsculas, en formato título, y mostrar su longitud.</p>
+<div class="highlight"><pre><span></span><code><span class="n">nombre</span> <span class="o">=</span> <span class="s2">&quot;cerro aconcagua&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">nombre</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>       <span class="c1"># MAYÚSCULAS</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nombre</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>       <span class="c1"># Formato Título</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span>          <span class="c1"># Longitud (cantidad de caracteres)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>CERRO ACONCAGUA
+Cerro Aconcagua
+15
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-8-input-y-conversion_1">Ejemplo 8: Input y conversión</h4>
+<p><strong>Enunciado</strong>: Pedir al usuario una latitud, convertirla a número, y mostrar su valor absoluto.</p>
+<div class="highlight"><pre><span></span><code><span class="n">entrada</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Ingresá una latitud: &quot;</span><span class="p">)</span>
+<span class="n">latitud</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">entrada</span><span class="p">)</span>
+<span class="n">distancia_ecuador</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">latitud</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distancia al ecuador: </span><span class="si">{</span><span class="n">distancia_ecuador</span><span class="si">}</span><span class="s2"> grados&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ingresá una latitud: -34.6
+Distancia al ecuador: 34.6 grados
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-9-comparaciones-simples_1">Ejemplo 9: Comparaciones simples</h4>
+<p><strong>Enunciado</strong>: Dadas dos altitudes, mostrar comparaciones.</p>
+<div class="highlight"><pre><span></span><code><span class="n">aconcagua</span> <span class="o">=</span> <span class="mi">6962</span>
+<span class="n">everest</span> <span class="o">=</span> <span class="mi">8849</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Aconcagua &gt; 6000? </span><span class="si">{</span><span class="n">aconcagua</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">6000</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Son iguales? </span><span class="si">{</span><span class="n">aconcagua</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">everest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Everest es más alto? </span><span class="si">{</span><span class="n">everest</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">aconcagua</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>¿Aconcagua &gt; 6000? True
+¿Son iguales? False
+¿Everest es más alto? True
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-10-booleanos-y-operadores-logicos_1">Ejemplo 10: Booleanos y operadores lógicos</h4>
+<p><strong>Enunciado</strong>: Verificar si las coordenadas (-34.6, -58.4) son válidas.</p>
+<div class="highlight"><pre><span></span><code><span class="n">latitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">34.6</span>
+<span class="n">longitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">58.4</span>
+
+<span class="n">lat_valida</span> <span class="o">=</span> <span class="n">latitud</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">90</span> <span class="ow">and</span> <span class="n">latitud</span> <span class="o">&lt;=</span> <span class="mi">90</span>
+<span class="n">lon_valida</span> <span class="o">=</span> <span class="n">longitud</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">180</span> <span class="ow">and</span> <span class="n">longitud</span> <span class="o">&lt;=</span> <span class="mi">180</span>
+<span class="n">coordenadas_validas</span> <span class="o">=</span> <span class="n">lat_valida</span> <span class="ow">and</span> <span class="n">lon_valida</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Latitud válida: </span><span class="si">{</span><span class="n">lat_valida</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitud válida: </span><span class="si">{</span><span class="n">lon_valida</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coordenadas válidas: </span><span class="si">{</span><span class="n">coordenadas_validas</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Latitud válida: True
+Longitud válida: True
+Coordenadas válidas: True
+</code></pre></div>
+
+<hr />
+<h2 id="notas-para-el-docente">Notas para el docente</h2>
+<ul>
+<li>Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero</li>
+<li>Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental</li>
+<li>Se recomienda pedir participación: "¿Qué tipo creen que tiene esta variable?"</li>
+<li>Los ejercicios en <code>ejercicios/01-fundamentos.md</code> refuerzan estos mismos conceptos</li>
+<li>Contexto geográfico consistente: coordenadas, ciudades, distancias</li>
+</ul>
+</body>
+</html>

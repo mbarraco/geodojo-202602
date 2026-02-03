@@ -134,7 +134,7 @@ Crear una función `crear_punto` que reciba nombre y coordenadas con valores por
 ---
 
 #### Ejemplo 9: Variable local vs global
-Demostrar que una variable creada dentro de una función no existe fuera. Usar una constante global RADIO_TIERRA.
+Demostrar que una variable creada dentro de una función no existe fuera. Usar una constante global RADIO_TIERRA. Mostrar cómo modificar una variable global con `global`.
 
 ---
 
@@ -347,33 +347,54 @@ Ecuador: (0.0, -78.5)
 
 #### Ejemplo 9: Variable local vs global
 
-**Enunciado**: Demostrar scope de variables y uso de constantes globales.
+**Enunciado**: Demostrar scope de variables, constantes globales y uso de `global` para modificar variables.
 
 ```python
 # Constante global (por convención en MAYÚSCULAS)
 RADIO_TIERRA = 6371  # km
 
+# Variable global (puede ser modificada)
+ciudades_visitadas = 0
+
 def circunferencia_tierra():
-    # Usamos la constante global
+    # Usamos la constante global (solo lectura, no necesita 'global')
     pi = 3.14159  # variable local
     circunferencia = 2 * pi * RADIO_TIERRA
     return circunferencia
 
+def registrar_visita(ciudad):
+    # Para MODIFICAR una variable global, necesitamos declararla
+    global ciudades_visitadas
+    ciudades_visitadas += 1
+    print(f"Visitaste {ciudad}. Total de ciudades: {ciudades_visitadas}")
+
 resultado = circunferencia_tierra()
 print(f"Circunferencia de la Tierra: {round(resultado, 2)} km")
-
-# RADIO_TIERRA es accesible aquí
 print(f"Radio usado: {RADIO_TIERRA} km")
 
-# Pero 'pi' no existe fuera de la función
-# print(pi)  # Esto daría NameError
+print()  # línea vacía
+
+# Usar la función que modifica la variable global
+registrar_visita("Buenos Aires")
+registrar_visita("Córdoba")
+registrar_visita("Mendoza")
+
+print(f"\nTotal final: {ciudades_visitadas} ciudades")
 ```
 
 **Salida**:
 ```
 Circunferencia de la Tierra: 40030.14 km
 Radio usado: 6371 km
+
+Visitaste Buenos Aires. Total de ciudades: 1
+Visitaste Córdoba. Total de ciudades: 2
+Visitaste Mendoza. Total de ciudades: 3
+
+Total final: 3 ciudades
 ```
+
+**Nota**: Sin `global ciudades_visitadas`, Python crearía una variable local nueva en lugar de modificar la global.
 
 ---
 

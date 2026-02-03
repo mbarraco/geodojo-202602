@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Estructuras Control</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="clase-2-estructuras-de-datos-y-control-de-flujo">Clase 2: Estructuras de datos y control de flujo</h1>
+<p>Guía para la clase sobre listas, tuplas, diccionarios, condicionales y bucles.</p>
+<hr />
+<h2 id="1-temario">1. Temario</h2>
+<h3 id="11-listas">1.1 Listas</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crear lista</td>
+<td>Colección ordenada y mutable</td>
+<td><code>ciudades = ["BA", "Cba"]</code></td>
+</tr>
+<tr>
+<td>Acceso por índice</td>
+<td>Primer elemento: 0, último: -1</td>
+<td><code>ciudades[0]</code> → <code>"BA"</code></td>
+</tr>
+<tr>
+<td><code>len()</code></td>
+<td>Cantidad de elementos</td>
+<td><code>len(ciudades)</code> → <code>2</code></td>
+</tr>
+<tr>
+<td><code>append()</code></td>
+<td>Agregar elemento al final</td>
+<td><code>ciudades.append("Mza")</code></td>
+</tr>
+<tr>
+<td><code>insert()</code></td>
+<td>Insertar en posición específica</td>
+<td><code>ciudades.insert(0, "Ros")</code></td>
+</tr>
+<tr>
+<td><code>remove()</code></td>
+<td>Eliminar por valor</td>
+<td><code>ciudades.remove("BA")</code></td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>Eliminar por índice (retorna el valor)</td>
+<td><code>ciudades.pop(0)</code></td>
+</tr>
+<tr>
+<td>Slicing</td>
+<td>Sublista</td>
+<td><code>ciudades[1:3]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-tuplas">1.2 Tuplas</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crear tupla</td>
+<td>Colección ordenada e inmutable</td>
+<td><code>punto = (-34.6, -58.4)</code></td>
+</tr>
+<tr>
+<td>Acceso</td>
+<td>Igual que listas</td>
+<td><code>punto[0]</code> → <code>-34.6</code></td>
+</tr>
+<tr>
+<td>Desempaquetado</td>
+<td>Asignar elementos a variables</td>
+<td><code>lat, lon = punto</code></td>
+</tr>
+<tr>
+<td>Inmutabilidad</td>
+<td>No se pueden modificar</td>
+<td><code>punto[0] = 0</code> → Error</td>
+</tr>
+<tr>
+<td>Uso común</td>
+<td>Coordenadas, datos que no cambian</td>
+<td><code>rgb = (255, 128, 0)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-diccionarios">1.3 Diccionarios</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crear diccionario</td>
+<td>Pares clave-valor</td>
+<td><code>ciudad = {"nombre": "BA", "lat": -34.6}</code></td>
+</tr>
+<tr>
+<td>Acceso por clave</td>
+<td>Obtener valor</td>
+<td><code>ciudad["nombre"]</code> → <code>"BA"</code></td>
+</tr>
+<tr>
+<td><code>.get()</code></td>
+<td>Acceso seguro (no da error)</td>
+<td><code>ciudad.get("pob", 0)</code> → <code>0</code></td>
+</tr>
+<tr>
+<td>Agregar/modificar</td>
+<td>Asignar a clave</td>
+<td><code>ciudad["pob"] = 3000000</code></td>
+</tr>
+<tr>
+<td><code>.keys()</code></td>
+<td>Obtener claves</td>
+<td><code>ciudad.keys()</code></td>
+</tr>
+<tr>
+<td><code>.values()</code></td>
+<td>Obtener valores</td>
+<td><code>ciudad.values()</code></td>
+</tr>
+<tr>
+<td><code>.items()</code></td>
+<td>Obtener pares (clave, valor)</td>
+<td><code>ciudad.items()</code></td>
+</tr>
+<tr>
+<td><code>del</code></td>
+<td>Eliminar clave</td>
+<td><code>del ciudad["pob"]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-condicionales">1.4 Condicionales</h3>
+<table>
+<thead>
+<tr>
+<th>Estructura</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>if</code></td>
+<td>Ejecuta si condición es True</td>
+<td><code>if lat &lt; 0:</code></td>
+</tr>
+<tr>
+<td><code>else</code></td>
+<td>Ejecuta si condición es False</td>
+<td><code>else:</code></td>
+</tr>
+<tr>
+<td><code>elif</code></td>
+<td>Condición alternativa</td>
+<td><code>elif lat == 0:</code></td>
+</tr>
+<tr>
+<td>Condición compuesta</td>
+<td>Combinar con <code>and</code>, <code>or</code></td>
+<td><code>if lat &gt; -90 and lat &lt; 90:</code></td>
+</tr>
+<tr>
+<td>Operador ternario</td>
+<td>Condicional en una línea</td>
+<td><code>"Sur" if lat &lt; 0 else "Norte"</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-bucles-for">1.5 Bucles for</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iterar lista</td>
+<td>Recorrer elementos</td>
+<td><code>for ciudad in ciudades:</code></td>
+</tr>
+<tr>
+<td><code>range()</code></td>
+<td>Secuencia de números</td>
+<td><code>for i in range(5):</code> → 0,1,2,3,4</td>
+</tr>
+<tr>
+<td><code>range(a, b)</code></td>
+<td>Desde a hasta b-1</td>
+<td><code>for i in range(1, 6):</code> → 1,2,3,4,5</td>
+</tr>
+<tr>
+<td><code>range(a, b, step)</code></td>
+<td>Con paso</td>
+<td><code>for i in range(0, 10, 2):</code> → 0,2,4,6,8</td>
+</tr>
+<tr>
+<td><code>enumerate()</code></td>
+<td>Índice y valor</td>
+<td><code>for i, c in enumerate(ciudades):</code></td>
+</tr>
+<tr>
+<td>Iterar string</td>
+<td>Recorrer caracteres</td>
+<td><code>for letra in "Hola":</code></td>
+</tr>
+<tr>
+<td>Iterar diccionario</td>
+<td>Recorrer claves</td>
+<td><code>for clave in dicc:</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="16-bucles-while">1.6 Bucles while</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>while</code></td>
+<td>Repite mientras condición sea True</td>
+<td><code>while contador &lt; 5:</code></td>
+</tr>
+<tr>
+<td>Contador</td>
+<td>Variable que controla el bucle</td>
+<td><code>contador += 1</code></td>
+</tr>
+<tr>
+<td><code>break</code></td>
+<td>Sale del bucle inmediatamente</td>
+<td><code>if encontrado: break</code></td>
+</tr>
+<tr>
+<td><code>continue</code></td>
+<td>Salta a la siguiente iteración</td>
+<td><code>if invalido: continue</code></td>
+</tr>
+<tr>
+<td>Bucle infinito</td>
+<td>Condición siempre True (¡cuidado!)</td>
+<td><code>while True:</code> (necesita <code>break</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-ejemplos-para-la-clase">2. Ejemplos para la clase</h2>
+<p>10 ejemplos progresivos para hacer en vivo, cubriendo todos los temas.</p>
+<hr />
+<h3 id="21-enunciados-para-mostrar-en-clase">2.1 Enunciados (para mostrar en clase)</h3>
+<hr />
+<h4 id="ejemplo-1-crear-y-manipular-una-lista">Ejemplo 1: Crear y manipular una lista</h4>
+<p>Crear una lista con 3 ciudades argentinas. Mostrar la lista, agregar una cuarta ciudad, y mostrar cuántas ciudades hay.</p>
+<hr />
+<h4 id="ejemplo-2-acceso-a-elementos-de-lista">Ejemplo 2: Acceso a elementos de lista</h4>
+<p>Dada una lista de 5 provincias, mostrar la primera, la última, y las del medio (de la segunda a la cuarta).</p>
+<hr />
+<h4 id="ejemplo-3-tupla-de-coordenadas">Ejemplo 3: Tupla de coordenadas</h4>
+<p>Crear una tupla con las coordenadas de Ushuaia (-54.8, -68.3). Desempaquetar los valores en variables separadas y mostrar cada una.</p>
+<hr />
+<h4 id="ejemplo-4-diccionario-de-una-ciudad">Ejemplo 4: Diccionario de una ciudad</h4>
+<p>Crear un diccionario con información de Córdoba: nombre, latitud, longitud y población. Mostrar el nombre y agregar una nueva clave "provincia".</p>
+<hr />
+<h4 id="ejemplo-5-clasificar-con-if-elif-else">Ejemplo 5: Clasificar con if-elif-else</h4>
+<p>Dada una altitud en metros, clasificarla como "baja" (&lt; 500), "media" (500-2000), o "alta" (&gt; 2000).</p>
+<hr />
+<h4 id="ejemplo-6-validar-coordenadas">Ejemplo 6: Validar coordenadas</h4>
+<p>Dada una latitud, verificar si es válida (entre -90 y 90). Si es válida, determinar si está en el hemisferio norte o sur.</p>
+<hr />
+<h4 id="ejemplo-7-recorrer-lista-con-for">Ejemplo 7: Recorrer lista con for</h4>
+<p>Dada una lista de temperaturas, recorrerla y mostrar cada temperatura con su número de orden.</p>
+<hr />
+<h4 id="ejemplo-8-sumar-con-bucle-for">Ejemplo 8: Sumar con bucle for</h4>
+<p>Dada una lista de distancias entre ciudades, calcular la distancia total usando un bucle for.</p>
+<hr />
+<h4 id="ejemplo-9-buscar-con-while">Ejemplo 9: Buscar con while</h4>
+<p>Dada una lista de altitudes, usar un bucle while para encontrar la primera altitud mayor a 3000 metros.</p>
+<hr />
+<h4 id="ejemplo-10-filtrar-con-for-y-continue">Ejemplo 10: Filtrar con for y continue</h4>
+<p>Dada una lista de coordenadas (algunas inválidas con valor 0), mostrar solo las coordenadas válidas usando continue para saltar las inválidas.</p>
+<hr />
+<h3 id="22-enunciados-soluciones-referencia-del-docente">2.2 Enunciados + Soluciones (referencia del docente)</h3>
+<hr />
+<h4 id="ejemplo-1-crear-y-manipular-una-lista_1">Ejemplo 1: Crear y manipular una lista</h4>
+<p><strong>Enunciado</strong>: Crear una lista con 3 ciudades argentinas. Mostrar la lista, agregar una cuarta ciudad, y mostrar cuántas ciudades hay.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ciudades</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Rosario&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ciudades</span><span class="p">)</span>
+
+<span class="n">ciudades</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Mendoza&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ciudades</span><span class="p">)</span>
+
+<span class="n">cantidad</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ciudades</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total de ciudades: </span><span class="si">{</span><span class="n">cantidad</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>[&#39;Buenos Aires&#39;, &#39;Córdoba&#39;, &#39;Rosario&#39;]
+[&#39;Buenos Aires&#39;, &#39;Córdoba&#39;, &#39;Rosario&#39;, &#39;Mendoza&#39;]
+Total de ciudades: 4
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-2-acceso-a-elementos-de-lista_1">Ejemplo 2: Acceso a elementos de lista</h4>
+<p><strong>Enunciado</strong>: Dada una lista de 5 provincias, mostrar la primera, la última, y las del medio (de la segunda a la cuarta).</p>
+<div class="highlight"><pre><span></span><code><span class="n">provincias</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Mendoza&quot;</span><span class="p">,</span> <span class="s2">&quot;Salta&quot;</span><span class="p">,</span> <span class="s2">&quot;Jujuy&quot;</span><span class="p">,</span> <span class="s2">&quot;Tucumán&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Primera: </span><span class="si">{</span><span class="n">provincias</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Última: </span><span class="si">{</span><span class="n">provincias</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Del medio: </span><span class="si">{</span><span class="n">provincias</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Primera: Mendoza
+Última: Córdoba
+Del medio: [&#39;Salta&#39;, &#39;Jujuy&#39;, &#39;Tucumán&#39;]
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-3-tupla-de-coordenadas_1">Ejemplo 3: Tupla de coordenadas</h4>
+<p><strong>Enunciado</strong>: Crear una tupla con las coordenadas de Ushuaia (-54.8, -68.3). Desempaquetar los valores en variables separadas y mostrar cada una.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ushuaia</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">54.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">68.3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coordenadas: </span><span class="si">{</span><span class="n">ushuaia</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">latitud</span><span class="p">,</span> <span class="n">longitud</span> <span class="o">=</span> <span class="n">ushuaia</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Latitud: </span><span class="si">{</span><span class="n">latitud</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitud: </span><span class="si">{</span><span class="n">longitud</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Coordenadas: (-54.8, -68.3)
+Latitud: -54.8
+Longitud: -68.3
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-4-diccionario-de-una-ciudad_1">Ejemplo 4: Diccionario de una ciudad</h4>
+<p><strong>Enunciado</strong>: Crear un diccionario con información de Córdoba: nombre, latitud, longitud y población. Mostrar el nombre y agregar una nueva clave "provincia".</p>
+<div class="highlight"><pre><span></span><code><span class="n">cordoba</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;latitud&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">31.4</span><span class="p">,</span>
+    <span class="s2">&quot;longitud&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">64.2</span><span class="p">,</span>
+    <span class="s2">&quot;poblacion&quot;</span><span class="p">:</span> <span class="mi">1430000</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ciudad: </span><span class="si">{</span><span class="n">cordoba</span><span class="p">[</span><span class="s1">&#39;nombre&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">cordoba</span><span class="p">[</span><span class="s2">&quot;provincia&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Córdoba&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cordoba</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ciudad: Córdoba
+{&#39;nombre&#39;: &#39;Córdoba&#39;, &#39;latitud&#39;: -31.4, &#39;longitud&#39;: -64.2, &#39;poblacion&#39;: 1430000, &#39;provincia&#39;: &#39;Córdoba&#39;}
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-5-clasificar-con-if-elif-else_1">Ejemplo 5: Clasificar con if-elif-else</h4>
+<p><strong>Enunciado</strong>: Dada una altitud en metros, clasificarla como "baja" (&lt; 500), "media" (500-2000), o "alta" (&gt; 2000).</p>
+<div class="highlight"><pre><span></span><code><span class="n">altitud</span> <span class="o">=</span> <span class="mi">1500</span>
+
+<span class="k">if</span> <span class="n">altitud</span> <span class="o">&lt;</span> <span class="mi">500</span><span class="p">:</span>
+    <span class="n">clasificacion</span> <span class="o">=</span> <span class="s2">&quot;baja&quot;</span>
+<span class="k">elif</span> <span class="n">altitud</span> <span class="o">&lt;=</span> <span class="mi">2000</span><span class="p">:</span>
+    <span class="n">clasificacion</span> <span class="o">=</span> <span class="s2">&quot;media&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">clasificacion</span> <span class="o">=</span> <span class="s2">&quot;alta&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Altitud </span><span class="si">{</span><span class="n">altitud</span><span class="si">}</span><span class="s2">m: zona </span><span class="si">{</span><span class="n">clasificacion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Altitud 1500m: zona media
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-6-validar-coordenadas_1">Ejemplo 6: Validar coordenadas</h4>
+<p><strong>Enunciado</strong>: Dada una latitud, verificar si es válida (entre -90 y 90). Si es válida, determinar si está en el hemisferio norte o sur.</p>
+<div class="highlight"><pre><span></span><code><span class="n">latitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">34.6</span>
+
+<span class="k">if</span> <span class="n">latitud</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">90</span> <span class="ow">or</span> <span class="n">latitud</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Latitud inválida&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Latitud válida&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">latitud</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hemisferio Sur&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">latitud</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hemisferio Norte&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Línea del Ecuador&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Latitud válida
+Hemisferio Sur
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-7-recorrer-lista-con-for_1">Ejemplo 7: Recorrer lista con for</h4>
+<p><strong>Enunciado</strong>: Dada una lista de temperaturas, recorrerla y mostrar cada temperatura con su número de orden.</p>
+<div class="highlight"><pre><span></span><code><span class="n">temperaturas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">22.5</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span> <span class="mf">28.1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">temp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">temperaturas</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Día </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">°C&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Día 1: 22.5°C
+Día 2: 25.0°C
+Día 3: 18.3°C
+Día 4: 28.1°C
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-8-sumar-con-bucle-for_1">Ejemplo 8: Sumar con bucle for</h4>
+<p><strong>Enunciado</strong>: Dada una lista de distancias entre ciudades, calcular la distancia total usando un bucle for.</p>
+<div class="highlight"><pre><span></span><code><span class="n">distancias</span> <span class="o">=</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">380</span><span class="p">]</span>  <span class="c1"># km entre ciudades</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">distancias</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">d</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distancia total del recorrido: </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Distancia total del recorrido: 1330 km
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-9-buscar-con-while_1">Ejemplo 9: Buscar con while</h4>
+<p><strong>Enunciado</strong>: Dada una lista de altitudes, usar un bucle while para encontrar la primera altitud mayor a 3000 metros.</p>
+<div class="highlight"><pre><span></span><code><span class="n">altitudes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">3500</span><span class="p">,</span> <span class="mi">4200</span><span class="p">,</span> <span class="mi">1800</span><span class="p">]</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">encontrada</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">encontrada</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">altitudes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">3000</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Primera altitud &gt; 3000m: </span><span class="si">{</span><span class="n">altitudes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">m (posición </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="n">encontrada</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">encontrada</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No se encontró ninguna altitud mayor a 3000m&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Primera altitud &gt; 3000m: 3500m (posición 3)
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-10-filtrar-con-for-y-continue_1">Ejemplo 10: Filtrar con for y continue</h4>
+<p><strong>Enunciado</strong>: Dada una lista de coordenadas (algunas inválidas con valor 0), mostrar solo las coordenadas válidas usando continue para saltar las inválidas.</p>
+<div class="highlight"><pre><span></span><code><span class="n">coordenadas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">58.4</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>          <span class="c1"># inválida</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">31.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">64.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>          <span class="c1"># inválida</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">32.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">68.8</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coordenadas válidas:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="ow">in</span> <span class="n">coordenadas</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">lon</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">continue</span>  <span class="c1"># saltar esta iteración</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  (</span><span class="si">{</span><span class="n">lat</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">lon</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Coordenadas válidas:
+  (-34.6, -58.4)
+  (-31.4, -64.2)
+  (-32.9, -68.8)
+</code></pre></div>
+
+<hr />
+<h2 id="notas-para-el-docente">Notas para el docente</h2>
+<ul>
+<li>Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero</li>
+<li>Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental</li>
+<li>Se recomienda pedir participación: "¿Qué valor tiene la lista ahora?" o "¿Qué pasa si cambio esta condición?"</li>
+<li>Los ejercicios en <code>ejercicios/02/01-estructuras-control.md</code> refuerzan estos mismos conceptos</li>
+<li>Contexto geográfico consistente: ciudades, coordenadas, altitudes, temperaturas</li>
+<li>Los temas se presentan en orden: primero estructuras de datos (listas, tuplas, diccionarios), luego control de flujo (condicionales, bucles)</li>
+<li>Para los bucles, mostrar primero <code>for</code> (más común) y luego <code>while</code> (para casos específicos)</li>
+</ul>
+</body>
+</html>

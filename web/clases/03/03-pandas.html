@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 Pandas</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="clase-3-pandas-para-datos-geograficos">Clase 3: Pandas para Datos Geográficos</h1>
+<p>Guía para la clase sobre lectura y manipulación de datos con Pandas.</p>
+<hr />
+<h2 id="1-temario">1. Temario</h2>
+<h3 id="11-cargar-datos-y-exploracion-basica">1.1 Cargar datos y exploración básica</h3>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pd.read_csv(path)</code></td>
+<td>Lee archivo CSV</td>
+<td><code>df = pd.read_csv("datos.csv")</code></td>
+</tr>
+<tr>
+<td><code>df.head(n)</code></td>
+<td>Primeras n filas</td>
+<td><code>df.head(5)</code></td>
+</tr>
+<tr>
+<td><code>df.tail(n)</code></td>
+<td>Últimas n filas</td>
+<td><code>df.tail(3)</code></td>
+</tr>
+<tr>
+<td><code>df.shape</code></td>
+<td>Dimensiones (filas, cols)</td>
+<td><code>(100, 5)</code></td>
+</tr>
+<tr>
+<td><code>df.columns</code></td>
+<td>Nombres de columnas</td>
+<td><code>['nombre', 'lat', 'lon']</code></td>
+</tr>
+<tr>
+<td><code>df.dtypes</code></td>
+<td>Tipos de datos</td>
+<td><code>nombre: object, lat: float64</code></td>
+</tr>
+<tr>
+<td><code>df.describe()</code></td>
+<td>Estadísticas básicas</td>
+<td>Media, std, min, max, etc.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-seleccion-con-loc-e-iloc">1.2 Selección con loc e iloc</h3>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>df["col"]</code></td>
+<td>Selecciona columna</td>
+<td><code>df["nombre"]</code></td>
+</tr>
+<tr>
+<td><code>df[["c1", "c2"]]</code></td>
+<td>Múltiples columnas</td>
+<td><code>df[["nombre", "lat"]]</code></td>
+</tr>
+<tr>
+<td><code>df.iloc[i]</code></td>
+<td>Fila por posición</td>
+<td><code>df.iloc[0]</code> → primera fila</td>
+</tr>
+<tr>
+<td><code>df.iloc[i:j]</code></td>
+<td>Rango de filas</td>
+<td><code>df.iloc[0:5]</code></td>
+</tr>
+<tr>
+<td><code>df.iloc[i, j]</code></td>
+<td>Celda específica</td>
+<td><code>df.iloc[0, 2]</code></td>
+</tr>
+<tr>
+<td><code>df.loc[label]</code></td>
+<td>Fila por etiqueta</td>
+<td><code>df.loc["Buenos Aires"]</code></td>
+</tr>
+<tr>
+<td><code>df.loc[label, col]</code></td>
+<td>Celda por etiqueta</td>
+<td><code>df.loc["BA", "lat"]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-filtrado-de-datos">1.3 Filtrado de datos</h3>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Sintaxis</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Condición simple</td>
+<td><code>df[df["col"] &gt; x]</code></td>
+<td><code>df[df["poblacion"] &gt; 1000000]</code></td>
+</tr>
+<tr>
+<td>Múltiples condiciones</td>
+<td><code>df[(cond1) &amp; (cond2)]</code></td>
+<td><code>df[(df["lat"] &lt; -30) &amp; (df["lon"] &lt; -60)]</code></td>
+</tr>
+<tr>
+<td>OR lógico</td>
+<td><code>df[(cond1) \| (cond2)]</code></td>
+<td><code>df[(df["region"] == "N") \| (df["region"] == "S")]</code></td>
+</tr>
+<tr>
+<td>Método query</td>
+<td><code>df.query("expr")</code></td>
+<td><code>df.query("poblacion &gt; 1000000")</code></td>
+</tr>
+<tr>
+<td>Está en lista</td>
+<td><code>df[df["col"].isin(lista)]</code></td>
+<td><code>df[df["nombre"].isin(["BA", "CB"])]</code></td>
+</tr>
+<tr>
+<td>String contiene</td>
+<td><code>df[df["col"].str.contains("x")]</code></td>
+<td><code>df[df["nombre"].str.contains("Aires")]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-agrupacion-y-agregacion">1.4 Agrupación y agregación</h3>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Sintaxis</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agrupar</td>
+<td><code>df.groupby("col")</code></td>
+<td>Objeto GroupBy</td>
+</tr>
+<tr>
+<td>Contar</td>
+<td><code>grouped.size()</code></td>
+<td>Serie con conteos</td>
+</tr>
+<tr>
+<td>Sumar</td>
+<td><code>grouped["col"].sum()</code></td>
+<td>Serie con sumas</td>
+</tr>
+<tr>
+<td>Promedio</td>
+<td><code>grouped["col"].mean()</code></td>
+<td>Serie con promedios</td>
+</tr>
+<tr>
+<td>Múltiples</td>
+<td><code>grouped.agg(["sum", "mean"])</code></td>
+<td>DataFrame</td>
+</tr>
+<tr>
+<td>Agg personalizado</td>
+<td><code>grouped.agg({"col1": "sum", "col2": "mean"})</code></td>
+<td>DataFrame</td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-guardar-y-combinar-dataframes">1.5 Guardar y combinar DataFrames</h3>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Sintaxis</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Guardar CSV</td>
+<td><code>df.to_csv(path, index=False)</code></td>
+<td>Exportar datos</td>
+</tr>
+<tr>
+<td>Ordenar</td>
+<td><code>df.sort_values("col")</code></td>
+<td>Ordenar por columna</td>
+</tr>
+<tr>
+<td>Concatenar</td>
+<td><code>pd.concat([df1, df2])</code></td>
+<td>Unir filas</td>
+</tr>
+<tr>
+<td>Merge</td>
+<td><code>pd.merge(df1, df2, on="col")</code></td>
+<td>JOIN por columna</td>
+</tr>
+<tr>
+<td>Nueva columna</td>
+<td><code>df["nueva"] = valor</code></td>
+<td>Agregar columna</td>
+</tr>
+<tr>
+<td>Columna calculada</td>
+<td><code>df["c"] = df["a"] + df["b"]</code></td>
+<td>Operaciones</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-ejemplos-para-la-clase">2. Ejemplos para la clase</h2>
+<p>10 ejemplos progresivos para hacer en vivo, cubriendo todos los temas.</p>
+<hr />
+<h3 id="21-enunciados-para-mostrar-en-clase">2.1 Enunciados (para mostrar en clase)</h3>
+<hr />
+<h4 id="ejemplo-1-leer-csv-con-pandas">Ejemplo 1: Leer CSV con pandas</h4>
+<p>Leer un archivo CSV de ciudades argentinas y mostrar el DataFrame.</p>
+<hr />
+<h4 id="ejemplo-2-explorar-el-dataframe">Ejemplo 2: Explorar el DataFrame</h4>
+<p>Ver las primeras filas, la forma, las columnas y las estadísticas básicas.</p>
+<hr />
+<h4 id="ejemplo-3-seleccionar-columnas">Ejemplo 3: Seleccionar columnas</h4>
+<p>Crear un nuevo DataFrame con solo nombre y población.</p>
+<hr />
+<h4 id="ejemplo-4-acceder-a-filas-con-iloc">Ejemplo 4: Acceder a filas con iloc</h4>
+<p>Obtener la primera ciudad, las primeras 3, y una celda específica.</p>
+<hr />
+<h4 id="ejemplo-5-filtrar-por-condicion">Ejemplo 5: Filtrar por condición</h4>
+<p>Mostrar solo ciudades con más de 1 millón de habitantes.</p>
+<hr />
+<h4 id="ejemplo-6-filtrar-con-multiples-condiciones">Ejemplo 6: Filtrar con múltiples condiciones</h4>
+<p>Ciudades del hemisferio sur (lat &lt; 0) con longitud oeste de -60.</p>
+<hr />
+<h4 id="ejemplo-7-agregar-columna-calculada">Ejemplo 7: Agregar columna calculada</h4>
+<p>Crear una columna "hemisferio" basada en la latitud.</p>
+<hr />
+<h4 id="ejemplo-8-agrupar-y-agregar">Ejemplo 8: Agrupar y agregar</h4>
+<p>Contar ciudades por región y calcular población total por región.</p>
+<hr />
+<h4 id="ejemplo-9-ordenar-y-guardar">Ejemplo 9: Ordenar y guardar</h4>
+<p>Ordenar por población descendente y guardar en nuevo CSV.</p>
+<hr />
+<h4 id="ejemplo-10-combinar-dataframes">Ejemplo 10: Combinar DataFrames</h4>
+<p>Hacer merge de datos de ciudades con datos de clima.</p>
+<hr />
+<h3 id="22-enunciados-soluciones-referencia-del-docente">2.2 Enunciados + Soluciones (referencia del docente)</h3>
+<hr />
+<h4 id="ejemplo-1-leer-csv-con-pandas_1">Ejemplo 1: Leer CSV con pandas</h4>
+<p><strong>Enunciado</strong>: Leer un archivo CSV de ciudades argentinas y mostrar el DataFrame.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Crear CSV de ejemplo</span>
+<span class="n">datos</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;nombre,latitud,longitud,poblacion,region</span>
+<span class="s2">Buenos Aires,-34.6,-58.4,2890000,Pampeana</span>
+<span class="s2">Córdoba,-31.4,-64.2,1430000,Pampeana</span>
+<span class="s2">Rosario,-33.0,-60.7,1270000,Pampeana</span>
+<span class="s2">Mendoza,-32.9,-68.8,115000,Cuyo</span>
+<span class="s2">Salta,-24.8,-65.4,620000,Norte&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudades.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+
+<span class="c1"># Leer con pandas</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ciudades.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>         nombre  latitud  longitud  poblacion    region
+0  Buenos Aires    -34.6     -58.4    2890000  Pampeana
+1       Córdoba    -31.4     -64.2    1430000  Pampeana
+2       Rosario    -33.0     -60.7    1270000  Pampeana
+3       Mendoza    -32.9     -68.8     115000      Cuyo
+4         Salta    -24.8     -65.4     620000     Norte
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-2-explorar-el-dataframe_1">Ejemplo 2: Explorar el DataFrame</h4>
+<p><strong>Enunciado</strong>: Ver las primeras filas, la forma, las columnas y las estadísticas.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primeras 3 filas:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Forma: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Columnas: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Primeras 3 filas:
+         nombre  latitud  longitud  poblacion    region
+0  Buenos Aires    -34.6     -58.4    2890000  Pampeana
+1       Córdoba    -31.4     -64.2    1430000  Pampeana
+2       Rosario    -33.0     -60.7    1270000  Pampeana
+
+Forma: (5, 5)
+Columnas: [&#39;nombre&#39;, &#39;latitud&#39;, &#39;longitud&#39;, &#39;poblacion&#39;, &#39;region&#39;]
+
+Estadísticas:
+         latitud   longitud      poblacion
+count   5.000000   5.000000   5.000000e+00
+mean  -31.340000 -63.500000   1.265000e+06
+...
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-3-seleccionar-columnas_1">Ejemplo 3: Seleccionar columnas</h4>
+<p><strong>Enunciado</strong>: Crear un nuevo DataFrame con solo nombre y población.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Una columna (Serie)</span>
+<span class="n">nombres</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columna nombre:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nombres</span><span class="p">)</span>
+
+<span class="c1"># Múltiples columnas (DataFrame)</span>
+<span class="n">df_reducido</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;poblacion&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Nombre y población:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_reducido</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Columna nombre:
+0    Buenos Aires
+1         Córdoba
+2         Rosario
+3         Mendoza
+4           Salta
+Name: nombre, dtype: object
+
+Nombre y población:
+         nombre  poblacion
+0  Buenos Aires    2890000
+1       Córdoba    1430000
+2       Rosario    1270000
+3       Mendoza     115000
+4         Salta     620000
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-4-acceder-a-filas-con-iloc_1">Ejemplo 4: Acceder a filas con iloc</h4>
+<p><strong>Enunciado</strong>: Obtener la primera ciudad, las primeras 3, y una celda específica.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Primera fila (Serie)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primera ciudad:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Primeras 3 filas (DataFrame)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Primeras 3 ciudades:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="c1"># Celda específica: fila 0, columna 3 (población)</span>
+<span class="n">poblacion_ba</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Población de Buenos Aires: </span><span class="si">{</span><span class="n">poblacion_ba</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Primera ciudad:
+nombre       Buenos Aires
+latitud             -34.6
+longitud            -58.4
+poblacion         2890000
+region           Pampeana
+Name: 0, dtype: object
+
+Primeras 3 ciudades:
+         nombre  latitud  longitud  poblacion    region
+0  Buenos Aires    -34.6     -58.4    2890000  Pampeana
+1       Córdoba    -31.4     -64.2    1430000  Pampeana
+2       Rosario    -33.0     -60.7    1270000  Pampeana
+
+Población de Buenos Aires: 2890000
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-5-filtrar-por-condicion_1">Ejemplo 5: Filtrar por condición</h4>
+<p><strong>Enunciado</strong>: Mostrar solo ciudades con más de 1 millón de habitantes.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Crear máscara booleana</span>
+<span class="n">mascara</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;poblacion&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1000000</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Máscara:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mascara</span><span class="p">)</span>
+
+<span class="c1"># Aplicar filtro</span>
+<span class="n">grandes</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;poblacion&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1000000</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Ciudades con más de 1M habitantes:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grandes</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Máscara:
+0     True
+1     True
+2     True
+3    False
+4    False
+Name: poblacion, dtype: bool
+
+Ciudades con más de 1M habitantes:
+         nombre  latitud  longitud  poblacion    region
+0  Buenos Aires    -34.6     -58.4    2890000  Pampeana
+1       Córdoba    -31.4     -64.2    1430000  Pampeana
+2       Rosario    -33.0     -60.7    1270000  Pampeana
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-6-filtrar-con-multiples-condiciones_1">Ejemplo 6: Filtrar con múltiples condiciones</h4>
+<p><strong>Enunciado</strong>: Ciudades del hemisferio sur (lat &lt; 0) con longitud oeste de -60.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ambas condiciones deben cumplirse</span>
+<span class="n">filtro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;latitud&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;longitud&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">60</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ciudades al sur y oeste de -60:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">filtro</span><span class="p">[[</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;latitud&quot;</span><span class="p">,</span> <span class="s2">&quot;longitud&quot;</span><span class="p">]])</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ciudades al sur y oeste de -60:
+    nombre  latitud  longitud
+1  Córdoba    -31.4     -64.2
+2  Rosario    -33.0     -60.7
+3  Mendoza    -32.9     -68.8
+4    Salta    -24.8     -65.4
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-7-agregar-columna-calculada_1">Ejemplo 7: Agregar columna calculada</h4>
+<p><strong>Enunciado</strong>: Crear una columna "hemisferio" basada en la latitud.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Usando apply con función lambda</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;hemisferio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;latitud&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;Sur&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;Norte&quot;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;latitud&quot;</span><span class="p">,</span> <span class="s2">&quot;hemisferio&quot;</span><span class="p">]])</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>         nombre  latitud hemisferio
+0  Buenos Aires    -34.6        Sur
+1       Córdoba    -31.4        Sur
+2       Rosario    -33.0        Sur
+3       Mendoza    -32.9        Sur
+4         Salta    -24.8        Sur
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-8-agrupar-y-agregar_1">Ejemplo 8: Agrupar y agregar</h4>
+<p><strong>Enunciado</strong>: Contar ciudades por región y calcular población total.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Contar por región</span>
+<span class="n">conteo</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ciudades por región:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conteo</span><span class="p">)</span>
+
+<span class="c1"># Población total por región</span>
+<span class="n">poblacion_region</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">)[</span><span class="s2">&quot;poblacion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Población por región:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">poblacion_region</span><span class="p">)</span>
+
+<span class="c1"># Múltiples estadísticas</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">)[</span><span class="s2">&quot;poblacion&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas por región:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ciudades por región:
+region
+Cuyo        1
+Norte       1
+Pampeana    3
+dtype: int64
+
+Población por región:
+region
+Cuyo         115000
+Norte        620000
+Pampeana    5590000
+Name: poblacion, dtype: int64
+
+Estadísticas por región:
+          count      sum          mean
+region                                
+Cuyo          1   115000  115000.000000
+Norte         1   620000  620000.000000
+Pampeana      3  5590000 1863333.333333
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-9-ordenar-y-guardar_1">Ejemplo 9: Ordenar y guardar</h4>
+<p><strong>Enunciado</strong>: Ordenar por población descendente y guardar en nuevo CSV.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ordenar de mayor a menor población</span>
+<span class="n">df_ordenado</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;poblacion&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ordenado por población:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_ordenado</span><span class="p">[[</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;poblacion&quot;</span><span class="p">]])</span>
+
+<span class="c1"># Guardar a CSV (sin índice)</span>
+<span class="n">df_ordenado</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;ciudades_ordenadas.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Archivo guardado!&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ordenado por población:
+         nombre  poblacion
+0  Buenos Aires    2890000
+1       Córdoba    1430000
+2       Rosario    1270000
+4         Salta     620000
+3       Mendoza     115000
+
+Archivo guardado!
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-10-combinar-dataframes_1">Ejemplo 10: Combinar DataFrames</h4>
+<p><strong>Enunciado</strong>: Hacer merge de datos de ciudades con datos de clima.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Crear DataFrame de clima</span>
+<span class="n">clima</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;ciudad&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;temp_media&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">18.5</span><span class="p">,</span> <span class="mf">17.2</span><span class="p">,</span> <span class="mf">16.8</span><span class="p">],</span>
+    <span class="s2">&quot;precipitacion&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Merge por nombre de ciudad</span>
+<span class="n">df_completo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> 
+    <span class="n">clima</span><span class="p">,</span> 
+    <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span> 
+    <span class="n">right_on</span><span class="o">=</span><span class="s2">&quot;ciudad&quot;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datos combinados:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_completo</span><span class="p">[[</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;poblacion&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_media&quot;</span><span class="p">,</span> <span class="s2">&quot;precipitacion&quot;</span><span class="p">]])</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Datos combinados:
+         nombre  poblacion  temp_media  precipitacion
+0  Buenos Aires    2890000        18.5           1200
+1       Córdoba    1430000        17.2            800
+2       Mendoza     115000        16.8            200
+</code></pre></div>
+
+<hr />
+<h2 id="notas-para-el-docente">Notas para el docente</h2>
+<ul>
+<li>Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero</li>
+<li>Crear el CSV inicial es importante para que todos trabajen con los mismos datos</li>
+<li>Enfatizar la diferencia entre <code>iloc</code> (posición) y <code>loc</code> (etiqueta)</li>
+<li>El filtrado con múltiples condiciones requiere paréntesis y operadores <code>&amp;</code> / <code>|</code></li>
+<li><code>groupby</code> es muy poderoso - dedicarle tiempo suficiente</li>
+<li>Los ejercicios en <code>ejercicios/03/03-pandas.md</code> refuerzan estos conceptos</li>
+<li>Contexto geográfico: ciudades argentinas, coordenadas, regiones, población</li>
+</ul>
+</body>
+</html>

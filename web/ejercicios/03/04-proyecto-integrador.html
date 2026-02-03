@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 Proyecto Integrador</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="proyecto-integrador-gestor-de-rutas-con-persistencia">Proyecto Integrador: Gestor de Rutas con Persistencia</h1>
+<p>Un proyecto paso a paso para construir un gestor de rutas geográficas que guarda y carga datos desde archivos.</p>
+<hr />
+<h2 id="descripcion-del-proyecto">Descripción del proyecto</h2>
+<p>Vamos a construir un programa que:<br />
+- Carga rutas guardadas desde archivos CSV<br />
+- Permite agregar, editar y eliminar destinos<br />
+- Guarda los cambios automáticamente<br />
+- Genera reportes en diferentes formatos (TXT, CSV)<br />
+- Maneja errores de forma robusta (archivos corruptos, datos inválidos)<br />
+- Analiza datos con Pandas</p>
+<p>Este proyecto integra conceptos de la Unidad 3: archivos, CSV, módulos, manejo de errores y Pandas. También reutiliza funciones de las unidades anteriores.</p>
+<hr />
+<h2 id="paso-1-estructura-del-proyecto">Paso 1: Estructura del proyecto</h2>
+<p><strong>Objetivo</strong>: Crear la estructura de archivos del proyecto con módulos separados.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear un directorio <code>planificador/</code><br />
+2. Crear los archivos:<br />
+   - <code>main.py</code> - Programa principal con el menú<br />
+   - <code>datos.py</code> - Funciones de lectura/escritura de archivos<br />
+   - <code>calculos.py</code> - Funciones de cálculo (distancia, punto medio)<br />
+   - <code>validacion.py</code> - Funciones de validación de datos</p>
+<p><strong>Estructura</strong>:</p>
+<div class="highlight"><pre><span></span><code>planificador/
+├── main.py
+├── datos.py
+├── calculos.py
+├── validacion.py
+└── rutas/           # Directorio para guardar rutas
+    └── .gitkeep
+</code></pre></div>
+
+<p><strong>Hint</strong>: Empezá creando archivos vacíos y luego agregá funciones gradualmente.</p>
+<hr />
+<h2 id="paso-2-modulo-de-validacion">Paso 2: Módulo de validación</h2>
+<p><strong>Objetivo</strong>: Crear funciones de validación reutilizables en <code>validacion.py</code>.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>es_coordenada_valida(lat, lon)</code> que retorne True/False<br />
+2. Crear función <code>validar_nombre(nombre)</code> que verifique que no esté vacío<br />
+3. Crear función <code>convertir_coordenada(texto)</code> que convierta string a float o retorne None</p>
+<p><strong>Ejemplo de código</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># validacion.py</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">es_coordenada_valida</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verifica si las coordenadas están en rangos válidos.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">90</span> <span class="o">&lt;=</span> <span class="n">lat</span> <span class="o">&lt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="o">-</span><span class="mi">180</span> <span class="o">&lt;=</span> <span class="n">lon</span> <span class="o">&lt;=</span> <span class="mi">180</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">convertir_coordenada</span><span class="p">(</span><span class="n">texto</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convierte string a float, retorna None si falla.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+
+<hr />
+<h2 id="paso-3-modulo-de-calculos">Paso 3: Módulo de cálculos</h2>
+<p><strong>Objetivo</strong>: Mover las funciones de cálculo de unidades anteriores a <code>calculos.py</code>.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>distancia_entre(lat1, lon1, lat2, lon2)</code><br />
+2. Crear función <code>punto_medio(lat1, lon1, lat2, lon2)</code><br />
+3. Crear función <code>generar_link_maps(lat, lon)</code></p>
+<p><strong>Ejemplo de código</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># calculos.py</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">distancia_entre</span><span class="p">(</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula distancia euclidiana simplificada entre dos puntos.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">lon2</span> <span class="o">-</span> <span class="n">lon1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">distancia_km</span><span class="p">(</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convierte distancia en grados a km aproximados.&quot;&quot;&quot;</span>
+    <span class="n">grados</span> <span class="o">=</span> <span class="n">distancia_entre</span><span class="p">(</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">grados</span> <span class="o">*</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generar_link_maps</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Genera link de Google Maps para una coordenada.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;https://www.google.com/maps?q=</span><span class="si">{</span><span class="n">lat</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">lon</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<hr />
+<h2 id="paso-4-guardar-ruta-a-csv">Paso 4: Guardar ruta a CSV</h2>
+<p><strong>Objetivo</strong>: Crear función para guardar una ruta a archivo CSV en <code>datos.py</code>.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>guardar_ruta(ruta, nombre_archivo)</code><br />
+2. Usar <code>csv.DictWriter</code> para escribir los destinos<br />
+3. Manejar errores de escritura</p>
+<p><strong>Ejemplo de código</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># datos.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">guardar_ruta</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="n">nombre_archivo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Guarda una lista de destinos a un archivo CSV.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">nombre_archivo</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">campos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">]</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">campos</span><span class="p">)</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al guardar: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div>
+
+<p><strong>Ejemplo de archivo generado</strong> (<code>rutas/mi_ruta.csv</code>):</p>
+<div class="highlight"><pre><span></span><code>nombre,lat,lon
+Buenos Aires,-34.6,-58.4
+Córdoba,-31.4,-64.2
+Mendoza,-32.9,-68.8
+</code></pre></div>
+
+<hr />
+<h2 id="paso-5-cargar-ruta-desde-csv">Paso 5: Cargar ruta desde CSV</h2>
+<p><strong>Objetivo</strong>: Crear función para cargar una ruta desde archivo CSV.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>cargar_ruta(nombre_archivo)</code> que retorne lista de diccionarios<br />
+2. Manejar <code>FileNotFoundError</code> si el archivo no existe<br />
+3. Validar que las coordenadas sean válidas al cargar</p>
+<p><strong>Ejemplo de código</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">cargar_ruta</span><span class="p">(</span><span class="n">nombre_archivo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carga una ruta desde archivo CSV. Retorna lista vacía si hay error.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">nombre_archivo</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">ruta</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+                <span class="n">destino</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="n">fila</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]),</span>
+                    <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">])</span>
+                <span class="p">}</span>
+                <span class="n">ruta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">destino</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ruta</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Archivo &#39;</span><span class="si">{</span><span class="n">nombre_archivo</span><span class="si">}</span><span class="s2">&#39; no encontrado. Creando ruta nueva.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error en formato del archivo: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div>
+
+<hr />
+<h2 id="paso-6-listar-rutas-guardadas">Paso 6: Listar rutas guardadas</h2>
+<p><strong>Objetivo</strong>: Mostrar todas las rutas guardadas en el directorio.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>listar_rutas(directorio)</code> que retorne lista de archivos .csv<br />
+2. Usar <code>os.listdir()</code> para obtener archivos<br />
+3. Filtrar solo archivos con extensión .csv</p>
+<p><strong>Ejemplo de código</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">listar_rutas</span><span class="p">(</span><span class="n">directorio</span><span class="o">=</span><span class="s2">&quot;rutas&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lista todos los archivos de ruta en el directorio.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">archivos</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directorio</span><span class="p">)</span>
+        <span class="n">rutas</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">archivos</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">rutas</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directorio</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div>
+
+<p><strong>Ejemplo de salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Rutas guardadas:
+1. mi_viaje.csv
+2. ruta_norte.csv
+3. vacaciones.csv
+</code></pre></div>
+
+<hr />
+<h2 id="paso-7-autoguardado">Paso 7: Autoguardado</h2>
+<p><strong>Objetivo</strong>: Implementar guardado automático después de cada cambio.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear variable global o parámetro para el archivo actual<br />
+2. Llamar a <code>guardar_ruta()</code> después de agregar o eliminar destinos<br />
+3. Mostrar confirmación de guardado</p>
+<p><strong>Ejemplo de flujo</strong>:</p>
+<div class="highlight"><pre><span></span><code>&gt; Agregar destino
+Nombre: Salta
+Latitud: -24.8
+Longitud: -65.4
+✓ Destino agregado
+✓ Ruta guardada automáticamente
+</code></pre></div>
+
+<hr />
+<h2 id="paso-8-analisis-con-pandas">Paso 8: Análisis con Pandas</h2>
+<p><strong>Objetivo</strong>: Agregar funciones de análisis usando Pandas.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>analizar_ruta(nombre_archivo)</code> que use pandas<br />
+2. Calcular estadísticas: ciudad más al norte/sur, distancia total<br />
+3. Generar resumen formateado</p>
+<p><strong>Ejemplo de código</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">analizar_ruta</span><span class="p">(</span><span class="n">nombre_archivo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analiza una ruta usando Pandas.&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">nombre_archivo</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== ANÁLISIS DE RUTA ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total de destinos: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Ciudad más al norte (mayor latitud)</span>
+    <span class="n">idx_norte</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Más al norte: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_norte</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;nombre&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_norte</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Ciudad más al sur (menor latitud)</span>
+    <span class="n">idx_sur</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Más al sur: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_sur</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;nombre&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_sur</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Coordenadas promedio (centro aproximado)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Centro aproximado: (</span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="paso-9-exportar-reporte">Paso 9: Exportar reporte</h2>
+<p><strong>Objetivo</strong>: Generar reportes en formato texto y CSV.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>exportar_reporte_txt(ruta, nombre_archivo)</code><br />
+2. Crear función <code>exportar_reporte_csv(ruta, nombre_archivo)</code> con columnas adicionales<br />
+3. Incluir links de Google Maps en el reporte</p>
+<p><strong>Ejemplo de reporte TXT</strong>:</p>
+<div class="highlight"><pre><span></span><code>╔════════════════════════════════════════╗
+║         REPORTE DE RUTA                ║
+╚════════════════════════════════════════╝
+
+Fecha: 2026-02-03
+Total de destinos: 3
+
+DESTINOS:
+─────────────────────────────────────────
+1. Buenos Aires
+   Coordenadas: -34.6, -58.4
+   Maps: https://www.google.com/maps?q=-34.6,-58.4
+
+2. Córdoba
+   Coordenadas: -31.4, -64.2
+   Maps: https://www.google.com/maps?q=-31.4,-64.2
+
+ESTADÍSTICAS:
+─────────────────────────────────────────
+Distancia total: ~850 km
+Ciudad más al norte: Córdoba
+Ciudad más al sur: Buenos Aires
+</code></pre></div>
+
+<hr />
+<h2 id="paso-10-programa-completo">Paso 10: Programa completo</h2>
+<p><strong>Objetivo</strong>: Integrar todos los módulos en un programa con menú interactivo.</p>
+<p><strong>Menú del programa</strong>:</p>
+<div class="highlight"><pre><span></span><code>╔════════════════════════════════════════╗
+║     GESTOR DE RUTAS GEOGRÁFICAS        ║
+╚════════════════════════════════════════╝
+
+Ruta actual: mi_viaje.csv (3 destinos)
+
+1. Ver ruta actual
+2. Agregar destino
+3. Eliminar destino
+4. Nueva ruta
+5. Cargar ruta existente
+6. Ver análisis (Pandas)
+7. Exportar reporte
+8. Salir
+
+Opción: 
+</code></pre></div>
+
+<p><strong>Ejemplo de ejecución completa</strong>:</p>
+<div class="highlight"><pre><span></span><code>Opción: 5
+Rutas disponibles:
+1. mi_viaje.csv
+2. vacaciones.csv
+Elegir ruta (número): 1
+✓ Ruta &#39;mi_viaje.csv&#39; cargada (3 destinos)
+
+Opción: 6
+
+=== ANÁLISIS DE RUTA ===
+Total de destinos: 3
+Más al norte: Córdoba (-31.4)
+Más al sur: Buenos Aires (-34.6)
+Centro aproximado: (-32.97, -63.80)
+
+Opción: 7
+Formato (1=TXT, 2=CSV): 1
+Nombre del archivo: reporte_viaje
+✓ Reporte guardado en &#39;reportes/reporte_viaje.txt&#39;
+
+Opción: 8
+¡Hasta luego! Ruta guardada automáticamente.
+</code></pre></div>
+
+<hr />
+<h2 id="conceptos-utilizados">Conceptos utilizados</h2>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Dónde se usa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Módulos propios</strong></td>
+<td><code>datos.py</code>, <code>calculos.py</code>, <code>validacion.py</code></td>
+</tr>
+<tr>
+<td><strong>import</strong></td>
+<td>Importar funciones entre módulos</td>
+</tr>
+<tr>
+<td><strong>csv.DictWriter</strong></td>
+<td>Guardar ruta a CSV</td>
+</tr>
+<tr>
+<td><strong>csv.DictReader</strong></td>
+<td>Cargar ruta desde CSV</td>
+</tr>
+<tr>
+<td><strong>try/except</strong></td>
+<td>Manejo de errores de archivo y datos</td>
+</tr>
+<tr>
+<td><strong>os.listdir</strong></td>
+<td>Listar rutas guardadas</td>
+</tr>
+<tr>
+<td><strong>os.makedirs</strong></td>
+<td>Crear directorios</td>
+</tr>
+<tr>
+<td><strong>FileNotFoundError</strong></td>
+<td>Manejar archivo inexistente</td>
+</tr>
+<tr>
+<td><strong>ValueError</strong></td>
+<td>Manejar datos inválidos</td>
+</tr>
+<tr>
+<td><strong>pandas.read_csv</strong></td>
+<td>Análisis de datos</td>
+</tr>
+<tr>
+<td><strong>DataFrame.idxmax/min</strong></td>
+<td>Encontrar extremos</td>
+</tr>
+<tr>
+<td><strong>with open()</strong></td>
+<td>Context manager para archivos</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="desafios-extra">Desafíos extra</h2>
+<ol>
+<li>
+<p><strong>Backup automático</strong>: Antes de sobrescribir un archivo, crear una copia de respaldo con fecha.</p>
+</li>
+<li>
+<p><strong>Formato JSON</strong>: Agregar opción para guardar/cargar rutas en formato JSON además de CSV.</p>
+</li>
+<li>
+<p><strong>Búsqueda de destinos</strong>: Implementar búsqueda por nombre parcial en todas las rutas guardadas.</p>
+</li>
+<li>
+<p><strong>Exportar a KML</strong>: Investigar el formato KML y exportar la ruta para abrir en Google Earth.</p>
+</li>
+<li>
+<p><strong>Validación de CSV</strong>: Crear función que verifique si un archivo CSV tiene el formato correcto antes de cargarlo.</p>
+</li>
+<li>
+<p><strong>Historial de cambios</strong>: Guardar un log de todas las operaciones realizadas (agregar, eliminar, etc.)</p>
+</li>
+<li>
+<p><strong>Importar desde URL</strong>: Permitir cargar un CSV directamente desde una URL usando <code>pandas.read_csv()</code>.</p>
+</li>
+</ol>
+<hr />
+<h2 id="conexion-con-la-unidad-anterior">Conexión con la Unidad anterior</h2>
+<p>Este proyecto es una evolución del <strong>Proyecto Integrador de la Unidad 2</strong> (Planificador de Ruta):</p>
+<table>
+<thead>
+<tr>
+<th>Unidad 2</th>
+<th>Unidad 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datos en memoria (se pierden al cerrar)</td>
+<td>Datos persistentes en archivos CSV</td>
+</tr>
+<tr>
+<td>Todo en un archivo</td>
+<td>Código organizado en módulos</td>
+</tr>
+<tr>
+<td>Sin manejo de errores</td>
+<td>try/except para archivos y datos</td>
+</tr>
+<tr>
+<td>Sin análisis</td>
+<td>Estadísticas con Pandas</td>
+</tr>
+<tr>
+<td>Un solo formato de salida</td>
+<td>Múltiples formatos (TXT, CSV)</td>
+</tr>
+</tbody>
+</table>
+<p>Funciones reutilizables de unidades anteriores:<br />
+- <code>distancia_entre()</code> → en <code>calculos.py</code><br />
+- <code>es_coordenada_valida()</code> → en <code>validacion.py</code><br />
+- <code>generar_link_maps()</code> → en <code>calculos.py</code><br />
+- Estructura de menú → en <code>main.py</code></p>
+<hr />
+<p><em>Fin del proyecto integrador - Unidad 3</em></p>
+</body>
+</html>

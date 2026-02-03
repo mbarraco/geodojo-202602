@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 Proyecto Integrador</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="proyecto-integrador-planificador-de-ruta-geografica">Proyecto Integrador: Planificador de Ruta Geográfica</h1>
+<p>Un proyecto paso a paso para construir un programa interactivo que gestiona rutas de viaje con múltiples destinos.</p>
+<hr />
+<h2 id="descripcion-del-proyecto">Descripción del proyecto</h2>
+<p>Vamos a construir un programa que:<br />
+- Permite agregar destinos a una ruta (con validación de coordenadas)<br />
+- Muestra la lista de destinos de la ruta<br />
+- Calcula la distancia total del recorrido<br />
+- Genera estadísticas (destino más al norte, más al sur, etc.)<br />
+- Permite eliminar destinos<br />
+- Usa un menú interactivo que se repite hasta que el usuario decida salir</p>
+<p>Este proyecto integra conceptos de la Unidad 2: listas, tuplas, diccionarios, condicionales y bucles. También reutiliza funciones de la Unidad 1.</p>
+<hr />
+<h2 id="paso-1-estructura-de-datos-basica">Paso 1: Estructura de datos básica</h2>
+<p><strong>Objetivo</strong>: Crear la estructura de datos para almacenar la ruta. Usaremos una lista de diccionarios, donde cada diccionario representa un destino.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear una lista vacía llamada <code>ruta</code><br />
+2. Crear un diccionario de ejemplo con nombre, latitud y longitud<br />
+3. Agregar el diccionario a la lista<br />
+4. Mostrar la lista</p>
+<p><strong>Ejemplo de código</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Lista para almacenar los destinos</span>
+<span class="n">ruta</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Un destino es un diccionario</span>
+<span class="n">destino</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">34.6</span><span class="p">,</span>
+    <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">58.4</span>
+<span class="p">}</span>
+
+<span class="c1"># Agregar a la ruta</span>
+<span class="n">ruta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">destino</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida esperada</strong>:</p>
+<div class="highlight"><pre><span></span><code>[{&#39;nombre&#39;: &#39;Buenos Aires&#39;, &#39;lat&#39;: -34.6, &#39;lon&#39;: -58.4}]
+</code></pre></div>
+
+<hr />
+<h2 id="paso-2-funcion-para-validar-coordenadas">Paso 2: Función para validar coordenadas</h2>
+<p><strong>Objetivo</strong>: Crear una función que verifique si las coordenadas son válidas antes de agregar un destino.</p>
+<p><strong>Reglas</strong>:<br />
+- Latitud válida: entre -90 y 90<br />
+- Longitud válida: entre -180 y 180</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>es_coordenada_valida(lat, lon)</code> que retorne <code>True</code> o <code>False</code><br />
+2. Probarla con coordenadas válidas e inválidas</p>
+<p><strong>Ejemplo de uso</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">es_coordenada_valida</span><span class="p">(</span><span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">58.4</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">es_coordenada_valida</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>       <span class="c1"># False (latitud inválida)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">es_coordenada_valida</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>        <span class="c1"># False (longitud inválida)</span>
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>and</code> para combinar las dos condiciones (latitud válida Y longitud válida).</p>
+<hr />
+<h2 id="paso-3-funcion-para-agregar-destino">Paso 3: Función para agregar destino</h2>
+<p><strong>Objetivo</strong>: Crear una función que pida los datos de un destino al usuario, los valide, y lo agregue a la ruta.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>agregar_destino(ruta)</code> que modifique la lista recibida<br />
+2. Pedir nombre, latitud y longitud al usuario<br />
+3. Validar las coordenadas antes de agregar<br />
+4. Si son inválidas, mostrar mensaje de error y no agregar</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>Nombre del destino: Córdoba
+Latitud: -31.4
+Longitud: -64.2
+✓ Destino &quot;Córdoba&quot; agregado a la ruta!
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Nombre del destino: Lugar Inválido
+Latitud: -100
+Longitud: 50
+✗ Coordenadas inválidas. El destino no fue agregado.
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>if</code> para verificar si las coordenadas son válidas antes de hacer <code>append()</code>.</p>
+<hr />
+<h2 id="paso-4-funcion-para-mostrar-la-ruta">Paso 4: Función para mostrar la ruta</h2>
+<p><strong>Objetivo</strong>: Crear una función que muestre todos los destinos de la ruta, numerados.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>mostrar_ruta(ruta)</code><br />
+2. Si la ruta está vacía, mostrar un mensaje apropiado<br />
+3. Si tiene destinos, mostrarlos numerados con <code>enumerate()</code></p>
+<p><strong>Ejemplo de ejecución</strong> (con 3 destinos):</p>
+<div class="highlight"><pre><span></span><code>=== RUTA ACTUAL (3 destinos) ===
+1. Buenos Aires (-34.6, -58.4)
+2. Córdoba (-31.4, -64.2)
+3. Mendoza (-32.9, -68.8)
+</code></pre></div>
+
+<p><strong>Ejemplo de ejecución</strong> (sin destinos):</p>
+<div class="highlight"><pre><span></span><code>La ruta está vacía. Agregá destinos para comenzar.
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>len(ruta) == 0</code> o simplemente <code>not ruta</code> para verificar si está vacía.</p>
+<hr />
+<h2 id="paso-5-funcion-para-calcular-distancia-entre-dos-puntos">Paso 5: Función para calcular distancia entre dos puntos</h2>
+<p><strong>Objetivo</strong>: Crear (o reutilizar de la Unidad 1) una función que calcule la distancia entre dos coordenadas.</p>
+<p><strong>Fórmula euclidiana simplificada</strong>:</p>
+<div class="highlight"><pre><span></span><code>distancia = √[(lat2-lat1)² + (lon2-lon1)²]
+</code></pre></div>
+
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>distancia_entre(lat1, lon1, lat2, lon2)</code> que retorne la distancia en grados<br />
+2. Opcionalmente, convertir a km aproximados (1 grado ≈ 111 km)</p>
+<p><strong>Ejemplo de uso</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="n">distancia_entre</span><span class="p">(</span><span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">58.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">31.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">64.2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distancia: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> grados&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distancia aproximada: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">d</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">111</span><span class="p">)</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida esperada</strong>:</p>
+<div class="highlight"><pre><span></span><code>Distancia: 6.68 grados
+Distancia aproximada: 741 km
+</code></pre></div>
+
+<hr />
+<h2 id="paso-6-funcion-para-calcular-distancia-total-de-la-ruta">Paso 6: Función para calcular distancia total de la ruta</h2>
+<p><strong>Objetivo</strong>: Crear una función que recorra la lista de destinos y sume las distancias entre puntos consecutivos.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>distancia_total(ruta)</code> que retorne la distancia total<br />
+2. Usar un bucle <code>for</code> para recorrer los destinos<br />
+3. Sumar la distancia entre cada par de destinos consecutivos</p>
+<p><strong>Ejemplo de uso</strong> (con Buenos Aires → Córdoba → Mendoza):</p>
+<div class="highlight"><pre><span></span><code><span class="n">total</span> <span class="o">=</span> <span class="n">distancia_total</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distancia total: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">total</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">111</span><span class="p">)</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida esperada</strong>:</p>
+<div class="highlight"><pre><span></span><code>Distancia total: 1194 km
+</code></pre></div>
+
+<p><strong>Hint</strong>: Recorré con <code>range(len(ruta) - 1)</code> para acceder a pares consecutivos: <code>ruta[i]</code> y <code>ruta[i+1]</code>.</p>
+<hr />
+<h2 id="paso-7-funcion-para-encontrar-extremos">Paso 7: Función para encontrar extremos</h2>
+<p><strong>Objetivo</strong>: Crear una función que encuentre el destino más al norte y más al sur de la ruta.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>encontrar_extremos(ruta)</code> que retorne una tupla con dos diccionarios: (más_norte, más_sur)<br />
+2. Recorrer la ruta con un bucle y comparar latitudes<br />
+3. Si la ruta está vacía, retornar <code>(None, None)</code></p>
+<p><strong>Ejemplo de uso</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">norte</span><span class="p">,</span> <span class="n">sur</span> <span class="o">=</span> <span class="n">encontrar_extremos</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Más al norte: </span><span class="si">{</span><span class="n">norte</span><span class="p">[</span><span class="s1">&#39;nombre&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (lat: </span><span class="si">{</span><span class="n">norte</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Más al sur: </span><span class="si">{</span><span class="n">sur</span><span class="p">[</span><span class="s1">&#39;nombre&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (lat: </span><span class="si">{</span><span class="n">sur</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida esperada</strong> (con Buenos Aires, Córdoba, Mendoza):</p>
+<div class="highlight"><pre><span></span><code>Más al norte: Córdoba (lat: -31.4)
+Más al sur: Buenos Aires (lat: -34.6)
+</code></pre></div>
+
+<p><strong>Hint</strong>: Recordá que en el hemisferio sur, una latitud mayor (menos negativa) está más al norte.</p>
+<hr />
+<h2 id="paso-8-funcion-para-eliminar-destino">Paso 8: Función para eliminar destino</h2>
+<p><strong>Objetivo</strong>: Crear una función que permita eliminar un destino de la ruta por su nombre.</p>
+<p><strong>Tareas</strong>:<br />
+1. Crear función <code>eliminar_destino(ruta, nombre)</code><br />
+2. Buscar el destino con ese nombre usando un bucle<br />
+3. Si lo encuentra, eliminarlo y mostrar confirmación<br />
+4. Si no lo encuentra, mostrar mensaje de error</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>Eliminar destino: Córdoba
+✓ &quot;Córdoba&quot; eliminado de la ruta.
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Eliminar destino: Lima
+✗ No se encontró &quot;Lima&quot; en la ruta.
+</code></pre></div>
+
+<p><strong>Hint</strong>: Podés usar <code>break</code> para salir del bucle una vez que encontrás el destino.</p>
+<hr />
+<h2 id="paso-9-menu-interactivo">Paso 9: Menú interactivo</h2>
+<p><strong>Objetivo</strong>: Crear un menú que se repita hasta que el usuario elija salir, usando un bucle <code>while</code>.</p>
+<p><strong>Opciones del menú</strong>:<br />
+1. Agregar destino<br />
+2. Ver ruta<br />
+3. Calcular distancia total<br />
+4. Ver estadísticas (extremos)<br />
+5. Eliminar destino<br />
+6. Salir</p>
+<p><strong>Estructura básica</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== MENÚ ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Agregar destino&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Ver ruta&quot;</span><span class="p">)</span>
+    <span class="c1"># ... más opciones</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;6. Salir&quot;</span><span class="p">)</span>
+
+    <span class="n">opcion</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Opción: &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">opcion</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+        <span class="n">agregar_destino</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">opcion</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+        <span class="n">mostrar_ruta</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
+    <span class="c1"># ... más opciones</span>
+    <span class="k">elif</span> <span class="n">opcion</span> <span class="o">==</span> <span class="s2">&quot;6&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¡Hasta luego!&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opción no válida&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>break</code> para salir del bucle cuando el usuario elige la opción de salir.</p>
+<hr />
+<h2 id="paso-10-programa-completo">Paso 10: Programa completo</h2>
+<p><strong>Objetivo</strong>: Integrar todas las funciones en un programa completo con un reporte final bien formateado.</p>
+<p><strong>Ejemplo de ejecución completa</strong>:</p>
+<div class="highlight"><pre><span></span><code>╔════════════════════════════════════════════════════╗
+║        PLANIFICADOR DE RUTA GEOGRÁFICA             ║
+╚════════════════════════════════════════════════════╝
+
+=== MENÚ ===
+1. Agregar destino
+2. Ver ruta
+3. Calcular distancia total
+4. Ver estadísticas
+5. Eliminar destino
+6. Generar reporte final
+7. Salir
+
+Opción: 1
+Nombre del destino: Buenos Aires
+Latitud: -34.6
+Longitud: -58.4
+✓ Destino &quot;Buenos Aires&quot; agregado a la ruta!
+
+Opción: 1
+Nombre del destino: Córdoba
+Latitud: -31.4
+Longitud: -64.2
+✓ Destino &quot;Córdoba&quot; agregado a la ruta!
+
+Opción: 1
+Nombre del destino: Mendoza
+Latitud: -32.9
+Longitud: -68.8
+✓ Destino &quot;Mendoza&quot; agregado a la ruta!
+
+Opción: 2
+=== RUTA ACTUAL (3 destinos) ===
+1. Buenos Aires (-34.6, -58.4)
+2. Córdoba (-31.4, -64.2)
+3. Mendoza (-32.9, -68.8)
+
+Opción: 3
+=== DISTANCIA TOTAL ===
+Tramos:
+  Buenos Aires → Córdoba: 741 km
+  Córdoba → Mendoza: 485 km
+Distancia total: 1226 km
+
+Opción: 4
+=== ESTADÍSTICAS ===
+Destino más al norte: Córdoba (lat: -31.4)
+Destino más al sur: Buenos Aires (lat: -34.6)
+Cantidad de destinos: 3
+
+Opción: 6
+╔════════════════════════════════════════════════════╗
+║               REPORTE FINAL DE RUTA                ║
+╚════════════════════════════════════════════════════╝
+
+📍 DESTINOS (3):
+   1. Buenos Aires
+      Coordenadas: 34.6°S, 58.4°W
+      Maps: https://www.google.com/maps?q=-34.6,-58.4
+
+   2. Córdoba
+      Coordenadas: 31.4°S, 64.2°W
+      Maps: https://www.google.com/maps?q=-31.4,-64.2
+
+   3. Mendoza
+      Coordenadas: 32.9°S, 68.8°W
+      Maps: https://www.google.com/maps?q=-32.9,-68.8
+
+📏 DISTANCIA TOTAL: ~1226 km
+
+📊 ESTADÍSTICAS:
+   Más al norte: Córdoba
+   Más al sur: Buenos Aires
+
+╚════════════════════════════════════════════════════╝
+         ¡Buen viaje!
+╚════════════════════════════════════════════════════╝
+
+Opción: 7
+¡Hasta luego! Gracias por usar el Planificador de Ruta.
+</code></pre></div>
+
+<hr />
+<h2 id="conceptos-utilizados">Conceptos utilizados</h2>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Dónde se usa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Listas</strong></td>
+<td><code>ruta</code> almacena todos los destinos</td>
+</tr>
+<tr>
+<td><strong>Diccionarios</strong></td>
+<td>Cada destino es <code>{"nombre": ..., "lat": ..., "lon": ...}</code></td>
+</tr>
+<tr>
+<td><strong>Tuplas</strong></td>
+<td>Retorno de <code>encontrar_extremos()</code></td>
+</tr>
+<tr>
+<td><strong><code>if/elif/else</code></strong></td>
+<td>Validación de coordenadas, menú de opciones</td>
+</tr>
+<tr>
+<td><strong><code>for</code></strong></td>
+<td>Recorrer destinos, calcular distancia total</td>
+</tr>
+<tr>
+<td><strong><code>while</code></strong></td>
+<td>Menú interactivo que se repite</td>
+</tr>
+<tr>
+<td><strong><code>break</code></strong></td>
+<td>Salir del menú, terminar búsqueda</td>
+</tr>
+<tr>
+<td><strong><code>enumerate()</code></strong></td>
+<td>Numerar destinos al mostrar la ruta</td>
+</tr>
+<tr>
+<td><strong><code>range()</code></strong></td>
+<td>Acceder a pares consecutivos de destinos</td>
+</tr>
+<tr>
+<td><strong><code>len()</code></strong></td>
+<td>Verificar si la ruta está vacía, contar destinos</td>
+</tr>
+<tr>
+<td><strong><code>.append()</code></strong></td>
+<td>Agregar destinos a la ruta</td>
+</tr>
+<tr>
+<td><strong><code>.items()</code></strong></td>
+<td>Recorrer diccionarios (opcional)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="desafios-extra">Desafíos extra</h2>
+<ol>
+<li>
+<p><strong>Reordenar destinos</strong>: Agregar opción para mover un destino a otra posición en la ruta.</p>
+</li>
+<li>
+<p><strong>Tiempo de viaje</strong>: Pedir velocidad promedio en km/h y calcular el tiempo estimado de viaje para toda la ruta.</p>
+</li>
+<li>
+<p><strong>Par más cercano</strong>: Encontrar cuáles dos destinos de la ruta están más cerca entre sí.</p>
+</li>
+<li>
+<p><strong>Búsqueda parcial</strong>: Permitir buscar destinos por nombre parcial (ej: "Bue" encuentra "Buenos Aires").</p>
+</li>
+<li>
+<p><strong>Ruta circular</strong>: Agregar opción para calcular la distancia si se vuelve al punto de origen (ruta circular).</p>
+</li>
+<li>
+<p><strong>Exportar ruta</strong>: Generar una lista de todos los links de Google Maps para compartir.</p>
+</li>
+<li>
+<p><strong>Cargar datos iniciales</strong>: Iniciar el programa con una lista de ciudades argentinas precargadas y permitir seleccionar de esa lista.</p>
+</li>
+</ol>
+<hr />
+<h2 id="conexion-con-la-unidad-1">Conexión con la Unidad 1</h2>
+<p>Este proyecto es una evolución del <strong>Proyecto Integrador de la Unidad 1</strong> (Calculadora de Coordenadas):</p>
+<table>
+<thead>
+<tr>
+<th>Unidad 1</th>
+<th>Unidad 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 puntos fijos</td>
+<td>N puntos dinámicos</td>
+</tr>
+<tr>
+<td>Programa lineal</td>
+<td>Programa interactivo con menú</td>
+</tr>
+<tr>
+<td>Sin validación (asume datos correctos)</td>
+<td>Valida coordenadas antes de agregar</td>
+</tr>
+<tr>
+<td>Variables simples</td>
+<td>Listas de diccionarios</td>
+</tr>
+<tr>
+<td>Una sola ejecución</td>
+<td>Se repite hasta que el usuario salga</td>
+</tr>
+</tbody>
+</table>
+<p>Podés reutilizar las funciones de la Unidad 1:<br />
+- <code>distancia_euclidiana()</code> → <code>distancia_entre()</code><br />
+- <code>formatear_coordenada()</code><br />
+- <code>generar_link_maps()</code></p>
+<hr />
+<p><em>Fin del proyecto integrador - Unidad 2</em></p>
+</body>
+</html>

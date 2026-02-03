@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Estructuras Control</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="unidad-2-estructuras-de-datos-y-control-de-flujo">Unidad 2: Estructuras de datos y control de flujo</h1>
+<p>Ejercicios sobre listas, tuplas, diccionarios, condicionales y bucles.</p>
+<hr />
+<h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2>
+<p>Se recomienda hacerlos todos. Están ordenados por dificultad incremental.</p>
+<hr />
+<h3 id="bloque-1-listas-basicas">Bloque 1: Listas básicas</h3>
+<hr />
+<h3 id="a1-lista-de-ciudades">A1. Lista de ciudades</h3>
+<p><strong>Enunciado</strong>: Creá una lista llamada <code>ciudades</code> que contenga los nombres: "Buenos Aires", "Córdoba", "Rosario". Mostrala por pantalla.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>['Buenos Aires', 'Córdoba', 'Rosario']</code></p>
+<p><strong>Hint</strong>: Las listas se crean con corchetes: <code>[elemento1, elemento2, ...]</code></p>
+<hr />
+<h3 id="a2-coordenadas-en-lista">A2. Coordenadas en lista</h3>
+<p><strong>Enunciado</strong>: Creá una lista llamada <code>coordenadas</code> con los valores -34.6, -58.4 (latitud y longitud de Buenos Aires). Mostrá la lista completa.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>[-34.6, -58.4]</code></p>
+<hr />
+<h3 id="a3-acceso-por-indice">A3. Acceso por índice</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>provincias = ["Mendoza", "Salta", "Tucumán", "Jujuy"]</code>, mostrá el primer elemento y el último elemento.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Mendoza
+Jujuy
+</code></pre></div>
+
+<p><strong>Hint</strong>: El primer elemento tiene índice 0, el último tiene índice -1.</p>
+<hr />
+<h3 id="a4-longitud-de-una-lista">A4. Longitud de una lista</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>altitudes = [6962, 6893, 6779, 6720, 6658]</code> (alturas de los 5 cerros más altos de Argentina), mostrá cuántos elementos tiene usando <code>len()</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>5</code></p>
+<hr />
+<h3 id="a5-agregar-elementos">A5. Agregar elementos</h3>
+<p><strong>Enunciado</strong>: Creá una lista vacía llamada <code>capitales</code>. Agregá "La Plata", "Córdoba" y "Santa Fe" usando el método <code>append()</code>. Mostrá la lista final.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>['La Plata', 'Córdoba', 'Santa Fe']</code></p>
+<p><strong>Hint</strong>: Usá <code>lista.append(elemento)</code> para agregar al final.</p>
+<hr />
+<h3 id="bloque-2-tuplas-y-diccionarios">Bloque 2: Tuplas y diccionarios</h3>
+<hr />
+<h3 id="a6-coordenada-como-tupla">A6. Coordenada como tupla</h3>
+<p><strong>Enunciado</strong>: Creá una tupla llamada <code>punto</code> con la latitud y longitud de Ushuaia: (-54.8, -68.3). Mostrá la tupla y luego intentá cambiar el primer valor (observá qué error aparece).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>(-54.8, -68.3)</code><br />
+- Error al modificar: <code>TypeError</code></p>
+<p><strong>Hint</strong>: Las tuplas se crean con paréntesis y son inmutables.</p>
+<hr />
+<h3 id="a7-desempaquetar-tupla">A7. Desempaquetar tupla</h3>
+<p><strong>Enunciado</strong>: Dada la tupla <code>ubicacion = ("Mendoza", -32.89, -68.83)</code>, desempaquetá sus valores en tres variables: <code>ciudad</code>, <code>lat</code>, <code>lon</code>. Mostrá cada variable.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Mendoza
+-32.89
+-68.83
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>var1, var2, var3 = tupla</code> para desempaquetar.</p>
+<hr />
+<h3 id="a8-diccionario-de-ciudad">A8. Diccionario de ciudad</h3>
+<p><strong>Enunciado</strong>: Creá un diccionario llamado <code>buenos_aires</code> con las claves "nombre", "latitud" y "longitud", con los valores correspondientes. Mostrá el diccionario completo.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>{'nombre': 'Buenos Aires', 'latitud': -34.6, 'longitud': -58.4}</code></p>
+<p><strong>Hint</strong>: Los diccionarios se crean con llaves: <code>{clave: valor, ...}</code></p>
+<hr />
+<h3 id="a9-acceder-a-valores-del-diccionario">A9. Acceder a valores del diccionario</h3>
+<p><strong>Enunciado</strong>: Dado el diccionario <code>cerro = {"nombre": "Aconcagua", "altura": 6962, "provincia": "Mendoza"}</code>, mostrá el nombre y la altura accediendo por clave.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Aconcagua
+6962
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>diccionario["clave"]</code> para acceder.</p>
+<hr />
+<h3 id="a10-agregar-clave-al-diccionario">A10. Agregar clave al diccionario</h3>
+<p><strong>Enunciado</strong>: Dado el diccionario <code>pais = {"nombre": "Argentina", "capital": "Buenos Aires"}</code>, agregá una nueva clave "poblacion" con el valor 45000000. Mostrá el diccionario actualizado.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>{'nombre': 'Argentina', 'capital': 'Buenos Aires', 'poblacion': 45000000}</code></p>
+<p><strong>Hint</strong>: Usá <code>diccionario["nueva_clave"] = valor</code> para agregar.</p>
+<hr />
+<h3 id="bloque-3-condicionales">Bloque 3: Condicionales</h3>
+<hr />
+<h3 id="a11-hemisferio-norte-o-sur">A11. Hemisferio norte o sur</h3>
+<p><strong>Enunciado</strong>: Dada una variable <code>latitud = -34.6</code>, usá un condicional <code>if-else</code> para mostrar "Hemisferio Sur" si la latitud es negativa, o "Hemisferio Norte" si es positiva o cero.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>Hemisferio Sur</code></p>
+<hr />
+<h3 id="a12-altitud-con-elif">A12. Altitud con elif</h3>
+<p><strong>Enunciado</strong>: Dada una variable <code>altitud = 2500</code>, clasificala usando <code>if-elif-else</code>:<br />
+- Menor a 500: "Zona baja"<br />
+- Entre 500 y 2000: "Zona media"<br />
+- Mayor a 2000: "Zona alta"</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>Zona alta</code></p>
+<hr />
+<h3 id="a13-validar-latitud">A13. Validar latitud</h3>
+<p><strong>Enunciado</strong>: Pedí al usuario una latitud. Si está entre -90 y 90 (inclusive), mostrá "Latitud válida". Si no, mostrá "Latitud inválida".</p>
+<p><strong>Ejemplo</strong>:<br />
+- Entrada: <code>-45.5</code><br />
+- Salida esperada: <code>Latitud válida</code></p>
+<hr />
+<h3 id="a14-ciudad-costera">A14. Ciudad costera</h3>
+<p><strong>Enunciado</strong>: Dado un diccionario <code>ciudad = {"nombre": "Mar del Plata", "costera": True}</code>, verificá si la ciudad es costera y mostrá un mensaje apropiado.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>Mar del Plata es una ciudad costera</code></p>
+<hr />
+<h3 id="a15-comparar-alturas">A15. Comparar alturas</h3>
+<p><strong>Enunciado</strong>: Dados dos cerros con sus alturas: <code>cerro1 = 6962</code> (Aconcagua) y <code>cerro2 = 6893</code> (Ojos del Salado), mostrá cuál es más alto o si son iguales.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>El cerro 1 es más alto</code></p>
+<hr />
+<h3 id="bloque-4-bucles-for">Bloque 4: Bucles for</h3>
+<hr />
+<h3 id="a16-iterar-lista-de-ciudades">A16. Iterar lista de ciudades</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>ciudades = ["Salta", "Jujuy", "Tucumán"]</code>, usá un bucle <code>for</code> para mostrar cada ciudad en una línea separada.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Salta
+Jujuy
+Tucumán
+</code></pre></div>
+
+<hr />
+<h3 id="a17-sumar-altitudes">A17. Sumar altitudes</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>altitudes = [1200, 850, 2100, 1500]</code>, usá un bucle <code>for</code> para calcular la suma total de todas las altitudes.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>5650</code></p>
+<p><strong>Hint</strong>: Creá una variable acumuladora inicializada en 0.</p>
+<hr />
+<h3 id="a18-numerar-con-enumerate">A18. Numerar con enumerate</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>paises = ["Argentina", "Chile", "Uruguay", "Paraguay"]</code>, usá <code>enumerate()</code> para mostrar cada país con su número (empezando en 1).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>1. Argentina
+2. Chile
+3. Uruguay
+4. Paraguay
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>enumerate(lista, start=1)</code> para empezar desde 1.</p>
+<hr />
+<h3 id="a19-recorrer-con-range">A19. Recorrer con range</h3>
+<p><strong>Enunciado</strong>: Usá <code>range()</code> para mostrar los números del 1 al 5, que representan los 5 continentes habitados.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>1
+2
+3
+4
+5
+</code></pre></div>
+
+<hr />
+<h3 id="a20-filtrar-con-for-e-if">A20. Filtrar con for e if</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>temperaturas = [25, -5, 18, -12, 30, 0]</code>, usá un bucle <code>for</code> para mostrar solo las temperaturas positivas (mayores a 0).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>25
+18
+30
+</code></pre></div>
+
+<hr />
+<h3 id="bloque-5-bucles-while-y-combinaciones">Bloque 5: Bucles while y combinaciones</h3>
+<hr />
+<h3 id="a21-contador-con-while">A21. Contador con while</h3>
+<p><strong>Enunciado</strong>: Usá un bucle <code>while</code> para mostrar los números del 1 al 5.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>1
+2
+3
+4
+5
+</code></pre></div>
+
+<p><strong>Hint</strong>: Necesitás una variable contador y una condición de parada.</p>
+<hr />
+<h3 id="a22-buscar-en-lista">A22. Buscar en lista</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>capitales = ["Lima", "Santiago", "Buenos Aires", "Montevideo"]</code>, usá un bucle <code>while</code> para encontrar en qué posición está "Buenos Aires".</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>Buenos Aires está en la posición 2</code></p>
+<hr />
+<h3 id="a23-salir-con-break">A23. Salir con break</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>altitudes = [500, 1200, 3500, 800, 2000]</code>, usá un bucle <code>for</code> con <code>break</code> para encontrar y mostrar la primera altitud mayor a 2000, y luego salir del bucle.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>Primera altitud alta encontrada: 3500</code></p>
+<hr />
+<h3 id="a24-saltar-con-continue">A24. Saltar con continue</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>coordenadas = [(-34.6, -58.4), (0, 0), (-31.4, -64.2), (0, 0), (-32.9, -68.8)]</code>, usá un bucle <code>for</code> con <code>continue</code> para mostrar solo las coordenadas que NO sean (0, 0).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>(-34.6, -58.4)
+(-31.4, -64.2)
+(-32.9, -68.8)
+</code></pre></div>
+
+<hr />
+<h3 id="a25-tabla-de-multiplicar">A25. Tabla de multiplicar</h3>
+<p><strong>Enunciado</strong>: Pedí al usuario un número entre 1 y 10 (validá con <code>while</code> que esté en ese rango). Luego mostrá su tabla de multiplicar del 1 al 10 usando un bucle <code>for</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Entrada: <code>5</code><br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>5 x 1 = 5
+5 x 2 = 10
+...
+5 x 10 = 50
+</code></pre></div>
+
+<hr />
+<h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2>
+<p>Recomendables para quienes quieran practicar más.</p>
+<hr />
+<h3 id="b1-lista-de-coordenadas">B1. Lista de coordenadas</h3>
+<p><strong>Enunciado</strong>: Creá una lista que contenga 3 tuplas, cada una con el nombre y coordenadas de una ciudad argentina. Mostrá cada ciudad con sus coordenadas usando un bucle <code>for</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Buenos Aires: (-34.6, -58.4)
+Córdoba: (-31.4, -64.2)
+Mendoza: (-32.9, -68.8)
+</code></pre></div>
+
+<hr />
+<h3 id="b2-diccionario-de-altitudes">B2. Diccionario de altitudes</h3>
+<p><strong>Enunciado</strong>: Creá un diccionario donde las claves sean nombres de cerros y los valores sean sus altitudes. Recorré el diccionario e imprimí cada cerro con su altura.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Aconcagua: 6962 m
+Ojos del Salado: 6893 m
+Monte Pissis: 6795 m
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>.items()</code> para recorrer claves y valores.</p>
+<hr />
+<h3 id="b3-maximo-y-minimo">B3. Máximo y mínimo</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>poblaciones = [2890000, 1430000, 950000, 800000, 600000]</code> (poblaciones de ciudades argentinas), encontrá el valor máximo y mínimo usando bucles (sin usar <code>max()</code> ni <code>min()</code>).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Máximo: 2890000
+Mínimo: 600000
+</code></pre></div>
+
+<hr />
+<h3 id="b4-contar-elementos">B4. Contar elementos</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>hemisferios = ["Sur", "Norte", "Sur", "Sur", "Norte", "Sur"]</code>, contá cuántas veces aparece "Sur" y cuántas "Norte".</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Sur: 4
+Norte: 2
+</code></pre></div>
+
+<hr />
+<h3 id="b5-invertir-lista">B5. Invertir lista</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>ciudades = ["A", "B", "C", "D"]</code>, creá una nueva lista con los elementos en orden inverso usando un bucle (sin usar <code>.reverse()</code> ni slicing).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>['D', 'C', 'B', 'A']</code></p>
+<hr />
+<h3 id="b6-menu-interactivo">B6. Menú interactivo</h3>
+<p><strong>Enunciado</strong>: Creá un menú que muestre 3 opciones (1. Ver ciudades, 2. Ver países, 3. Salir). Usá un bucle <code>while</code> para repetir el menú hasta que el usuario elija salir.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>1. Ver ciudades
+2. Ver países
+3. Salir
+Opción: 1
+[Lista de ciudades]
+...
+Opción: 3
+¡Hasta luego!
+</code></pre></div>
+
+<hr />
+<h3 id="b7-promedio-de-temperaturas">B7. Promedio de temperaturas</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>temperaturas = [22.5, 25.0, 19.3, 28.1, 21.7]</code>, calculá el promedio usando un bucle <code>for</code> y mostralo redondeado a 1 decimal.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>Promedio: 23.3°C</code></p>
+<hr />
+<h3 id="b8-filtrar-diccionarios">B8. Filtrar diccionarios</h3>
+<p><strong>Enunciado</strong>: Dada una lista de diccionarios de ciudades, filtrá y mostrá solo las que tienen más de 1 millón de habitantes.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ciudades</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;poblacion&quot;</span><span class="p">:</span> <span class="mi">2890000</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;poblacion&quot;</span><span class="p">:</span> <span class="mi">1430000</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">,</span> <span class="s2">&quot;poblacion&quot;</span><span class="p">:</span> <span class="mi">950000</span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Buenos Aires: 2890000 habitantes
+Córdoba: 1430000 habitantes
+</code></pre></div>
+
+<hr />
+<h3 id="b9-crear-diccionario-desde-listas">B9. Crear diccionario desde listas</h3>
+<p><strong>Enunciado</strong>: Dadas dos listas <code>paises = ["Argentina", "Chile", "Uruguay"]</code> y <code>capitales = ["Buenos Aires", "Santiago", "Montevideo"]</code>, creá un diccionario donde cada país sea la clave y su capital el valor.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>{'Argentina': 'Buenos Aires', 'Chile': 'Santiago', 'Uruguay': 'Montevideo'}</code></p>
+<p><strong>Hint</strong>: Usá <code>zip()</code> para combinar las listas.</p>
+<hr />
+<h3 id="b10-validacion-completa">B10. Validación completa</h3>
+<p><strong>Enunciado</strong>: Pedí al usuario latitud y longitud. Validá que ambas estén en rangos correctos (lat: -90 a 90, lon: -180 a 180). Si alguna es inválida, pedí que la ingrese de nuevo hasta que sea correcta.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Entrada: <code>100</code> (inválida), <code>-34.6</code> (válida)<br />
+- Salida: <code>Latitud inválida, intentá de nuevo...</code><br />
+- Entrada: <code>-34.6</code><br />
+- Salida: <code>Coordenadas válidas: (-34.6, -58.4)</code></p>
+<hr />
+<h2 id="categoria-c-desafios">Categoría C - Desafíos</h2>
+<p>Ejercicios opcionales que requieren mayor dificultad o investigación.</p>
+<hr />
+<h3 id="c1-matriz-de-distancias">C1. Matriz de distancias</h3>
+<p><strong>Enunciado</strong>: Creá una matriz (lista de listas) de 3x3 que represente las distancias entre 3 ciudades. Mostrá la matriz formateada como tabla.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>       BsAs  Cba  Mza
+BsAs      0  700  1000
+Cba     700    0   500
+Mza    1000  500     0
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá bucles anidados para recorrer filas y columnas.</p>
+<hr />
+<h3 id="c2-ordenar-lista-bubble-sort">C2. Ordenar lista (bubble sort)</h3>
+<p><strong>Enunciado</strong>: Dada la lista <code>numeros = [64, 34, 25, 12, 22, 11, 90]</code>, implementá el algoritmo de ordenamiento burbuja (bubble sort) para ordenarla de menor a mayor.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>[11, 12, 22, 25, 34, 64, 90]</code></p>
+<p><strong>Hint</strong>: Bubble sort compara pares adyacentes y los intercambia si están desordenados, repitiendo hasta que no haya intercambios.</p>
+<hr />
+<h3 id="c3-diccionario-anidado">C3. Diccionario anidado</h3>
+<p><strong>Enunciado</strong>: Creá un diccionario anidado que represente información completa de un país:<br />
+- Nombre, capital, coordenadas de la capital (como diccionario), lista de provincias/regiones</p>
+<p>Luego accedé a la latitud de la capital y mostrá la tercera provincia.</p>
+<p><strong>Ejemplo</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">pais</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Argentina&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;capital&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;coordenadas&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">58.4</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;provincias&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Santa Fe&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>Salida esperada:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Latitud de la capital: -34.6
+Tercera provincia: Santa Fe
+</code></pre></div>
+
+<hr />
+<h3 id="c4-comprension-de-listas">C4. Comprensión de listas</h3>
+<p><strong>Enunciado</strong>: Investigá las "list comprehensions" de Python. Usá una comprensión de lista para:<br />
+1. Crear una lista con los cuadrados de los números del 1 al 10<br />
+2. Filtrar una lista de altitudes dejando solo las mayores a 1000</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Cuadrados: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+Altitudes altas: [1200, 3500, 2000]
+</code></pre></div>
+
+<hr />
+<h3 id="c5-sistema-de-registro-de-ciudades">C5. Sistema de registro de ciudades</h3>
+<p><strong>Enunciado</strong>: Creá un programa que permita:<br />
+1. Agregar ciudades (nombre, latitud, longitud) a una lista de diccionarios<br />
+2. Listar todas las ciudades registradas<br />
+3. Buscar una ciudad por nombre<br />
+4. Eliminar una ciudad por nombre<br />
+5. Salir</p>
+<p>Usá un menú interactivo con <code>while</code> y estructuras de datos apropiadas.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Interacción:</p>
+<div class="highlight"><pre><span></span><code>=== REGISTRO DE CIUDADES ===
+1. Agregar ciudad
+2. Listar ciudades
+3. Buscar ciudad
+4. Eliminar ciudad
+5. Salir
+
+Opción: 1
+Nombre: Córdoba
+Latitud: -31.4
+Longitud: -64.2
+Ciudad agregada!
+
+Opción: 2
+1. Córdoba (-31.4, -64.2)
+
+Opción: 5
+¡Hasta luego!
+</code></pre></div>
+
+<hr />
+<p><em>Fin de los ejercicios de la Unidad 2</em></p>
+</body>
+</html>

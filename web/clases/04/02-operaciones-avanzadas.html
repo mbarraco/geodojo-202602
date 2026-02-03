@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 Operaciones Avanzadas</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="clase-4-operaciones-avanzadas-con-numpy">Clase 4: Operaciones Avanzadas con NumPy</h1>
+<p>Guía para la clase sobre funciones estadísticas, máscaras booleanas y operaciones vectorizadas.</p>
+<hr />
+<h2 id="1-temario">1. Temario</h2>
+<h3 id="11-funciones-estadisticas-basicas">1.1 Funciones estadísticas básicas</h3>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.sum(arr)</code></td>
+<td>Suma total</td>
+<td><code>np.sum([1, 2, 3])</code> → <code>6</code></td>
+</tr>
+<tr>
+<td><code>np.mean(arr)</code></td>
+<td>Promedio</td>
+<td><code>np.mean([1, 2, 3])</code> → <code>2.0</code></td>
+</tr>
+<tr>
+<td><code>np.min(arr)</code></td>
+<td>Mínimo</td>
+<td><code>np.min([1, 2, 3])</code> → <code>1</code></td>
+</tr>
+<tr>
+<td><code>np.max(arr)</code></td>
+<td>Máximo</td>
+<td><code>np.max([1, 2, 3])</code> → <code>3</code></td>
+</tr>
+<tr>
+<td><code>np.std(arr)</code></td>
+<td>Desviación estándar</td>
+<td>Dispersión de valores</td>
+</tr>
+<tr>
+<td><code>np.var(arr)</code></td>
+<td>Varianza</td>
+<td>Cuadrado de std</td>
+</tr>
+<tr>
+<td><code>np.argmin(arr)</code></td>
+<td>Índice del mínimo</td>
+<td><code>np.argmin([3, 1, 2])</code> → <code>1</code></td>
+</tr>
+<tr>
+<td><code>np.argmax(arr)</code></td>
+<td>Índice del máximo</td>
+<td><code>np.argmax([3, 1, 2])</code> → <code>0</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-operaciones-por-eje">1.2 Operaciones por eje</h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Efecto</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sin axis</td>
+<td>Opera sobre todo el array</td>
+<td><code>np.sum(matriz)</code> → escalar</td>
+</tr>
+<tr>
+<td><code>axis=0</code></td>
+<td>Opera por columnas (colapsa filas)</td>
+<td><code>np.sum(matriz, axis=0)</code> → array</td>
+</tr>
+<tr>
+<td><code>axis=1</code></td>
+<td>Opera por filas (colapsa columnas)</td>
+<td><code>np.sum(matriz, axis=1)</code> → array</td>
+</tr>
+<tr>
+<td><code>keepdims=True</code></td>
+<td>Mantiene dimensiones</td>
+<td>Útil para broadcasting</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-mascaras-booleanas">1.3 Máscaras booleanas</h3>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Sintaxis</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comparación</td>
+<td><code>arr &gt; 5</code></td>
+<td>Array de True/False</td>
+</tr>
+<tr>
+<td>Filtrar</td>
+<td><code>arr[arr &gt; 5]</code></td>
+<td>Solo elementos True</td>
+</tr>
+<tr>
+<td>AND</td>
+<td><code>(cond1) &amp; (cond2)</code></td>
+<td>Ambas condiciones</td>
+</tr>
+<tr>
+<td>OR</td>
+<td><code>(cond1) \| (cond2)</code></td>
+<td>Al menos una</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td><code>~condicion</code></td>
+<td>Negación</td>
+</tr>
+<tr>
+<td>Contar True</td>
+<td><code>np.sum(mascara)</code></td>
+<td>Número de True</td>
+</tr>
+<tr>
+<td>Todos True</td>
+<td><code>np.all(mascara)</code></td>
+<td>Booleano</td>
+</tr>
+<tr>
+<td>Algún True</td>
+<td><code>np.any(mascara)</code></td>
+<td>Booleano</td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-npwhere-y-operaciones-condicionales">1.4 np.where y operaciones condicionales</h3>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Uso</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.where(cond, x, y)</code></td>
+<td>Si cond, x; sino y</td>
+<td><code>np.where(arr &gt; 0, 'pos', 'neg')</code></td>
+</tr>
+<tr>
+<td><code>np.where(cond)</code></td>
+<td>Índices donde True</td>
+<td><code>np.where(arr &gt; 5)</code> → <code>(array([2, 4]),)</code></td>
+</tr>
+<tr>
+<td><code>np.clip(arr, min, max)</code></td>
+<td>Limitar rango</td>
+<td><code>np.clip(arr, 0, 100)</code></td>
+</tr>
+<tr>
+<td><code>np.select(conds, vals)</code></td>
+<td>Múltiples condiciones</td>
+<td>Más flexible que where</td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-combinar-arrays">1.5 Combinar arrays</h3>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>np.concatenate([a, b])</code></td>
+<td>Une arrays</td>
+<td>Array 1D más largo</td>
+</tr>
+<tr>
+<td><code>np.vstack([a, b])</code></td>
+<td>Apila verticalmente</td>
+<td>Matriz con más filas</td>
+</tr>
+<tr>
+<td><code>np.hstack([a, b])</code></td>
+<td>Apila horizontalmente</td>
+<td>Matriz con más cols</td>
+</tr>
+<tr>
+<td><code>np.column_stack([a, b])</code></td>
+<td>Columnas lado a lado</td>
+<td>Matriz 2D</td>
+</tr>
+<tr>
+<td><code>np.split(arr, n)</code></td>
+<td>Divide en n partes</td>
+<td>Lista de arrays</td>
+</tr>
+<tr>
+<td><code>np.unique(arr)</code></td>
+<td>Valores únicos</td>
+<td>Array ordenado</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-ejemplos-para-la-clase">2. Ejemplos para la clase</h2>
+<p>10 ejemplos progresivos para hacer en vivo, cubriendo todos los temas.</p>
+<hr />
+<h3 id="21-enunciados-para-mostrar-en-clase">2.1 Enunciados (para mostrar en clase)</h3>
+<hr />
+<h4 id="ejemplo-1-estadisticas-basicas">Ejemplo 1: Estadísticas básicas</h4>
+<p>Calcular suma, promedio, mínimo y máximo de poblaciones de ciudades.</p>
+<hr />
+<h4 id="ejemplo-2-encontrar-extremos">Ejemplo 2: Encontrar extremos</h4>
+<p>Encontrar la ciudad más al norte y más al sur de un array de latitudes.</p>
+<hr />
+<h4 id="ejemplo-3-operaciones-por-eje-en-matriz">Ejemplo 3: Operaciones por eje en matriz</h4>
+<p>Calcular estadísticas por filas y columnas de una matriz de coordenadas.</p>
+<hr />
+<h4 id="ejemplo-4-crear-mascara-booleana">Ejemplo 4: Crear máscara booleana</h4>
+<p>Identificar qué ciudades tienen más de 1 millón de habitantes.</p>
+<hr />
+<h4 id="ejemplo-5-filtrar-con-mascara">Ejemplo 5: Filtrar con máscara</h4>
+<p>Obtener solo las ciudades grandes usando la máscara.</p>
+<hr />
+<h4 id="ejemplo-6-multiples-condiciones">Ejemplo 6: Múltiples condiciones</h4>
+<p>Encontrar ciudades en el hemisferio sur con longitud oeste de -60.</p>
+<hr />
+<h4 id="ejemplo-7-npwhere-para-clasificar">Ejemplo 7: np.where para clasificar</h4>
+<p>Clasificar ciudades como "Norte" o "Sur" según su latitud.</p>
+<hr />
+<h4 id="ejemplo-8-reemplazar-valores">Ejemplo 8: Reemplazar valores</h4>
+<p>Reemplazar valores -999 (datos faltantes) por NaN.</p>
+<hr />
+<h4 id="ejemplo-9-combinar-arrays">Ejemplo 9: Combinar arrays</h4>
+<p>Concatenar datos de diferentes regiones en un solo array.</p>
+<hr />
+<h4 id="ejemplo-10-calcular-ndvi">Ejemplo 10: Calcular NDVI</h4>
+<p>Aplicar la fórmula de NDVI a datos de bandas espectrales.</p>
+<hr />
+<h3 id="22-enunciados-soluciones-referencia-del-docente">2.2 Enunciados + Soluciones (referencia del docente)</h3>
+<hr />
+<h4 id="ejemplo-1-estadisticas-basicas_1">Ejemplo 1: Estadísticas básicas</h4>
+<p><strong>Enunciado</strong>: Calcular suma, promedio, mínimo y máximo de poblaciones.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">poblaciones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2890000</span><span class="p">,</span> <span class="mi">1430000</span><span class="p">,</span> <span class="mi">1270000</span><span class="p">,</span> <span class="mi">620000</span><span class="p">,</span> <span class="mi">115000</span><span class="p">])</span>
+<span class="n">ciudades</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Rosario&quot;</span><span class="p">,</span> <span class="s2">&quot;Salta&quot;</span><span class="p">,</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Poblaciones:&quot;</span><span class="p">,</span> <span class="n">poblaciones</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">poblaciones</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Promedio: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">poblaciones</span><span class="p">)</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mínimo: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">poblaciones</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Máximo: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">poblaciones</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Desv. estándar: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">poblaciones</span><span class="p">)</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Poblaciones: [2890000 1430000 1270000  620000  115000]
+
+Total: 6,325,000
+Promedio: 1,265,000
+Mínimo: 115,000
+Máximo: 2,890,000
+Desv. estándar: 917,449
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-2-encontrar-extremos_1">Ejemplo 2: Encontrar extremos</h4>
+<p><strong>Enunciado</strong>: Encontrar la ciudad más al norte y más al sur.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">latitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">31.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">33.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">24.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.9</span><span class="p">])</span>
+<span class="n">ciudades</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Rosario&quot;</span><span class="p">,</span> <span class="s2">&quot;Salta&quot;</span><span class="p">,</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">]</span>
+
+<span class="c1"># Índices de extremos</span>
+<span class="n">idx_norte</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">latitudes</span><span class="p">)</span>  <span class="c1"># Mayor latitud = más al norte</span>
+<span class="n">idx_sur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">latitudes</span><span class="p">)</span>    <span class="c1"># Menor latitud = más al sur</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Latitudes: </span><span class="si">{</span><span class="n">latitudes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Más al norte: </span><span class="si">{</span><span class="n">ciudades</span><span class="p">[</span><span class="n">idx_norte</span><span class="p">]</span><span class="si">}</span><span class="s2"> (lat: </span><span class="si">{</span><span class="n">latitudes</span><span class="p">[</span><span class="n">idx_norte</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Más al sur: </span><span class="si">{</span><span class="n">ciudades</span><span class="p">[</span><span class="n">idx_sur</span><span class="p">]</span><span class="si">}</span><span class="s2"> (lat: </span><span class="si">{</span><span class="n">latitudes</span><span class="p">[</span><span class="n">idx_sur</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Latitudes: [-34.6 -31.4 -33.  -24.8 -32.9]
+
+Más al norte: Salta (lat: -24.8)
+Más al sur: Buenos Aires (lat: -34.6)
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-3-operaciones-por-eje-en-matriz_1">Ejemplo 3: Operaciones por eje en matriz</h4>
+<p><strong>Enunciado</strong>: Calcular estadísticas por filas y columnas.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Matriz: cada fila es una ciudad [lat, lon, poblacion]</span>
+<span class="n">datos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">58.4</span><span class="p">,</span> <span class="mi">2890000</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">31.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">64.2</span><span class="p">,</span> <span class="mi">1430000</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">32.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">68.8</span><span class="p">,</span>  <span class="mi">115000</span><span class="p">],</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datos (lat, lon, poblacion):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+
+<span class="c1"># Promedio por columna (de cada variable)</span>
+<span class="n">prom_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Promedio por columna:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Lat promedio: </span><span class="si">{</span><span class="n">prom_cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Lon promedio: </span><span class="si">{</span><span class="n">prom_cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Pob promedio: </span><span class="si">{</span><span class="n">prom_cols</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Suma por fila (no tiene mucho sentido, pero ilustra el concepto)</span>
+<span class="n">suma_filas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Suma por fila: </span><span class="si">{</span><span class="n">suma_filas</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Datos (lat, lon, poblacion):
+[[-3.46e+01 -5.84e+01  2.89e+06]
+ [-3.14e+01 -6.42e+01  1.43e+06]
+ [-3.29e+01 -6.88e+01  1.15e+05]]
+
+Promedio por columna:
+  Lat promedio: -32.97
+  Lon promedio: -63.80
+  Pob promedio: 1,478,333
+
+Suma por fila: [2889906.  1429905.   114901. ]
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-4-crear-mascara-booleana_1">Ejemplo 4: Crear máscara booleana</h4>
+<p><strong>Enunciado</strong>: Identificar qué ciudades tienen más de 1 millón de habitantes.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">poblaciones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2890000</span><span class="p">,</span> <span class="mi">1430000</span><span class="p">,</span> <span class="mi">1270000</span><span class="p">,</span> <span class="mi">620000</span><span class="p">,</span> <span class="mi">115000</span><span class="p">])</span>
+<span class="n">ciudades</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Rosario&quot;</span><span class="p">,</span> <span class="s2">&quot;Salta&quot;</span><span class="p">,</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">]</span>
+
+<span class="c1"># Crear máscara</span>
+<span class="n">mascara</span> <span class="o">=</span> <span class="n">poblaciones</span> <span class="o">&gt;</span> <span class="mi">1000000</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Poblaciones:&quot;</span><span class="p">,</span> <span class="n">poblaciones</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Máscara (&gt;1M):&quot;</span><span class="p">,</span> <span class="n">mascara</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Cantidad con &gt;1M: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mascara</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Poblaciones: [2890000 1430000 1270000  620000  115000]
+Máscara (&gt;1M): [ True  True  True False False]
+
+Cantidad con &gt;1M: 3
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-5-filtrar-con-mascara_1">Ejemplo 5: Filtrar con máscara</h4>
+<p><strong>Enunciado</strong>: Obtener solo las ciudades grandes usando la máscara.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">poblaciones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2890000</span><span class="p">,</span> <span class="mi">1430000</span><span class="p">,</span> <span class="mi">1270000</span><span class="p">,</span> <span class="mi">620000</span><span class="p">,</span> <span class="mi">115000</span><span class="p">])</span>
+<span class="n">ciudades</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Rosario&quot;</span><span class="p">,</span> <span class="s2">&quot;Salta&quot;</span><span class="p">,</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">])</span>
+
+<span class="n">mascara</span> <span class="o">=</span> <span class="n">poblaciones</span> <span class="o">&gt;</span> <span class="mi">1000000</span>
+
+<span class="c1"># Filtrar arrays con la máscara</span>
+<span class="n">pob_grandes</span> <span class="o">=</span> <span class="n">poblaciones</span><span class="p">[</span><span class="n">mascara</span><span class="p">]</span>
+<span class="n">ciudades_grandes</span> <span class="o">=</span> <span class="n">ciudades</span><span class="p">[</span><span class="n">mascara</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ciudades con más de 1M habitantes:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ciudad</span><span class="p">,</span> <span class="n">pob</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ciudades_grandes</span><span class="p">,</span> <span class="n">pob_grandes</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">ciudad</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pob</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ciudades con más de 1M habitantes:
+  Buenos Aires: 2,890,000
+  Córdoba: 1,430,000
+  Rosario: 1,270,000
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-6-multiples-condiciones_1">Ejemplo 6: Múltiples condiciones</h4>
+<p><strong>Enunciado</strong>: Encontrar ciudades en el hemisferio sur con longitud oeste de -60.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">latitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="mf">40.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">31.4</span><span class="p">,</span> <span class="mf">51.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.9</span><span class="p">])</span>
+<span class="n">longitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">58.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">74.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">64.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">68.8</span><span class="p">])</span>
+<span class="n">ciudades</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Londres&quot;</span><span class="p">,</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">])</span>
+
+<span class="c1"># Condiciones</span>
+<span class="n">en_sur</span> <span class="o">=</span> <span class="n">latitudes</span> <span class="o">&lt;</span> <span class="mi">0</span>
+<span class="n">oeste_de_60</span> <span class="o">=</span> <span class="n">longitudes</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">60</span>
+
+<span class="c1"># Combinar con AND</span>
+<span class="n">mascara</span> <span class="o">=</span> <span class="n">en_sur</span> <span class="o">&amp;</span> <span class="n">oeste_de_60</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ciudades en hemisferio sur Y oeste de -60:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ciudades</span><span class="p">[</span><span class="n">mascara</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Latitudes: </span><span class="si">{</span><span class="n">latitudes</span><span class="p">[</span><span class="n">mascara</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitudes: </span><span class="si">{</span><span class="n">longitudes</span><span class="p">[</span><span class="n">mascara</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ciudades en hemisferio sur Y oeste de -60:
+[&#39;Córdoba&#39; &#39;Mendoza&#39;]
+
+Latitudes: [-31.4 -32.9]
+Longitudes: [-64.2 -68.8]
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-7-npwhere-para-clasificar_1">Ejemplo 7: np.where para clasificar</h4>
+<p><strong>Enunciado</strong>: Clasificar ciudades como "Norte" o "Sur" según su latitud.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">latitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="mf">40.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">31.4</span><span class="p">,</span> <span class="mf">51.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">ciudades</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;Londres&quot;</span><span class="p">,</span> <span class="s2">&quot;Quito&quot;</span><span class="p">]</span>
+
+<span class="c1"># Clasificar con np.where</span>
+<span class="n">hemisferio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">latitudes</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Sur&quot;</span><span class="p">,</span> <span class="s2">&quot;Norte&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ciudad&quot;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span> <span class="s2">&quot;Latitud&quot;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s2">&quot;Hemisferio&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">35</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ciudad</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">hem</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ciudades</span><span class="p">,</span> <span class="n">latitudes</span><span class="p">,</span> <span class="n">hemisferio</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ciudad</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">hem</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ciudad          Latitud    Hemisferio
+-----------------------------------
+Buenos Aires    -34.6      Sur
+New York        40.7       Norte
+Córdoba         -31.4      Sur
+Londres         51.5       Norte
+Quito           0.0        Norte
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-8-reemplazar-valores_1">Ejemplo 8: Reemplazar valores</h4>
+<p><strong>Enunciado</strong>: Reemplazar valores -999 (datos faltantes) por NaN.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">elevaciones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1200</span><span class="p">,</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="mi">850</span><span class="p">,</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="mi">2100</span><span class="p">,</span> <span class="mi">1500</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Elevaciones originales:&quot;</span><span class="p">,</span> <span class="n">elevaciones</span><span class="p">)</span>
+
+<span class="c1"># Reemplazar -999 por NaN</span>
+<span class="n">elevaciones_limpias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">elevaciones</span> <span class="o">==</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">elevaciones</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Elevaciones limpias:&quot;</span><span class="p">,</span> <span class="n">elevaciones_limpias</span><span class="p">)</span>
+
+<span class="c1"># Ahora podemos calcular estadísticas ignorando NaN</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Promedio (sin NaN): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">elevaciones_limpias</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Datos faltantes: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">elevaciones_limpias</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Elevaciones originales: [1200 -999  850 -999 2100 1500]
+Elevaciones limpias: [1200.   nan  850.   nan 2100. 1500.]
+
+Promedio (sin NaN): 1412 m
+Datos faltantes: 2
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-9-combinar-arrays_1">Ejemplo 9: Combinar arrays</h4>
+<p><strong>Enunciado</strong>: Concatenar datos de diferentes regiones.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Latitudes de dos regiones</span>
+<span class="n">lat_norte</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">24.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">26.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.5</span><span class="p">])</span>  <span class="c1"># NOA</span>
+<span class="n">lat_sur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">41.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">42.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.8</span><span class="p">])</span>    <span class="c1"># Patagonia</span>
+
+<span class="c1"># Concatenar</span>
+<span class="n">todas_lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">lat_norte</span><span class="p">,</span> <span class="n">lat_sur</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Todas las latitudes:&quot;</span><span class="p">,</span> <span class="n">todas_lat</span><span class="p">)</span>
+
+<span class="c1"># También podemos apilar como matriz</span>
+<span class="n">lat_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">lat_norte</span><span class="p">,</span> <span class="n">lat_sur</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Apilado vertical:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lat_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma: </span><span class="si">{</span><span class="n">lat_matrix</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Todas las latitudes: [-24.8 -26.8 -27.5 -41.1 -42.9 -45.8]
+
+Apilado vertical:
+[[-24.8 -26.8 -27.5]
+ [-41.1 -42.9 -45.8]]
+Forma: (2, 3)
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-10-calcular-ndvi_1">Ejemplo 10: Calcular NDVI</h4>
+<p><strong>Enunciado</strong>: Aplicar la fórmula de NDVI a datos de bandas espectrales.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Valores de reflectancia (simulados)</span>
+<span class="c1"># NIR = infrarrojo cercano, RED = rojo visible</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">])</span>
+<span class="n">red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">])</span>
+
+<span class="c1"># NDVI = (NIR - RED) / (NIR + RED)</span>
+<span class="c1"># Valores: -1 a 1</span>
+<span class="c1"># &gt; 0.3 = vegetación densa</span>
+<span class="c1"># 0.1 - 0.3 = vegetación moderada</span>
+<span class="c1"># &lt; 0.1 = suelo/agua</span>
+
+<span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir</span> <span class="o">-</span> <span class="n">red</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NIR:&quot;</span><span class="p">,</span> <span class="n">nir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RED:&quot;</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NDVI:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Clasificar</span>
+<span class="n">clasificacion</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ndvi</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s2">&quot;Vegetación densa&quot;</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ndvi</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;Vegetación moderada&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;Suelo/agua&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Clasificación:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">valor</span><span class="p">,</span> <span class="n">clase</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="n">clasificacion</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Pixel </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: NDVI=</span><span class="si">{</span><span class="n">valor</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">clase</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>NIR: [0.5  0.3  0.8  0.45 0.1 ]
+RED: [0.1  0.25 0.1  0.4  0.08]
+NDVI: [0.67 0.09 0.78 0.06 0.11]
+
+Clasificación:
+  Pixel 0: NDVI=0.67 → Vegetación densa
+  Pixel 1: NDVI=0.09 → Suelo/agua
+  Pixel 2: NDVI=0.78 → Vegetación densa
+  Pixel 3: NDVI=0.06 → Suelo/agua
+  Pixel 4: NDVI=0.11 → Vegetación moderada
+</code></pre></div>
+
+<hr />
+<h2 id="notas-para-el-docente">Notas para el docente</h2>
+<ul>
+<li>Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero</li>
+<li>Enfatizar que las operaciones vectorizadas son más rápidas que bucles</li>
+<li>Las máscaras booleanas son una herramienta muy poderosa para filtrar datos</li>
+<li><code>axis=0</code> colapsa filas (opera "hacia abajo"), <code>axis=1</code> colapsa columnas (opera "hacia la derecha")</li>
+<li>El ejemplo de NDVI conecta con el proyecto integrador de la unidad</li>
+<li>Los ejercicios en <code>ejercicios/04/02-operaciones-avanzadas.md</code> refuerzan estos conceptos</li>
+<li>Contexto geográfico: índices de vegetación, clasificación de terreno, análisis de datos satelitales</li>
+</ul>
+</body>
+</html>

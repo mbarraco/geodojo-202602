@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Archivos Csv</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="clase-3-archivos-y-csv">Clase 3: Archivos y CSV</h1>
+<p>Guía para la clase sobre lectura y escritura de archivos, y manejo del módulo CSV.</p>
+<hr />
+<h2 id="1-temario">1. Temario</h2>
+<h3 id="11-lectura-de-archivos-con-open">1.1 Lectura de archivos con open()</h3>
+<table>
+<thead>
+<tr>
+<th>Función/Método</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open(path, "r")</code></td>
+<td>Abre archivo en modo lectura</td>
+<td><code>f = open("datos.txt", "r")</code></td>
+</tr>
+<tr>
+<td><code>.read()</code></td>
+<td>Lee todo el contenido como string</td>
+<td><code>contenido = f.read()</code></td>
+</tr>
+<tr>
+<td><code>.readline()</code></td>
+<td>Lee una línea</td>
+<td><code>linea = f.readline()</code></td>
+</tr>
+<tr>
+<td><code>.readlines()</code></td>
+<td>Lee todas las líneas como lista</td>
+<td><code>lineas = f.readlines()</code></td>
+</tr>
+<tr>
+<td><code>.close()</code></td>
+<td>Cierra el archivo</td>
+<td><code>f.close()</code></td>
+</tr>
+<tr>
+<td><code>with open(...) as f:</code></td>
+<td>Context manager (cierre automático)</td>
+<td>Ver ejemplos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-escritura-de-archivos">1.2 Escritura de archivos</h3>
+<table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Descripción</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"w"</code></td>
+<td>Escritura (sobrescribe)</td>
+<td><code>open("nuevo.txt", "w")</code></td>
+</tr>
+<tr>
+<td><code>"a"</code></td>
+<td>Append (agrega al final)</td>
+<td><code>open("log.txt", "a")</code></td>
+</tr>
+<tr>
+<td><code>"r+"</code></td>
+<td>Lectura y escritura</td>
+<td><code>open("datos.txt", "r+")</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.write(str)</code></td>
+<td>Escribe un string</td>
+<td><code>f.write("Hola")</code></td>
+</tr>
+<tr>
+<td><code>.writelines(list)</code></td>
+<td>Escribe lista de strings</td>
+<td><code>f.writelines(["a\n", "b\n"])</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-modulo-csv-lectura">1.3 Módulo CSV - Lectura</h3>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>csv.reader(f)</code></td>
+<td>Lee CSV como listas</td>
+<td><code>reader = csv.reader(archivo)</code></td>
+</tr>
+<tr>
+<td><code>next(reader)</code></td>
+<td>Obtiene siguiente fila (salta encabezado)</td>
+<td><code>encabezado = next(reader)</code></td>
+</tr>
+<tr>
+<td><code>list(reader)</code></td>
+<td>Convierte a lista de filas</td>
+<td><code>datos = list(reader)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-dictreader-y-dictwriter">1.4 DictReader y DictWriter</h3>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>csv.DictReader(f)</code></td>
+<td>Lee CSV como diccionarios</td>
+<td><code>reader = csv.DictReader(archivo)</code></td>
+</tr>
+<tr>
+<td><code>csv.DictWriter(f, fieldnames)</code></td>
+<td>Escribe diccionarios a CSV</td>
+<td><code>writer = csv.DictWriter(f, ["col1", "col2"])</code></td>
+</tr>
+<tr>
+<td><code>.writeheader()</code></td>
+<td>Escribe fila de encabezados</td>
+<td><code>writer.writeheader()</code></td>
+</tr>
+<tr>
+<td><code>.writerow(dict)</code></td>
+<td>Escribe un diccionario</td>
+<td><code>writer.writerow({"col1": "val1"})</code></td>
+</tr>
+<tr>
+<td><code>.writerows(list)</code></td>
+<td>Escribe lista de diccionarios</td>
+<td><code>writer.writerows(datos)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-patrones-comunes">1.5 Patrones comunes</h3>
+<table>
+<thead>
+<tr>
+<th>Patrón</th>
+<th>Código</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leer archivo completo</td>
+<td><code>with open("f.txt") as f: texto = f.read()</code></td>
+</tr>
+<tr>
+<td>Leer líneas</td>
+<td><code>with open("f.txt") as f: lineas = f.readlines()</code></td>
+</tr>
+<tr>
+<td>Escribir texto</td>
+<td><code>with open("f.txt", "w") as f: f.write("texto")</code></td>
+</tr>
+<tr>
+<td>Leer CSV a lista</td>
+<td><code>with open("f.csv") as f: datos = list(csv.reader(f))</code></td>
+</tr>
+<tr>
+<td>Leer CSV a dicts</td>
+<td><code>with open("f.csv") as f: datos = list(csv.DictReader(f))</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-ejemplos-para-la-clase">2. Ejemplos para la clase</h2>
+<p>10 ejemplos progresivos para hacer en vivo, cubriendo todos los temas.</p>
+<hr />
+<h3 id="21-enunciados-para-mostrar-en-clase">2.1 Enunciados (para mostrar en clase)</h3>
+<hr />
+<h4 id="ejemplo-1-leer-archivo-de-texto">Ejemplo 1: Leer archivo de texto</h4>
+<p>Crear un archivo <code>ciudad.txt</code> con el nombre de una ciudad y leerlo con Python.</p>
+<hr />
+<h4 id="ejemplo-2-context-manager">Ejemplo 2: Context manager</h4>
+<p>Reescribir el ejemplo anterior usando <code>with open(...) as f:</code>.</p>
+<hr />
+<h4 id="ejemplo-3-leer-multiples-lineas">Ejemplo 3: Leer múltiples líneas</h4>
+<p>Crear un archivo con 3 ciudades (una por línea) y mostrarlas numeradas.</p>
+<hr />
+<h4 id="ejemplo-4-escribir-archivo">Ejemplo 4: Escribir archivo</h4>
+<p>Crear un archivo <code>destinos.txt</code> escribiendo una lista de ciudades.</p>
+<hr />
+<h4 id="ejemplo-5-modo-append">Ejemplo 5: Modo append</h4>
+<p>Agregar una nueva ciudad al archivo sin borrar las existentes.</p>
+<hr />
+<h4 id="ejemplo-6-leer-csv-con-csvreader">Ejemplo 6: Leer CSV con csv.reader</h4>
+<p>Crear un CSV de ciudades con población y leerlo mostrando cada fila.</p>
+<hr />
+<h4 id="ejemplo-7-procesar-datos-del-csv">Ejemplo 7: Procesar datos del CSV</h4>
+<p>Leer el CSV de ciudades y calcular la población total.</p>
+<hr />
+<h4 id="ejemplo-8-usar-dictreader">Ejemplo 8: Usar DictReader</h4>
+<p>Leer el mismo CSV pero accediendo a los datos por nombre de columna.</p>
+<hr />
+<h4 id="ejemplo-9-escribir-csv-con-dictwriter">Ejemplo 9: Escribir CSV con DictWriter</h4>
+<p>Crear una lista de diccionarios con datos de puntos geográficos y guardarla como CSV.</p>
+<hr />
+<h4 id="ejemplo-10-transformar-csv">Ejemplo 10: Transformar CSV</h4>
+<p>Leer un CSV de coordenadas, agregar una columna calculada, y guardar en un nuevo archivo.</p>
+<hr />
+<h3 id="22-enunciados-soluciones-referencia-del-docente">2.2 Enunciados + Soluciones (referencia del docente)</h3>
+<hr />
+<h4 id="ejemplo-1-leer-archivo-de-texto_1">Ejemplo 1: Leer archivo de texto</h4>
+<p><strong>Enunciado</strong>: Crear un archivo <code>ciudad.txt</code> con el nombre de una ciudad y leerlo con Python.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Primero creamos el archivo manualmente o con Python:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudad.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">)</span>
+
+<span class="c1"># Luego lo leemos:</span>
+<span class="n">archivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudad.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">contenido</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contenido</span><span class="p">)</span>
+<span class="n">archivo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Buenos Aires
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-2-context-manager_1">Ejemplo 2: Context manager</h4>
+<p><strong>Enunciado</strong>: Reescribir el ejemplo anterior usando <code>with open(...) as f:</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudad.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">archivo</span><span class="p">:</span>
+    <span class="n">contenido</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">contenido</span><span class="p">)</span>
+
+<span class="c1"># El archivo se cierra automáticamente al salir del bloque with</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Buenos Aires
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-3-leer-multiples-lineas_1">Ejemplo 3: Leer múltiples líneas</h4>
+<p><strong>Enunciado</strong>: Crear un archivo con 3 ciudades (una por línea) y mostrarlas numeradas.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Crear archivo</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudades.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Buenos Aires</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Córdoba</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Rosario</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Leer y mostrar numerado</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudades.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lineas</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">linea</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lineas</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">linea</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>1: Buenos Aires
+2: Córdoba
+3: Rosario
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-4-escribir-archivo_1">Ejemplo 4: Escribir archivo</h4>
+<p><strong>Enunciado</strong>: Crear un archivo <code>destinos.txt</code> escribiendo una lista de ciudades.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ciudades</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ushuaia&quot;</span><span class="p">,</span> <span class="s2">&quot;Bariloche&quot;</span><span class="p">,</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;destinos.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">ciudad</span> <span class="ow">in</span> <span class="n">ciudades</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ciudad</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Archivo creado!&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Archivo creado!
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-5-modo-append_1">Ejemplo 5: Modo append</h4>
+<p><strong>Enunciado</strong>: Agregar una nueva ciudad al archivo sin borrar las existentes.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Agregar al final (no sobrescribe)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;destinos.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Salta</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Verificar contenido</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;destinos.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Ushuaia
+Bariloche
+Mendoza
+Salta
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-6-leer-csv-con-csvreader_1">Ejemplo 6: Leer CSV con csv.reader</h4>
+<p><strong>Enunciado</strong>: Crear un CSV de ciudades con población y leerlo mostrando cada fila.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="c1"># Crear CSV</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudades.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;nombre,poblacion</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Buenos Aires,2890000</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Córdoba,1430000</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Rosario,1270000</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Leer CSV</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudades.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>[&#39;nombre&#39;, &#39;poblacion&#39;]
+[&#39;Buenos Aires&#39;, &#39;2890000&#39;]
+[&#39;Córdoba&#39;, &#39;1430000&#39;]
+[&#39;Rosario&#39;, &#39;1270000&#39;]
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-7-procesar-datos-del-csv_1">Ejemplo 7: Procesar datos del CSV</h4>
+<p><strong>Enunciado</strong>: Leer el CSV de ciudades y calcular la población total.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudades.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>  <span class="c1"># Saltar encabezado</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">nombre</span> <span class="o">=</span> <span class="n">fila</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">poblacion</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">poblacion</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">poblacion</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> habitantes&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total: </span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> habitantes&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Buenos Aires: 2,890,000 habitantes
+Córdoba: 1,430,000 habitantes
+Rosario: 1,270,000 habitantes
+
+Total: 5,590,000 habitantes
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-8-usar-dictreader_1">Ejemplo 8: Usar DictReader</h4>
+<p><strong>Enunciado</strong>: Leer el mismo CSV pero accediendo a los datos por nombre de columna.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ciudades.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">nombre</span> <span class="o">=</span> <span class="n">fila</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span>
+        <span class="n">poblacion</span> <span class="o">=</span> <span class="n">fila</span><span class="p">[</span><span class="s2">&quot;poblacion&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> tiene </span><span class="si">{</span><span class="n">poblacion</span><span class="si">}</span><span class="s2"> habitantes&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>Buenos Aires tiene 2890000 habitantes
+Córdoba tiene 1430000 habitantes
+Rosario tiene 1270000 habitantes
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-9-escribir-csv-con-dictwriter_1">Ejemplo 9: Escribir CSV con DictWriter</h4>
+<p><strong>Enunciado</strong>: Crear una lista de diccionarios con datos de puntos geográficos y guardarla como CSV.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="n">puntos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">58.4</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Córdoba&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">31.4</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">64.2</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Mendoza&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">32.9</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">68.8</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;puntos.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">campos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ciudad&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">]</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">campos</span><span class="p">)</span>
+
+    <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">puntos</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CSV creado!&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>CSV creado!
+</code></pre></div>
+
+<hr />
+<h4 id="ejemplo-10-transformar-csv_1">Ejemplo 10: Transformar CSV</h4>
+<p><strong>Enunciado</strong>: Leer un CSV de coordenadas, agregar una columna calculada, y guardar en un nuevo archivo.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+<span class="c1"># Leer datos originales</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;puntos.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">puntos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+
+<span class="c1"># Agregar columna: hemisferio</span>
+<span class="k">for</span> <span class="n">punto</span> <span class="ow">in</span> <span class="n">puntos</span><span class="p">:</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">punto</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">])</span>
+    <span class="n">punto</span><span class="p">[</span><span class="s2">&quot;hemisferio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sur&quot;</span> <span class="k">if</span> <span class="n">lat</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;Norte&quot;</span>
+
+<span class="c1"># Guardar con nueva columna</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;puntos_hemisferio.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">campos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ciudad&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="s2">&quot;hemisferio&quot;</span><span class="p">]</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">campos</span><span class="p">)</span>
+
+    <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">puntos</span><span class="p">)</span>
+
+<span class="c1"># Mostrar resultado</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;puntos_hemisferio.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>Salida</strong>:</p>
+<div class="highlight"><pre><span></span><code>ciudad,lat,lon,hemisferio
+Buenos Aires,-34.6,-58.4,Sur
+Córdoba,-31.4,-64.2,Sur
+Mendoza,-32.9,-68.8,Sur
+</code></pre></div>
+
+<hr />
+<h2 id="notas-para-el-docente">Notas para el docente</h2>
+<ul>
+<li>Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero</li>
+<li>Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental</li>
+<li>Se recomienda crear los archivos en vivo para que los alumnos vean el proceso completo</li>
+<li>Enfatizar el uso de <code>with</code> como buena práctica (cierre automático de archivos)</li>
+<li>Los ejercicios en <code>ejercicios/03/01-archivos-csv.md</code> refuerzan estos conceptos</li>
+<li>Contexto geográfico: ciudades argentinas, coordenadas, población</li>
+<li>Tener cuidado con el parámetro <code>newline=""</code> en Windows al escribir CSV</li>
+</ul>
+</body>
+</html>

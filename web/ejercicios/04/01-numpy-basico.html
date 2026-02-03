@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Numpy Basico</title>
+    
+<style>
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #24292e;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+        --link-color: #0366d6;
+        --heading-color: #24292e;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+    
+    h1 {
+        font-size: 2em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+    }
+    
+    h3 {
+        font-size: 1.25em;
+    }
+    
+    code {
+        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+        background-color: var(--code-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+    }
+    
+    pre {
+        background-color: var(--code-bg);
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 100%;
+    }
+    
+    /* Syntax highlighting (Pygments) */
+    .highlight {
+        background-color: var(--code-bg);
+        padding: 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    
+    .highlight pre {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    
+    .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
+    .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
+    .highlight .n { color: #24292e; } /* Names */
+    .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
+    .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
+    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .bp { color: #005cc5; } /* Built-in pseudo */
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 16px 0;
+    }
+    
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: var(--code-bg);
+        font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f6f8fa;
+    }
+    
+    blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: 0.25em solid var(--border-color);
+    }
+    
+    hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--border-color);
+        border: 0;
+    }
+    
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    ul, ol {
+        padding-left: 2em;
+    }
+    
+    li + li {
+        margin-top: 0.25em;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 20px;
+        }
+        
+        pre, .highlight {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        h1, h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        pre, table {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+</head>
+<body>
+<h1 id="unidad-4-numpy-basico">Unidad 4: NumPy Básico</h1>
+<p>Ejercicios sobre arrays, creación y operaciones básicas con NumPy.</p>
+<hr />
+<h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2>
+<p>Se recomienda hacerlos todos. Están ordenados por dificultad incremental.</p>
+<hr />
+<h3 id="bloque-1-crear-arrays">Bloque 1: Crear arrays</h3>
+<hr />
+<h3 id="a1-primer-array">A1. Primer array</h3>
+<p><strong>Enunciado</strong>: Importá NumPy con el alias <code>np</code> y creá un array con las latitudes de tres ciudades: -34.6, -31.4, -32.9.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([-34.6, -31.4, -32.9])</code></p>
+<p><strong>Hint</strong>: <code>import numpy as np</code> y luego <code>np.array([...])</code>.</p>
+<hr />
+<h3 id="a2-array-de-enteros">A2. Array de enteros</h3>
+<p><strong>Enunciado</strong>: Creá un array con las poblaciones de tres ciudades: 2890000, 1430000, 1270000. Verificá que el tipo de dato sea entero.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([2890000, 1430000, 1270000])</code><br />
+- Tipo: <code>int64</code></p>
+<p><strong>Hint</strong>: Usá <code>array.dtype</code> para ver el tipo.</p>
+<hr />
+<h3 id="a3-array-con-tipo-especifico">A3. Array con tipo específico</h3>
+<p><strong>Enunciado</strong>: Creá el mismo array de poblaciones pero forzando el tipo a <code>float64</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([2890000., 1430000., 1270000.])</code></p>
+<p><strong>Hint</strong>: <code>np.array([...], dtype=np.float64)</code> o <code>dtype=float</code>.</p>
+<hr />
+<h3 id="a4-array-desde-rango">A4. Array desde rango</h3>
+<p><strong>Enunciado</strong>: Creá un array con los números del 0 al 9 usando <code>np.arange()</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></p>
+<hr />
+<h3 id="a5-array-con-paso">A5. Array con paso</h3>
+<p><strong>Enunciado</strong>: Creá un array con latitudes desde -40 hasta -20 con paso de 5 grados.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([-40, -35, -30, -25, -20])</code></p>
+<p><strong>Hint</strong>: <code>np.arange(inicio, fin, paso)</code>. El fin no se incluye.</p>
+<hr />
+<h3 id="bloque-2-forma-y-dimensiones">Bloque 2: Forma y dimensiones</h3>
+<hr />
+<h3 id="a6-ver-forma-del-array">A6. Ver forma del array</h3>
+<p><strong>Enunciado</strong>: Creá un array con 6 elementos y mostrá su forma (shape).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Si array = <code>[1, 2, 3, 4, 5, 6]</code><br />
+- Salida esperada: <code>(6,)</code></p>
+<p><strong>Hint</strong>: <code>array.shape</code> retorna una tupla con las dimensiones.</p>
+<hr />
+<h3 id="a7-array-2d-matriz">A7. Array 2D (matriz)</h3>
+<p><strong>Enunciado</strong>: Creá una matriz de 2x3 con coordenadas de dos puntos: <code>[[-34.6, -58.4], [-31.4, -64.2], [-32.9, -68.8]]</code>. Mostrá su forma.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>(3, 2)</code></p>
+<hr />
+<h3 id="a8-reshape">A8. Reshape</h3>
+<p><strong>Enunciado</strong>: Creá un array del 1 al 12 y transformalo en una matriz de 3x4 usando <code>reshape()</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>array([[ 1,  2,  3,  4],
+       [ 5,  6,  7,  8],
+       [ 9, 10, 11, 12]])
+</code></pre></div>
+
+<hr />
+<h3 id="a9-flatten">A9. Flatten</h3>
+<p><strong>Enunciado</strong>: Tomá la matriz del ejercicio anterior y convertila de vuelta a un array 1D usando <code>flatten()</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([ 1,  2,  3, ..., 12])</code></p>
+<hr />
+<h3 id="a10-numero-de-elementos">A10. Número de elementos</h3>
+<p><strong>Enunciado</strong>: Creá una matriz de 4x5 y mostrá el número total de elementos con <code>size</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>20</code></p>
+<hr />
+<h3 id="bloque-3-arrays-especiales">Bloque 3: Arrays especiales</h3>
+<hr />
+<h3 id="a11-array-de-ceros">A11. Array de ceros</h3>
+<p><strong>Enunciado</strong>: Creá un array de 5 ceros que representará valores de elevación sin datos.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([0., 0., 0., 0., 0.])</code></p>
+<p><strong>Hint</strong>: <code>np.zeros(5)</code>.</p>
+<hr />
+<h3 id="a12-matriz-de-ceros">A12. Matriz de ceros</h3>
+<p><strong>Enunciado</strong>: Creá una matriz de 3x4 de ceros.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: matriz de ceros con forma (3, 4)</p>
+<p><strong>Hint</strong>: <code>np.zeros((3, 4))</code> - notar los paréntesis dobles.</p>
+<hr />
+<h3 id="a13-array-de-unos">A13. Array de unos</h3>
+<p><strong>Enunciado</strong>: Creá un array de 10 unos usando <code>np.ones()</code>.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([1., 1., 1., ..., 1.])</code></p>
+<hr />
+<h3 id="a14-array-con-linspace">A14. Array con linspace</h3>
+<p><strong>Enunciado</strong>: Creá un array con 5 valores equiespaciados entre -90 (polo sur) y 90 (polo norte).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([-90., -45.,   0.,  45.,  90.])</code></p>
+<p><strong>Hint</strong>: <code>np.linspace(inicio, fin, cantidad)</code>.</p>
+<hr />
+<h3 id="a15-array-de-valores-constantes">A15. Array de valores constantes</h3>
+<p><strong>Enunciado</strong>: Creá un array de 6 elementos todos con el valor -999 (valor típico para datos faltantes en geografía).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([-999, -999, -999, -999, -999, -999])</code></p>
+<p><strong>Hint</strong>: <code>np.full(6, -999)</code> o <code>np.ones(6) * -999</code>.</p>
+<hr />
+<h3 id="bloque-4-indexacion-y-slicing">Bloque 4: Indexación y slicing</h3>
+<hr />
+<h3 id="a16-acceder-a-elemento">A16. Acceder a elemento</h3>
+<p><strong>Enunciado</strong>: Dado un array de latitudes <code>[-34.6, -31.4, -32.9, -24.8, -38.0]</code>, obtené la latitud del tercer elemento (índice 2).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>-32.9</code></p>
+<hr />
+<h3 id="a17-slicing-basico">A17. Slicing básico</h3>
+<p><strong>Enunciado</strong>: Del array anterior, obtené los primeros 3 elementos.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([-34.6, -31.4, -32.9])</code></p>
+<p><strong>Hint</strong>: <code>array[0:3]</code> o <code>array[:3]</code>.</p>
+<hr />
+<h3 id="a18-slicing-con-paso">A18. Slicing con paso</h3>
+<p><strong>Enunciado</strong>: Del array de latitudes, obtené elementos alternados (posiciones 0, 2, 4).</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([-34.6, -32.9, -38.0])</code></p>
+<p><strong>Hint</strong>: <code>array[::2]</code> - paso de 2.</p>
+<hr />
+<h3 id="a19-indices-negativos">A19. Índices negativos</h3>
+<p><strong>Enunciado</strong>: Obtené el último elemento y los últimos 3 elementos del array.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Último: <code>-38.0</code><br />
+- Últimos 3: <code>array([-32.9, -24.8, -38.0])</code></p>
+<p><strong>Hint</strong>: <code>array[-1]</code> y <code>array[-3:]</code>.</p>
+<hr />
+<h3 id="a20-modificar-elemento">A20. Modificar elemento</h3>
+<p><strong>Enunciado</strong>: Creá un array de ceros de tamaño 5. Modificá el elemento del medio (índice 2) para que valga 100.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([  0.,   0., 100.,   0.,   0.])</code></p>
+<hr />
+<h3 id="bloque-5-operaciones-basicas">Bloque 5: Operaciones básicas</h3>
+<hr />
+<h3 id="a21-suma-de-arrays">A21. Suma de arrays</h3>
+<p><strong>Enunciado</strong>: Tenés dos arrays: <code>lat1 = [-34.6, -31.4]</code> y <code>ajuste = [0.1, 0.2]</code>. Sumá ambos arrays.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([-34.5, -31.2])</code></p>
+<hr />
+<h3 id="a22-multiplicar-por-escalar">A22. Multiplicar por escalar</h3>
+<p><strong>Enunciado</strong>: Tenés distancias en grados: <code>[2.5, 3.2, 1.8]</code>. Convertí a km aproximados multiplicando por 111.</p>
+<p><strong>Ejemplo</strong>:<br />
+- Salida esperada: <code>array([277.5, 355.2, 199.8])</code></p>
+<hr />
+<h3 id="a23-operaciones-entre-arrays">A23. Operaciones entre arrays</h3>
+<p><strong>Enunciado</strong>: Tenés arrays de latitud y longitud de 3 puntos. Calculá lat² + lon² para cada punto.</p>
+<p><strong>Ejemplo</strong>:<br />
+- lat = <code>[-34.6, -31.4, -32.9]</code><br />
+- lon = <code>[-58.4, -64.2, -68.8]</code><br />
+- Salida esperada: suma de cuadrados para cada punto</p>
+<hr />
+<h3 id="a24-diferencia-entre-arrays">A24. Diferencia entre arrays</h3>
+<p><strong>Enunciado</strong>: Calculá la diferencia de latitud entre puntos consecutivos de una ruta.</p>
+<p><strong>Ejemplo</strong>:<br />
+- lat = <code>[-34.6, -31.4, -32.9]</code><br />
+- diferencias = lat[1:] - lat[:-1]<br />
+- Salida esperada: <code>array([3.2, -1.5])</code></p>
+<hr />
+<h3 id="a25-division-elemento-a-elemento">A25. División elemento a elemento</h3>
+<p><strong>Enunciado</strong>: Tenés población y área de ciudades. Calculá la densidad (población/área).</p>
+<p><strong>Ejemplo</strong>:<br />
+- poblacion = <code>[2890000, 1430000, 1270000]</code><br />
+- area = <code>[203, 576, 178]</code><br />
+- Salida esperada: densidades</p>
+<hr />
+<h2 id="categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</h2>
+<p>Recomendables para quienes quieran practicar más.</p>
+<hr />
+<h3 id="b1-array-de-numeros-aleatorios">B1. Array de números aleatorios</h3>
+<p><strong>Enunciado</strong>: Generá un array de 10 latitudes aleatorias entre -55 y -20 (rango de Argentina).</p>
+<p><strong>Hint</strong>: <code>np.random.uniform(-55, -20, 10)</code>.</p>
+<hr />
+<h3 id="b2-copiar-array">B2. Copiar array</h3>
+<p><strong>Enunciado</strong>: Creá una copia independiente de un array usando <code>copy()</code>. Modificá la copia y verificá que el original no cambió.</p>
+<hr />
+<h3 id="b3-array-de-coordenadas-estructurado">B3. Array de coordenadas estructurado</h3>
+<p><strong>Enunciado</strong>: Creá una matriz de 5x2 donde cada fila sea [latitud, longitud] de una ciudad.</p>
+<hr />
+<h3 id="b4-transponer-matriz">B4. Transponer matriz</h3>
+<p><strong>Enunciado</strong>: Creá una matriz 3x2 y transponela a 2x3 usando <code>.T</code>.</p>
+<hr />
+<h3 id="b5-concatenar-arrays">B5. Concatenar arrays</h3>
+<p><strong>Enunciado</strong>: Tenés dos arrays de latitudes de diferentes regiones. Concaténalos en uno solo con <code>np.concatenate()</code>.</p>
+<hr />
+<h3 id="b6-apilar-arrays">B6. Apilar arrays</h3>
+<p><strong>Enunciado</strong>: Tenés arrays separados de lat y lon. Apilalos verticalmente con <code>np.vstack()</code> y horizontalmente con <code>np.hstack()</code>.</p>
+<hr />
+<h3 id="b7-array-identidad">B7. Array identidad</h3>
+<p><strong>Enunciado</strong>: Creá una matriz identidad 4x4 con <code>np.eye()</code>.</p>
+<hr />
+<h3 id="b8-diagonales">B8. Diagonales</h3>
+<p><strong>Enunciado</strong>: Creá una matriz y extraé su diagonal con <code>np.diag()</code>.</p>
+<hr />
+<h3 id="b9-repetir-array">B9. Repetir array</h3>
+<p><strong>Enunciado</strong>: Repetí un array [1, 2, 3] tres veces con <code>np.tile()</code>.</p>
+<hr />
+<h3 id="b10-meshgrid">B10. Meshgrid</h3>
+<p><strong>Enunciado</strong>: Creá una grilla de coordenadas usando <code>np.meshgrid()</code> para cubrir un área rectangular.</p>
+<hr />
+<h2 id="categoria-c-desafios">Categoría C - Desafíos</h2>
+<p>Ejercicios opcionales que requieren mayor dificultad o investigación.</p>
+<hr />
+<h3 id="c1-matriz-de-distancias">C1. Matriz de distancias</h3>
+<p><strong>Enunciado</strong>: Dado un array de N puntos (lat, lon), creá una matriz NxN donde cada elemento [i,j] sea la distancia entre el punto i y el punto j.</p>
+<hr />
+<h3 id="c2-broadcasting-avanzado">C2. Broadcasting avanzado</h3>
+<p><strong>Enunciado</strong>: Investigá cómo funciona el broadcasting de NumPy. Creá un ejemplo donde sumes un array 1D a cada fila de una matriz 2D.</p>
+<hr />
+<h3 id="c3-memoria-y-vistas">C3. Memoria y vistas</h3>
+<p><strong>Enunciado</strong>: Investigá la diferencia entre una vista (slice) y una copia en NumPy. Demostrá cómo un slice comparte memoria con el array original.</p>
+<hr />
+<h3 id="c4-tipos-de-datos-personalizados">C4. Tipos de datos personalizados</h3>
+<p><strong>Enunciado</strong>: Creá un array estructurado con campos "nombre" (string), "lat" (float) y "lon" (float) usando <code>np.dtype</code>.</p>
+<hr />
+<h3 id="c5-guardar-y-cargar-arrays">C5. Guardar y cargar arrays</h3>
+<p><strong>Enunciado</strong>: Guardá un array a archivo con <code>np.save()</code> y cargalo con <code>np.load()</code>. Probá también con <code>np.savetxt()</code> para formato texto.</p>
+<hr />
+<p><em>Fin de los ejercicios de la Unidad 4 - NumPy Básico</em></p>
+</body>
+</html>

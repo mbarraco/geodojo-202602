@@ -108,4 +108,10 @@ En la Categoría A, cada bloque debe ser más difícil que el anterior:
 
 ## Ejemplo de archivo completo
 
-Ver `ejercicios/01-fundamentos.md` como referencia de estructura y estilo.
+Ver `ejercicios/01/01-fundamentos.md` como referencia de estructura y estilo.
+
+## Nota sobre proyectos integradores
+
+Esta skill es para archivos de ejercicios con categorías A/B/C.
+
+Los **proyectos integradores** (`*-proyecto-integrador.md`) tienen estructura diferente y su propia skill: `.cursor/skills/geodojo-proyecto-integrador/SKILL.md`
