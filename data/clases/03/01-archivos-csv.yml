@@ -1,0 +1,262 @@
+unit:
+  number: 3
+  title: Archivos y CSV
+  description: Guía para la clase sobre lectura y escritura de archivos, y manejo del módulo CSV.
+temario:
+- title: Lectura de archivos con open()
+  rows:
+  - - '`open(path, "r")`'
+    - Abre archivo en modo lectura
+    - '`f = open("datos.txt", "r")`'
+  - - '`.read()`'
+    - Lee todo el contenido como string
+    - '`contenido = f.read()`'
+  - - '`.readline()`'
+    - Lee una línea
+    - '`linea = f.readline()`'
+  - - '`.readlines()`'
+    - Lee todas las líneas como lista
+    - '`lineas = f.readlines()`'
+  - - '`.close()`'
+    - Cierra el archivo
+    - '`f.close()`'
+  - - '`with open(...) as f:`'
+    - Context manager (cierre automático)
+    - Ver ejemplos
+  columns:
+  - Función/Método
+  - Descripción
+  - Ejemplo
+- title: Escritura de archivos
+  rows:
+  - - '`"w"`'
+    - Escritura (sobrescribe)
+    - '`open("nuevo.txt", "w")`'
+  - - '`"a"`'
+    - Append (agrega al final)
+    - '`open("log.txt", "a")`'
+  - - '`"r+"`'
+    - Lectura y escritura
+    - '`open("datos.txt", "r+")`'
+  - - Método
+    - Descripción
+    - Ejemplo
+  - - '`.write(str)`'
+    - Escribe un string
+    - '`f.write("Hola")`'
+  - - '`.writelines(list)`'
+    - Escribe lista de strings
+    - '`f.writelines(["a\n", "b\n"])`'
+  columns:
+  - Modo
+  - Descripción
+  - Uso
+- title: Módulo CSV - Lectura
+  rows:
+  - - '`csv.reader(f)`'
+    - Lee CSV como listas
+    - '`reader = csv.reader(archivo)`'
+  - - '`next(reader)`'
+    - Obtiene siguiente fila (salta encabezado)
+    - '`encabezado = next(reader)`'
+  - - '`list(reader)`'
+    - Convierte a lista de filas
+    - '`datos = list(reader)`'
+  columns:
+  - Función
+  - Descripción
+  - Ejemplo
+- title: DictReader y DictWriter
+  rows:
+  - - '`csv.DictReader(f)`'
+    - Lee CSV como diccionarios
+    - '`reader = csv.DictReader(archivo)`'
+  - - '`csv.DictWriter(f, fieldnames)`'
+    - Escribe diccionarios a CSV
+    - '`writer = csv.DictWriter(f, ["col1", "col2"])`'
+  - - '`.writeheader()`'
+    - Escribe fila de encabezados
+    - '`writer.writeheader()`'
+  - - '`.writerow(dict)`'
+    - Escribe un diccionario
+    - '`writer.writerow({"col1": "val1"})`'
+  - - '`.writerows(list)`'
+    - Escribe lista de diccionarios
+    - '`writer.writerows(datos)`'
+  columns:
+  - Función
+  - Descripción
+  - Ejemplo
+- title: Patrones comunes
+  rows:
+  - - Leer archivo completo
+    - '`with open("f.txt") as f: texto = f.read()`'
+  - - Leer líneas
+    - '`with open("f.txt") as f: lineas = f.readlines()`'
+  - - Escribir texto
+    - '`with open("f.txt", "w") as f: f.write("texto")`'
+  - - Leer CSV a lista
+    - '`with open("f.csv") as f: datos = list(csv.reader(f))`'
+  - - Leer CSV a dicts
+    - '`with open("f.csv") as f: datos = list(csv.DictReader(f))`'
+  columns:
+  - Patrón
+  - Código
+ejemplos:
+- id: 1
+  title: Leer archivo de texto
+  enunciado: Crear un archivo `ciudad.txt` con el nombre de una ciudad y leerlo con Python.
+  solucion:
+    code: |-
+      # Primero creamos el archivo manualmente o con Python:
+      with open("ciudad.txt", "w") as f:
+          f.write("Buenos Aires")
+
+      # Luego lo leemos:
+      archivo = open("ciudad.txt", "r")
+      contenido = archivo.read()
+      print(contenido)
+      archivo.close()
+    salida: Buenos Aires
+- id: 2
+  title: Context manager
+  enunciado: Reescribir el ejemplo anterior usando `with open(...) as f:`.
+  solucion:
+    code: |-
+      with open("ciudad.txt", "r") as archivo:
+          contenido = archivo.read()
+          print(contenido)
+
+      # El archivo se cierra automáticamente al salir del bloque with
+    salida: Buenos Aires
+- id: 3
+  title: Leer múltiples líneas
+  enunciado: Crear un archivo con 3 ciudades (una por línea) y mostrarlas numeradas.
+  solucion:
+    code: |-
+      # Crear archivo
+      with open("ciudades.txt", "w") as f:
+          f.write("Buenos Aires\n")
+          f.write("Córdoba\n")
+          f.write("Rosario\n")
+
+      # Leer y mostrar numerado
+      with open("ciudades.txt", "r") as f:
+          lineas = f.readlines()
+          for i, linea in enumerate(lineas, 1):
+              print(f"{i}: {linea.strip()}")
+    salida: |-
+      1: Buenos Aires
+      2: Córdoba
+      3: Rosario
+- id: 4
+  title: Escribir archivo
+  enunciado: Crear un archivo `destinos.txt` escribiendo una lista de ciudades.
+  solucion:
+    code: |-
+      ciudades = ["Ushuaia", "Bariloche", "Mendoza"]
+
+      with open("destinos.txt", "w") as f:
+          for ciudad in ciudades:
+              f.write(ciudad + "\n")
+
+      print("Archivo creado!")
+    salida: Archivo creado!
+- id: 5
+  title: Modo append
+  enunciado: Agregar una nueva ciudad al archivo sin borrar las existentes.
+  solucion:
+    code: |-
+      # Agregar al final (no sobrescribe)
+      with open("destinos.txt", "a") as f:
+          f.write("Salta\n")
+
+      # Verificar contenido
+      with open("destinos.txt", "r") as f:
+          print(f.read())
+    salida: |-
+      Ushuaia
+      Bariloche
+      Mendoza
+      Salta
+- id: 6
+  title: Leer CSV con csv.reader
+  enunciado: Crear un CSV de ciudades con población y leerlo mostrando cada fila.
+  solucion:
+    code: |-
+      import csv
+
+      # Crear CSV
+      with open("ciudades.csv", "w") as f:
+          f.write("nombre,poblacion\n")
+          f.write("Buenos Aires,2890000\n")
+          f.write("Córdoba,1430000\n")
+          f.write("Rosario,1270000\n")
+
+      # Leer CSV
+      with open("ciudades.csv", "r") as f:
+          reader = csv.reader(f)
+          for fila in reader:
+              print(fila)
+    salida: |-
+      ['nombre', 'poblacion']
+      ['Buenos Aires', '2890000']
+      ['Córdoba', '1430000']
+      ['Rosario', '1270000']
+- id: 7
+  title: Procesar datos del CSV
+  enunciado: Leer el CSV de ciudades y calcular la población total.
+  solucion:
+    code: "import csv\n\nwith open(\"ciudades.csv\", \"r\") as f:\n    reader = csv.reader(f)\n    next(reader)  # Saltar\
+      \ encabezado\n    \n    total = 0\n    for fila in reader:\n        nombre = fila[0]\n        poblacion = int(fila[1])\n\
+      \        total += poblacion\n        print(f\"{nombre}: {poblacion:,} habitantes\")\n    \n    print(f\"\\nTotal: {total:,}\
+      \ habitantes\")"
+    salida: |-
+      Buenos Aires: 2,890,000 habitantes
+      Córdoba: 1,430,000 habitantes
+      Rosario: 1,270,000 habitantes
+
+      Total: 5,590,000 habitantes
+- id: 8
+  title: Usar DictReader
+  enunciado: Leer el mismo CSV pero accediendo a los datos por nombre de columna.
+  solucion:
+    code: "import csv\n\nwith open(\"ciudades.csv\", \"r\") as f:\n    reader = csv.DictReader(f)\n    \n    for fila in reader:\n\
+      \        nombre = fila[\"nombre\"]\n        poblacion = fila[\"poblacion\"]\n        print(f\"{nombre} tiene {poblacion}\
+      \ habitantes\")"
+    salida: |-
+      Buenos Aires tiene 2890000 habitantes
+      Córdoba tiene 1430000 habitantes
+      Rosario tiene 1270000 habitantes
+- id: 9
+  title: Escribir CSV con DictWriter
+  enunciado: Crear una lista de diccionarios con datos de puntos geográficos y guardarla como CSV.
+  solucion:
+    code: "import csv\n\npuntos = [\n    {\"ciudad\": \"Buenos Aires\", \"lat\": -34.6, \"lon\": -58.4},\n    {\"ciudad\"\
+      : \"Córdoba\", \"lat\": -31.4, \"lon\": -64.2},\n    {\"ciudad\": \"Mendoza\", \"lat\": -32.9, \"lon\": -68.8}\n]\n\n\
+      with open(\"puntos.csv\", \"w\", newline=\"\") as f:\n    campos = [\"ciudad\", \"lat\", \"lon\"]\n    writer = csv.DictWriter(f,\
+      \ fieldnames=campos)\n    \n    writer.writeheader()\n    writer.writerows(puntos)\n\nprint(\"CSV creado!\")"
+    salida: CSV creado!
+- id: 10
+  title: Transformar CSV
+  enunciado: Leer un CSV de coordenadas, agregar una columna calculada, y guardar en un nuevo archivo.
+  solucion:
+    code: "import csv\n\n# Leer datos originales\nwith open(\"puntos.csv\", \"r\") as f:\n    reader = csv.DictReader(f)\n\
+      \    puntos = list(reader)\n\n# Agregar columna: hemisferio\nfor punto in puntos:\n    lat = float(punto[\"lat\"])\n\
+      \    punto[\"hemisferio\"] = \"Sur\" if lat < 0 else \"Norte\"\n\n# Guardar con nueva columna\nwith open(\"puntos_hemisferio.csv\"\
+      , \"w\", newline=\"\") as f:\n    campos = [\"ciudad\", \"lat\", \"lon\", \"hemisferio\"]\n    writer = csv.DictWriter(f,\
+      \ fieldnames=campos)\n    \n    writer.writeheader()\n    writer.writerows(puntos)\n\n# Mostrar resultado\nwith open(\"\
+      puntos_hemisferio.csv\", \"r\") as f:\n    print(f.read())"
+    salida: |-
+      ciudad,lat,lon,hemisferio
+      Buenos Aires,-34.6,-58.4,Sur
+      Córdoba,-31.4,-64.2,Sur
+      Mendoza,-32.9,-68.8,Sur
+notas_docente:
+- Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
+- Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental
+- Se recomienda crear los archivos en vivo para que los alumnos vean el proceso completo
+- Enfatizar el uso de `with` como buena práctica (cierre automático de archivos)
+- Los ejercicios en `ejercicios/03/01-archivos-csv.md` refuerzan estos conceptos
+- 'Contexto geográfico: ciudades argentinas, coordenadas, población'
+- Tener cuidado con el parámetro `newline=""` en Windows al escribir CSV

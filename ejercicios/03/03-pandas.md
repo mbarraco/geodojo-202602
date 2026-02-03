@@ -19,14 +19,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Creá un archivo `ciudades.csv` con columnas nombre, latitud, longitud y población. Leélo con `pd.read_csv()` y mostrá el DataFrame.
 
 **Ejemplo**:
-- Contenido del CSV:
-  ```
-  nombre,latitud,longitud,poblacion
-  Buenos Aires,-34.6,-58.4,2890000
-  Córdoba,-31.4,-64.2,1430000
-  Rosario,-33.0,-60.7,1270000
-  ```
-- Salida esperada: DataFrame con 3 filas y 4 columnas
+- Salida esperada: `DataFrame con 3 filas y 4 columnas`
 
 **Hint**: `import pandas as pd` y luego `pd.read_csv("archivo.csv")`.
 
@@ -35,10 +28,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 ### A2. Ver primeras y últimas filas
 
 **Enunciado**: Usando el DataFrame del ejercicio anterior, mostrá las primeras 2 filas con `head()` y las últimas 2 con `tail()`.
-
-**Ejemplo**:
-- `df.head(2)` muestra las primeras 2 filas
-- `df.tail(2)` muestra las últimas 2 filas
 
 ---
 
@@ -61,7 +50,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Usá `df.describe()` para ver estadísticas de las columnas numéricas (latitud, longitud, población).
 
 **Ejemplo**:
-- Salida esperada: tabla con count, mean, std, min, max, etc.
+- Salida esperada: `tabla con count, mean, std, min, max, etc.`
 
 ---
 
@@ -107,7 +96,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Usá `iloc[0:2]` para obtener las primeras 2 filas como DataFrame.
 
 **Ejemplo**:
-- Salida esperada: DataFrame con Buenos Aires y Córdoba
+- Salida esperada: `DataFrame con Buenos Aires y Córdoba`
 
 ---
 
@@ -116,7 +105,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Creá un nuevo DataFrame con solo las columnas "nombre" y "poblacion".
 
 **Ejemplo**:
-- Salida esperada: DataFrame con 2 columnas
+- Salida esperada: `DataFrame con 2 columnas`
 
 **Hint**: `df[["nombre", "poblacion"]]` (doble corchete).
 
@@ -127,7 +116,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Establecé la columna "nombre" como índice con `set_index()`. Luego usá `loc["Córdoba"]` para obtener los datos de Córdoba.
 
 **Ejemplo**:
-- Salida esperada: Serie con latitud, longitud y población de Córdoba
+- Salida esperada: `Serie con latitud, longitud y población de Córdoba`
 
 ---
 
@@ -149,7 +138,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Filtrá el DataFrame para mostrar solo las ciudades con población mayor a 1.5 millones.
 
 **Ejemplo**:
-- Salida esperada: DataFrame con solo Buenos Aires
+- Salida esperada: `DataFrame con solo Buenos Aires`
 
 **Hint**: `df[df["poblacion"] > 1500000]`.
 
@@ -160,7 +149,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Filtrá para mostrar solo las ciudades cuyo nombre empieza con "B".
 
 **Ejemplo**:
-- Salida esperada: DataFrame con Buenos Aires
+- Salida esperada: `DataFrame con Buenos Aires`
 
 **Hint**: Usá `df["nombre"].str.startswith("B")`.
 
@@ -171,7 +160,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Filtrá ciudades con latitud menor a -32 Y población mayor a 1 millón.
 
 **Ejemplo**:
-- Salida esperada: DataFrame con Buenos Aires y Rosario
+- Salida esperada: `DataFrame con Buenos Aires y Rosario`
 
 **Hint**: Usá `&` para AND y `|` para OR. Cada condición entre paréntesis.
 
@@ -181,9 +170,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 
 **Enunciado**: Usá el método `query()` para filtrar ciudades con longitud menor a -60.
 
-**Ejemplo**:
-- `df.query("longitud < -60")` → ciudades al oeste de -60°
-
 ---
 
 ### A15. Filtrar con isin()
@@ -191,7 +177,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Filtrá para mostrar solo las ciudades que están en la lista `["Buenos Aires", "Rosario"]`.
 
 **Ejemplo**:
-- Salida esperada: DataFrame con 2 ciudades
+- Salida esperada: `DataFrame con 2 ciudades`
 
 **Hint**: `df[df["nombre"].isin(["Buenos Aires", "Rosario"])]`.
 
@@ -204,9 +190,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 ### A16. Agregar columna de categoría
 
 **Enunciado**: Agregá una columna "region" al DataFrame con valores "Pampeana" para todas las ciudades (por ahora el mismo valor).
-
-**Ejemplo**:
-- El DataFrame debe tener una nueva columna "region"
 
 **Hint**: `df["region"] = "Pampeana"`.
 
@@ -233,7 +216,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Agrupá por región y calculá la población total de cada región con `sum()`.
 
 **Ejemplo**:
-- Salida esperada: Serie con población total por región
+- Salida esperada: `Serie con población total por región`
 
 ---
 
@@ -242,7 +225,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Agrupá por región y calculá tanto la suma como el promedio de población usando `agg()`.
 
 **Ejemplo**:
-- Salida esperada: DataFrame con columnas sum y mean por región
+- Salida esperada: `DataFrame con columnas sum y mean por región`
 
 **Hint**: `df.groupby("region")["poblacion"].agg(["sum", "mean"])`.
 
@@ -253,64 +236,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Para cada región, encontrá la ciudad con mayor población usando `idxmax()` o filtrado.
 
 **Ejemplo**:
-- Salida esperada: nombre de la ciudad más poblada de cada región
-
----
-
-### Bloque 5: Guardar y combinar DataFrames
-
----
-
-### A21. Guardar a CSV
-
-**Enunciado**: Guardá el DataFrame en un nuevo archivo `ciudades_procesado.csv` sin incluir el índice.
-
-**Ejemplo**:
-- El archivo se crea correctamente
-
-**Hint**: `df.to_csv("archivo.csv", index=False)`.
-
----
-
-### A22. Ordenar DataFrame
-
-**Enunciado**: Ordená el DataFrame por población de mayor a menor y guardalo.
-
-**Ejemplo**:
-- La primera fila debe ser la ciudad más poblada
-
-**Hint**: `df.sort_values("poblacion", ascending=False)`.
-
----
-
-### A23. Combinar con concat
-
-**Enunciado**: Creá dos DataFrames pequeños (ciudades del norte y del sur) y combinalos en uno solo con `pd.concat()`.
-
-**Ejemplo**:
-- Salida esperada: DataFrame con todas las ciudades de ambos DataFrames
-
----
-
-### A24. Combinar con merge
-
-**Enunciado**: Tenés un DataFrame con ciudades y población, y otro con ciudades y área. Combinalos por nombre de ciudad usando `merge()`.
-
-**Ejemplo**:
-- Salida esperada: DataFrame con nombre, población y área
-
-**Hint**: `pd.merge(df1, df2, on="nombre")`.
-
----
-
-### A25. Crear columna calculada
-
-**Enunciado**: Agregá una columna "densidad" calculada como población / área (asumiendo que tenés la columna área).
-
-**Ejemplo**:
-- Si Buenos Aires tiene 2890000 habitantes y 203 km², la densidad es ~14236
-
-**Hint**: `df["densidad"] = df["poblacion"] / df["area"]`.
+- Salida esperada: `nombre de la ciudad más poblada de cada región`
 
 ---
 
@@ -422,4 +348,4 @@ Ejercicios opcionales que requieren mayor dificultad o investigación.
 
 ---
 
-*Fin de los ejercicios de la Unidad 3 - Pandas*
+*Fin de los ejercicios de la Unidad 3*

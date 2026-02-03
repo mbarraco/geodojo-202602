@@ -185,8 +185,8 @@
 </tr>
 <tr>
 <td>OR lógico</td>
-<td><code>df[(cond1) \| (cond2)]</code></td>
-<td><code>df[(df["region"] == "N") \| (df["region"] == "S")]</code></td>
+<td><code>df[(cond1) \ | (cond2)]</code></td>
+<td><code>df[(df["region"] == "N") \ | (df["region"] == "S")]</code></td>
 </tr>
 <tr>
 <td>Método query</td>
@@ -383,7 +383,7 @@
 
 <hr />
 <h4 id="ejemplo-2-explorar-el-dataframe_1">Ejemplo 2: Explorar el DataFrame</h4>
-<p><strong>Enunciado</strong>: Ver las primeras filas, la forma, las columnas y las estadísticas.</p>
+<p><strong>Enunciado</strong>: Ver las primeras filas, la forma, las columnas y las estadísticas básicas.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primeras 3 filas:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
@@ -548,7 +548,7 @@ Ciudades con más de 1M habitantes:
 
 <hr />
 <h4 id="ejemplo-8-agrupar-y-agregar_1">Ejemplo 8: Agrupar y agregar</h4>
-<p><strong>Enunciado</strong>: Contar ciudades por región y calcular población total.</p>
+<p><strong>Enunciado</strong>: Contar ciudades por región y calcular población total por región.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Contar por región</span>
 <span class="n">conteo</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ciudades por región:&quot;</span><span class="p">)</span>

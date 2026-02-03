@@ -1,0 +1,82 @@
+# Unidad {{ unit.number }}: {{ unit.title }}
+
+{{ unit.description }}
+
+---
+{% for cat in categories %}
+
+## Categoría {{ cat.id }} - {{ cat.title }}
+
+{{ cat.description }}
+
+---
+{% if cat.blocks is defined %}
+{% for block in cat.blocks %}
+
+### Bloque {{ loop.index }}: {{ block.name }}
+
+---
+{% for ex in block.exercises %}
+
+### {{ ex.id }}. {{ ex.title }}
+
+**Enunciado**: {{ ex.enunciado }}
+{% if ex.ejemplo is defined and (ex.ejemplo.entrada is defined or ex.ejemplo.salida is defined) %}
+
+**Ejemplo**:
+{% if ex.ejemplo.entrada is defined %}
+- Entrada: `{{ ex.ejemplo.entrada }}`
+{% endif %}
+{% if ex.ejemplo.salida is defined %}
+{% if '\n' in ex.ejemplo.salida %}
+- Salida esperada:
+  ```
+{{ ex.ejemplo.salida | indent(2, first=true) }}
+  ```
+{% else %}
+- Salida esperada: `{{ ex.ejemplo.salida }}`
+{% endif %}
+{% endif %}
+{% endif %}
+{% if ex.hint is defined %}
+
+**Hint**: {{ ex.hint }}
+{% endif %}
+
+---
+{% endfor %}
+{% endfor %}
+{% elif cat.exercises is defined %}
+{% for ex in cat.exercises %}
+
+### {{ ex.id }}. {{ ex.title }}
+
+**Enunciado**: {{ ex.enunciado }}
+{% if ex.ejemplo is defined and (ex.ejemplo.entrada is defined or ex.ejemplo.salida is defined) %}
+
+**Ejemplo**:
+{% if ex.ejemplo.entrada is defined %}
+- Entrada: `{{ ex.ejemplo.entrada }}`
+{% endif %}
+{% if ex.ejemplo.salida is defined %}
+{% if '\n' in ex.ejemplo.salida %}
+- Salida esperada:
+  ```
+{{ ex.ejemplo.salida | indent(2, first=true) }}
+  ```
+{% else %}
+- Salida esperada: `{{ ex.ejemplo.salida }}`
+{% endif %}
+{% endif %}
+{% endif %}
+{% if ex.hint is defined %}
+
+**Hint**: {{ ex.hint }}
+{% endif %}
+
+---
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+*Fin de los ejercicios de la Unidad {{ unit.number }}*

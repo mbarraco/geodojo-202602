@@ -28,15 +28,6 @@ Guía para la clase sobre importación de módulos y manejo de excepciones.
 
 ### 1.3 Try/except básico
 
-```python
-try:
-    # código que puede fallar
-    resultado = 10 / x
-except ZeroDivisionError:
-    # manejo del error específico
-    print("No se puede dividir por cero")
-```
-
 ### 1.4 Excepciones comunes
 
 | Excepción | Cuándo ocurre | Ejemplo |
@@ -50,25 +41,6 @@ except ZeroDivisionError:
 | `Exception` | Clase base de errores | Captura cualquier error |
 
 ### 1.5 Estructura completa try/except/else/finally
-
-```python
-try:
-    # código que puede fallar
-    archivo = open("datos.txt")
-    contenido = archivo.read()
-except FileNotFoundError:
-    # si hay error de archivo
-    print("Archivo no encontrado")
-except Exception as e:
-    # cualquier otro error
-    print(f"Error: {e}")
-else:
-    # solo si NO hubo error
-    print("Lectura exitosa")
-finally:
-    # siempre se ejecuta
-    print("Operación finalizada")
-```
 
 ---
 
@@ -218,7 +190,7 @@ Archivos (8):
 
 #### Ejemplo 4: Módulo random
 
-**Enunciado**: Generar una coordenada geográfica aleatoria válida.
+**Enunciado**: Generar una coordenada geográfica aleatoria válida (lat entre -90 y 90, lon entre -180 y 180).
 
 ```python
 import random
@@ -245,7 +217,7 @@ Coordenada aleatoria:
 
 #### Ejemplo 5: Módulo datetime
 
-**Enunciado**: Mostrar la fecha y hora actual, y formatearla.
+**Enunciado**: Mostrar la fecha y hora actual, y formatearla como "DD/MM/YYYY HH:MM".
 
 ```python
 from datetime import datetime
@@ -268,7 +240,7 @@ Solo fecha: 03 de February de 2026
 
 #### Ejemplo 6: Try/except simple
 
-**Enunciado**: Pedir al usuario un número y dividir 100 por ese número.
+**Enunciado**: Pedir al usuario un número y dividir 100 por ese número. Manejar división por cero.
 
 ```python
 numero = input("Ingresá un número: ")
@@ -281,17 +253,11 @@ except ZeroDivisionError:
     print("Error: No se puede dividir por cero")
 ```
 
-**Salida** (si ingresa 0):
-```
-Ingresá un número: 0
-Error: No se puede dividir por cero
-```
-
 ---
 
 #### Ejemplo 7: Múltiples excepciones
 
-**Enunciado**: Manejar tanto división por cero como entrada inválida.
+**Enunciado**: Mejorar el ejemplo anterior para también manejar cuando el usuario ingresa texto en lugar de número.
 
 ```python
 entrada = input("Ingresá un número: ")
@@ -306,17 +272,11 @@ except ValueError:
     print(f"Error: '{entrada}' no es un número válido")
 ```
 
-**Salida** (si ingresa "abc"):
-```
-Ingresá un número: abc
-Error: 'abc' no es un número válido
-```
-
 ---
 
 #### Ejemplo 8: Capturar error de archivo
 
-**Enunciado**: Intentar leer un archivo que puede o no existir.
+**Enunciado**: Intentar leer un archivo que puede o no existir. Mostrar contenido o mensaje de error.
 
 ```python
 nombre_archivo = "datos.txt"
@@ -329,16 +289,11 @@ except FileNotFoundError:
     print(f"Error: El archivo '{nombre_archivo}' no existe")
 ```
 
-**Salida** (si no existe):
-```
-Error: El archivo 'datos.txt' no existe
-```
-
 ---
 
 #### Ejemplo 9: Bloque else y finally
 
-**Enunciado**: Leer un archivo mostrando mensajes en cada etapa.
+**Enunciado**: Leer un archivo mostrando mensajes en cada etapa: éxito, error, y finalización.
 
 ```python
 nombre_archivo = "datos.txt"
@@ -355,24 +310,11 @@ finally:
     print("🏁 Operación finalizada")
 ```
 
-**Salida** (si existe):
-```
-✓ Archivo leído correctamente
-  Tamaño: 156 caracteres
-🏁 Operación finalizada
-```
-
-**Salida** (si no existe):
-```
-❌ Error: Archivo no encontrado
-🏁 Operación finalizada
-```
-
 ---
 
 #### Ejemplo 10: Función robusta
 
-**Enunciado**: Crear una función que convierta coordenadas de texto a números.
+**Enunciado**: Crear una función que convierta coordenadas de texto a números, retornando None si falla.
 
 ```python
 def convertir_coordenada(texto):
@@ -409,7 +351,6 @@ Latitud válida: -31.4
 ---
 
 ## Notas para el docente
-
 - Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
 - Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental
 - Enfatizar que `try/except` es para errores esperados, no para evitar bugs

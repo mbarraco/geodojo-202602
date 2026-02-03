@@ -44,12 +44,6 @@ Guía para la clase sobre definición de funciones, argumentos, retorno, type hi
 | Completo | Argumentos y retorno | `def f(x: int) -> str:` |
 | `Optional` | Puede ser el tipo o `None` | `def f(x: Optional[int]):` |
 
-```python
-# Ejemplo completo con type hints
-def calcular_area(base: float, altura: float) -> float:
-    return base * altura
-```
-
 ### 1.5 Scope (alcance de variables)
 
 | Tipo | Descripción | Ejemplo |
@@ -66,20 +60,6 @@ def calcular_area(base: float, altura: float) -> float:
 | Ubicación | Primera línea después de `def` |
 | Sintaxis | Triple comillas `"""..."""` |
 | Contenido | Qué hace, args, returns |
-
-```python
-def funcion(arg):
-    """
-    Breve descripción.
-    
-    Args:
-        arg: Descripción del argumento.
-    
-    Returns:
-        Descripción de lo que retorna.
-    """
-    pass
-```
 
 ---
 
@@ -240,7 +220,7 @@ El doble de 100 es 200
 
 #### Ejemplo 5: Función que calcula y retorna
 
-**Enunciado**: Crear una función `celsius_a_fahrenheit` que convierta temperatura.
+**Enunciado**: Crear una función `celsius_a_fahrenheit` que convierta temperatura. Fórmula: F = C × 9/5 + 32
 
 ```python
 def celsius_a_fahrenheit(celsius):
@@ -265,7 +245,7 @@ print(f"0°C equivale a {celsius_a_fahrenheit(0)}°F")
 
 #### Ejemplo 6: Función con return condicional
 
-**Enunciado**: Crear una función `hemisferio` que reciba una latitud y retorne "Norte", "Sur" o "Ecuador".
+**Enunciado**: Crear una función `hemisferio` que reciba una latitud y retorne "Norte", "Sur" o "Ecuador" según corresponda.
 
 ```python
 def hemisferio(latitud):
@@ -292,7 +272,7 @@ Quito (0): Ecuador
 
 #### Ejemplo 7: Type hints básicos
 
-**Enunciado**: Reescribir la función `celsius_a_fahrenheit` con type hints.
+**Enunciado**: Reescribir la función `celsius_a_fahrenheit` agregando type hints para los argumentos y el retorno.
 
 ```python
 def celsius_a_fahrenheit(celsius: float) -> float:
@@ -317,7 +297,7 @@ Anotaciones: {'celsius': <class 'float'>, 'return': <class 'float'>}
 
 #### Ejemplo 8: Argumento con valor por defecto
 
-**Enunciado**: Crear una función `crear_punto` con coordenadas por defecto.
+**Enunciado**: Crear una función `crear_punto` que reciba nombre y coordenadas con valores por defecto (0.0, 0.0).
 
 ```python
 def crear_punto(nombre, lat=0.0, lon=0.0):
@@ -347,7 +327,7 @@ Ecuador: (0.0, -78.5)
 
 #### Ejemplo 9: Variable local vs global
 
-**Enunciado**: Demostrar scope de variables, constantes globales y uso de `global` para modificar variables.
+**Enunciado**: Demostrar que una variable creada dentro de una función no existe fuera. Usar una constante global RADIO_TIERRA. Mostrar cómo modificar una variable global con `global`.
 
 ```python
 # Constante global (por convención en MAYÚSCULAS)
@@ -394,13 +374,11 @@ Visitaste Mendoza. Total de ciudades: 3
 Total final: 3 ciudades
 ```
 
-**Nota**: Sin `global ciudades_visitadas`, Python crearía una variable local nueva en lugar de modificar la global.
-
 ---
 
 #### Ejemplo 10: Función con docstring
 
-**Enunciado**: Crear una función completa con type hints y docstring.
+**Enunciado**: Crear una función `distancia_al_ecuador` con type hints y docstring completo que documente qué hace, sus argumentos y retorno.
 
 ```python
 def distancia_al_ecuador(latitud: float) -> float:
@@ -453,7 +431,6 @@ Documentación de la función:
 ---
 
 ## Notas para el docente
-
 - Los ejemplos progresan de funciones simples (solo print) a funciones completas (type hints + docstring)
 - Enfatizar la diferencia entre `print` dentro de una función vs `return`
 - Demostrar que `return` termina la ejecución de la función

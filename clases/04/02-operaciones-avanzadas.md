@@ -35,7 +35,7 @@ Guía para la clase sobre funciones estadísticas, máscaras booleanas y operaci
 | Comparación | `arr > 5` | Array de True/False |
 | Filtrar | `arr[arr > 5]` | Solo elementos True |
 | AND | `(cond1) & (cond2)` | Ambas condiciones |
-| OR | `(cond1) \| (cond2)` | Al menos una |
+| OR | `(cond1) \ | (cond2)` | Al menos una |
 | NOT | `~condicion` | Negación |
 | Contar True | `np.sum(mascara)` | Número de True |
 | Todos True | `np.all(mascara)` | Booleano |
@@ -129,7 +129,7 @@ Aplicar la fórmula de NDVI a datos de bandas espectrales.
 
 #### Ejemplo 1: Estadísticas básicas
 
-**Enunciado**: Calcular suma, promedio, mínimo y máximo de poblaciones.
+**Enunciado**: Calcular suma, promedio, mínimo y máximo de poblaciones de ciudades.
 
 ```python
 import numpy as np
@@ -160,7 +160,7 @@ Desv. estándar: 917,449
 
 #### Ejemplo 2: Encontrar extremos
 
-**Enunciado**: Encontrar la ciudad más al norte y más al sur.
+**Enunciado**: Encontrar la ciudad más al norte y más al sur de un array de latitudes.
 
 ```python
 import numpy as np
@@ -189,7 +189,7 @@ Más al sur: Buenos Aires (lat: -34.6)
 
 #### Ejemplo 3: Operaciones por eje en matriz
 
-**Enunciado**: Calcular estadísticas por filas y columnas.
+**Enunciado**: Calcular estadísticas por filas y columnas de una matriz de coordenadas.
 
 ```python
 import numpy as np
@@ -393,7 +393,7 @@ Datos faltantes: 2
 
 #### Ejemplo 9: Combinar arrays
 
-**Enunciado**: Concatenar datos de diferentes regiones.
+**Enunciado**: Concatenar datos de diferentes regiones en un solo array.
 
 ```python
 import numpy as np
@@ -476,7 +476,6 @@ Clasificación:
 ---
 
 ## Notas para el docente
-
 - Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
 - Enfatizar que las operaciones vectorizadas son más rápidas que bucles
 - Las máscaras booleanas son una herramienta muy poderosa para filtrar datos

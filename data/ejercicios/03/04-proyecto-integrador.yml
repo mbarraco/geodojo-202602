@@ -1,0 +1,4 @@
+unit:
+  title: 'Proyecto Integrador: Gestor de Rutas con Persistencia'
+  description: Un proyecto paso a paso para construir un gestor de rutas geográficas que guarda y carga datos desde archivos.
+categories: []

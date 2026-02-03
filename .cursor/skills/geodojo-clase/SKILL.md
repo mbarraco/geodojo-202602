@@ -1,122 +1,134 @@
 ---
 name: geodojo-clase
-description: Genera archivos de guía de clase a partir de archivos de ejercicios. Usar cuando se crea un archivo en clases/ o cuando el usuario pide crear una guía de clase para una unidad del curso.
+description: Genera archivos YAML de guía de clase. Usar cuando se crea un archivo en data/clases/ o cuando el usuario pide crear una guía de clase para una unidad del curso.
 ---
 
-# Generación de Guías de Clase
+# Generación de Guías de Clase (YAML)
 
-Guía para crear archivos de clase (`clases/NN/XX-tema.md`) a partir de archivos de ejercicios (`ejercicios/NN/XX-tema.md`).
+Guía para crear archivos YAML de clase (`data/clases/NN/XX-tema.yml`).
+
+## Ubicación de archivos
+
+Los archivos de clase se guardan en `data/clases/NN/XX-nombre.yml` donde:
+- `NN` es el número de unidad (00, 01, 02, etc.)
+- `XX` es el número de archivo dentro de la unidad
+
+Después de crear/editar el YAML, ejecutar `make markdown` para generar el markdown correspondiente.
+
+## Estructura YAML
+
+```yaml
+unit:
+  number: 1
+  title: "Título de la clase"
+  description: "Guía para la clase sobre [descripción breve]."
+
+temario:
+  - title: "Tema del bloque 1"
+    columns: ["Concepto", "Descripción"]  # o ["Operador", "Operación", "Ejemplo"]
+    rows:
+      - ["Variable", "Nombre que almacena un valor (`nombre = \"Buenos Aires\"`)"]
+      - ["`str`", "Texto, entre comillas (`\"hola\"`, `'mundo'`)"]
+  - title: "Tema del bloque 2"
+    columns: ["Operador", "Operación", "Ejemplo"]
+    rows:
+      - ["`+`", "Suma", "`5 + 3` → `8`"]
+      - ["`-`", "Resta", "`10 - 4` → `6`"]
+
+ejemplos:
+  - id: 1
+    title: "Variables básicas"
+    enunciado: |
+      Crear variables para almacenar el nombre, latitud y longitud de Buenos Aires.
+      Mostrar cada una.
+    solucion:
+      code: |
+        nombre = "Buenos Aires"
+        latitud = -34.6
+        longitud = -58.4
+        print(nombre)
+        print(latitud)
+        print(longitud)
+      salida: |
+        Buenos Aires
+        -34.6
+        -58.4
+  - id: 2
+    title: "Tipos de datos"
+    enunciado: "Usando las variables anteriores, mostrar el tipo de cada una con `type()`."
+    solucion:
+      code: |
+        # código...
+      salida: |
+        <class 'str'>
+        <class 'float'>
+
+notas_docente:
+  - "Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero"
+  - "Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental"
+  - "Se recomienda pedir participación: \"¿Qué tipo creen que tiene esta variable?\""
+  - "Los ejercicios en `ejercicios/01/01-fundamentos.md` refuerzan estos mismos conceptos"
+```
 
 ## Relación ejercicios → clase
 
 ```
-ejercicios/NN/XX-tema.md              clases/NN/XX-tema.md
-========================              ====================
+data/ejercicios/NN/XX-tema.yml          data/clases/NN/XX-tema.yml
+============================            ==========================
 
-Categoría A (25 ejercicios)     -->   1. Temario (tablas)
-  - Bloque 1: Tema X                     - 1.1 Tema X
-  - Bloque 2: Tema Y                     - 1.2 Tema Y
-  - Bloque 3: Tema Z                     - 1.3 Tema Z
-  - ...                                  - ...
+Categoría A (25 ejercicios)        -->  temario (tablas)
+  - Bloque 1: Tema X                      - title: Tema X
+  - Bloque 2: Tema Y                      - title: Tema Y
 
-Temas de todos los bloques      -->   2. Ejemplos para la clase
-                                         - 2.1 Solo enunciados
-                                         - 2.2 Con soluciones
+Temas de todos los bloques         -->  ejemplos (10 para hacer en vivo)
+                                          - Con enunciado y solución
 
-                                      Notas para el docente
+                                        notas_docente
 ```
 
-## Estructura del archivo de clase
+## Secciones del archivo
 
-```markdown
-# Clase N: Título
+### 1. unit (información de la clase)
 
-Guía para la clase sobre [descripción breve].
-
----
-
-## 1. Temario
-
-### 1.1 Tema del bloque 1
-| Concepto | Descripción | Ejemplo |
-|----------|-------------|---------|
-| ... | ... | ... |
-
-### 1.2 Tema del bloque 2
-...
-
----
-
-## 2. Ejemplos para la clase
-
-10 ejemplos progresivos para hacer en vivo.
-
-### 2.1 Enunciados (para mostrar en clase)
-
-#### Ejemplo 1: Título
-Descripción del problema.
-
----
-
-### 2.2 Enunciados + Soluciones (referencia del docente)
-
-#### Ejemplo 1: Título
-
-**Enunciado**: Descripción.
-
-\`\`\`python
-# código solución
-\`\`\`
-
-**Salida**:
-\`\`\`
-resultado
-\`\`\`
-
----
-
-## Notas para el docente
-
-- Consejos pedagógicos
-- Referencia al archivo de ejercicios
+```yaml
+unit:
+  number: 1  # número de la clase/unidad
+  title: "Fundamentos de Python"
+  description: "Guía para la clase sobre tipos de datos, operadores y funciones básicas."
 ```
 
-## Proceso de transformación
+### 2. temario (tablas de conceptos)
 
-### Paso 1: Identificar bloques
+Por cada bloque del archivo de ejercicios correspondiente, crear una sección de temario con formato tabla:
 
-Leer el archivo de ejercicios y extraer los nombres de los **bloques de la Categoría A**:
-
-```
-### Bloque 1: Variables y print
-### Bloque 2: Operadores aritméticos
-### Bloque 3: Strings y formateo
-...
-```
-
-### Paso 2: Crear temario en tablas
-
-Por cada bloque, crear una sección de temario con formato tabla:
-
-| Columnas recomendadas | Uso |
-|----------------------|-----|
-| Concepto / Operador / Función | Nombre del elemento |
-| Descripción | Qué hace o para qué sirve |
-| Ejemplo | Código y resultado: `` `código` → `resultado` `` |
-
-**Ejemplo de tabla**:
-
-```markdown
-### 1.2 Operadores aritméticos
-
-| Operador | Operación | Ejemplo |
-|----------|-----------|---------|
-| `+` | Suma | `5 + 3` → `8` |
-| `-` | Resta | `10 - 4` → `6` |
-| `*` | Multiplicación | `6 * 7` → `42` |
+```yaml
+temario:
+  - title: "Variables y tipos de datos"
+    columns: ["Concepto", "Descripción"]
+    rows:
+      - ["Variable", "Nombre que almacena un valor"]
+      - ["`str`", "Texto, entre comillas"]
 ```
 
-### Paso 3: Diseñar 10 ejemplos
+Columnas comunes:
+- `["Concepto", "Descripción"]`
+- `["Operador", "Operación", "Ejemplo"]`
+- `["Función", "Descripción", "Ejemplo"]`
+
+### 3. ejemplos (10 para hacer en vivo)
+
+```yaml
+ejemplos:
+  - id: 1
+    title: "Título descriptivo"
+    enunciado: "Descripción del problema a resolver en vivo."
+    solucion:
+      code: |
+        # código Python
+        print("resultado")
+      salida: |
+        resultado
+```
 
 Los ejemplos deben:
 - Cubrir **todos los temas** del temario
@@ -135,57 +147,25 @@ Los ejemplos deben:
 | 7-8 | Bloque 4 |
 | 9-10 | Bloque 5 (más avanzado) |
 
-### Paso 4: Escribir ejemplos en dos versiones
+### 4. notas_docente
 
-**Versión 2.1 - Solo enunciados** (para proyectar):
-```markdown
-#### Ejemplo 3: Operaciones aritméticas
-Calcular el promedio de tres temperaturas: 25.5, 28.3 y 22.1 grados.
+```yaml
+notas_docente:
+  - "Los ejemplos están diseñados para hacerse en vivo"
+  - "Cada ejemplo introduce 1-2 conceptos nuevos"
+  - "Referencia: ejercicios/01/01-fundamentos.md"
 ```
 
-**Versión 2.2 - Con solución** (referencia docente):
-```markdown
-#### Ejemplo 3: Operaciones aritméticas
+## Pipeline de generación
 
-**Enunciado**: Calcular el promedio de tres temperaturas: 25.5, 28.3 y 22.1 grados.
+1. Crear/editar archivo YAML en `data/clases/NN/XX-nombre.yml`
+2. Ejecutar `make markdown` para generar `clases/NN/XX-nombre.md`
+3. Ejecutar `make html` para generar la versión web
 
-\`\`\`python
-temp1 = 25.5
-temp2 = 28.3
-temp3 = 22.1
-
-promedio = (temp1 + temp2 + temp3) / 3
-print(f"Promedio: {round(promedio, 1)}°C")
-\`\`\`
-
-**Salida**:
-\`\`\`
-Promedio: 25.3°C
-\`\`\`
-```
-
-### Paso 5: Agregar notas para el docente
-
-Incluir al final:
-- Que los ejemplos son para hacer en vivo
-- Progresión de conceptos
-- Sugerencias de participación
-- Referencia al archivo de ejercicios correspondiente
-- Contexto temático usado
-
-**Ejemplo**:
-```markdown
-## Notas para el docente
-
-- Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
-- Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental
-- Se recomienda pedir participación: "¿Qué tipo creen que tiene esta variable?"
-- Los ejercicios en `ejercicios/01/01-fundamentos.md` refuerzan estos mismos conceptos
-- Contexto geográfico consistente: coordenadas, ciudades, distancias
-```
+O usar `make all` para ejecutar ambos pasos.
 
 ## Archivos de referencia
 
-- Ejemplo de clase: `clases/01/01-fundamentos.md`
-- Ejemplo de ejercicios: `ejercicios/01/01-fundamentos.md`
+- Ejemplo de clase: `data/clases/01/01-fundamentos.yml`
+- Ejemplo de ejercicios: `data/ejercicios/01/01-fundamentos.yml`
 - Skill de ejercicios: `.cursor/skills/geodojo-ejercicios/SKILL.md`

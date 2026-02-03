@@ -78,8 +78,11 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Creá una tupla llamada `punto` con la latitud y longitud de Ushuaia: (-54.8, -68.3). Mostrá la tupla y luego intentá cambiar el primer valor (observá qué error aparece).
 
 **Ejemplo**:
-- Salida esperada: `(-54.8, -68.3)`
-- Error al modificar: `TypeError`
+- Salida esperada:
+  ```
+  (-54.8, -68.3)
+  - Error al modificar: `TypeError`
+  ```
 
 **Hint**: Las tuplas se crean con paréntesis y son inmutables.
 
@@ -267,76 +270,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 
 ---
 
-### Bloque 5: Bucles while y combinaciones
-
----
-
-### A21. Contador con while
-
-**Enunciado**: Usá un bucle `while` para mostrar los números del 1 al 5.
-
-**Ejemplo**:
-- Salida esperada:
-  ```
-  1
-  2
-  3
-  4
-  5
-  ```
-
-**Hint**: Necesitás una variable contador y una condición de parada.
-
----
-
-### A22. Buscar en lista
-
-**Enunciado**: Dada la lista `capitales = ["Lima", "Santiago", "Buenos Aires", "Montevideo"]`, usá un bucle `while` para encontrar en qué posición está "Buenos Aires".
-
-**Ejemplo**:
-- Salida esperada: `Buenos Aires está en la posición 2`
-
----
-
-### A23. Salir con break
-
-**Enunciado**: Dada la lista `altitudes = [500, 1200, 3500, 800, 2000]`, usá un bucle `for` con `break` para encontrar y mostrar la primera altitud mayor a 2000, y luego salir del bucle.
-
-**Ejemplo**:
-- Salida esperada: `Primera altitud alta encontrada: 3500`
-
----
-
-### A24. Saltar con continue
-
-**Enunciado**: Dada la lista `coordenadas = [(-34.6, -58.4), (0, 0), (-31.4, -64.2), (0, 0), (-32.9, -68.8)]`, usá un bucle `for` con `continue` para mostrar solo las coordenadas que NO sean (0, 0).
-
-**Ejemplo**:
-- Salida esperada:
-  ```
-  (-34.6, -58.4)
-  (-31.4, -64.2)
-  (-32.9, -68.8)
-  ```
-
----
-
-### A25. Tabla de multiplicar
-
-**Enunciado**: Pedí al usuario un número entre 1 y 10 (validá con `while` que esté en ese rango). Luego mostrá su tabla de multiplicar del 1 al 10 usando un bucle `for`.
-
-**Ejemplo**:
-- Entrada: `5`
-- Salida esperada:
-  ```
-  5 x 1 = 5
-  5 x 2 = 10
-  ...
-  5 x 10 = 50
-  ```
-
----
-
 ## Categoría B - Ejercicios de práctica extra
 
 Recomendables para quienes quieran practicar más.
@@ -439,7 +372,6 @@ Recomendables para quienes quieran practicar más.
 ### B8. Filtrar diccionarios
 
 **Enunciado**: Dada una lista de diccionarios de ciudades, filtrá y mostrá solo las que tienen más de 1 millón de habitantes.
-
 ```python
 ciudades = [
     {"nombre": "Buenos Aires", "poblacion": 2890000},
@@ -473,10 +405,7 @@ ciudades = [
 **Enunciado**: Pedí al usuario latitud y longitud. Validá que ambas estén en rangos correctos (lat: -90 a 90, lon: -180 a 180). Si alguna es inválida, pedí que la ingrese de nuevo hasta que sea correcta.
 
 **Ejemplo**:
-- Entrada: `100` (inválida), `-34.6` (válida)
-- Salida: `Latitud inválida, intentá de nuevo...`
 - Entrada: `-34.6`
-- Salida: `Coordenadas válidas: (-34.6, -58.4)`
 
 ---
 
@@ -493,7 +422,7 @@ Ejercicios opcionales que requieren mayor dificultad o investigación.
 **Ejemplo**:
 - Salida esperada:
   ```
-         BsAs  Cba  Mza
+  BsAs  Cba  Mza
   BsAs      0  700  1000
   Cba     700    0   500
   Mza    1000  500     0
@@ -518,20 +447,9 @@ Ejercicios opcionales que requieren mayor dificultad o investigación.
 
 **Enunciado**: Creá un diccionario anidado que represente información completa de un país:
 - Nombre, capital, coordenadas de la capital (como diccionario), lista de provincias/regiones
-
 Luego accedé a la latitud de la capital y mostrá la tercera provincia.
 
 **Ejemplo**:
-```python
-pais = {
-    "nombre": "Argentina",
-    "capital": {
-        "nombre": "Buenos Aires",
-        "coordenadas": {"lat": -34.6, "lon": -58.4}
-    },
-    "provincias": ["Buenos Aires", "Córdoba", "Santa Fe", ...]
-}
-```
 - Salida esperada:
   ```
   Latitud de la capital: -34.6
@@ -563,31 +481,7 @@ pais = {
 3. Buscar una ciudad por nombre
 4. Eliminar una ciudad por nombre
 5. Salir
-
 Usá un menú interactivo con `while` y estructuras de datos apropiadas.
-
-**Ejemplo**:
-- Interacción:
-  ```
-  === REGISTRO DE CIUDADES ===
-  1. Agregar ciudad
-  2. Listar ciudades
-  3. Buscar ciudad
-  4. Eliminar ciudad
-  5. Salir
-  
-  Opción: 1
-  Nombre: Córdoba
-  Latitud: -31.4
-  Longitud: -64.2
-  Ciudad agregada!
-  
-  Opción: 2
-  1. Córdoba (-31.4, -64.2)
-  
-  Opción: 5
-  ¡Hasta luego!
-  ```
 
 ---
 

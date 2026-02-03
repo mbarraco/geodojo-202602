@@ -1,0 +1,268 @@
+unit:
+  number: 3
+  title: Archivos y CSV
+  description: Ejercicios sobre lectura y escritura de archivos, y manejo del módulo CSV.
+categories:
+- id: A
+  title: Ejercicios fundamentales
+  description: Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
+  blocks:
+  - name: Lectura de archivos con open()
+    exercises:
+    - id: A1
+      title: Leer archivo completo
+      enunciado: Creá un archivo `ciudad.txt` con el texto "Buenos Aires" y luego escribí un programa que lo lea completo
+        usando `open()` y `read()`. Mostrá el contenido por pantalla.
+      ejemplo:
+        salida: Buenos Aires
+      hint: Usá `open("archivo.txt", "r")` para abrir en modo lectura y `.read()` para leer todo el contenido.
+    - id: A2
+      title: Leer línea por línea
+      enunciado: 'Creá un archivo `ciudades.txt` con tres ciudades (una por línea): Buenos Aires, Córdoba, Rosario. Leé el
+        archivo y mostrá cada línea numerada.'
+      ejemplo:
+        salida: |-
+          1: Buenos Aires
+          2: Córdoba
+          3: Rosario
+      hint: Usá `readlines()` para obtener una lista de líneas, y `enumerate()` para numerarlas.
+    - id: A3
+      title: Leer con context manager
+      enunciado: Reescribí el ejercicio anterior usando `with open(...) as f:` en lugar de abrir y cerrar manualmente.
+      ejemplo:
+        salida: igual que A2
+      hint: El context manager `with` cierra automáticamente el archivo al salir del bloque.
+    - id: A4
+      title: Contar líneas de un archivo
+      enunciado: Creá un archivo `provincias.txt` con 5 provincias argentinas (una por línea). Escribí un programa que cuente
+        cuántas líneas tiene el archivo.
+      ejemplo:
+        salida: El archivo tiene 5 líneas
+      hint: Usá `len(archivo.readlines())` para contar las líneas.
+    - id: A5
+      title: Leer coordenadas desde archivo
+      enunciado: Creá un archivo `coordenadas.txt` con el contenido `-34.6,-58.4` (latitud y longitud de Buenos Aires). Leé
+        el archivo, separá los valores por la coma, convertí a float y mostrá cada coordenada.
+      ejemplo:
+        salida: |-
+          Latitud: -34.6
+          Longitud: -58.4
+      hint: Usá `.split(",")` para separar por coma y `float()` para convertir.
+  - name: Escritura de archivos
+    exercises:
+    - id: A6
+      title: Escribir texto simple
+      enunciado: Escribí un programa que cree un archivo `destino.txt` y escriba el texto "Ushuaia" en él.
+      hint: Usá `open("archivo.txt", "w")` para abrir en modo escritura y `.write()` para escribir.
+    - id: A7
+      title: Escribir múltiples líneas
+      enunciado: 'Creá una lista con tres ciudades: `["Mendoza", "Salta", "Tucumán"]`. Escribí cada ciudad en una línea separada
+        en un archivo `mis_ciudades.txt`.'
+      hint: Agregá `\n` al final de cada línea, o usá `writelines()` con una lista que ya incluya los saltos de línea.
+    - id: A8
+      title: Agregar al final de un archivo
+      enunciado: Teniendo el archivo `mis_ciudades.txt` del ejercicio anterior, agregá una nueva ciudad "Neuquén" al final
+        sin borrar las existentes.
+      hint: Usá modo `"a"` (append) en lugar de `"w"` para agregar sin sobrescribir.
+    - id: A9
+      title: Guardar coordenadas
+      enunciado: Dadas las variables `lat = -32.89` y `lon = -68.83` (Mendoza), escribí un archivo `punto.txt` con el formato
+        `latitud,longitud`.
+      hint: 'Usá f-string para formatear: `f"{lat},{lon}"`.'
+    - id: A10
+      title: Copiar contenido de archivo
+      enunciado: Escribí un programa que lea el contenido de `ciudades.txt` y lo copie a un nuevo archivo `ciudades_backup.txt`.
+      hint: Leé con `read()` y escribí con `write()`.
+  - name: Módulo CSV - Lectura
+    exercises:
+    - id: A11
+      title: Leer CSV simple
+      enunciado: |-
+        Creá un archivo `ciudades.csv` con el siguiente contenido:
+        ```
+        nombre,poblacion
+        Buenos Aires,2890000
+        Córdoba,1430000
+        Rosario,1270000
+        ```
+        Leé el archivo usando `csv.reader()` y mostrá cada fila.
+      ejemplo:
+        salida: |-
+          ['nombre', 'poblacion']
+          ['Buenos Aires', '2890000']
+          ['Córdoba', '1430000']
+          ['Rosario', '1270000']
+      hint: Importá el módulo `csv` y usá `csv.reader(archivo)`.
+    - id: A12
+      title: Saltar encabezado
+      enunciado: Usando el archivo `ciudades.csv` del ejercicio anterior, leé y mostrá solo las filas de datos, saltando el
+        encabezado.
+      ejemplo:
+        salida: |-
+          Buenos Aires: 2890000 habitantes
+          Córdoba: 1430000 habitantes
+          Rosario: 1270000 habitantes
+      hint: Usá `next(reader)` para saltar la primera fila, o convertí a lista y usá slicing.
+    - id: A13
+      title: CSV con coordenadas
+      enunciado: |-
+        Creá un archivo `puntos.csv`:
+        ```
+        ciudad,latitud,longitud
+        Buenos Aires,-34.6,-58.4
+        Córdoba,-31.4,-64.2
+        Mendoza,-32.9,-68.8
+        ```
+        Leé el archivo y mostrá cada ciudad con sus coordenadas formateadas.
+      ejemplo:
+        salida: |-
+          Buenos Aires está en (-34.6, -58.4)
+          Córdoba está en (-31.4, -64.2)
+          Mendoza está en (-32.9, -68.8)
+    - id: A14
+      title: Calcular con datos de CSV
+      enunciado: Usando `ciudades.csv`, calculá la población total sumando los valores de la columna población.
+      ejemplo:
+        salida: 'Población total: 5590000'
+      hint: Convertí los valores de población a `int()` antes de sumar.
+    - id: A15
+      title: Buscar en CSV
+      enunciado: Usando `puntos.csv`, escribí un programa que busque la ciudad "Mendoza" y muestre sus coordenadas.
+      ejemplo:
+        salida: 'Mendoza: latitud -32.9, longitud -68.8'
+      hint: Recorré las filas y usá un `if` para comparar el nombre.
+  - name: DictReader y DictWriter
+    exercises:
+    - id: A16
+      title: Leer CSV como diccionarios
+      enunciado: Usando `puntos.csv`, leé el archivo con `csv.DictReader()` y mostrá cada fila como diccionario.
+      ejemplo:
+        salida: |-
+          {'ciudad': 'Buenos Aires', 'latitud': '-34.6', 'longitud': '-58.4'}
+          {'ciudad': 'Córdoba', 'latitud': '-31.4', 'longitud': '-64.2'}
+          {'ciudad': 'Mendoza', 'latitud': '-32.9', 'longitud': '-68.8'}
+      hint: '`csv.DictReader()` usa la primera fila como claves.'
+    - id: A17
+      title: Acceder por nombre de columna
+      enunciado: Usando `DictReader`, leé `puntos.csv` y mostrá solo los nombres de las ciudades accediendo por clave.
+      ejemplo:
+        salida: |-
+          Buenos Aires
+          Córdoba
+          Mendoza
+      hint: Accedé con `fila["ciudad"]` en lugar de `fila[0]`.
+    - id: A18
+      title: Escribir CSV con DictWriter
+      enunciado: |-
+        Creá una lista de diccionarios con datos de provincias:
+        ```python
+        provincias = [
+            {"nombre": "Buenos Aires", "capital": "La Plata"},
+            {"nombre": "Córdoba", "capital": "Córdoba"},
+            {"nombre": "Santa Fe", "capital": "Santa Fe"}
+        ]
+        ```
+        Escribí estos datos en un archivo `provincias.csv` usando `DictWriter`.
+      hint: Usá `writeheader()` para escribir los encabezados y `writerows()` para los datos.
+    - id: A19
+      title: Agregar fila a CSV existente
+      enunciado: 'Agregá una nueva provincia al archivo `provincias.csv`: Mendoza con capital Mendoza.'
+      hint: Abrí en modo `"a"` y usá `writerow()` para una sola fila. No escribas el encabezado de nuevo.
+    - id: A20
+      title: Filtrar y guardar
+      enunciado: Leé `puntos.csv` y guardá en un nuevo archivo `puntos_sur.csv` solo las ciudades con latitud menor a -32
+        (más al sur).
+- id: B
+  title: Ejercicios de práctica extra
+  description: Recomendables para quienes quieran practicar más.
+  exercises:
+  - id: B1
+    title: Contar palabras en archivo
+    enunciado: Creá un archivo `descripcion.txt` con una descripción de una ciudad (varias oraciones). Contá cuántas palabras
+      tiene el archivo.
+    ejemplo:
+      salida: El archivo tiene 7 palabras
+  - id: B2
+    title: Validar existencia de archivo
+    enunciado: Escribí un programa que intente leer un archivo `datos.csv`. Si el archivo no existe, mostrá un mensaje de
+      error amigable en lugar de que el programa falle.
+    hint: Usá `try/except FileNotFoundError`.
+  - id: B3
+    title: CSV con delimitador personalizado
+    enunciado: Creá un archivo `datos.tsv` separado por tabulaciones (no comas) con datos de ciudades. Leélo usando el parámetro
+      `delimiter` de csv.reader.
+  - id: B4
+    title: Estadísticas de coordenadas
+    enunciado: 'Leé `puntos.csv` y calculá: latitud promedio, longitud promedio, y el punto más al este (mayor longitud).'
+    ejemplo:
+      salida: |-
+        Latitud promedio: -32.97
+        Longitud promedio: -63.8
+        Punto más al este: Buenos Aires
+  - id: B5
+    title: Ordenar CSV por columna
+    enunciado: Leé `ciudades.csv` y creá `ciudades_ordenadas.csv` con las ciudades ordenadas de mayor a menor población.
+  - id: B6
+    title: Backup con timestamp
+    enunciado: Escribí un programa que copie `puntos.csv` a un archivo de backup con la fecha actual en el nombre, por ejemplo
+      `puntos_backup_2026-02-03.csv`.
+    hint: Usá el módulo `datetime` para obtener la fecha.
+  - id: B7
+    title: Validar formato de CSV
+    enunciado: Escribí un programa que verifique si un archivo CSV tiene exactamente 3 columnas en cada fila. Si alguna fila
+      tiene más o menos, mostrá un mensaje de error indicando el número de fila.
+  - id: B8
+    title: Convertir CSV a formato vertical
+    enunciado: |-
+      Leé `puntos.csv` y generá un archivo `puntos_vertical.txt` con formato:
+      ```
+  - id: B9
+    title: Unir múltiples archivos CSV
+    enunciado: Tenés `ciudades_norte.csv` y `ciudades_sur.csv` con el mismo formato. Creá un programa que los una en `todas_ciudades.csv`.
+  - id: B10
+    title: Leer CSV desde string
+    enunciado: |-
+      Dado un string multilínea que representa un CSV:
+      ```python
+      datos = """ciudad,lat,lon
+      Buenos Aires,-34.6,-58.4
+      Córdoba,-31.4,-64.2"""
+      ```
+      Parseá el string como si fuera un archivo CSV usando `io.StringIO`.
+- id: C
+  title: Desafíos
+  description: Ejercicios opcionales que requieren mayor dificultad o investigación.
+  exercises:
+  - id: C1
+    title: Detector de encoding
+    enunciado: Algunos archivos CSV pueden tener diferentes encodings (UTF-8, Latin-1, etc.). Escribí un programa que intente
+      abrir un archivo con UTF-8 primero, y si falla, pruebe con Latin-1.
+  - id: C2
+    title: CSV con campos multilínea
+    enunciado: Los campos CSV pueden contener saltos de línea si están entre comillas. Creá un archivo donde una celda contenga
+      texto con saltos de línea y leélo correctamente.
+  - id: C3
+    title: Comparar dos versiones de CSV
+    enunciado: Tenés `ciudades_v1.csv` y `ciudades_v2.csv`. Escribí un programa que muestre qué ciudades fueron agregadas,
+      eliminadas o modificadas entre ambas versiones.
+  - id: C4
+    title: Generar CSV desde API simulada
+    enunciado: |-
+      Creá una función `obtener_ciudades()` que simule una respuesta de API retornando una lista de diccionarios. Luego guardá esos datos en un archivo CSV.
+      ```python
+      def obtener_ciudades():
+          return [
+              {"nombre": "Buenos Aires", "pais": "Argentina"},
+              {"nombre": "Santiago", "pais": "Chile"}
+          ]
+      ```
+  - id: C5
+    title: Sistema de log en archivo
+    enunciado: |-
+      Creá un sistema simple de logging que agregue mensajes con timestamp a un archivo `log.txt`. Cada vez que se ejecute el programa, debe agregar una nueva línea sin borrar las anteriores.
+      **Ejemplo** de contenido después de varias ejecuciones:
+      ```
+      2026-02-03 10:30:15 - Programa iniciado
+      2026-02-03 10:30:16 - Datos procesados
+      2026-02-03 10:45:22 - Programa iniciado
+      ```

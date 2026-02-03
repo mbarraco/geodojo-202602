@@ -180,7 +180,7 @@
 </tr>
 <tr>
 <td>OR</td>
-<td><code>(cond1) \| (cond2)</code></td>
+<td><code>(cond1) \ | (cond2)</code></td>
 <td>Al menos una</td>
 </tr>
 <tr>
@@ -343,7 +343,7 @@
 <div class="section-content">
 <hr />
 <h4 id="ejemplo-1-estadisticas-basicas_1">Ejemplo 1: Estadísticas básicas</h4>
-<p><strong>Enunciado</strong>: Calcular suma, promedio, mínimo y máximo de poblaciones.</p>
+<p><strong>Enunciado</strong>: Calcular suma, promedio, mínimo y máximo de poblaciones de ciudades.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">poblaciones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2890000</span><span class="p">,</span> <span class="mi">1430000</span><span class="p">,</span> <span class="mi">1270000</span><span class="p">,</span> <span class="mi">620000</span><span class="p">,</span> <span class="mi">115000</span><span class="p">])</span>
@@ -369,7 +369,7 @@ Desv. estándar: 917,449
 
 <hr />
 <h4 id="ejemplo-2-encontrar-extremos_1">Ejemplo 2: Encontrar extremos</h4>
-<p><strong>Enunciado</strong>: Encontrar la ciudad más al norte y más al sur.</p>
+<p><strong>Enunciado</strong>: Encontrar la ciudad más al norte y más al sur de un array de latitudes.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">latitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">34.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">31.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">33.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">24.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.9</span><span class="p">])</span>
@@ -393,7 +393,7 @@ Más al sur: Buenos Aires (lat: -34.6)
 
 <hr />
 <h4 id="ejemplo-3-operaciones-por-eje-en-matriz_1">Ejemplo 3: Operaciones por eje en matriz</h4>
-<p><strong>Enunciado</strong>: Calcular estadísticas por filas y columnas.</p>
+<p><strong>Enunciado</strong>: Calcular estadísticas por filas y columnas de una matriz de coordenadas.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Matriz: cada fila es una ciudad [lat, lon, poblacion]</span>
@@ -567,7 +567,7 @@ Datos faltantes: 2
 
 <hr />
 <h4 id="ejemplo-9-combinar-arrays_1">Ejemplo 9: Combinar arrays</h4>
-<p><strong>Enunciado</strong>: Concatenar datos de diferentes regiones.</p>
+<p><strong>Enunciado</strong>: Concatenar datos de diferentes regiones en un solo array.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Latitudes de dos regiones</span>

@@ -63,7 +63,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Usá `dir(math)` para ver todas las funciones disponibles en el módulo math. Mostrá las primeras 10.
 
 **Ejemplo**:
-- Salida esperada: lista de nombres de funciones
+- Salida esperada: `lista de nombres de funciones`
 
 **Hint**: `dir()` devuelve una lista de nombres disponibles en un módulo.
 
@@ -78,7 +78,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Usá el módulo `os` para mostrar el directorio de trabajo actual.
 
 **Ejemplo**:
-- Salida esperada: `/home/usuario/proyecto` (o similar)
+- Salida esperada: `/home/usuario/proyecto` (o similar)`
 
 **Hint**: Usá `os.getcwd()`.
 
@@ -98,7 +98,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Usá el módulo `random` para generar una coordenada de latitud aleatoria entre -90 y 90.
 
 **Ejemplo**:
-- Salida esperada: `-34.567` (número aleatorio diferente cada vez)
+- Salida esperada: `-34.567` (número aleatorio diferente cada vez)`
 
 **Hint**: Usá `random.uniform(-90, 90)`.
 
@@ -109,7 +109,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Dada una lista de ciudades `["Buenos Aires", "Córdoba", "Rosario", "Mendoza"]`, usá `random.choice()` para elegir una ciudad al azar.
 
 **Ejemplo**:
-- Salida esperada: `Córdoba` (o cualquier ciudad de la lista)
+- Salida esperada: `Córdoba` (o cualquier ciudad de la lista)`
 
 ---
 
@@ -192,8 +192,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Escribí un programa que pida al usuario un número y lo use como divisor de 100. Manejá tanto el caso de división por cero como de entrada inválida (texto en lugar de número).
 
 **Ejemplo**:
-- Entrada: `0` → Salida: `Error: División por cero`
-- Entrada: `abc` → Salida: `Error: Entrada inválida`
 - Entrada: `5` → Salida: `Resultado: 20.0`
 
 ---
@@ -202,10 +200,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 
 **Enunciado**: Escribí un programa que intente abrir y leer un archivo. Si tiene éxito (no hay error), mostrá "Archivo leído correctamente" en el bloque `else`.
 
-**Ejemplo**:
-- Si el archivo existe: `Contenido: ... Archivo leído correctamente`
-- Si no existe: `Error: Archivo no encontrado`
-
 **Hint**: El bloque `else` se ejecuta solo si no hubo excepciones.
 
 ---
@@ -213,10 +207,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 ### A18. Bloque finally
 
 **Enunciado**: Escribí un programa que intente abrir un archivo y use `finally` para mostrar "Operación finalizada" siempre, haya o no error.
-
-**Ejemplo**:
-- Si el archivo existe: `Contenido: ... Operación finalizada`
-- Si no existe: `Error: ... Operación finalizada`
 
 **Hint**: El bloque `finally` se ejecuta siempre, haya o no excepción.
 
@@ -241,64 +231,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 - Salida esperada: `Ocurrió un error: division by zero`
 
 **Hint**: `Exception` es la clase base de la mayoría de errores.
-
----
-
-### Bloque 5: Funciones robustas con manejo de errores
-
----
-
-### A21. Función con validación
-
-**Enunciado**: Creá una función `convertir_coordenada(texto)` que convierta un string a float. Si falla, debe retornar `None` en lugar de fallar.
-
-**Ejemplo**:
-- `convertir_coordenada("-34.6")` → `-34.6`
-- `convertir_coordenada("invalido")` → `None`
-
----
-
-### A22. Leer archivo seguro
-
-**Enunciado**: Creá una función `leer_archivo_seguro(path)` que retorne el contenido del archivo, o un string vacío si el archivo no existe.
-
-**Ejemplo**:
-- Si el archivo existe: retorna contenido
-- Si no existe: retorna `""`
-
----
-
-### A23. Obtener valor de diccionario seguro
-
-**Enunciado**: Creá una función `obtener_valor(diccionario, clave, default=None)` que retorne el valor de la clave, o el valor por defecto si la clave no existe.
-
-**Ejemplo**:
-- `obtener_valor({"a": 1}, "a")` → `1`
-- `obtener_valor({"a": 1}, "b")` → `None`
-- `obtener_valor({"a": 1}, "b", 0)` → `0`
-
-**Hint**: Python ya tiene esto: `dict.get()`. Implementalo vos usando try/except.
-
----
-
-### A24. Validar coordenadas
-
-**Enunciado**: Creá una función `validar_coordenada(lat, lon)` que verifique si las coordenadas son válidas (lat entre -90 y 90, lon entre -180 y 180). Si recibe valores no numéricos, debe capturar el error y retornar `False`.
-
-**Ejemplo**:
-- `validar_coordenada(-34.6, -58.4)` → `True`
-- `validar_coordenada(-100, 50)` → `False`
-- `validar_coordenada("abc", -58.4)` → `False`
-
----
-
-### A25. Parsear línea de CSV manualmente
-
-**Enunciado**: Creá una función `parsear_punto(linea)` que reciba un string con formato "ciudad,lat,lon" y retorne un diccionario. Si el formato es incorrecto, debe retornar `None`.
-
-**Ejemplo**:
-- `parsear_punto("Buenos Aires,-34.6,-58.4")` → `{"ciudad": "Buenos Aires", "lat": -34.6, "lon": -58.4}`
-- `parsear_punto("datos_invalidos")` → `None`
 
 ---
 
@@ -385,7 +317,6 @@ Ejercicios opcionales que requieren mayor dificultad o investigación.
 ### C2. Excepción personalizada
 
 **Enunciado**: Creá una clase `CoordenadaInvalidaError` que herede de `Exception`. Usala en una función de validación que lance este error específico.
-
 ```python
 class CoordenadaInvalidaError(Exception):
     pass
@@ -411,4 +342,4 @@ class CoordenadaInvalidaError(Exception):
 
 ---
 
-*Fin de los ejercicios de la Unidad 3 - Módulos y Manejo de Errores*
+*Fin de los ejercicios de la Unidad 3*

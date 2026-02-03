@@ -1,0 +1,160 @@
+unit:
+  number: 4
+  title: Operaciones Avanzadas con NumPy
+  description: Ejercicios sobre funciones estadísticas, máscaras booleanas y operaciones vectorizadas.
+categories:
+- id: A
+  title: Ejercicios fundamentales
+  description: Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
+  blocks:
+  - name: Funciones estadísticas básicas
+    exercises:
+    - id: A1
+      title: Suma de elementos
+      enunciado: Dado un array de poblaciones `[2890000, 1430000, 1270000, 620000]`, calculá la población total usando `np.sum()`.
+      ejemplo:
+        salida: '6210000'
+    - id: A2
+      title: Promedio
+      enunciado: Calculá la latitud promedio del array `[-34.6, -31.4, -32.9, -24.8]` usando `np.mean()`.
+      ejemplo:
+        salida: '-30.925'
+    - id: A3
+      title: Mínimo y máximo
+      enunciado: Encontrá la latitud más al norte (máximo) y más al sur (mínimo) del array anterior.
+      hint: '`np.min()` y `np.max()`.'
+    - id: A4
+      title: Posición del mínimo/máximo
+      enunciado: Encontrá el índice de la ciudad más al sur usando `np.argmin()`.
+      ejemplo:
+        salida: 0` (si Buenos Aires está en posición 0)
+    - id: A5
+      title: Desviación estándar
+      enunciado: Calculá la desviación estándar de las poblaciones para ver qué tan dispersos están los valores.
+      hint: '`np.std()`.'
+  - name: Operaciones por eje
+    exercises:
+    - id: A6
+      title: Suma por columnas
+      enunciado: Dada una matriz 3x2 de coordenadas (lat, lon), calculá la suma de cada columna (todas las latitudes, todas
+        las longitudes).
+      hint: '`np.sum(matriz, axis=0)` suma por columnas.'
+    - id: A7
+      title: Promedio por filas
+      enunciado: Calculá el promedio de cada fila de la matriz anterior (promedio de lat y lon para cada ciudad).
+      hint: '`np.mean(matriz, axis=1)` promedia por filas.'
+    - id: A8
+      title: Mínimo por columna
+      enunciado: Encontrá la latitud mínima y longitud mínima de la matriz.
+    - id: A9
+      title: Diferencia entre ejes
+      enunciado: Creá una matriz 4x3 con `np.arange(12).reshape(4,3)`. Calculá la suma total, suma por filas y suma por columnas.
+    - id: A10
+      title: Mantener dimensiones
+      enunciado: Calculá el promedio por columnas de una matriz 3x4, manteniendo la forma del resultado como matriz usando
+        `keepdims=True`.
+  - name: Máscaras booleanas
+    exercises:
+    - id: A11
+      title: Crear máscara simple
+      enunciado: Dado un array de temperaturas `[25, 30, 15, 35, 20]`, creá una máscara booleana que indique cuáles superan
+        25°C.
+      ejemplo:
+        salida: '[False, True, False, True, False]'
+    - id: A12
+      title: Filtrar con máscara
+      enunciado: Usando la máscara anterior, obtené solo las temperaturas mayores a 25°C.
+      ejemplo:
+        salida: '[30, 35]'
+      hint: '`array[mascara]` filtra usando la máscara.'
+    - id: A13
+      title: Contar elementos
+      enunciado: Contá cuántas ciudades tienen latitud menor a -30 (están más al sur).
+      ejemplo:
+        salida: '3'
+      hint: '`np.sum(mascara)` cuenta los True.'
+    - id: A14
+      title: Máscara con múltiples condiciones
+      enunciado: Encontrá ciudades que estén en el hemisferio sur (lat < 0) Y tengan longitud oeste de -60 (lon < -60).
+    - id: A15
+      title: Máscara con OR
+      enunciado: Encontrá elementos que sean menores a -30 O mayores a -25 en un array de latitudes.
+      hint: Usar `|` para OR entre condiciones.
+  - name: np.where y operaciones condicionales
+    exercises:
+    - id: A16
+      title: where básico
+      enunciado: Dado un array de latitudes, usá `np.where()` para crear un array que diga "Sur" si lat < 0, o "Norte" si
+        no.
+      hint: '`np.where(condicion, valor_si_true, valor_si_false)`.'
+    - id: A17
+      title: where para reemplazar valores
+      enunciado: Tenés un array de elevaciones con valores -999 que indican datos faltantes. Reemplazá los -999 por 0.
+    - id: A18
+      title: Obtener índices con where
+      enunciado: Encontrá los índices donde la elevación es mayor a 200 metros.
+      hint: '`np.where(condicion)` sin los otros argumentos devuelve índices.'
+    - id: A19
+      title: Clasificar valores
+      enunciado: Clasificá temperaturas en "fría" (< 15), "templada" (15-25), "cálida" (> 25).
+      hint: Usá `np.where` anidado o `np.select()`.
+    - id: A20
+      title: Clip de valores
+      enunciado: Limitá un array de temperaturas para que ninguna sea menor a 0 ni mayor a 40.
+      hint: '`np.clip(array, min, max)`.'
+- id: B
+  title: Ejercicios de práctica extra
+  description: Recomendables para quienes quieran practicar más.
+  exercises:
+  - id: B1
+    title: Percentiles
+    enunciado: Calculá los percentiles 25, 50 (mediana) y 75 de un array de elevaciones.
+    hint: '`np.percentile(arr, [25, 50, 75])`.'
+  - id: B2
+    title: Producto acumulado
+    enunciado: Calculá el producto acumulado de un array usando `np.cumprod()`.
+  - id: B3
+    title: Diferencias
+    enunciado: Calculá las diferencias entre elementos consecutivos con `np.diff()`.
+  - id: B4
+    title: Ordenar array
+    enunciado: Ordená un array de poblaciones de menor a mayor con `np.sort()`.
+  - id: B5
+    title: Índices de ordenamiento
+    enunciado: Obtené los índices que ordenarían un array con `np.argsort()`.
+  - id: B6
+    title: Buscar valor
+    enunciado: Usá `np.searchsorted()` para encontrar dónde insertar un valor en un array ordenado.
+  - id: B7
+    title: Redondeo
+    enunciado: Redondeá coordenadas a 2 decimales con `np.round()`.
+  - id: B8
+    title: Funciones trigonométricas
+    enunciado: Convertí un ángulo de grados a radianes y calculá su seno con `np.sin()`.
+  - id: B9
+    title: Normalizar datos
+    enunciado: Normalizá un array para que tenga media 0 y desviación estándar 1.
+  - id: B10
+    title: Correlación
+    enunciado: Calculá la correlación entre dos arrays con `np.corrcoef()`.
+- id: C
+  title: Desafíos
+  description: Ejercicios opcionales que requieren mayor dificultad o investigación.
+  exercises:
+  - id: C1
+    title: Calcular NDVI
+    enunciado: 'Dados arrays de valores NIR (infrarrojo cercano) y RED (rojo), calculá el NDVI usando la fórmula: `NDVI =
+      (NIR - RED) / (NIR + RED)`. El NDVI indica vegetación: valores cercanos a 1 indican vegetación densa.'
+  - id: C2
+    title: Distancia de Haversine
+    enunciado: Implementá la fórmula de Haversine para calcular la distancia real entre puntos geográficos considerando la
+      curvatura de la Tierra.
+  - id: C3
+    title: Matriz de covarianza
+    enunciado: Calculá la matriz de covarianza entre latitud, longitud y elevación de un conjunto de puntos.
+  - id: C4
+    title: Álgebra lineal
+    enunciado: Multiplicá dos matrices con `np.dot()` o `@`. Calculá el determinante con `np.linalg.det()`.
+  - id: C5
+    title: FFT básica
+    enunciado: Investigá `np.fft.fft()` para calcular la transformada de Fourier de una señal simple.

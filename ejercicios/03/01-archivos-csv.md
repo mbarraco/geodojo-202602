@@ -19,7 +19,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Creá un archivo `ciudad.txt` con el texto "Buenos Aires" y luego escribí un programa que lo lea completo usando `open()` y `read()`. Mostrá el contenido por pantalla.
 
 **Ejemplo**:
-- Contenido del archivo: `Buenos Aires`
 - Salida esperada: `Buenos Aires`
 
 **Hint**: Usá `open("archivo.txt", "r")` para abrir en modo lectura y `.read()` para leer todo el contenido.
@@ -47,7 +46,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Reescribí el ejercicio anterior usando `with open(...) as f:` en lugar de abrir y cerrar manualmente.
 
 **Ejemplo**:
-- Salida esperada: igual que A2
+- Salida esperada: `igual que A2`
 
 **Hint**: El context manager `with` cierra automáticamente el archivo al salir del bloque.
 
@@ -87,9 +86,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 
 **Enunciado**: Escribí un programa que cree un archivo `destino.txt` y escriba el texto "Ushuaia" en él.
 
-**Ejemplo**:
-- Contenido del archivo creado: `Ushuaia`
-
 **Hint**: Usá `open("archivo.txt", "w")` para abrir en modo escritura y `.write()` para escribir.
 
 ---
@@ -97,14 +93,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 ### A7. Escribir múltiples líneas
 
 **Enunciado**: Creá una lista con tres ciudades: `["Mendoza", "Salta", "Tucumán"]`. Escribí cada ciudad en una línea separada en un archivo `mis_ciudades.txt`.
-
-**Ejemplo**:
-- Contenido del archivo:
-  ```
-  Mendoza
-  Salta
-  Tucumán
-  ```
 
 **Hint**: Agregá `\n` al final de cada línea, o usá `writelines()` con una lista que ya incluya los saltos de línea.
 
@@ -114,15 +102,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 
 **Enunciado**: Teniendo el archivo `mis_ciudades.txt` del ejercicio anterior, agregá una nueva ciudad "Neuquén" al final sin borrar las existentes.
 
-**Ejemplo**:
-- Contenido final del archivo:
-  ```
-  Mendoza
-  Salta
-  Tucumán
-  Neuquén
-  ```
-
 **Hint**: Usá modo `"a"` (append) en lugar de `"w"` para agregar sin sobrescribir.
 
 ---
@@ -131,9 +110,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 
 **Enunciado**: Dadas las variables `lat = -32.89` y `lon = -68.83` (Mendoza), escribí un archivo `punto.txt` con el formato `latitud,longitud`.
 
-**Ejemplo**:
-- Contenido del archivo: `-32.89,-68.83`
-
 **Hint**: Usá f-string para formatear: `f"{lat},{lon}"`.
 
 ---
@@ -141,9 +117,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 ### A10. Copiar contenido de archivo
 
 **Enunciado**: Escribí un programa que lea el contenido de `ciudades.txt` y lo copie a un nuevo archivo `ciudades_backup.txt`.
-
-**Ejemplo**:
-- Si `ciudades.txt` contiene "Buenos Aires\nCórdoba", `ciudades_backup.txt` debe contener lo mismo.
 
 **Hint**: Leé con `read()` y escribí con `write()`.
 
@@ -284,15 +257,6 @@ provincias = [
 ```
 Escribí estos datos en un archivo `provincias.csv` usando `DictWriter`.
 
-**Ejemplo**:
-- Contenido del archivo:
-  ```
-  nombre,capital
-  Buenos Aires,La Plata
-  Córdoba,Córdoba
-  Santa Fe,Santa Fe
-  ```
-
 **Hint**: Usá `writeheader()` para escribir los encabezados y `writerows()` para los datos.
 
 ---
@@ -301,9 +265,6 @@ Escribí estos datos en un archivo `provincias.csv` usando `DictWriter`.
 
 **Enunciado**: Agregá una nueva provincia al archivo `provincias.csv`: Mendoza con capital Mendoza.
 
-**Ejemplo**:
-- Nueva línea agregada: `Mendoza,Mendoza`
-
 **Hint**: Abrí en modo `"a"` y usá `writerow()` para una sola fila. No escribas el encabezado de nuevo.
 
 ---
@@ -311,90 +272,6 @@ Escribí estos datos en un archivo `provincias.csv` usando `DictWriter`.
 ### A20. Filtrar y guardar
 
 **Enunciado**: Leé `puntos.csv` y guardá en un nuevo archivo `puntos_sur.csv` solo las ciudades con latitud menor a -32 (más al sur).
-
-**Ejemplo**:
-- Contenido de `puntos_sur.csv`:
-  ```
-  ciudad,latitud,longitud
-  Buenos Aires,-34.6,-58.4
-  Mendoza,-32.9,-68.8
-  ```
-
----
-
-### Bloque 5: Combinando lectura y escritura
-
----
-
-### A21. Transformar datos de CSV
-
-**Enunciado**: Leé `puntos.csv` y creá un nuevo archivo `puntos_absolutos.csv` donde las latitudes y longitudes sean valores absolutos (sin signo negativo).
-
-**Ejemplo**:
-- Contenido de `puntos_absolutos.csv`:
-  ```
-  ciudad,latitud,longitud
-  Buenos Aires,34.6,58.4
-  Córdoba,31.4,64.2
-  Mendoza,32.9,68.8
-  ```
-
----
-
-### A22. Agregar columna calculada
-
-**Enunciado**: Leé `ciudades.csv` y creá `ciudades_categoria.csv` agregando una columna "categoria" que sea "grande" si la población > 1500000, o "mediana" en caso contrario.
-
-**Ejemplo**:
-- Contenido de `ciudades_categoria.csv`:
-  ```
-  nombre,poblacion,categoria
-  Buenos Aires,2890000,grande
-  Córdoba,1430000,mediana
-  Rosario,1270000,mediana
-  ```
-
----
-
-### A23. Combinar dos archivos CSV
-
-**Enunciado**: Tenés `ciudades.csv` (nombre, población) y `puntos.csv` (ciudad, latitud, longitud). Creá `ciudades_completas.csv` que combine ambos archivos, incluyendo nombre, población, latitud y longitud.
-
-**Ejemplo**:
-- Contenido de `ciudades_completas.csv`:
-  ```
-  nombre,poblacion,latitud,longitud
-  Buenos Aires,2890000,-34.6,-58.4
-  Córdoba,1430000,-31.4,-64.2
-  ```
-
-**Hint**: Leé ambos archivos a diccionarios y combiná por nombre de ciudad.
-
----
-
-### A24. Generar reporte desde CSV
-
-**Enunciado**: Leé `puntos.csv` y generá un archivo `reporte.txt` (no CSV) con un resumen legible:
-```
-=== REPORTE DE CIUDADES ===
-Total de ciudades: 3
-Ciudad más al norte: Córdoba (-31.4)
-Ciudad más al sur: Buenos Aires (-34.6)
-```
-
----
-
-### A25. Exportar a formato Google Maps
-
-**Enunciado**: Leé `puntos.csv` y generá un archivo `links.txt` con un link de Google Maps por cada ciudad.
-
-**Ejemplo**:
-- Contenido de `links.txt`:
-  ```
-  Buenos Aires: https://www.google.com/maps?q=-34.6,-58.4
-  Córdoba: https://www.google.com/maps?q=-31.4,-64.2
-  Mendoza: https://www.google.com/maps?q=-32.9,-68.8
-  ```
 
 ---
 
@@ -409,7 +286,6 @@ Recomendables para quienes quieran practicar más.
 **Enunciado**: Creá un archivo `descripcion.txt` con una descripción de una ciudad (varias oraciones). Contá cuántas palabras tiene el archivo.
 
 **Ejemplo**:
-- Si el archivo contiene "Buenos Aires es la capital de Argentina."
 - Salida esperada: `El archivo tiene 7 palabras`
 
 ---
@@ -418,9 +294,6 @@ Recomendables para quienes quieran practicar más.
 
 **Enunciado**: Escribí un programa que intente leer un archivo `datos.csv`. Si el archivo no existe, mostrá un mensaje de error amigable en lugar de que el programa falle.
 
-**Ejemplo**:
-- Si el archivo no existe: `Error: El archivo datos.csv no fue encontrado`
-
 **Hint**: Usá `try/except FileNotFoundError`.
 
 ---
@@ -428,9 +301,6 @@ Recomendables para quienes quieran practicar más.
 ### B3. CSV con delimitador personalizado
 
 **Enunciado**: Creá un archivo `datos.tsv` separado por tabulaciones (no comas) con datos de ciudades. Leélo usando el parámetro `delimiter` de csv.reader.
-
-**Ejemplo**:
-- Contenido: `Buenos Aires	-34.6	-58.4`
 
 ---
 
@@ -472,14 +342,6 @@ Recomendables para quienes quieran practicar más.
 
 **Enunciado**: Leé `puntos.csv` y generá un archivo `puntos_vertical.txt` con formato:
 ```
---- Buenos Aires ---
-Latitud: -34.6
-Longitud: -58.4
-
---- Córdoba ---
-Latitud: -31.4
-Longitud: -64.2
-```
 
 ---
 
@@ -517,13 +379,6 @@ Ejercicios opcionales que requieren mayor dificultad o investigación.
 
 **Enunciado**: Los campos CSV pueden contener saltos de línea si están entre comillas. Creá un archivo donde una celda contenga texto con saltos de línea y leélo correctamente.
 
-**Ejemplo**:
-```csv
-ciudad,descripcion
-"Buenos Aires","Capital de Argentina.
-Ciudad más poblada."
-```
-
 ---
 
 ### C3. Comparar dos versiones de CSV
@@ -535,7 +390,6 @@ Ciudad más poblada."
 ### C4. Generar CSV desde API simulada
 
 **Enunciado**: Creá una función `obtener_ciudades()` que simule una respuesta de API retornando una lista de diccionarios. Luego guardá esos datos en un archivo CSV.
-
 ```python
 def obtener_ciudades():
     return [
@@ -549,7 +403,6 @@ def obtener_ciudades():
 ### C5. Sistema de log en archivo
 
 **Enunciado**: Creá un sistema simple de logging que agregue mensajes con timestamp a un archivo `log.txt`. Cada vez que se ejecute el programa, debe agregar una nueva línea sin borrar las anteriores.
-
 **Ejemplo** de contenido después de varias ejecuciones:
 ```
 2026-02-03 10:30:15 - Programa iniciado
@@ -559,4 +412,4 @@ def obtener_ciudades():
 
 ---
 
-*Fin de los ejercicios de la Unidad 3 - Archivos y CSV*
+*Fin de los ejercicios de la Unidad 3*

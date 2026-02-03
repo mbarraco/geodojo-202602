@@ -1,0 +1,323 @@
+unit:
+  number: 2
+  title: Funciones
+  description: Guía para la clase sobre definición de funciones, argumentos, retorno, type hints y scope.
+temario:
+- title: Definición de funciones
+  rows:
+  - - '`def`'
+    - Palabra clave para definir funciones
+    - '`def mi_funcion():`'
+  - - Nombre
+    - snake_case, descriptivo
+    - '`calcular_area`, `mostrar_datos`'
+  - - Cuerpo
+    - Código indentado dentro de la función
+    - Ver ejemplos abajo
+  - - Llamada
+    - Ejecutar la función usando paréntesis
+    - '`mi_funcion()`'
+  columns:
+  - Concepto
+  - Descripción
+  - Ejemplo
+- title: Argumentos (parámetros)
+  rows:
+  - - Sin argumentos
+    - Función que no recibe datos
+    - '`def saludar():`'
+  - - Con argumentos
+    - Función que recibe datos
+    - '`def saludar(nombre):`'
+  - - Múltiples args
+    - Separados por coma
+    - '`def sumar(a, b):`'
+  - - Valor por defecto
+    - Si no se pasa, usa el default
+    - '`def saludar(nombre="visitante"):`'
+  - - Argumentos con nombre
+    - Especificar nombre al llamar
+    - '`funcion(x=10, y=20)`'
+  columns:
+  - Tipo
+  - Descripción
+  - Ejemplo
+- title: Retorno de valores
+  rows:
+  - - '`return`'
+    - Devuelve un valor al código que llamó
+    - '`return resultado`'
+  - - Sin return
+    - La función retorna `None` implícitamente
+    - '`def imprimir(): print("hola")`'
+  - - Return temprano
+    - Puede salir antes de terminar
+    - '`if error: return None`'
+  - - Múltiples returns
+    - Según condiciones
+    - '`if x > 0: return "positivo"`'
+  - - Retorno múltiple
+    - Devuelve tupla
+    - '`return lat, lon`'
+  columns:
+  - Concepto
+  - Descripción
+  - Ejemplo
+- title: Type hints
+  rows:
+  - - Argumento
+    - Tipo esperado del parámetro
+    - '`def f(x: int):`'
+  - - Retorno
+    - Tipo que devuelve la función
+    - '`def f() -> str:`'
+  - - Completo
+    - Argumentos y retorno
+    - '`def f(x: int) -> str:`'
+  - - '`Optional`'
+    - Puede ser el tipo o `None`
+    - '`def f(x: Optional[int]):`'
+  columns:
+  - Sintaxis
+  - Descripción
+  - Ejemplo
+- title: Scope (alcance de variables)
+  rows:
+  - - Local
+    - Variable definida dentro de la función
+    - Solo existe dentro de la función
+  - - Global
+    - Variable definida fuera de funciones
+    - Accesible desde cualquier lugar
+  - - '`global`'
+    - Palabra clave para modificar global
+    - '`global contador`'
+  - - Constantes
+    - Por convención, MAYÚSCULAS
+    - '`PI = 3.14159`'
+  columns:
+  - Tipo
+  - Descripción
+  - Ejemplo
+- title: Docstrings
+  rows:
+  - - Ubicación
+    - Primera línea después de `def`
+  - - Sintaxis
+    - Triple comillas `"""..."""`
+  - - Contenido
+    - Qué hace, args, returns
+  columns:
+  - Elemento
+  - Descripción
+ejemplos:
+- id: 1
+  title: Función sin argumentos
+  enunciado: Crear una función `mostrar_bienvenida` que imprima "Bienvenido a GeoDojo". Llamarla dos veces.
+  solucion:
+    code: |-
+      def mostrar_bienvenida():
+          print("Bienvenido a GeoDojo")
+
+      mostrar_bienvenida()
+      mostrar_bienvenida()
+    salida: |-
+      Bienvenido a GeoDojo
+      Bienvenido a GeoDojo
+- id: 2
+  title: Función con un argumento
+  enunciado: Crear una función `saludar_ciudad` que reciba el nombre de una ciudad e imprima "Bienvenido a [ciudad]".
+  solucion:
+    code: |-
+      def saludar_ciudad(ciudad):
+          print(f"Bienvenido a {ciudad}")
+
+      saludar_ciudad("Mendoza")
+      saludar_ciudad("Córdoba")
+      saludar_ciudad("Rosario")
+    salida: |-
+      Bienvenido a Mendoza
+      Bienvenido a Córdoba
+      Bienvenido a Rosario
+- id: 3
+  title: Función con múltiples argumentos
+  enunciado: Crear una función `mostrar_coordenadas` que reciba nombre, latitud y longitud, y muestre una ficha formateada.
+  solucion:
+    code: |-
+      def mostrar_coordenadas(nombre, latitud, longitud):
+          print(f"Lugar: {nombre}")
+          print(f"Coordenadas: ({latitud}, {longitud})")
+          print("-" * 30)
+
+      mostrar_coordenadas("Buenos Aires", -34.6, -58.4)
+      mostrar_coordenadas("Santiago", -33.4, -70.6)
+    salida: |-
+      Lugar: Buenos Aires
+      Coordenadas: (-34.6, -58.4)
+      ------------------------------
+      Lugar: Santiago
+      Coordenadas: (-33.4, -70.6)
+      ------------------------------
+- id: 4
+  title: Función con return
+  enunciado: Crear una función `doble` que reciba un número y retorne su doble. Usar el valor retornado en un print.
+  solucion:
+    code: |-
+      def doble(numero):
+          return numero * 2
+
+      resultado = doble(25)
+      print(f"El doble de 25 es {resultado}")
+
+      # También se puede usar directamente
+      print(f"El doble de 100 es {doble(100)}")
+    salida: |-
+      El doble de 25 es 50
+      El doble de 100 es 200
+- id: 5
+  title: Función que calcula y retorna
+  enunciado: 'Crear una función `celsius_a_fahrenheit` que convierta temperatura. Fórmula: F = C × 9/5 + 32'
+  solucion:
+    code: |-
+      def celsius_a_fahrenheit(celsius):
+          fahrenheit = celsius * 9/5 + 32
+          return fahrenheit
+
+      temp_c = 25
+      temp_f = celsius_a_fahrenheit(temp_c)
+      print(f"{temp_c}°C equivale a {temp_f}°F")
+
+      # Temperatura de congelación
+      print(f"0°C equivale a {celsius_a_fahrenheit(0)}°F")
+    salida: |-
+      25°C equivale a 77.0°F
+      0°C equivale a 32.0°F
+- id: 6
+  title: Función con return condicional
+  enunciado: Crear una función `hemisferio` que reciba una latitud y retorne "Norte", "Sur" o "Ecuador" según corresponda.
+  solucion:
+    code: |-
+      def hemisferio(latitud):
+          if latitud > 0:
+              return "Norte"
+          elif latitud < 0:
+              return "Sur"
+          else:
+              return "Ecuador"
+
+      print(f"Nueva York (40.7): {hemisferio(40.7)}")
+      print(f"Buenos Aires (-34.6): {hemisferio(-34.6)}")
+      print(f"Quito (0): {hemisferio(0)}")
+    salida: |-
+      Nueva York (40.7): Norte
+      Buenos Aires (-34.6): Sur
+      Quito (0): Ecuador
+- id: 7
+  title: Type hints básicos
+  enunciado: Reescribir la función `celsius_a_fahrenheit` agregando type hints para los argumentos y el retorno.
+  solucion:
+    code: |-
+      def celsius_a_fahrenheit(celsius: float) -> float:
+          fahrenheit = celsius * 9/5 + 32
+          return fahrenheit
+
+      # Los type hints son solo anotaciones, no cambian el comportamiento
+      temp = celsius_a_fahrenheit(100)
+      print(f"100°C = {temp}°F")
+
+      # Podemos ver las anotaciones
+      print(f"Anotaciones: {celsius_a_fahrenheit.__annotations__}")
+    salida: |-
+      100°C = 212.0°F
+      Anotaciones: {'celsius': <class 'float'>, 'return': <class 'float'>}
+- id: 8
+  title: Argumento con valor por defecto
+  enunciado: Crear una función `crear_punto` que reciba nombre y coordenadas con valores por defecto (0.0, 0.0).
+  solucion:
+    code: |-
+      def crear_punto(nombre, lat=0.0, lon=0.0):
+          return f"{nombre}: ({lat}, {lon})"
+
+      # Con todos los argumentos
+      punto1 = crear_punto("Buenos Aires", -34.6, -58.4)
+      print(punto1)
+
+      # Con valores por defecto
+      punto2 = crear_punto("Origen")
+      print(punto2)
+
+      # Solo latitud
+      punto3 = crear_punto("Ecuador", 0.0, -78.5)
+      print(punto3)
+    salida: |-
+      Buenos Aires: (-34.6, -58.4)
+      Origen: (0.0, 0.0)
+      Ecuador: (0.0, -78.5)
+- id: 9
+  title: Variable local vs global
+  enunciado: Demostrar que una variable creada dentro de una función no existe fuera. Usar una constante global RADIO_TIERRA.
+    Mostrar cómo modificar una variable global con `global`.
+  solucion:
+    code: |-
+      # Constante global (por convención en MAYÚSCULAS)
+      RADIO_TIERRA = 6371  # km
+
+      # Variable global (puede ser modificada)
+      ciudades_visitadas = 0
+
+      def circunferencia_tierra():
+          # Usamos la constante global (solo lectura, no necesita 'global')
+          pi = 3.14159  # variable local
+          circunferencia = 2 * pi * RADIO_TIERRA
+          return circunferencia
+
+      def registrar_visita(ciudad):
+          # Para MODIFICAR una variable global, necesitamos declararla
+          global ciudades_visitadas
+          ciudades_visitadas += 1
+          print(f"Visitaste {ciudad}. Total de ciudades: {ciudades_visitadas}")
+
+      resultado = circunferencia_tierra()
+      print(f"Circunferencia de la Tierra: {round(resultado, 2)} km")
+      print(f"Radio usado: {RADIO_TIERRA} km")
+
+      print()  # línea vacía
+
+      # Usar la función que modifica la variable global
+      registrar_visita("Buenos Aires")
+      registrar_visita("Córdoba")
+      registrar_visita("Mendoza")
+
+      print(f"\nTotal final: {ciudades_visitadas} ciudades")
+    salida: |-
+      Circunferencia de la Tierra: 40030.14 km
+      Radio usado: 6371 km
+
+      Visitaste Buenos Aires. Total de ciudades: 1
+      Visitaste Córdoba. Total de ciudades: 2
+      Visitaste Mendoza. Total de ciudades: 3
+
+      Total final: 3 ciudades
+- id: 10
+  title: Función con docstring
+  enunciado: Crear una función `distancia_al_ecuador` con type hints y docstring completo que documente qué hace, sus argumentos
+    y retorno.
+  solucion:
+    code: "def distancia_al_ecuador(latitud: float) -> float:\n    \"\"\"\n    Calcula la distancia en grados desde una latitud\
+      \ hasta el ecuador.\n    \n    Args:\n        latitud: La latitud del punto en grados decimales.\n                 Valores\
+      \ negativos indican hemisferio sur.\n    \n    Returns:\n        La distancia absoluta al ecuador en grados.\n    \n\
+      \    Example:\n        >>> distancia_al_ecuador(-34.6)\n        34.6\n    \"\"\"\n    return abs(latitud)\n\n# Usar\
+      \ la función\ndist = distancia_al_ecuador(-34.6)\nprint(f\"Buenos Aires está a {dist}° del ecuador\")\n\n# Ver la documentación\n\
+      print(\"\\nDocumentación de la función:\")\nprint(distancia_al_ecuador.__doc__)"
+    salida: "Buenos Aires está a 34.6° del ecuador\n\nDocumentación de la función:\n\n    Calcula la distancia en grados desde\
+      \ una latitud hasta el ecuador.\n    \n    Args:\n        latitud: La latitud del punto en grados decimales.\n     \
+      \            Valores negativos indican hemisferio sur.\n    \n    Returns:\n        La distancia absoluta al ecuador\
+      \ en grados.\n    \n    Example:\n        >>> distancia_al_ecuador(-34.6)\n        34.6\n    "
+notas_docente:
+- Los ejemplos progresan de funciones simples (solo print) a funciones completas (type hints + docstring)
+- Enfatizar la diferencia entre `print` dentro de una función vs `return`
+- Demostrar que `return` termina la ejecución de la función
+- Los type hints son opcionales pero recomendados para código profesional
+- Mostrar el error cuando se intenta acceder a una variable local fuera de la función
+- Los ejercicios en `ejercicios/02-funciones.md` refuerzan estos mismos conceptos
+- 'Contexto geográfico consistente: coordenadas, ciudades, temperaturas'

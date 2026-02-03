@@ -1,4 +1,4 @@
-.PHONY: html clean install clean-all
+.PHONY: html markdown clean install clean-all all
 
 # Directorio de salida
 OUTPUT_DIR = web
@@ -14,9 +14,16 @@ $(VENV)/bin/activate:
 install: $(VENV)/bin/activate
 	$(PIP) install -r requirements.txt
 
+# Generar Markdown desde YAML
+markdown: install
+	$(PYTHON) scripts/export_to_markdown.py
+
 # Convertir Markdown a HTML
 html: install
 	$(PYTHON) scripts/export_to_html.py $(OUTPUT_DIR)
+
+# Pipeline completo: YAML -> Markdown -> HTML
+all: markdown html
 
 # Limpiar archivos generados
 clean:

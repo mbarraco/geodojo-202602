@@ -384,7 +384,6 @@ Coordenadas válidas:
 ---
 
 ## Notas para el docente
-
 - Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
 - Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental
 - Se recomienda pedir participación: "¿Qué valor tiene la lista ahora?" o "¿Qué pasa si cambio esta condición?"

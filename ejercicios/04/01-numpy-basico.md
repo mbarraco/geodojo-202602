@@ -30,8 +30,11 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Creá un array con las poblaciones de tres ciudades: 2890000, 1430000, 1270000. Verificá que el tipo de dato sea entero.
 
 **Ejemplo**:
-- Salida esperada: `array([2890000, 1430000, 1270000])`
-- Tipo: `int64`
+- Salida esperada:
+  ```
+  array([2890000, 1430000, 1270000])
+  - Tipo: `int64`
+  ```
 
 **Hint**: Usá `array.dtype` para ver el tipo.
 
@@ -77,7 +80,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Creá un array con 6 elementos y mostrá su forma (shape).
 
 **Ejemplo**:
-- Si array = `[1, 2, 3, 4, 5, 6]`
 - Salida esperada: `(6,)`
 
 **Hint**: `array.shape` retorna una tupla con las dimensiones.
@@ -101,8 +103,8 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 - Salida esperada:
   ```
   array([[ 1,  2,  3,  4],
-         [ 5,  6,  7,  8],
-         [ 9, 10, 11, 12]])
+  [ 5,  6,  7,  8],
+  [ 9, 10, 11, 12]])
   ```
 
 ---
@@ -145,7 +147,7 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 **Enunciado**: Creá una matriz de 3x4 de ceros.
 
 **Ejemplo**:
-- Salida esperada: matriz de ceros con forma (3, 4)
+- Salida esperada: `matriz de ceros con forma (3, 4)`
 
 **Hint**: `np.zeros((3, 4))` - notar los paréntesis dobles.
 
@@ -221,10 +223,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 
 **Enunciado**: Obtené el último elemento y los últimos 3 elementos del array.
 
-**Ejemplo**:
-- Último: `-38.0`
-- Últimos 3: `array([-32.9, -24.8, -38.0])`
-
 **Hint**: `array[-1]` y `array[-3:]`.
 
 ---
@@ -235,61 +233,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 
 **Ejemplo**:
 - Salida esperada: `array([  0.,   0., 100.,   0.,   0.])`
-
----
-
-### Bloque 5: Operaciones básicas
-
----
-
-### A21. Suma de arrays
-
-**Enunciado**: Tenés dos arrays: `lat1 = [-34.6, -31.4]` y `ajuste = [0.1, 0.2]`. Sumá ambos arrays.
-
-**Ejemplo**:
-- Salida esperada: `array([-34.5, -31.2])`
-
----
-
-### A22. Multiplicar por escalar
-
-**Enunciado**: Tenés distancias en grados: `[2.5, 3.2, 1.8]`. Convertí a km aproximados multiplicando por 111.
-
-**Ejemplo**:
-- Salida esperada: `array([277.5, 355.2, 199.8])`
-
----
-
-### A23. Operaciones entre arrays
-
-**Enunciado**: Tenés arrays de latitud y longitud de 3 puntos. Calculá lat² + lon² para cada punto.
-
-**Ejemplo**:
-- lat = `[-34.6, -31.4, -32.9]`
-- lon = `[-58.4, -64.2, -68.8]`
-- Salida esperada: suma de cuadrados para cada punto
-
----
-
-### A24. Diferencia entre arrays
-
-**Enunciado**: Calculá la diferencia de latitud entre puntos consecutivos de una ruta.
-
-**Ejemplo**:
-- lat = `[-34.6, -31.4, -32.9]`
-- diferencias = lat[1:] - lat[:-1]
-- Salida esperada: `array([3.2, -1.5])`
-
----
-
-### A25. División elemento a elemento
-
-**Enunciado**: Tenés población y área de ciudades. Calculá la densidad (población/área).
-
-**Ejemplo**:
-- poblacion = `[2890000, 1430000, 1270000]`
-- area = `[203, 576, 178]`
-- Salida esperada: densidades
 
 ---
 
@@ -397,4 +340,4 @@ Ejercicios opcionales que requieren mayor dificultad o investigación.
 
 ---
 
-*Fin de los ejercicios de la Unidad 4 - NumPy Básico*
+*Fin de los ejercicios de la Unidad 4*

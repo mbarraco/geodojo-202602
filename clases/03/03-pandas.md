@@ -36,7 +36,7 @@ Guía para la clase sobre lectura y manipulación de datos con Pandas.
 |-----------|----------|---------|
 | Condición simple | `df[df["col"] > x]` | `df[df["poblacion"] > 1000000]` |
 | Múltiples condiciones | `df[(cond1) & (cond2)]` | `df[(df["lat"] < -30) & (df["lon"] < -60)]` |
-| OR lógico | `df[(cond1) \| (cond2)]` | `df[(df["region"] == "N") \| (df["region"] == "S")]` |
+| OR lógico | `df[(cond1) \ | (cond2)]` | `df[(df["region"] == "N") \ | (df["region"] == "S")]` |
 | Método query | `df.query("expr")` | `df.query("poblacion > 1000000")` |
 | Está en lista | `df[df["col"].isin(lista)]` | `df[df["nombre"].isin(["BA", "CB"])]` |
 | String contiene | `df[df["col"].str.contains("x")]` | `df[df["nombre"].str.contains("Aires")]` |
@@ -166,7 +166,7 @@ print(df)
 
 #### Ejemplo 2: Explorar el DataFrame
 
-**Enunciado**: Ver las primeras filas, la forma, las columnas y las estadísticas.
+**Enunciado**: Ver las primeras filas, la forma, las columnas y las estadísticas básicas.
 
 ```python
 print("Primeras 3 filas:")
@@ -361,7 +361,7 @@ print(df[["nombre", "latitud", "hemisferio"]])
 
 #### Ejemplo 8: Agrupar y agregar
 
-**Enunciado**: Contar ciudades por región y calcular población total.
+**Enunciado**: Contar ciudades por región y calcular población total por región.
 
 ```python
 # Contar por región
@@ -472,7 +472,6 @@ Datos combinados:
 ---
 
 ## Notas para el docente
-
 - Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
 - Crear el CSV inicial es importante para que todos trabajen con los mismos datos
 - Enfatizar la diferencia entre `iloc` (posición) y `loc` (etiqueta)

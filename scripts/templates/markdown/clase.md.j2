@@ -1,0 +1,71 @@
+# Clase {{ unit.number }}: {{ unit.title }}
+
+{{ unit.description }}
+
+---
+
+## 1. Temario
+{% for topic in temario %}
+
+### 1.{{ loop.index }} {{ topic.title }}
+
+{% if topic.text is defined %}
+{{ topic.text }}
+{% elif topic.columns is defined and topic.rows is defined %}
+| {{ topic.columns | join(' | ') }} |
+|{% for col in topic.columns %}{{ '-' * (col | length + 2) }}|{% endfor %}
+
+{% for row in topic.rows %}
+| {{ row | join(' | ') }} |
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+---
+
+## 2. Ejemplos para la clase
+
+{{ ejemplos | length }} ejemplos progresivos para hacer en vivo, cubriendo todos los temas.
+
+---
+
+### 2.1 Enunciados (para mostrar en clase)
+
+---
+{% for ej in ejemplos %}
+
+#### Ejemplo {{ ej.id }}: {{ ej.title }}
+{{ ej.enunciado }}
+
+---
+{% endfor %}
+
+### 2.2 Enunciados + Soluciones (referencia del docente)
+
+---
+{% for ej in ejemplos %}
+
+#### Ejemplo {{ ej.id }}: {{ ej.title }}
+
+**Enunciado**: {{ ej.enunciado }}
+{% if ej.solucion is defined %}
+
+```python
+{{ ej.solucion.code }}
+```
+{% if ej.solucion.salida is defined %}
+
+**Salida**:
+```
+{{ ej.solucion.salida }}
+```
+{% endif %}
+{% endif %}
+
+---
+{% endfor %}
+
+## Notas para el docente
+{% for nota in notas_docente %}
+- {{ nota }}
+{% endfor %}

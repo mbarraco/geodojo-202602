@@ -1,0 +1,245 @@
+unit:
+  number: 2
+  title: Funciones
+  description: Ejercicios sobre definición de funciones, argumentos, retorno, type hints y scope.
+categories:
+- id: A
+  title: Ejercicios fundamentales
+  description: Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
+  blocks:
+  - name: Funciones sin argumentos ni return
+    exercises:
+    - id: A1
+      title: Saludo simple
+      enunciado: Definí una función llamada `saludar` que imprima "Bienvenido a GeoDojo". Luego llamala.
+      ejemplo:
+        salida: Bienvenido a GeoDojo
+      hint: Usá `def nombre_funcion():` para definir una función.
+    - id: A2
+      title: Línea divisoria
+      enunciado: Definí una función llamada `linea` que imprima una línea de 40 guiones. Llamala dos veces.
+      ejemplo:
+        salida: |-
+          ----------------------------------------
+          ----------------------------------------
+    - id: A3
+      title: Encabezado de reporte
+      enunciado: |-
+        Definí una función llamada `encabezado` que imprima:
+        ```
+        ==============================
+            REPORTE GEOGRÁFICO
+        ==============================
+        ```
+        Llamala una vez.
+    - id: A4
+      title: Coordenadas de ejemplo
+      enunciado: 'Definí una función llamada `mostrar_buenos_aires` que imprima las coordenadas de Buenos Aires en tres líneas:
+        nombre, latitud y longitud.'
+      ejemplo:
+        salida: |-
+          Ciudad: Buenos Aires
+          Latitud: -34.6
+          Longitud: -58.4
+    - id: A5
+      title: Menú de opciones
+      enunciado: |-
+        Definí una función llamada `mostrar_menu` que imprima un menú con 3 opciones:
+        1. Ver ciudades
+        2. Calcular distancia
+        3. Salir
+        Llamala una vez.
+      ejemplo:
+        salida: |-
+          === MENÚ ===
+          1. Ver ciudades
+          2. Calcular distancia
+          3. Salir
+  - name: Funciones con argumentos
+    exercises:
+    - id: A6
+      title: Saludo personalizado
+      enunciado: Definí una función llamada `saludar_ciudad` que reciba un argumento `ciudad` e imprima "Bienvenido a [ciudad]".
+      ejemplo:
+        salida: Bienvenido a Mendoza
+    - id: A7
+      title: Mostrar coordenada
+      enunciado: 'Definí una función llamada `mostrar_latitud` que reciba una latitud como argumento e imprima "Latitud: [valor]°".'
+      ejemplo:
+        salida: 'Latitud: -34.6°'
+    - id: A8
+      title: Ficha de ciudad
+      enunciado: 'Definí una función llamada `ficha_ciudad` que reciba tres argumentos: `nombre`, `latitud` y `longitud`.
+        Debe imprimir una ficha formateada.'
+      ejemplo:
+        salida: |-
+          Ciudad: Córdoba
+          Coordenadas: (-31.4, -64.2)
+    - id: A9
+      title: Repetir texto
+      enunciado: Definí una función llamada `repetir` que reciba un texto y un número, e imprima el texto repetido esa cantidad
+        de veces (uno por línea).
+      ejemplo:
+        salida: |-
+          Hola
+          Hola
+          Hola
+      hint: Usá un bucle `for` dentro de la función.
+    - id: A10
+      title: Línea personalizada
+      enunciado: Definí una función llamada `linea_custom` que reciba un carácter y un largo, e imprima una línea con ese
+        carácter repetido.
+      ejemplo:
+        salida: ====================
+  - name: Funciones con return
+    exercises:
+    - id: A11
+      title: Doble de un número
+      enunciado: Definí una función llamada `doble` que reciba un número y retorne su doble.
+      hint: Usá `return valor` para retornar.
+    - id: A12
+      title: Distancia al ecuador
+      enunciado: Definí una función llamada `distancia_ecuador` que reciba una latitud y retorne su valor absoluto (la distancia
+        al ecuador en grados).
+    - id: A13
+      title: Celsius a Fahrenheit
+      enunciado: Definí una función llamada `celsius_a_fahrenheit` que reciba una temperatura en Celsius y retorne el equivalente
+        en Fahrenheit (F = C × 9/5 + 32).
+    - id: A14
+      title: Punto medio
+      enunciado: Definí una función llamada `punto_medio` que reciba dos valores y retorne el promedio entre ellos.
+    - id: A15
+      title: Es hemisferio norte
+      enunciado: Definí una función llamada `es_hemisferio_norte` que reciba una latitud y retorne `True` si es mayor a 0,
+        `False` en caso contrario.
+  - name: Type hints básicos
+    exercises:
+    - id: A16
+      title: Suma con tipos
+      enunciado: Definí una función `sumar` que reciba dos argumentos de tipo `float` y retorne un `float`. Usá type hints
+        en la definición.
+    - id: A17
+      title: Formatear coordenada
+      enunciado: Definí una función `formatear_coord` que reciba una latitud (`float`) y retorne un `str` con el formato "XX.X°".
+    - id: A18
+      title: Validar latitud
+      enunciado: Definí una función `es_latitud_valida` que reciba un valor `float` y retorne un `bool` indicando si está
+        entre -90 y 90.
+    - id: A19
+      title: Kilómetros a millas
+      enunciado: Definí una función `km_a_millas` con type hints que reciba kilómetros (`float`) y retorne millas (`float`).
+        1 km = 0.621371 millas.
+    - id: A20
+      title: Contar caracteres
+      enunciado: Definí una función `contar_caracteres` que reciba un `str` y retorne un `int` con la cantidad de caracteres.
+- id: B
+  title: Ejercicios de práctica extra
+  description: Recomendables para quienes quieran practicar más.
+  exercises:
+  - id: B1
+    title: Argumento por defecto
+    enunciado: Definí una función `saludar` que reciba un nombre con valor por defecto `"visitante"`. Si no se pasa argumento,
+      debe usar el valor por defecto.
+    ejemplo:
+      salida: |-
+        saludar("María") → "Hola, María!"
+        saludar() → "Hola, visitante!"
+  - id: B2
+    title: Múltiples valores por defecto
+    enunciado: Definí una función `crear_punto` que reciba `nombre`, `lat=0.0` y `lon=0.0`. Debe retornar un string formateado.
+    ejemplo:
+      salida: |-
+        crear_punto("Origen") → "Origen: (0.0, 0.0)"
+        crear_punto("Buenos Aires", -34.6, -58.4) → "Buenos Aires: (-34.6, -58.4)"
+  - id: B3
+    title: Argumentos con nombre
+    enunciado: Definí una función `describir_lugar` que reciba `nombre`, `pais` y `continente`. Llamala usando argumentos
+      con nombre (kwargs) en diferente orden.
+    ejemplo:
+      salida: |-
+        describir_lugar(continente="América", nombre="Ushuaia", pais="Argentina")
+        → "Ushuaia, Argentina, América"
+  - id: B4
+    title: Función que llama función
+    enunciado: Definí una función `es_valida` que llame a `es_latitud_valida` y `es_longitud_valida` (deberás definirlas también)
+      para validar un par de coordenadas.
+    ejemplo:
+      salida: |-
+        es_valida(-34.6, -58.4) → True
+        es_valida(100, -58.4) → False
+  - id: B5
+    title: Docstring básico
+    enunciado: Definí una función `calcular_area` que calcule el área de un rectángulo. Incluí un docstring que describa qué
+      hace, sus parámetros y qué retorna.
+    ejemplo:
+      salida: |-
+        calcular_area(100, 50) → 5000
+        help(calcular_area) → muestra el docstring
+  - id: B6
+    title: Función con docstring y type hints
+    enunciado: Definí una función `distancia_euclidiana` que calcule la distancia simplificada entre dos puntos (lat1, lon1)
+      y (lat2, lon2). Incluí docstring completo y type hints.
+    ejemplo:
+      salida: 'distancia_euclidiana(-34.6, -58.4, -34.9, -56.2) → 2.21'
+    hint: distancia = √[(lat2-lat1)² + (lon2-lon1)²]
+  - id: B7
+    title: Type hints con Optional
+    enunciado: Definí una función `obtener_hemisferio` que reciba una latitud opcional (puede ser `None`). Si es `None`, retorne
+      `"Desconocido"`. Usá `Optional[float]` del módulo `typing`.
+    ejemplo:
+      salida: |-
+        obtener_hemisferio(-34.6) → "Sur"
+        obtener_hemisferio(40.7) → "Norte"
+        obtener_hemisferio(None) → "Desconocido"
+  - id: B8
+    title: Función de formateo completo
+    enunciado: 'Definí una función `formato_dms` que reciba grados decimales y retorne un string en formato grados°minutos''.
+      Ej: -34.6 → "34°36'' S"'
+    ejemplo:
+      salida: |-
+        formato_dms(-34.6) → "34°36' S"
+        formato_dms(40.7128) → "40°42' N"
+    hint: minutos = (valor_decimal - parte_entera) × 60
+  - id: B9
+    title: Función con validación interna
+    enunciado: Definí una función `crear_coordenada` que reciba lat y lon, valide que estén en rango, y retorne un string
+      formateado. Si son inválidas, retorne `"Coordenadas inválidas"`.
+    ejemplo:
+      salida: |-
+        crear_coordenada(-34.6, -58.4) → "(-34.6, -58.4)"
+        crear_coordenada(100, -58.4) → "Coordenadas inválidas"
+  - id: B10
+    title: Componer funciones
+    enunciado: Usando las funciones anteriores (o creando nuevas), definí una función `generar_link_maps` que reciba nombre,
+      lat y lon, valide las coordenadas, y retorne un link de Google Maps o un mensaje de error.
+    ejemplo:
+      salida: |-
+        generar_link_maps("Obelisco", -34.6037, -58.3816)
+        → "https://www.google.com/maps?q=-34.6037,-58.3816"
+        generar_link_maps("Inválido", 200, 0)
+        → "Error: coordenadas inválidas"
+- id: C
+  title: Desafíos
+  description: Ejercicios opcionales que requieren mayor dificultad o investigación.
+  exercises:
+  - id: C1
+    title: Función con *args
+    enunciado: Definí una función `promedio` que reciba cualquier cantidad de números usando `*args` y retorne su promedio.
+    hint: '`*args` es una tupla con todos los argumentos posicionales.'
+  - id: C2
+    title: Retorno múltiple (tupla)
+    enunciado: Definí una función `separar_coordenada` que reciba grados decimales y retorne una tupla con (grados_enteros,
+      minutos, direccion).
+  - id: C3
+    title: Función como variable
+    enunciado: 'Definí dos funciones: `km_a_millas` y `millas_a_km`. Luego asigná una de ellas a una variable `convertir`
+      según una condición, y usala.'
+  - id: C4
+    title: Recursión básica
+    enunciado: Definí una función recursiva `cuenta_regresiva` que reciba un número e imprima la cuenta regresiva hasta 0.
+    hint: Una función recursiva se llama a sí misma con un caso base para terminar.
+  - id: C5
+    title: Decorador simple
+    enunciado: Investigá qué es un decorador en Python. Creá un decorador `@mostrar_ejecucion` que imprima "Ejecutando función..."
+      antes de ejecutar cualquier función decorada.
+    hint: Un decorador es una función que recibe una función y retorna otra función.

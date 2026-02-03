@@ -24,9 +24,7 @@ Guía para la clase sobre lectura y escritura de archivos, y manejo del módulo 
 | `"w"` | Escritura (sobrescribe) | `open("nuevo.txt", "w")` |
 | `"a"` | Append (agrega al final) | `open("log.txt", "a")` |
 | `"r+"` | Lectura y escritura | `open("datos.txt", "r+")` |
-
 | Método | Descripción | Ejemplo |
-|--------|-------------|---------|
 | `.write(str)` | Escribe un string | `f.write("Hola")` |
 | `.writelines(list)` | Escribe lista de strings | `f.writelines(["a\n", "b\n"])` |
 
@@ -397,7 +395,6 @@ Mendoza,-32.9,-68.8,Sur
 ---
 
 ## Notas para el docente
-
 - Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
 - Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental
 - Se recomienda crear los archivos en vivo para que los alumnos vean el proceso completo

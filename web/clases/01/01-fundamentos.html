@@ -444,7 +444,9 @@ Mostrar si ambas condiciones se cumplen.</p>
 
 <hr />
 <h4 id="ejemplo-4-potenciacion-y-raiz-cuadrada_1">Ejemplo 4: Potenciación y raíz cuadrada</h4>
-<p><strong>Enunciado</strong>: Dado un terreno cuadrado de 150 m de lado, calcular el área (lado²) y la diagonal (lado × √2).</p>
+<p><strong>Enunciado</strong>: Dado un terreno cuadrado de 150 m de lado, calcular:<br />
+- El área (lado²)<br />
+- La diagonal (lado × √2, usando potenciación)</p>
 <div class="highlight"><pre><span></span><code><span class="n">lado</span> <span class="o">=</span> <span class="mi">150</span>
 
 <span class="n">area</span> <span class="o">=</span> <span class="n">lado</span> <span class="o">**</span> <span class="mi">2</span>
@@ -479,7 +481,7 @@ Km restantes: 350
 
 <hr />
 <h4 id="ejemplo-6-strings-y-concatenacion_1">Ejemplo 6: Strings y concatenación</h4>
-<p><strong>Enunciado</strong>: Crear variables para país y ciudad. Mostrar el texto "Ciudad: [ciudad], País: [país]" de dos formas.</p>
+<p><strong>Enunciado</strong>: Crear variables para país y ciudad. Mostrar el texto "Ciudad: [ciudad], País: [país]" de dos formas: con <code>+</code> y con f-string.</p>
 <div class="highlight"><pre><span></span><code><span class="n">pais</span> <span class="o">=</span> <span class="s2">&quot;Argentina&quot;</span>
 <span class="n">ciudad</span> <span class="o">=</span> <span class="s2">&quot;Mendoza&quot;</span>
 
@@ -499,7 +501,7 @@ Ciudad: Mendoza, País: Argentina
 
 <hr />
 <h4 id="ejemplo-7-metodos-de-string_1">Ejemplo 7: Métodos de string</h4>
-<p><strong>Enunciado</strong>: Dado el nombre "cerro aconcagua", mostrarlo en mayúsculas, en formato título, y mostrar su longitud.</p>
+<p><strong>Enunciado</strong>: Dado el nombre "cerro aconcagua", mostrarlo en mayúsculas, en formato título (primera letra de cada palabra en mayúscula), y mostrar su longitud.</p>
 <div class="highlight"><pre><span></span><code><span class="n">nombre</span> <span class="o">=</span> <span class="s2">&quot;cerro aconcagua&quot;</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">nombre</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>       <span class="c1"># MAYÚSCULAS</span>
@@ -515,7 +517,7 @@ Cerro Aconcagua
 
 <hr />
 <h4 id="ejemplo-8-input-y-conversion_1">Ejemplo 8: Input y conversión</h4>
-<p><strong>Enunciado</strong>: Pedir al usuario una latitud, convertirla a número, y mostrar su valor absoluto.</p>
+<p><strong>Enunciado</strong>: Pedir al usuario una latitud, convertirla a número, y mostrar su valor absoluto (para saber la distancia al ecuador).</p>
 <div class="highlight"><pre><span></span><code><span class="n">entrada</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Ingresá una latitud: &quot;</span><span class="p">)</span>
 <span class="n">latitud</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">entrada</span><span class="p">)</span>
 <span class="n">distancia_ecuador</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">latitud</span><span class="p">)</span>
@@ -523,14 +525,12 @@ Cerro Aconcagua
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distancia al ecuador: </span><span class="si">{</span><span class="n">distancia_ecuador</span><span class="si">}</span><span class="s2"> grados&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-<p><strong>Ejemplo de ejecución</strong>:</p>
-<div class="highlight"><pre><span></span><code>Ingresá una latitud: -34.6
-Distancia al ecuador: 34.6 grados
-</code></pre></div>
-
 <hr />
 <h4 id="ejemplo-9-comparaciones-simples_1">Ejemplo 9: Comparaciones simples</h4>
-<p><strong>Enunciado</strong>: Dadas dos altitudes, mostrar comparaciones.</p>
+<p><strong>Enunciado</strong>: Dadas dos altitudes (Aconcagua: 6962 m, Everest: 8849 m), mostrar:<br />
+- ¿Es Aconcagua más alto que 6000?<br />
+- ¿Son iguales?<br />
+- ¿Cuál es más alto?</p>
 <div class="highlight"><pre><span></span><code><span class="n">aconcagua</span> <span class="o">=</span> <span class="mi">6962</span>
 <span class="n">everest</span> <span class="o">=</span> <span class="mi">8849</span>
 
@@ -547,7 +547,10 @@ Distancia al ecuador: 34.6 grados
 
 <hr />
 <h4 id="ejemplo-10-booleanos-y-operadores-logicos_1">Ejemplo 10: Booleanos y operadores lógicos</h4>
-<p><strong>Enunciado</strong>: Verificar si las coordenadas (-34.6, -58.4) son válidas.</p>
+<p><strong>Enunciado</strong>: Verificar si las coordenadas (-34.6, -58.4) representan un punto válido:<br />
+- Latitud entre -90 y 90<br />
+- Longitud entre -180 y 180<br />
+Mostrar si ambas condiciones se cumplen.</p>
 <div class="highlight"><pre><span></span><code><span class="n">latitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">34.6</span>
 <span class="n">longitud</span> <span class="o">=</span> <span class="o">-</span><span class="mf">58.4</span>
 

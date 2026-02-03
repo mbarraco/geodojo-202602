@@ -53,12 +53,6 @@
 <li><a href="#a18-pedir-nombre-de-ciudad">A18. Pedir nombre de ciudad</a></li>
 <li><a href="#a19-pedir-coordenada">A19. Pedir coordenada</a></li>
 <li><a href="#a20-ficha-de-ubicacion-simple">A20. Ficha de ubicación simple</a></li>
-<li><a href="#bloque-5-comparaciones-y-booleanos">Bloque 5: Comparaciones y booleanos</a></li>
-<li><a href="#a21-hemisferio-norte">A21. Hemisferio norte</a></li>
-<li><a href="#a22-comparar-distancias">A22. Comparar distancias</a></li>
-<li><a href="#a23-altitud-alta">A23. Altitud alta</a></li>
-<li><a href="#a24-latitud-valida">A24. Latitud válida</a></li>
-<li><a href="#a25-ecuador-o-greenwich">A25. Ecuador o Greenwich</a></li>
 </ul>
 </li>
 <li><a href="#categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</a><ul>
@@ -101,12 +95,10 @@
 <p>Se recomienda hacerlos todos. Están ordenados por dificultad incremental.</p>
 <hr />
 
-<details class="section-collapsible">
-<summary><h3 id="bloque-1-variables-y-print">Bloque 1: Variables y print</h3></summary>
-<div class="section-content">
-<hr />
+<div class="section-divider">
+<h3 id="bloque-1-variables-y-print">Bloque 1: Variables y print</h3>
 </div>
-</details>
+<hr />
 
 <details class="section-collapsible">
 <summary><h3 id="a1-mi-primera-ciudad">A1. Mi primera ciudad</h3></summary>
@@ -150,8 +142,8 @@
 <p><strong>Enunciado</strong>: Creá tres variables para representar un punto geográfico:<br />
 - <code>nombre</code>: "Cerro Aconcagua"<br />
 - <code>latitud</code>: -32.65<br />
-- <code>longitud</code>: -70.01</p>
-<p>Mostrá las tres variables, una por línea.</p>
+- <code>longitud</code>: -70.01<br />
+Mostrá las tres variables, una por línea.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
 <div class="highlight"><pre><span></span><code>Cerro Aconcagua
@@ -179,12 +171,10 @@
 </div>
 </details>
 
-<details class="section-collapsible">
-<summary><h3 id="bloque-2-operadores-aritmeticos-y-funciones-numericas">Bloque 2: Operadores aritméticos y funciones numéricas</h3></summary>
-<div class="section-content">
-<hr />
+<div class="section-divider">
+<h3 id="bloque-2-operadores-aritmeticos-y-funciones-numericas">Bloque 2: Operadores aritméticos y funciones numéricas</h3>
 </div>
-</details>
+<hr />
 
 <details class="section-collapsible">
 <summary><h3 id="a6-promedio-de-altitudes-redondeado">A6. Promedio de altitudes redondeado</h3></summary>
@@ -215,8 +205,8 @@ Husos horarios: 1
 <div class="section-content">
 <p><strong>Enunciado</strong>: Un terreno rectangular mide 120 m × 80 m. Calculá:<br />
 1. El área (base × altura)<br />
-2. La diagonal usando el teorema de Pitágoras: <code>diagonal = (base**2 + altura**2) ** 0.5</code></p>
-<p>Redondeá la diagonal a 2 decimales.</p>
+2. La diagonal usando el teorema de Pitágoras: <code>diagonal = (base**2 + altura**2) ** 0.5</code><br />
+Redondeá la diagonal a 2 decimales.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
 <div class="highlight"><pre><span></span><code>Área: 9600 m²
@@ -260,12 +250,10 @@ Minutos: 36.22
 </div>
 </details>
 
-<details class="section-collapsible">
-<summary><h3 id="bloque-3-strings-y-formateo">Bloque 3: Strings y formateo</h3></summary>
-<div class="section-content">
-<hr />
+<div class="section-divider">
+<h3 id="bloque-3-strings-y-formateo">Bloque 3: Strings y formateo</h3>
 </div>
-</details>
+<hr />
 
 <details class="section-collapsible">
 <summary><h3 id="a11-concatenacion-de-texto">A11. Concatenación de texto</h3></summary>
@@ -325,12 +313,10 @@ mar del plata
 </div>
 </details>
 
-<details class="section-collapsible">
-<summary><h3 id="bloque-4-conversion-de-tipos-e-input">Bloque 4: Conversión de tipos e input</h3></summary>
-<div class="section-content">
-<hr />
+<div class="section-divider">
+<h3 id="bloque-4-conversion-de-tipos-e-input">Bloque 4: Conversión de tipos e input</h3>
 </div>
-</details>
+<hr />
 
 <details class="section-collapsible">
 <summary><h3 id="a16-string-a-numero">A16. String a número</h3></summary>
@@ -363,7 +349,6 @@ mar del plata
 <div class="section-content">
 <p><strong>Enunciado</strong>: Pedí al usuario que ingrese el nombre de su ciudad favorita y luego mostrá un mensaje que diga "Tu ciudad favorita es: [ciudad]".</p>
 <p><strong>Ejemplo</strong>:<br />
-- Entrada del usuario: <code>Córdoba</code><br />
 - Salida esperada: <code>Tu ciudad favorita es: Córdoba</code></p>
 <p><strong>Hint</strong>: Usá <code>input("mensaje")</code> para pedir datos al usuario.</p>
 <hr />
@@ -375,7 +360,6 @@ mar del plata
 <div class="section-content">
 <p><strong>Enunciado</strong>: Pedí al usuario que ingrese una latitud. Convertí el valor a número decimal y mostrá el doble de esa latitud.</p>
 <p><strong>Ejemplo</strong>:<br />
-- Entrada del usuario: <code>-25.5</code><br />
 - Salida esperada: <code>-51.0</code></p>
 <p><strong>Hint</strong>: <code>input()</code> siempre devuelve texto, necesitás convertirlo con <code>float()</code>.</p>
 <hr />
@@ -388,84 +372,17 @@ mar del plata
 <p><strong>Enunciado</strong>: Pedí al usuario que ingrese:<br />
 1. Nombre de un lugar<br />
 2. Latitud<br />
-3. Longitud</p>
-<p>Luego mostrá un resumen formateado con los tres datos.</p>
+3. Longitud<br />
+Luego mostrá un resumen formateado con los tres datos.</p>
 <p><strong>Ejemplo</strong>:<br />
-- Entrada:</p>
-<div class="highlight"><pre><span></span><code>Glaciar Perito Moreno
--50.5
--73.0
-</code></pre></div>
-
-<ul>
-<li>Salida esperada:</li>
-</ul>
+- Entrada: ``<br />
+- Salida esperada:</p>
 <div class="highlight"><pre><span></span><code>=== Ficha de ubicación ===
 Lugar: Glaciar Perito Moreno
 Latitud: -50.5
 Longitud: -73.0
 </code></pre></div>
 
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="bloque-5-comparaciones-y-booleanos">Bloque 5: Comparaciones y booleanos</h3></summary>
-<div class="section-content">
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a21-hemisferio-norte">A21. Hemisferio norte</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Dada una variable <code>latitud = 40.7</code> (Nueva York), verificá si está en el hemisferio norte (latitud &gt; 0) y mostrá el resultado (True o False).</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>True</code></p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a22-comparar-distancias">A22. Comparar distancias</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Tenés dos distancias: <code>distancia_a = 250</code> y <code>distancia_b = 250</code>. Verificá si son iguales y mostrá el resultado.</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>True</code></p>
-<p><strong>Hint</strong>: Usá el operador <code>==</code> para comparar igualdad.</p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a23-altitud-alta">A23. Altitud alta</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: La altitud de Tilcara es 2461 metros. Verificá si supera los 2000 metros y mostrá el resultado.</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>True</code></p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a24-latitud-valida">A24. Latitud válida</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Una latitud es válida si está entre -90 y 90 (inclusive). Dada <code>latitud = -34.6</code>, verificá si es válida usando los operadores <code>and</code>, <code>&gt;=</code> y <code>&lt;=</code>. Mostrá el resultado.</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>True</code></p>
-<p><strong>Hint</strong>: Se puede escribir la condición en una sola línea de código</p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a25-ecuador-o-greenwich">A25. Ecuador o Greenwich</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Un punto está en el ecuador si su latitud es 0, y está en el meridiano de Greenwich si su longitud es 0. Dadas las variables <code>latitud = 0</code> y <code>longitud = -45.3</code>, verificá si el punto está en el ecuador O en el meridiano de Greenwich (al menos uno de los dos). Mostrá el resultado.</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>True</code></p>
-<p><strong>Hint</strong>: Usá el operador <code>or</code>.</p>
 <hr />
 </div>
 </details>
@@ -483,8 +400,8 @@ Longitud: -73.0
 <div class="section-content">
 <p><strong>Enunciado</strong>: Dados dos puntos geográficos:<br />
 - Punto A: latitud -34.6, longitud -58.4 (Buenos Aires)<br />
-- Punto B: latitud -31.4, longitud -64.2 (Córdoba)</p>
-<p>Calculá las coordenadas del punto medio entre ambos (promediando latitudes y longitudes por separado).</p>
+- Punto B: latitud -31.4, longitud -64.2 (Córdoba)<br />
+Calculá las coordenadas del punto medio entre ambos (promediando latitudes y longitudes por separado).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
 <div class="highlight"><pre><span></span><code>Punto medio:
@@ -501,10 +418,7 @@ Longitud: -61.3
 <div class="section-content">
 <p><strong>Enunciado</strong>: La latitud -34.65 grados se puede expresar como grados y minutos decimales. Los grados son la parte entera (-34) y los minutos se calculan multiplicando la parte decimal (0.65) por 60. Convertí la latitud -34.65 y mostrá el resultado.</p>
 <p><strong>Ejemplo</strong>:<br />
-- Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>-34 grados, 39.0 minutos
-</code></pre></div>
-
+- Salida esperada: <code>-34 grados, 39.0 minutos</code></p>
 <p><strong>Hint</strong>: Usá <code>int()</code> para obtener la parte entera y el operador <code>%</code> o resta para la parte decimal.</p>
 <hr />
 </div>
@@ -514,8 +428,6 @@ Longitud: -61.3
 <summary><h3 id="b3-diferencia-de-husos-horarios">B3. Diferencia de husos horarios</h3></summary>
 <div class="section-content">
 <p><strong>Enunciado</strong>: El huso horario aproximado se puede calcular dividiendo la longitud por 15. Dadas las longitudes de Tokyo (139.7) y Buenos Aires (-58.4), calculá la diferencia aproximada de horas entre ambas ciudades.</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada aproximada: <code>13.2</code> horas (o valor similar)</p>
 <p><strong>Hint</strong>: Calculá el huso de cada ciudad y luego restá.</p>
 <hr />
 </div>
@@ -524,7 +436,7 @@ Longitud: -61.3
 <details class="section-collapsible">
 <summary><h3 id="b4-iniciales-de-un-lugar">B4. Iniciales de un lugar</h3></summary>
 <div class="section-content">
-<p><strong>Enunciado</strong>: Dado el nombre "Parque Nacional Los Glaciares", extraé y mostrá solo la primera letra de cada palabra (las iniciales). </p>
+<p><strong>Enunciado</strong>: Dado el nombre "Parque Nacional Los Glaciares", extraé y mostrá solo la primera letra de cada palabra (las iniciales).</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>P N L G</code></p>
 <p><strong>Hint</strong>: Podés acceder a caracteres individuales con índices: <code>texto[0]</code>, <code>texto[1]</code>, etc. Buscá las posiciones después de cada espacio.</p>
@@ -547,8 +459,8 @@ Longitud: -61.3
 <div class="section-content">
 <p><strong>Enunciado</strong>: Dados dos puntos con sus latitudes:<br />
 - <code>lat_a = -34.6</code> (Buenos Aires)<br />
-- <code>lat_b = -33.4</code> (Santiago)</p>
-<p>Verificá si ambos están en el mismo hemisferio (ambos positivos o ambos negativos) y mostrá True o False.</p>
+- <code>lat_b = -33.4</code> (Santiago)<br />
+Verificá si ambos están en el mismo hemisferio (ambos positivos o ambos negativos) y mostrá True o False.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>True</code></p>
 <p><strong>Hint</strong>: Dos números están en el mismo "lado" si su producto es positivo.</p>
@@ -584,11 +496,11 @@ Longitud: -61.3
 <div class="section-content">
 <p><strong>Enunciado</strong>: Pedí al usuario una latitud y una longitud. Verificá que ambas sean válidas:<br />
 - Latitud: entre -90 y 90<br />
-- Longitud: entre -180 y 180</p>
-<p>Mostrá True si ambas son válidas, False en caso contrario.</p>
+- Longitud: entre -180 y 180<br />
+Mostrá True si ambas son válidas, False en caso contrario.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Entrada: <code>45.5</code> y <code>-200</code><br />
-- Salida esperada: <code>False</code> (la longitud está fuera de rango)</p>
+- Salida esperada: <code>False</code> (la longitud está fuera de rango)`</p>
 <hr />
 </div>
 </details>
@@ -619,14 +531,11 @@ Fecha: 2026-02-02
 <details class="section-collapsible">
 <summary><h3 id="b11-link-a-google-maps">B11. Link a Google Maps</h3></summary>
 <div class="section-content">
-<p><strong>Enunciado</strong>: Pedí al usuario que ingrese una latitud y una longitud. Generá e imprimí un link de Google Maps que apunte a esas coordenadas.</p>
-<p>El formato del link es: <code>https://www.google.com/maps?q=LATITUD,LONGITUD</code></p>
+<p><strong>Enunciado</strong>: Pedí al usuario que ingrese una latitud y una longitud. Generá e imprimí un link de Google Maps que apunte a esas coordenadas.<br />
+El formato del link es: <code>https://www.google.com/maps?q=LATITUD,LONGITUD</code></p>
 <p><strong>Ejemplo</strong>:<br />
 - Entrada: <code>-34.6037</code>, <code>-58.3816</code><br />
-- Salida esperada:</p>
-<div class="highlight"><pre><span></span><code>https://www.google.com/maps?q=-34.6037,-58.3816
-</code></pre></div>
-
+- Salida esperada: <code>https://www.google.com/maps?q=-34.6037,-58.3816</code></p>
 <p><strong>Hint</strong>: Usá f-strings para construir la URL con las variables.</p>
 <hr />
 </div>
@@ -643,13 +552,11 @@ Fecha: 2026-02-02
 <details class="section-collapsible">
 <summary><h3 id="c1-distancia-euclidiana-simplificada">C1. Distancia euclidiana simplificada</h3></summary>
 <div class="section-content">
-<p><strong>Enunciado</strong>: Calculá una aproximación de la distancia entre dos puntos usando la fórmula euclidiana simplificada (sin considerar la curvatura terrestre):</p>
-<p>distancia = √[(lat2-lat1)² + (lon2-lon1)²]</p>
-<p>Puntos:<br />
+<p><strong>Enunciado</strong>: Calculá una aproximación de la distancia entre dos puntos usando la fórmula euclidiana simplificada (sin considerar la curvatura terrestre):<br />
+distancia = √[(lat2-lat1)² + (lon2-lon1)²]<br />
+Puntos:<br />
 - Buenos Aires: (-34.6, -58.4)<br />
 - Montevideo: (-34.9, -56.2)</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada aproximada: <code>2.2</code> (en "grados", no km)</p>
 <p><strong>Hint</strong>: Podés calcular la raíz cuadrada elevando a la potencia 0.5: <code>valor ** 0.5</code></p>
 <hr />
 </div>
@@ -658,11 +565,11 @@ Fecha: 2026-02-02
 <details class="section-collapsible">
 <summary><h3 id="c2-gradosminutossegundos-a-decimal">C2. Grados/Minutos/Segundos a decimal</h3></summary>
 <div class="section-content">
-<p><strong>Enunciado</strong>: Las coordenadas a veces se expresan en grados, minutos y segundos (DMS). Por ejemplo: 34° 36' 12" S</p>
-<p>La conversión a decimal es: grados + minutos/60 + segundos/3600</p>
-<p>Convertí la coordenada 34° 36' 12" Sur a formato decimal (recordá que Sur es negativo).</p>
+<p><strong>Enunciado</strong>: Las coordenadas a veces se expresan en grados, minutos y segundos (DMS). Por ejemplo: 34° 36' 12" S<br />
+La conversión a decimal es: grados + minutos/60 + segundos/3600<br />
+Convertí la coordenada 34° 36' 12" Sur a formato decimal (recordá que Sur es negativo).</p>
 <p><strong>Ejemplo</strong>:<br />
-- Entrada: grados=34, minutos=36, segundos=12, dirección="S"<br />
+- Entrada: <code>grados=34, minutos=36, segundos=12, dirección="S"</code><br />
 - Salida esperada: <code>-34.6033...</code></p>
 <hr />
 </div>
@@ -675,11 +582,11 @@ Fecha: 2026-02-02
 - NE (Noreste): latitud &gt; 0 y longitud &gt; 0<br />
 - NW (Noroeste): latitud &gt; 0 y longitud &lt; 0<br />
 - SE (Sureste): latitud &lt; 0 y longitud &gt; 0<br />
-- SW (Suroeste): latitud &lt; 0 y longitud &lt; 0</p>
-<p>Si la latitud o longitud es exactamente 0, indicá que está en un eje.</p>
-<p>Probá con las coordenadas de Sydney: latitud -33.9, longitud 151.2</p>
+- SW (Suroeste): latitud &lt; 0 y longitud &lt; 0<br />
+Si la latitud o longitud es exactamente 0, indicá que está en un eje.<br />
+Probá con las coordenadas de Sydney: latitud -33.9, longitud 151.2</p>
 <p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>SE</code> (Sureste)</p>
+- Salida esperada: <code>SE</code> (Sureste)`</p>
 <p><strong>Hint</strong>: Usá múltiples comparaciones con <code>and</code> y <code>or</code>, o investigá sobre expresiones condicionales.</p>
 <hr />
 </div>
@@ -688,15 +595,11 @@ Fecha: 2026-02-02
 <details class="section-collapsible">
 <summary><h3 id="c4-tiempo-de-viaje">C4. Tiempo de viaje</h3></summary>
 <div class="section-content">
-<p><strong>Enunciado</strong>: Calculá el tiempo de viaje entre dos ciudades dada la distancia y la velocidad promedio. Mostrá el resultado en formato horas:minutos.</p>
-<ul>
-<li>Distancia: 400 km</li>
-<li>Velocidad: 80 km/h</li>
-</ul>
+<p><strong>Enunciado</strong>: Calculá el tiempo de viaje entre dos ciudades dada la distancia y la velocidad promedio. Mostrá el resultado en formato horas:minutos.<br />
+- Distancia: 400 km<br />
+- Velocidad: 80 km/h</p>
 <p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>5:00</code> o <code>5 horas y 0 minutos</code></p>
-<p><strong>Desafío extra</strong>: Probá con distancia=350 km y velocidad=80 km/h, donde el resultado tiene minutos fraccionarios.<br />
-- Salida esperada: <code>4:22</code> (aproximadamente)</p>
+- Salida esperada: <code>4:22</code> (aproximadamente)`</p>
 <p><strong>Hint</strong>: Las horas son la división entera, los minutos son el resto convertido.</p>
 <hr />
 </div>
@@ -715,17 +618,14 @@ Fecha: 2026-02-02
 - Entrada: <code>Machu Picchu</code>, <code>-13.16</code>, <code>-72.55</code><br />
 - Salida esperada:</p>
 <div class="highlight"><pre><span></span><code>============================================
-          FICHA DE UBICACIÓN
+FICHA DE UBICACIÓN
 ============================================
 Lugar: Machu Picchu
-
 Coordenadas:
-  Latitud:  13.16° Sur
-  Longitud: 72.55° Oeste
-
+Latitud:  13.16° Sur
+Longitud: 72.55° Oeste
 Ubicación: Hemisferio Sur, Meridiano Oeste
 Huso horario aproximado: UTC-5
-
 Estado: Coordenadas válidas
 ============================================
 </code></pre></div>

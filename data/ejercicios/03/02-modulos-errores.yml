@@ -1,0 +1,202 @@
+unit:
+  number: 3
+  title: Módulos y Manejo de Errores
+  description: Ejercicios sobre importación de módulos y manejo de excepciones con try/except.
+categories:
+- id: A
+  title: Ejercicios fundamentales
+  description: Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
+  blocks:
+  - name: Importar módulos
+    exercises:
+    - id: A1
+      title: Importar módulo completo
+      enunciado: Importá el módulo `math` y usá `math.sqrt()` para calcular la raíz cuadrada de 144.
+      ejemplo:
+        salida: '12.0'
+      hint: Usá `import math` y luego `math.sqrt(144)`.
+    - id: A2
+      title: Importar función específica
+      enunciado: Importá solo la función `sqrt` del módulo `math` y usala para calcular la raíz cuadrada de 225.
+      ejemplo:
+        salida: '15.0'
+      hint: Usá `from math import sqrt` y luego `sqrt(225)` directamente.
+    - id: A3
+      title: Importar con alias
+      enunciado: Importá el módulo `math` con el alias `m` y usá `m.pi` para mostrar el valor de π.
+      ejemplo:
+        salida: '3.141592653589793'
+      hint: Usá `import math as m`.
+    - id: A4
+      title: Importar múltiples funciones
+      enunciado: Importá `sqrt`, `pow` y `pi` del módulo `math` en una sola línea. Calculá la circunferencia de un círculo
+        de radio 5 (2 × π × r).
+      ejemplo:
+        salida: '31.41592653589793'
+      hint: '`from math import sqrt, pow, pi`.'
+    - id: A5
+      title: Listar contenido de módulo
+      enunciado: Usá `dir(math)` para ver todas las funciones disponibles en el módulo math. Mostrá las primeras 10.
+      ejemplo:
+        salida: lista de nombres de funciones
+      hint: '`dir()` devuelve una lista de nombres disponibles en un módulo.'
+  - name: Módulos estándar útiles
+    exercises:
+    - id: A6
+      title: Módulo os - directorio actual
+      enunciado: Usá el módulo `os` para mostrar el directorio de trabajo actual.
+      ejemplo:
+        salida: /home/usuario/proyecto` (o similar)
+      hint: Usá `os.getcwd()`.
+    - id: A7
+      title: Módulo os - listar archivos
+      enunciado: Usá `os.listdir()` para listar los archivos del directorio actual.
+      ejemplo:
+        salida: '[''archivo1.py'', ''datos.csv'', ...]'
+    - id: A8
+      title: Módulo random - número aleatorio
+      enunciado: Usá el módulo `random` para generar una coordenada de latitud aleatoria entre -90 y 90.
+      ejemplo:
+        salida: -34.567` (número aleatorio diferente cada vez)
+      hint: Usá `random.uniform(-90, 90)`.
+    - id: A9
+      title: Módulo random - elección aleatoria
+      enunciado: Dada una lista de ciudades `["Buenos Aires", "Córdoba", "Rosario", "Mendoza"]`, usá `random.choice()` para
+        elegir una ciudad al azar.
+      ejemplo:
+        salida: Córdoba` (o cualquier ciudad de la lista)
+    - id: A10
+      title: Módulo datetime - fecha actual
+      enunciado: Usá el módulo `datetime` para obtener y mostrar la fecha y hora actual.
+      ejemplo:
+        salida: '2026-02-03 14:30:45.123456'
+      hint: Usá `datetime.datetime.now()`.
+  - name: Try/except básico
+    exercises:
+    - id: A11
+      title: Capturar error de división
+      enunciado: Escribí un programa que intente dividir 10 por 0. Usá try/except para capturar el error y mostrar un mensaje
+        amigable.
+      ejemplo:
+        salida: 'Error: No se puede dividir por cero'
+      hint: El error de división por cero es `ZeroDivisionError`.
+    - id: A12
+      title: Capturar error de conversión
+      enunciado: Intentá convertir el string "abc" a entero usando `int()`. Capturá el error y mostrá un mensaje apropiado.
+      ejemplo:
+        salida: 'Error: No se puede convertir ''abc'' a número'
+      hint: El error de conversión es `ValueError`.
+    - id: A13
+      title: Capturar error de archivo
+      enunciado: Intentá abrir un archivo que no existe (`archivo_inexistente.txt`). Capturá el error y mostrá un mensaje.
+      ejemplo:
+        salida: 'Error: El archivo no fue encontrado'
+      hint: El error es `FileNotFoundError`.
+    - id: A14
+      title: Capturar error de índice
+      enunciado: Dada la lista `ciudades = ["Buenos Aires", "Córdoba"]`, intentá acceder al índice 10. Capturá el error.
+      ejemplo:
+        salida: 'Error: Índice fuera de rango'
+      hint: El error es `IndexError`.
+    - id: A15
+      title: Capturar error de clave
+      enunciado: 'Dado el diccionario `punto = {"lat": -34.6, "lon": -58.4}`, intentá acceder a la clave "nombre". Capturá
+        el error.'
+      ejemplo:
+        salida: 'Error: La clave ''nombre'' no existe'
+      hint: El error es `KeyError`.
+  - name: Excepciones específicas y else/finally
+    exercises:
+    - id: A16
+      title: Múltiples excepciones
+      enunciado: Escribí un programa que pida al usuario un número y lo use como divisor de 100. Manejá tanto el caso de división
+        por cero como de entrada inválida (texto en lugar de número).
+      ejemplo:
+        entrada: '5` → Salida: `Resultado: 20.0'
+    - id: A17
+      title: Bloque else en try
+      enunciado: Escribí un programa que intente abrir y leer un archivo. Si tiene éxito (no hay error), mostrá "Archivo leído
+        correctamente" en el bloque `else`.
+      hint: El bloque `else` se ejecuta solo si no hubo excepciones.
+    - id: A18
+      title: Bloque finally
+      enunciado: Escribí un programa que intente abrir un archivo y use `finally` para mostrar "Operación finalizada" siempre,
+        haya o no error.
+      hint: El bloque `finally` se ejecuta siempre, haya o no excepción.
+    - id: A19
+      title: Obtener mensaje de error
+      enunciado: Capturá un error de archivo y mostrá el mensaje de error original usando `as e`.
+      ejemplo:
+        salida: 'Error: [Errno 2] No such file or directory: ''noexiste.txt'''
+      hint: Usá `except FileNotFoundError as e:` y luego `print(e)`.
+    - id: A20
+      title: Capturar cualquier excepción
+      enunciado: Escribí un programa que capture cualquier tipo de excepción usando `except Exception`. Probalo con una división
+        por cero.
+      ejemplo:
+        salida: 'Ocurrió un error: division by zero'
+      hint: '`Exception` es la clase base de la mayoría de errores.'
+- id: B
+  title: Ejercicios de práctica extra
+  description: Recomendables para quienes quieran practicar más.
+  exercises:
+  - id: B1
+    title: Módulo os.path
+    enunciado: Usá `os.path.exists()` para verificar si un archivo existe antes de intentar abrirlo.
+  - id: B2
+    title: Generar coordenadas aleatorias
+    enunciado: Usá el módulo `random` para generar 5 puntos geográficos aleatorios (cada uno con lat y lon válidas).
+  - id: B3
+    title: Formatear fecha
+    enunciado: Usá `datetime.strftime()` para mostrar la fecha actual en formato "03/02/2026".
+    hint: El formato es `"%d/%m/%Y"`.
+  - id: B4
+    title: Calcular distancia con math
+    enunciado: Usá `math.sqrt()` y `math.pow()` para calcular la distancia euclidiana entre dos puntos geográficos.
+  - id: B5
+    title: Re-lanzar excepción
+    enunciado: Capturá una excepción, registrá el error en una variable, y luego re-lanzá la excepción usando `raise`.
+  - id: B6
+    title: Validar múltiples archivos
+    enunciado: Dada una lista de nombres de archivos, verificá cuáles existen y cuáles no, mostrando un reporte.
+  - id: B7
+    title: Timeout simulado
+    enunciado: Usá `time.sleep()` para simular una operación que tarda. Si tarda más de 2 segundos, mostrá un mensaje.
+  - id: B8
+    title: Parsear fecha de string
+    enunciado: Usá `datetime.strptime()` para convertir el string "03-02-2026" a un objeto datetime. Manejá el error si el
+      formato es incorrecto.
+  - id: B9
+    title: Crear directorio seguro
+    enunciado: Usá `os.makedirs()` con el parámetro `exist_ok=True` para crear un directorio solo si no existe.
+  - id: B10
+    title: Encadenar excepciones
+    enunciado: Capturá un error y lanzá otro error personalizado usando `raise ... from e`.
+- id: C
+  title: Desafíos
+  description: Ejercicios opcionales que requieren mayor dificultad o investigación.
+  exercises:
+  - id: C1
+    title: Crear tu propio módulo
+    enunciado: Creá un archivo `geo_utils.py` con funciones para calcular distancia y validar coordenadas. Luego importalo
+      desde otro archivo y usá las funciones.
+  - id: C2
+    title: Excepción personalizada
+    enunciado: |-
+      Creá una clase `CoordenadaInvalidaError` que herede de `Exception`. Usala en una función de validación que lance este error específico.
+      ```python
+      class CoordenadaInvalidaError(Exception):
+          pass
+      ```
+  - id: C3
+    title: Context manager personalizado
+    enunciado: Creá un context manager usando `__enter__` y `__exit__` que registre cuánto tiempo tardó un bloque de código
+      en ejecutarse.
+  - id: C4
+    title: Reintentar operación fallida
+    enunciado: Creá una función `reintentar(funcion, intentos=3)` que ejecute una función y, si falla, reintente hasta N veces
+      antes de rendirse.
+  - id: C5
+    title: Sistema de logging con niveles
+    enunciado: Usá el módulo `logging` de Python para crear un sistema de logs con niveles DEBUG, INFO, WARNING y ERROR. Configurá
+      para que escriba a un archivo.

@@ -1,0 +1,201 @@
+unit:
+  number: 3
+  title: Pandas para Datos Geográficos
+  description: Ejercicios sobre lectura y manipulación de datos con Pandas.
+categories:
+- id: A
+  title: Ejercicios fundamentales
+  description: Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
+  blocks:
+  - name: Cargar datos y exploración básica
+    exercises:
+    - id: A1
+      title: Leer CSV con pandas
+      enunciado: Creá un archivo `ciudades.csv` con columnas nombre, latitud, longitud y población. Leélo con `pd.read_csv()`
+        y mostrá el DataFrame.
+      ejemplo:
+        salida: DataFrame con 3 filas y 4 columnas
+      hint: '`import pandas as pd` y luego `pd.read_csv("archivo.csv")`.'
+    - id: A2
+      title: Ver primeras y últimas filas
+      enunciado: Usando el DataFrame del ejercicio anterior, mostrá las primeras 2 filas con `head()` y las últimas 2 con
+        `tail()`.
+    - id: A3
+      title: Información del DataFrame
+      enunciado: Usá `df.shape`, `df.columns` y `df.dtypes` para explorar la estructura del DataFrame.
+      ejemplo:
+        salida: |-
+          Forma: (3, 4)
+          Columnas: ['nombre', 'latitud', 'longitud', 'poblacion']
+          Tipos: nombre: object, latitud: float64, ...
+    - id: A4
+      title: Estadísticas básicas
+      enunciado: Usá `df.describe()` para ver estadísticas de las columnas numéricas (latitud, longitud, población).
+      ejemplo:
+        salida: tabla con count, mean, std, min, max, etc.
+    - id: A5
+      title: Acceder a una columna
+      enunciado: Extraé la columna "nombre" del DataFrame y mostrá sus valores.
+      ejemplo:
+        salida: |-
+          0    Buenos Aires
+          1         Córdoba
+          2         Rosario
+          Name: nombre, dtype: object
+      hint: Usá `df["nombre"]` o `df.nombre`.
+  - name: Selección con loc e iloc
+    exercises:
+    - id: A6
+      title: Seleccionar fila por índice
+      enunciado: Usá `iloc[0]` para obtener la primera fila del DataFrame como Serie.
+      ejemplo:
+        salida: |-
+          nombre        Buenos Aires
+          latitud             -34.6
+          longitud            -58.4
+          poblacion         2890000
+          Name: 0, dtype: object
+    - id: A7
+      title: Seleccionar rango de filas
+      enunciado: Usá `iloc[0:2]` para obtener las primeras 2 filas como DataFrame.
+      ejemplo:
+        salida: DataFrame con Buenos Aires y Córdoba
+    - id: A8
+      title: Seleccionar columnas específicas
+      enunciado: Creá un nuevo DataFrame con solo las columnas "nombre" y "poblacion".
+      ejemplo:
+        salida: DataFrame con 2 columnas
+      hint: '`df[["nombre", "poblacion"]]` (doble corchete).'
+    - id: A9
+      title: Seleccionar con loc por etiqueta
+      enunciado: Establecé la columna "nombre" como índice con `set_index()`. Luego usá `loc["Córdoba"]` para obtener los
+        datos de Córdoba.
+      ejemplo:
+        salida: Serie con latitud, longitud y población de Córdoba
+    - id: A10
+      title: Seleccionar celda específica
+      enunciado: Obtené la población de la primera ciudad usando `iloc[0, 3]` o `loc` con el nombre de columna.
+      ejemplo:
+        salida: '2890000'
+  - name: Filtrado de datos
+    exercises:
+    - id: A11
+      title: Filtrar por condición simple
+      enunciado: Filtrá el DataFrame para mostrar solo las ciudades con población mayor a 1.5 millones.
+      ejemplo:
+        salida: DataFrame con solo Buenos Aires
+      hint: '`df[df["poblacion"] > 1500000]`.'
+    - id: A12
+      title: Filtrar por condición de texto
+      enunciado: Filtrá para mostrar solo las ciudades cuyo nombre empieza con "B".
+      ejemplo:
+        salida: DataFrame con Buenos Aires
+      hint: Usá `df["nombre"].str.startswith("B")`.
+    - id: A13
+      title: Filtrar con múltiples condiciones
+      enunciado: Filtrá ciudades con latitud menor a -32 Y población mayor a 1 millón.
+      ejemplo:
+        salida: DataFrame con Buenos Aires y Rosario
+      hint: Usá `&` para AND y `|` para OR. Cada condición entre paréntesis.
+    - id: A14
+      title: Filtrar con query()
+      enunciado: Usá el método `query()` para filtrar ciudades con longitud menor a -60.
+    - id: A15
+      title: Filtrar con isin()
+      enunciado: Filtrá para mostrar solo las ciudades que están en la lista `["Buenos Aires", "Rosario"]`.
+      ejemplo:
+        salida: DataFrame con 2 ciudades
+      hint: '`df[df["nombre"].isin(["Buenos Aires", "Rosario"])]`.'
+  - name: Agrupación y agregación
+    exercises:
+    - id: A16
+      title: Agregar columna de categoría
+      enunciado: Agregá una columna "region" al DataFrame con valores "Pampeana" para todas las ciudades (por ahora el mismo
+        valor).
+      hint: '`df["region"] = "Pampeana"`.'
+    - id: A17
+      title: Agrupar y contar
+      enunciado: Creá un DataFrame con varias ciudades y regiones (Pampeana, Cuyo, Norte). Usá `groupby("region").size()`
+        para contar ciudades por región.
+      ejemplo:
+        salida: |-
+          region
+          Cuyo       2
+          Norte      1
+          Pampeana   3
+          dtype: int64
+    - id: A18
+      title: Agrupar y sumar
+      enunciado: Agrupá por región y calculá la población total de cada región con `sum()`.
+      ejemplo:
+        salida: Serie con población total por región
+    - id: A19
+      title: Múltiples agregaciones
+      enunciado: Agrupá por región y calculá tanto la suma como el promedio de población usando `agg()`.
+      ejemplo:
+        salida: DataFrame con columnas sum y mean por región
+      hint: '`df.groupby("region")["poblacion"].agg(["sum", "mean"])`.'
+    - id: A20
+      title: Estadísticas por grupo
+      enunciado: Para cada región, encontrá la ciudad con mayor población usando `idxmax()` o filtrado.
+      ejemplo:
+        salida: nombre de la ciudad más poblada de cada región
+- id: B
+  title: Ejercicios de práctica extra
+  description: Recomendables para quienes quieran practicar más.
+  exercises:
+  - id: B1
+    title: Leer CSV con opciones
+    enunciado: Leé un CSV especificando el separador (`;`), encoding (`latin-1`) y columnas a usar.
+    hint: Parámetros `sep`, `encoding`, `usecols` de `read_csv()`.
+  - id: B2
+    title: Manejar valores nulos
+    enunciado: Creá un DataFrame con algunos valores nulos. Usá `fillna()` para reemplazarlos y `dropna()` para eliminar filas
+      con nulos.
+  - id: B3
+    title: Renombrar columnas
+    enunciado: Renombrá las columnas del DataFrame de inglés a español usando `rename()`.
+  - id: B4
+    title: Aplicar función a columna
+    enunciado: Usá `apply()` para crear una columna "hemisferio" que sea "Sur" si latitud < 0, "Norte" si no.
+  - id: B5
+    title: Pivotear datos
+    enunciado: Creá una tabla pivote que muestre la población promedio por región y año.
+  - id: B6
+    title: Fechas en pandas
+    enunciado: Leé un CSV con una columna de fecha. Convertila a datetime y extraé el año y mes.
+  - id: B7
+    title: Exportar a Excel
+    enunciado: Guardá el DataFrame en formato Excel usando `to_excel()`.
+    hint: Necesitás instalar `openpyxl`.
+  - id: B8
+    title: Leer múltiples CSVs
+    enunciado: Leé todos los archivos CSV de un directorio y combinalos en un solo DataFrame.
+  - id: B9
+    title: Valores únicos y conteos
+    enunciado: Usá `unique()` y `value_counts()` para analizar los valores de la columna región.
+  - id: B10
+    title: Crear DataFrame desde diccionario
+    enunciado: Creá un DataFrame a partir de un diccionario de listas o una lista de diccionarios.
+- id: C
+  title: Desafíos
+  description: Ejercicios opcionales que requieren mayor dificultad o investigación.
+  exercises:
+  - id: C1
+    title: Leer datos de URL
+    enunciado: Usá `pd.read_csv()` para leer un CSV directamente desde una URL de internet.
+  - id: C2
+    title: Análisis de correlación
+    enunciado: Calculá la matriz de correlación entre latitud, longitud y población. Interpretá los resultados.
+    hint: '`df.corr()`.'
+  - id: C3
+    title: Datos geoespaciales
+    enunciado: Instalá `geopandas` y creá un GeoDataFrame a partir de coordenadas. Visualizá los puntos en un mapa simple.
+  - id: C4
+    title: Optimizar memoria
+    enunciado: Analizá el uso de memoria del DataFrame con `df.memory_usage()`. Convertí columnas a tipos más eficientes (category,
+      int32, etc.).
+  - id: C5
+    title: Pipeline de transformación
+    enunciado: Creá un pipeline que lea un CSV, limpie datos, agregue columnas calculadas, filtre, agrupe y exporte a un nuevo
+      CSV. Todo en una secuencia encadenada usando el estilo de pandas con `.pipe()` o encadenamiento de métodos.

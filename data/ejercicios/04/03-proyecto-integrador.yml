@@ -1,0 +1,4 @@
+unit:
+  title: 'Proyecto Integrador: Análisis de Vegetación con NDVI'
+  description: Un proyecto paso a paso para construir un analizador de imágenes satelitales que calcula índices de vegetación.
+categories: []

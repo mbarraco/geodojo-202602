@@ -216,7 +216,9 @@ Promedio: 25.3°C
 
 #### Ejemplo 4: Potenciación y raíz cuadrada
 
-**Enunciado**: Dado un terreno cuadrado de 150 m de lado, calcular el área (lado²) y la diagonal (lado × √2).
+**Enunciado**: Dado un terreno cuadrado de 150 m de lado, calcular:
+- El área (lado²)
+- La diagonal (lado × √2, usando potenciación)
 
 ```python
 lado = 150
@@ -261,7 +263,7 @@ Km restantes: 350
 
 #### Ejemplo 6: Strings y concatenación
 
-**Enunciado**: Crear variables para país y ciudad. Mostrar el texto "Ciudad: [ciudad], País: [país]" de dos formas.
+**Enunciado**: Crear variables para país y ciudad. Mostrar el texto "Ciudad: [ciudad], País: [país]" de dos formas: con `+` y con f-string.
 
 ```python
 pais = "Argentina"
@@ -286,7 +288,7 @@ Ciudad: Mendoza, País: Argentina
 
 #### Ejemplo 7: Métodos de string
 
-**Enunciado**: Dado el nombre "cerro aconcagua", mostrarlo en mayúsculas, en formato título, y mostrar su longitud.
+**Enunciado**: Dado el nombre "cerro aconcagua", mostrarlo en mayúsculas, en formato título (primera letra de cada palabra en mayúscula), y mostrar su longitud.
 
 ```python
 nombre = "cerro aconcagua"
@@ -307,7 +309,7 @@ Cerro Aconcagua
 
 #### Ejemplo 8: Input y conversión
 
-**Enunciado**: Pedir al usuario una latitud, convertirla a número, y mostrar su valor absoluto.
+**Enunciado**: Pedir al usuario una latitud, convertirla a número, y mostrar su valor absoluto (para saber la distancia al ecuador).
 
 ```python
 entrada = input("Ingresá una latitud: ")
@@ -317,17 +319,14 @@ distancia_ecuador = abs(latitud)
 print(f"Distancia al ecuador: {distancia_ecuador} grados")
 ```
 
-**Ejemplo de ejecución**:
-```
-Ingresá una latitud: -34.6
-Distancia al ecuador: 34.6 grados
-```
-
 ---
 
 #### Ejemplo 9: Comparaciones simples
 
-**Enunciado**: Dadas dos altitudes, mostrar comparaciones.
+**Enunciado**: Dadas dos altitudes (Aconcagua: 6962 m, Everest: 8849 m), mostrar:
+- ¿Es Aconcagua más alto que 6000?
+- ¿Son iguales?
+- ¿Cuál es más alto?
 
 ```python
 aconcagua = 6962
@@ -349,7 +348,10 @@ print(f"¿Everest es más alto? {everest > aconcagua}")
 
 #### Ejemplo 10: Booleanos y operadores lógicos
 
-**Enunciado**: Verificar si las coordenadas (-34.6, -58.4) son válidas.
+**Enunciado**: Verificar si las coordenadas (-34.6, -58.4) representan un punto válido:
+- Latitud entre -90 y 90
+- Longitud entre -180 y 180
+Mostrar si ambas condiciones se cumplen.
 
 ```python
 latitud = -34.6
@@ -374,7 +376,6 @@ Coordenadas válidas: True
 ---
 
 ## Notas para el docente
-
 - Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
 - Cada ejemplo introduce 1-2 conceptos nuevos de forma incremental
 - Se recomienda pedir participación: "¿Qué tipo creen que tiene esta variable?"

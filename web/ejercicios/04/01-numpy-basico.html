@@ -53,12 +53,6 @@
 <li><a href="#a18-slicing-con-paso">A18. Slicing con paso</a></li>
 <li><a href="#a19-indices-negativos">A19. Índices negativos</a></li>
 <li><a href="#a20-modificar-elemento">A20. Modificar elemento</a></li>
-<li><a href="#bloque-5-operaciones-basicas">Bloque 5: Operaciones básicas</a></li>
-<li><a href="#a21-suma-de-arrays">A21. Suma de arrays</a></li>
-<li><a href="#a22-multiplicar-por-escalar">A22. Multiplicar por escalar</a></li>
-<li><a href="#a23-operaciones-entre-arrays">A23. Operaciones entre arrays</a></li>
-<li><a href="#a24-diferencia-entre-arrays">A24. Diferencia entre arrays</a></li>
-<li><a href="#a25-division-elemento-a-elemento">A25. División elemento a elemento</a></li>
 </ul>
 </li>
 <li><a href="#categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</a><ul>
@@ -100,12 +94,10 @@
 <p>Se recomienda hacerlos todos. Están ordenados por dificultad incremental.</p>
 <hr />
 
-<details class="section-collapsible">
-<summary><h3 id="bloque-1-crear-arrays">Bloque 1: Crear arrays</h3></summary>
-<div class="section-content">
-<hr />
+<div class="section-divider">
+<h3 id="bloque-1-crear-arrays">Bloque 1: Crear arrays</h3>
 </div>
-</details>
+<hr />
 
 <details class="section-collapsible">
 <summary><h3 id="a1-primer-array">A1. Primer array</h3></summary>
@@ -123,8 +115,11 @@
 <div class="section-content">
 <p><strong>Enunciado</strong>: Creá un array con las poblaciones de tres ciudades: 2890000, 1430000, 1270000. Verificá que el tipo de dato sea entero.</p>
 <p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>array([2890000, 1430000, 1270000])</code><br />
-- Tipo: <code>int64</code></p>
+- Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>array([2890000, 1430000, 1270000])
+- Tipo: `int64`
+</code></pre></div>
+
 <p><strong>Hint</strong>: Usá <code>array.dtype</code> para ver el tipo.</p>
 <hr />
 </div>
@@ -162,19 +157,16 @@
 </div>
 </details>
 
-<details class="section-collapsible">
-<summary><h3 id="bloque-2-forma-y-dimensiones">Bloque 2: Forma y dimensiones</h3></summary>
-<div class="section-content">
-<hr />
+<div class="section-divider">
+<h3 id="bloque-2-forma-y-dimensiones">Bloque 2: Forma y dimensiones</h3>
 </div>
-</details>
+<hr />
 
 <details class="section-collapsible">
 <summary><h3 id="a6-ver-forma-del-array">A6. Ver forma del array</h3></summary>
 <div class="section-content">
 <p><strong>Enunciado</strong>: Creá un array con 6 elementos y mostrá su forma (shape).</p>
 <p><strong>Ejemplo</strong>:<br />
-- Si array = <code>[1, 2, 3, 4, 5, 6]</code><br />
 - Salida esperada: <code>(6,)</code></p>
 <p><strong>Hint</strong>: <code>array.shape</code> retorna una tupla con las dimensiones.</p>
 <hr />
@@ -198,8 +190,8 @@
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada:</p>
 <div class="highlight"><pre><span></span><code>array([[ 1,  2,  3,  4],
-       [ 5,  6,  7,  8],
-       [ 9, 10, 11, 12]])
+[ 5,  6,  7,  8],
+[ 9, 10, 11, 12]])
 </code></pre></div>
 
 <hr />
@@ -226,12 +218,10 @@
 </div>
 </details>
 
-<details class="section-collapsible">
-<summary><h3 id="bloque-3-arrays-especiales">Bloque 3: Arrays especiales</h3></summary>
-<div class="section-content">
-<hr />
+<div class="section-divider">
+<h3 id="bloque-3-arrays-especiales">Bloque 3: Arrays especiales</h3>
 </div>
-</details>
+<hr />
 
 <details class="section-collapsible">
 <summary><h3 id="a11-array-de-ceros">A11. Array de ceros</h3></summary>
@@ -249,7 +239,7 @@
 <div class="section-content">
 <p><strong>Enunciado</strong>: Creá una matriz de 3x4 de ceros.</p>
 <p><strong>Ejemplo</strong>:<br />
-- Salida esperada: matriz de ceros con forma (3, 4)</p>
+- Salida esperada: <code>matriz de ceros con forma (3, 4)</code></p>
 <p><strong>Hint</strong>: <code>np.zeros((3, 4))</code> - notar los paréntesis dobles.</p>
 <hr />
 </div>
@@ -287,12 +277,10 @@
 </div>
 </details>
 
-<details class="section-collapsible">
-<summary><h3 id="bloque-4-indexacion-y-slicing">Bloque 4: Indexación y slicing</h3></summary>
-<div class="section-content">
-<hr />
+<div class="section-divider">
+<h3 id="bloque-4-indexacion-y-slicing">Bloque 4: Indexación y slicing</h3>
 </div>
-</details>
+<hr />
 
 <details class="section-collapsible">
 <summary><h3 id="a16-acceder-a-elemento">A16. Acceder a elemento</h3></summary>
@@ -330,9 +318,6 @@
 <summary><h3 id="a19-indices-negativos">A19. Índices negativos</h3></summary>
 <div class="section-content">
 <p><strong>Enunciado</strong>: Obtené el último elemento y los últimos 3 elementos del array.</p>
-<p><strong>Ejemplo</strong>:<br />
-- Último: <code>-38.0</code><br />
-- Últimos 3: <code>array([-32.9, -24.8, -38.0])</code></p>
 <p><strong>Hint</strong>: <code>array[-1]</code> y <code>array[-3:]</code>.</p>
 <hr />
 </div>
@@ -344,69 +329,6 @@
 <p><strong>Enunciado</strong>: Creá un array de ceros de tamaño 5. Modificá el elemento del medio (índice 2) para que valga 100.</p>
 <p><strong>Ejemplo</strong>:<br />
 - Salida esperada: <code>array([  0.,   0., 100.,   0.,   0.])</code></p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="bloque-5-operaciones-basicas">Bloque 5: Operaciones básicas</h3></summary>
-<div class="section-content">
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a21-suma-de-arrays">A21. Suma de arrays</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Tenés dos arrays: <code>lat1 = [-34.6, -31.4]</code> y <code>ajuste = [0.1, 0.2]</code>. Sumá ambos arrays.</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>array([-34.5, -31.2])</code></p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a22-multiplicar-por-escalar">A22. Multiplicar por escalar</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Tenés distancias en grados: <code>[2.5, 3.2, 1.8]</code>. Convertí a km aproximados multiplicando por 111.</p>
-<p><strong>Ejemplo</strong>:<br />
-- Salida esperada: <code>array([277.5, 355.2, 199.8])</code></p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a23-operaciones-entre-arrays">A23. Operaciones entre arrays</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Tenés arrays de latitud y longitud de 3 puntos. Calculá lat² + lon² para cada punto.</p>
-<p><strong>Ejemplo</strong>:<br />
-- lat = <code>[-34.6, -31.4, -32.9]</code><br />
-- lon = <code>[-58.4, -64.2, -68.8]</code><br />
-- Salida esperada: suma de cuadrados para cada punto</p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a24-diferencia-entre-arrays">A24. Diferencia entre arrays</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Calculá la diferencia de latitud entre puntos consecutivos de una ruta.</p>
-<p><strong>Ejemplo</strong>:<br />
-- lat = <code>[-34.6, -31.4, -32.9]</code><br />
-- diferencias = lat[1:] - lat[:-1]<br />
-- Salida esperada: <code>array([3.2, -1.5])</code></p>
-<hr />
-</div>
-</details>
-
-<details class="section-collapsible">
-<summary><h3 id="a25-division-elemento-a-elemento">A25. División elemento a elemento</h3></summary>
-<div class="section-content">
-<p><strong>Enunciado</strong>: Tenés población y área de ciudades. Calculá la densidad (población/área).</p>
-<p><strong>Ejemplo</strong>:<br />
-- poblacion = <code>[2890000, 1430000, 1270000]</code><br />
-- area = <code>[203, 576, 178]</code><br />
-- Salida esperada: densidades</p>
 <hr />
 </div>
 </details>
@@ -545,7 +467,7 @@
 <div class="section-content">
 <p><strong>Enunciado</strong>: Guardá un array a archivo con <code>np.save()</code> y cargalo con <code>np.load()</code>. Probá también con <code>np.savetxt()</code> para formato texto.</p>
 <hr />
-<p><em>Fin de los ejercicios de la Unidad 4 - NumPy Básico</em></p>
+<p><em>Fin de los ejercicios de la Unidad 4</em></p>
 </div>
 </details>
 </div>

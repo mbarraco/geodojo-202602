@@ -50,8 +50,8 @@ UNIT_NAMES = {
 
 
 def get_jinja_env() -> Environment:
-    """Crea y retorna el entorno Jinja2 con los templates."""
-    template_dir = SCRIPT_DIR / "templates"
+    """Crea y retorna el entorno Jinja2 con los templates HTML."""
+    template_dir = SCRIPT_DIR / "templates" / "html"
     return Environment(
         loader=FileSystemLoader(template_dir),
         autoescape=False,  # No escapar HTML generado por markdown
@@ -99,10 +99,20 @@ def preprocess_markdown(content: str) -> str:
     return '\n'.join(result)
 
 
+# Pattern to detect "Bloque" headings
+BLOQUE_PATTERN = re.compile(r'^Bloque\s+\d+:', re.IGNORECASE)
+
+
+def is_bloque_heading(title: str) -> bool:
+    """Check if a heading title is a 'Bloque' section divider."""
+    return bool(BLOQUE_PATTERN.match(title.strip()))
+
+
 def wrap_headings_in_details(html: str, level: int) -> str:
     """
     Envuelve los headings de un nivel específico en elementos <details>.
     Procesa recursivamente los niveles inferiores dentro del contenido.
+    Los headings "Bloque X:" se renderizan como divisores de sección, no colapsables.
     """
     tag = f'h{level}'
     pattern = re.compile(rf'<{tag}([^>]*)>(.*?)</{tag}>', re.DOTALL)
@@ -131,16 +141,23 @@ def wrap_headings_in_details(html: str, level: int) -> str:
         if level < 3:
             section_content = wrap_headings_in_details(section_content, level + 1)
         
-        # Crear el elemento details
         attrs = match.group(1)
         title = match.group(2)
         
-        result.append(f'<details class="section-collapsible">')
-        result.append(f'<summary><{tag}{attrs}>{title}</{tag}></summary>')
-        result.append(f'<div class="section-content">')
-        result.append(section_content.strip())
-        result.append('</div>')
-        result.append('</details>')
+        # Check if this is a "Bloque" heading - render as section divider
+        if is_bloque_heading(title):
+            result.append(f'<div class="section-divider">')
+            result.append(f'<{tag}{attrs}>{title}</{tag}>')
+            result.append('</div>')
+            result.append(section_content.strip())
+        else:
+            # Regular heading - render as collapsible
+            result.append(f'<details class="section-collapsible">')
+            result.append(f'<summary><{tag}{attrs}>{title}</{tag}></summary>')
+            result.append(f'<div class="section-content">')
+            result.append(section_content.strip())
+            result.append('</div>')
+            result.append('</details>')
         
         last_end = section_end
     

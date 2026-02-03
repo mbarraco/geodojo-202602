@@ -178,7 +178,7 @@ Ndim (dimensiones): 1
 
 #### Ejemplo 3: Arrays especiales
 
-**Enunciado**: Crear arrays de ceros, unos y valores constantes.
+**Enunciado**: Crear arrays de ceros, unos y valores constantes para representar datos geográficos.
 
 ```python
 import numpy as np
@@ -247,7 +247,7 @@ linspace: 5 elementos
 
 #### Ejemplo 5: Matriz 2D de coordenadas
 
-**Enunciado**: Crear una matriz donde cada fila sea [latitud, longitud].
+**Enunciado**: Crear una matriz donde cada fila sea [latitud, longitud] de una ciudad.
 
 ```python
 import numpy as np
@@ -282,7 +282,7 @@ Columnas: 2 valores (lat, lon)
 
 #### Ejemplo 6: Reshape
 
-**Enunciado**: Crear un array del 1 al 12 y reorganizarlo.
+**Enunciado**: Crear un array del 1 al 12 y reorganizarlo como matriz 3x4 y 4x3.
 
 ```python
 import numpy as np
@@ -328,7 +328,7 @@ Flatten: [ 1  2  3  4  5  6  7  8  9 10 11 12]
 
 #### Ejemplo 7: Indexación y slicing
 
-**Enunciado**: Acceder a elementos específicos y rangos.
+**Enunciado**: Acceder a elementos específicos y rangos de un array de coordenadas.
 
 ```python
 import numpy as np
@@ -366,7 +366,7 @@ Alternados [::2]: [-34.6 -32.9 -38. ]
 
 #### Ejemplo 8: Indexación de matrices
 
-**Enunciado**: Acceder a filas, columnas y elementos de una matriz.
+**Enunciado**: Acceder a filas, columnas y elementos de una matriz de coordenadas.
 
 ```python
 import numpy as np
@@ -414,7 +414,7 @@ Columna 1 (longitudes): [-58.4 -64.2 -68.8]
 
 #### Ejemplo 9: Operaciones aritméticas
 
-**Enunciado**: Realizar cálculos con arrays.
+**Enunciado**: Realizar cálculos con arrays: conversión de grados a km, diferencias entre puntos.
 
 ```python
 import numpy as np
@@ -456,7 +456,7 @@ Latitudes ajustadas: [-34.59 -31.39 -32.89 -24.79]
 
 #### Ejemplo 10: Cálculo de distancia vectorizado
 
-**Enunciado**: Calcular distancia euclidiana entre arrays de puntos sin bucles.
+**Enunciado**: Calcular la distancia euclidiana entre dos arrays de puntos sin usar bucles.
 
 ```python
 import numpy as np
@@ -493,7 +493,6 @@ Distancias (km): [741. 541. 976.]
 ---
 
 ## Notas para el docente
-
 - Los ejemplos están diseñados para hacerse en vivo, escribiendo el código desde cero
 - Enfatizar que NumPy opera sobre arrays completos sin necesidad de bucles
 - La diferencia entre `arange` (paso) y `linspace` (cantidad) es importante

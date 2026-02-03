@@ -1,0 +1,319 @@
+unit:
+  number: 2
+  title: Estructuras de datos y control de flujo
+  description: Ejercicios sobre listas, tuplas, diccionarios, condicionales y bucles.
+categories:
+- id: A
+  title: Ejercicios fundamentales
+  description: Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
+  blocks:
+  - name: Listas básicas
+    exercises:
+    - id: A1
+      title: Lista de ciudades
+      enunciado: 'Creá una lista llamada `ciudades` que contenga los nombres: "Buenos Aires", "Córdoba", "Rosario". Mostrala
+        por pantalla.'
+      ejemplo:
+        salida: '[''Buenos Aires'', ''Córdoba'', ''Rosario'']'
+      hint: 'Las listas se crean con corchetes: `[elemento1, elemento2, ...]`'
+    - id: A2
+      title: Coordenadas en lista
+      enunciado: Creá una lista llamada `coordenadas` con los valores -34.6, -58.4 (latitud y longitud de Buenos Aires). Mostrá
+        la lista completa.
+      ejemplo:
+        salida: '[-34.6, -58.4]'
+    - id: A3
+      title: Acceso por índice
+      enunciado: Dada la lista `provincias = ["Mendoza", "Salta", "Tucumán", "Jujuy"]`, mostrá el primer elemento y el último
+        elemento.
+      ejemplo:
+        salida: |-
+          Mendoza
+          Jujuy
+      hint: El primer elemento tiene índice 0, el último tiene índice -1.
+    - id: A4
+      title: Longitud de una lista
+      enunciado: Dada la lista `altitudes = [6962, 6893, 6779, 6720, 6658]` (alturas de los 5 cerros más altos de Argentina),
+        mostrá cuántos elementos tiene usando `len()`.
+      ejemplo:
+        salida: '5'
+    - id: A5
+      title: Agregar elementos
+      enunciado: Creá una lista vacía llamada `capitales`. Agregá "La Plata", "Córdoba" y "Santa Fe" usando el método `append()`.
+        Mostrá la lista final.
+      ejemplo:
+        salida: '[''La Plata'', ''Córdoba'', ''Santa Fe'']'
+      hint: Usá `lista.append(elemento)` para agregar al final.
+  - name: Tuplas y diccionarios
+    exercises:
+    - id: A6
+      title: Coordenada como tupla
+      enunciado: 'Creá una tupla llamada `punto` con la latitud y longitud de Ushuaia: (-54.8, -68.3). Mostrá la tupla y luego
+        intentá cambiar el primer valor (observá qué error aparece).'
+      ejemplo:
+        salida: |-
+          (-54.8, -68.3)
+          - Error al modificar: `TypeError`
+      hint: Las tuplas se crean con paréntesis y son inmutables.
+    - id: A7
+      title: Desempaquetar tupla
+      enunciado: 'Dada la tupla `ubicacion = ("Mendoza", -32.89, -68.83)`, desempaquetá sus valores en tres variables: `ciudad`,
+        `lat`, `lon`. Mostrá cada variable.'
+      ejemplo:
+        salida: |-
+          Mendoza
+          -32.89
+          -68.83
+      hint: Usá `var1, var2, var3 = tupla` para desempaquetar.
+    - id: A8
+      title: Diccionario de ciudad
+      enunciado: Creá un diccionario llamado `buenos_aires` con las claves "nombre", "latitud" y "longitud", con los valores
+        correspondientes. Mostrá el diccionario completo.
+      ejemplo:
+        salida: '{''nombre'': ''Buenos Aires'', ''latitud'': -34.6, ''longitud'': -58.4}'
+      hint: 'Los diccionarios se crean con llaves: `{clave: valor, ...}`'
+    - id: A9
+      title: Acceder a valores del diccionario
+      enunciado: 'Dado el diccionario `cerro = {"nombre": "Aconcagua", "altura": 6962, "provincia": "Mendoza"}`, mostrá el
+        nombre y la altura accediendo por clave.'
+      ejemplo:
+        salida: |-
+          Aconcagua
+          6962
+      hint: Usá `diccionario["clave"]` para acceder.
+    - id: A10
+      title: Agregar clave al diccionario
+      enunciado: 'Dado el diccionario `pais = {"nombre": "Argentina", "capital": "Buenos Aires"}`, agregá una nueva clave
+        "poblacion" con el valor 45000000. Mostrá el diccionario actualizado.'
+      ejemplo:
+        salida: '{''nombre'': ''Argentina'', ''capital'': ''Buenos Aires'', ''poblacion'': 45000000}'
+      hint: Usá `diccionario["nueva_clave"] = valor` para agregar.
+  - name: Condicionales
+    exercises:
+    - id: A11
+      title: Hemisferio norte o sur
+      enunciado: Dada una variable `latitud = -34.6`, usá un condicional `if-else` para mostrar "Hemisferio Sur" si la latitud
+        es negativa, o "Hemisferio Norte" si es positiva o cero.
+      ejemplo:
+        salida: Hemisferio Sur
+    - id: A12
+      title: Altitud con elif
+      enunciado: |-
+        Dada una variable `altitud = 2500`, clasificala usando `if-elif-else`:
+        - Menor a 500: "Zona baja"
+        - Entre 500 y 2000: "Zona media"
+        - Mayor a 2000: "Zona alta"
+      ejemplo:
+        salida: Zona alta
+    - id: A13
+      title: Validar latitud
+      enunciado: Pedí al usuario una latitud. Si está entre -90 y 90 (inclusive), mostrá "Latitud válida". Si no, mostrá "Latitud
+        inválida".
+      ejemplo:
+        entrada: '-45.5'
+        salida: Latitud válida
+    - id: A14
+      title: Ciudad costera
+      enunciado: 'Dado un diccionario `ciudad = {"nombre": "Mar del Plata", "costera": True}`, verificá si la ciudad es costera
+        y mostrá un mensaje apropiado.'
+      ejemplo:
+        salida: Mar del Plata es una ciudad costera
+    - id: A15
+      title: Comparar alturas
+      enunciado: 'Dados dos cerros con sus alturas: `cerro1 = 6962` (Aconcagua) y `cerro2 = 6893` (Ojos del Salado), mostrá
+        cuál es más alto o si son iguales.'
+      ejemplo:
+        salida: El cerro 1 es más alto
+  - name: Bucles for
+    exercises:
+    - id: A16
+      title: Iterar lista de ciudades
+      enunciado: Dada la lista `ciudades = ["Salta", "Jujuy", "Tucumán"]`, usá un bucle `for` para mostrar cada ciudad en
+        una línea separada.
+      ejemplo:
+        salida: |-
+          Salta
+          Jujuy
+          Tucumán
+    - id: A17
+      title: Sumar altitudes
+      enunciado: Dada la lista `altitudes = [1200, 850, 2100, 1500]`, usá un bucle `for` para calcular la suma total de todas
+        las altitudes.
+      ejemplo:
+        salida: '5650'
+      hint: Creá una variable acumuladora inicializada en 0.
+    - id: A18
+      title: Numerar con enumerate
+      enunciado: Dada la lista `paises = ["Argentina", "Chile", "Uruguay", "Paraguay"]`, usá `enumerate()` para mostrar cada
+        país con su número (empezando en 1).
+      ejemplo:
+        salida: |-
+          1. Argentina
+          2. Chile
+          3. Uruguay
+          4. Paraguay
+      hint: Usá `enumerate(lista, start=1)` para empezar desde 1.
+    - id: A19
+      title: Recorrer con range
+      enunciado: Usá `range()` para mostrar los números del 1 al 5, que representan los 5 continentes habitados.
+      ejemplo:
+        salida: |-
+          1
+          2
+          3
+          4
+          5
+    - id: A20
+      title: Filtrar con for e if
+      enunciado: Dada la lista `temperaturas = [25, -5, 18, -12, 30, 0]`, usá un bucle `for` para mostrar solo las temperaturas
+        positivas (mayores a 0).
+      ejemplo:
+        salida: |-
+          25
+          18
+          30
+- id: B
+  title: Ejercicios de práctica extra
+  description: Recomendables para quienes quieran practicar más.
+  exercises:
+  - id: B1
+    title: Lista de coordenadas
+    enunciado: Creá una lista que contenga 3 tuplas, cada una con el nombre y coordenadas de una ciudad argentina. Mostrá
+      cada ciudad con sus coordenadas usando un bucle `for`.
+    ejemplo:
+      salida: |-
+        Buenos Aires: (-34.6, -58.4)
+        Córdoba: (-31.4, -64.2)
+        Mendoza: (-32.9, -68.8)
+  - id: B2
+    title: Diccionario de altitudes
+    enunciado: Creá un diccionario donde las claves sean nombres de cerros y los valores sean sus altitudes. Recorré el diccionario
+      e imprimí cada cerro con su altura.
+    ejemplo:
+      salida: |-
+        Aconcagua: 6962 m
+        Ojos del Salado: 6893 m
+        Monte Pissis: 6795 m
+    hint: Usá `.items()` para recorrer claves y valores.
+  - id: B3
+    title: Máximo y mínimo
+    enunciado: Dada la lista `poblaciones = [2890000, 1430000, 950000, 800000, 600000]` (poblaciones de ciudades argentinas),
+      encontrá el valor máximo y mínimo usando bucles (sin usar `max()` ni `min()`).
+    ejemplo:
+      salida: |-
+        Máximo: 2890000
+        Mínimo: 600000
+  - id: B4
+    title: Contar elementos
+    enunciado: Dada la lista `hemisferios = ["Sur", "Norte", "Sur", "Sur", "Norte", "Sur"]`, contá cuántas veces aparece "Sur"
+      y cuántas "Norte".
+    ejemplo:
+      salida: |-
+        Sur: 4
+        Norte: 2
+  - id: B5
+    title: Invertir lista
+    enunciado: Dada la lista `ciudades = ["A", "B", "C", "D"]`, creá una nueva lista con los elementos en orden inverso usando
+      un bucle (sin usar `.reverse()` ni slicing).
+    ejemplo:
+      salida: '[''D'', ''C'', ''B'', ''A'']'
+  - id: B6
+    title: Menú interactivo
+    enunciado: Creá un menú que muestre 3 opciones (1. Ver ciudades, 2. Ver países, 3. Salir). Usá un bucle `while` para repetir
+      el menú hasta que el usuario elija salir.
+    ejemplo:
+      salida: |-
+        1. Ver ciudades
+        2. Ver países
+        3. Salir
+        Opción: 1
+        [Lista de ciudades]
+        ...
+        Opción: 3
+        ¡Hasta luego!
+  - id: B7
+    title: Promedio de temperaturas
+    enunciado: Dada la lista `temperaturas = [22.5, 25.0, 19.3, 28.1, 21.7]`, calculá el promedio usando un bucle `for` y
+      mostralo redondeado a 1 decimal.
+    ejemplo:
+      salida: 'Promedio: 23.3°C'
+  - id: B8
+    title: Filtrar diccionarios
+    enunciado: |-
+      Dada una lista de diccionarios de ciudades, filtrá y mostrá solo las que tienen más de 1 millón de habitantes.
+      ```python
+      ciudades = [
+          {"nombre": "Buenos Aires", "poblacion": 2890000},
+          {"nombre": "Córdoba", "poblacion": 1430000},
+          {"nombre": "Mendoza", "poblacion": 950000}
+      ]
+      ```
+    ejemplo:
+      salida: |-
+        Buenos Aires: 2890000 habitantes
+        Córdoba: 1430000 habitantes
+  - id: B9
+    title: Crear diccionario desde listas
+    enunciado: Dadas dos listas `paises = ["Argentina", "Chile", "Uruguay"]` y `capitales = ["Buenos Aires", "Santiago", "Montevideo"]`,
+      creá un diccionario donde cada país sea la clave y su capital el valor.
+    ejemplo:
+      salida: '{''Argentina'': ''Buenos Aires'', ''Chile'': ''Santiago'', ''Uruguay'': ''Montevideo''}'
+    hint: Usá `zip()` para combinar las listas.
+  - id: B10
+    title: Validación completa
+    enunciado: 'Pedí al usuario latitud y longitud. Validá que ambas estén en rangos correctos (lat: -90 a 90, lon: -180 a
+      180). Si alguna es inválida, pedí que la ingrese de nuevo hasta que sea correcta.'
+    ejemplo:
+      entrada: '-34.6'
+- id: C
+  title: Desafíos
+  description: Ejercicios opcionales que requieren mayor dificultad o investigación.
+  exercises:
+  - id: C1
+    title: Matriz de distancias
+    enunciado: Creá una matriz (lista de listas) de 3x3 que represente las distancias entre 3 ciudades. Mostrá la matriz formateada
+      como tabla.
+    ejemplo:
+      salida: |-
+        BsAs  Cba  Mza
+        BsAs      0  700  1000
+        Cba     700    0   500
+        Mza    1000  500     0
+    hint: Usá bucles anidados para recorrer filas y columnas.
+  - id: C2
+    title: Ordenar lista (bubble sort)
+    enunciado: Dada la lista `numeros = [64, 34, 25, 12, 22, 11, 90]`, implementá el algoritmo de ordenamiento burbuja (bubble
+      sort) para ordenarla de menor a mayor.
+    ejemplo:
+      salida: '[11, 12, 22, 25, 34, 64, 90]'
+    hint: Bubble sort compara pares adyacentes y los intercambia si están desordenados, repitiendo hasta que no haya intercambios.
+  - id: C3
+    title: Diccionario anidado
+    enunciado: |-
+      Creá un diccionario anidado que represente información completa de un país:
+      - Nombre, capital, coordenadas de la capital (como diccionario), lista de provincias/regiones
+      Luego accedé a la latitud de la capital y mostrá la tercera provincia.
+    ejemplo:
+      salida: |-
+        Latitud de la capital: -34.6
+        Tercera provincia: Santa Fe
+  - id: C4
+    title: Comprensión de listas
+    enunciado: |-
+      Investigá las "list comprehensions" de Python. Usá una comprensión de lista para:
+      1. Crear una lista con los cuadrados de los números del 1 al 10
+      2. Filtrar una lista de altitudes dejando solo las mayores a 1000
+    ejemplo:
+      salida: |-
+        Cuadrados: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+        Altitudes altas: [1200, 3500, 2000]
+  - id: C5
+    title: Sistema de registro de ciudades
+    enunciado: |-
+      Creá un programa que permita:
+      1. Agregar ciudades (nombre, latitud, longitud) a una lista de diccionarios
+      2. Listar todas las ciudades registradas
+      3. Buscar una ciudad por nombre
+      4. Eliminar una ciudad por nombre
+      5. Salir
+      Usá un menú interactivo con `while` y estructuras de datos apropiadas.

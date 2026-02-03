@@ -163,6 +163,23 @@ details ul {
     font-size: 0.8125rem;
 }
 
+/* Section dividers (Bloque headings) */
+.section-divider {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--pico-muted-border-color);
+}
+
+.section-divider h3 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--pico-muted-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
 /* Secciones colapsables en contenido */
 .section-collapsible {
     border: none;

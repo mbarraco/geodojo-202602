@@ -55,7 +55,6 @@ Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
 - `nombre`: "Cerro Aconcagua"
 - `latitud`: -32.65
 - `longitud`: -70.01
-
 Mostrá las tres variables, una por línea.
 
 **Ejemplo**:
@@ -115,7 +114,6 @@ Mostrá las tres variables, una por línea.
 **Enunciado**: Un terreno rectangular mide 120 m × 80 m. Calculá:
 1. El área (base × altura)
 2. La diagonal usando el teorema de Pitágoras: `diagonal = (base**2 + altura**2) ** 0.5`
-
 Redondeá la diagonal a 2 decimales.
 
 **Ejemplo**:
@@ -255,7 +253,6 @@ Redondeá la diagonal a 2 decimales.
 **Enunciado**: Pedí al usuario que ingrese el nombre de su ciudad favorita y luego mostrá un mensaje que diga "Tu ciudad favorita es: [ciudad]".
 
 **Ejemplo**:
-- Entrada del usuario: `Córdoba`
 - Salida esperada: `Tu ciudad favorita es: Córdoba`
 
 **Hint**: Usá `input("mensaje")` para pedir datos al usuario.
@@ -267,7 +264,6 @@ Redondeá la diagonal a 2 decimales.
 **Enunciado**: Pedí al usuario que ingrese una latitud. Convertí el valor a número decimal y mostrá el doble de esa latitud.
 
 **Ejemplo**:
-- Entrada del usuario: `-25.5`
 - Salida esperada: `-51.0`
 
 **Hint**: `input()` siempre devuelve texto, necesitás convertirlo con `float()`.
@@ -280,16 +276,10 @@ Redondeá la diagonal a 2 decimales.
 1. Nombre de un lugar
 2. Latitud
 3. Longitud
-
 Luego mostrá un resumen formateado con los tres datos.
 
 **Ejemplo**:
-- Entrada:
-  ```
-  Glaciar Perito Moreno
-  -50.5
-  -73.0
-  ```
+- Entrada: ``
 - Salida esperada:
   ```
   === Ficha de ubicación ===
@@ -297,61 +287,6 @@ Luego mostrá un resumen formateado con los tres datos.
   Latitud: -50.5
   Longitud: -73.0
   ```
-
----
-
-### Bloque 5: Comparaciones y booleanos
-
----
-
-### A21. Hemisferio norte
-
-**Enunciado**: Dada una variable `latitud = 40.7` (Nueva York), verificá si está en el hemisferio norte (latitud > 0) y mostrá el resultado (True o False).
-
-**Ejemplo**:
-- Salida esperada: `True`
-
----
-
-### A22. Comparar distancias
-
-**Enunciado**: Tenés dos distancias: `distancia_a = 250` y `distancia_b = 250`. Verificá si son iguales y mostrá el resultado.
-
-**Ejemplo**:
-- Salida esperada: `True`
-
-**Hint**: Usá el operador `==` para comparar igualdad.
-
----
-
-### A23. Altitud alta
-
-**Enunciado**: La altitud de Tilcara es 2461 metros. Verificá si supera los 2000 metros y mostrá el resultado.
-
-**Ejemplo**:
-- Salida esperada: `True`
-
----
-
-### A24. Latitud válida
-
-**Enunciado**: Una latitud es válida si está entre -90 y 90 (inclusive). Dada `latitud = -34.6`, verificá si es válida usando los operadores `and`, `>=` y `<=`. Mostrá el resultado.
-
-**Ejemplo**:
-- Salida esperada: `True`
-
-**Hint**: Se puede escribir la condición en una sola línea de código
-
----
-
-### A25. Ecuador o Greenwich
-
-**Enunciado**: Un punto está en el ecuador si su latitud es 0, y está en el meridiano de Greenwich si su longitud es 0. Dadas las variables `latitud = 0` y `longitud = -45.3`, verificá si el punto está en el ecuador O en el meridiano de Greenwich (al menos uno de los dos). Mostrá el resultado.
-
-**Ejemplo**:
-- Salida esperada: `True`
-
-**Hint**: Usá el operador `or`.
 
 ---
 
@@ -366,7 +301,6 @@ Recomendables para quienes quieran practicar más.
 **Enunciado**: Dados dos puntos geográficos:
 - Punto A: latitud -34.6, longitud -58.4 (Buenos Aires)
 - Punto B: latitud -31.4, longitud -64.2 (Córdoba)
-
 Calculá las coordenadas del punto medio entre ambos (promediando latitudes y longitudes por separado).
 
 **Ejemplo**:
@@ -384,10 +318,7 @@ Calculá las coordenadas del punto medio entre ambos (promediando latitudes y lo
 **Enunciado**: La latitud -34.65 grados se puede expresar como grados y minutos decimales. Los grados son la parte entera (-34) y los minutos se calculan multiplicando la parte decimal (0.65) por 60. Convertí la latitud -34.65 y mostrá el resultado.
 
 **Ejemplo**:
-- Salida esperada:
-  ```
-  -34 grados, 39.0 minutos
-  ```
+- Salida esperada: `-34 grados, 39.0 minutos`
 
 **Hint**: Usá `int()` para obtener la parte entera y el operador `%` o resta para la parte decimal.
 
@@ -397,16 +328,13 @@ Calculá las coordenadas del punto medio entre ambos (promediando latitudes y lo
 
 **Enunciado**: El huso horario aproximado se puede calcular dividiendo la longitud por 15. Dadas las longitudes de Tokyo (139.7) y Buenos Aires (-58.4), calculá la diferencia aproximada de horas entre ambas ciudades.
 
-**Ejemplo**:
-- Salida esperada aproximada: `13.2` horas (o valor similar)
-
 **Hint**: Calculá el huso de cada ciudad y luego restá.
 
 ---
 
 ### B4. Iniciales de un lugar
 
-**Enunciado**: Dado el nombre "Parque Nacional Los Glaciares", extraé y mostrá solo la primera letra de cada palabra (las iniciales). 
+**Enunciado**: Dado el nombre "Parque Nacional Los Glaciares", extraé y mostrá solo la primera letra de cada palabra (las iniciales).
 
 **Ejemplo**:
 - Salida esperada: `P N L G`
@@ -429,7 +357,6 @@ Calculá las coordenadas del punto medio entre ambos (promediando latitudes y lo
 **Enunciado**: Dados dos puntos con sus latitudes:
 - `lat_a = -34.6` (Buenos Aires)
 - `lat_b = -33.4` (Santiago)
-
 Verificá si ambos están en el mismo hemisferio (ambos positivos o ambos negativos) y mostrá True o False.
 
 **Ejemplo**:
@@ -466,12 +393,11 @@ Verificá si ambos están en el mismo hemisferio (ambos positivos o ambos negati
 **Enunciado**: Pedí al usuario una latitud y una longitud. Verificá que ambas sean válidas:
 - Latitud: entre -90 y 90
 - Longitud: entre -180 y 180
-
 Mostrá True si ambas son válidas, False en caso contrario.
 
 **Ejemplo**:
 - Entrada: `45.5` y `-200`
-- Salida esperada: `False` (la longitud está fuera de rango)
+- Salida esperada: `False` (la longitud está fuera de rango)`
 
 ---
 
@@ -500,15 +426,11 @@ Mostrá True si ambas son válidas, False en caso contrario.
 ### B11. Link a Google Maps
 
 **Enunciado**: Pedí al usuario que ingrese una latitud y una longitud. Generá e imprimí un link de Google Maps que apunte a esas coordenadas.
-
 El formato del link es: `https://www.google.com/maps?q=LATITUD,LONGITUD`
 
 **Ejemplo**:
 - Entrada: `-34.6037`, `-58.3816`
-- Salida esperada:
-  ```
-  https://www.google.com/maps?q=-34.6037,-58.3816
-  ```
+- Salida esperada: `https://www.google.com/maps?q=-34.6037,-58.3816`
 
 **Hint**: Usá f-strings para construir la URL con las variables.
 
@@ -523,15 +445,10 @@ Ejercicios opcionales que requieren mayor dificultad o investigación.
 ### C1. Distancia euclidiana simplificada
 
 **Enunciado**: Calculá una aproximación de la distancia entre dos puntos usando la fórmula euclidiana simplificada (sin considerar la curvatura terrestre):
-
 distancia = √[(lat2-lat1)² + (lon2-lon1)²]
-
 Puntos:
 - Buenos Aires: (-34.6, -58.4)
 - Montevideo: (-34.9, -56.2)
-
-**Ejemplo**:
-- Salida esperada aproximada: `2.2` (en "grados", no km)
 
 **Hint**: Podés calcular la raíz cuadrada elevando a la potencia 0.5: `valor ** 0.5`
 
@@ -540,13 +457,11 @@ Puntos:
 ### C2. Grados/Minutos/Segundos a decimal
 
 **Enunciado**: Las coordenadas a veces se expresan en grados, minutos y segundos (DMS). Por ejemplo: 34° 36' 12" S
-
 La conversión a decimal es: grados + minutos/60 + segundos/3600
-
 Convertí la coordenada 34° 36' 12" Sur a formato decimal (recordá que Sur es negativo).
 
 **Ejemplo**:
-- Entrada: grados=34, minutos=36, segundos=12, dirección="S"
+- Entrada: `grados=34, minutos=36, segundos=12, dirección="S"`
 - Salida esperada: `-34.6033...`
 
 ---
@@ -558,13 +473,11 @@ Convertí la coordenada 34° 36' 12" Sur a formato decimal (recordá que Sur es 
 - NW (Noroeste): latitud > 0 y longitud < 0
 - SE (Sureste): latitud < 0 y longitud > 0
 - SW (Suroeste): latitud < 0 y longitud < 0
-
 Si la latitud o longitud es exactamente 0, indicá que está en un eje.
-
 Probá con las coordenadas de Sydney: latitud -33.9, longitud 151.2
 
 **Ejemplo**:
-- Salida esperada: `SE` (Sureste)
+- Salida esperada: `SE` (Sureste)`
 
 **Hint**: Usá múltiples comparaciones con `and` y `or`, o investigá sobre expresiones condicionales.
 
@@ -573,15 +486,11 @@ Probá con las coordenadas de Sydney: latitud -33.9, longitud 151.2
 ### C4. Tiempo de viaje
 
 **Enunciado**: Calculá el tiempo de viaje entre dos ciudades dada la distancia y la velocidad promedio. Mostrá el resultado en formato horas:minutos.
-
 - Distancia: 400 km
 - Velocidad: 80 km/h
 
 **Ejemplo**:
-- Salida esperada: `5:00` o `5 horas y 0 minutos`
-
-**Desafío extra**: Probá con distancia=350 km y velocidad=80 km/h, donde el resultado tiene minutos fraccionarios.
-- Salida esperada: `4:22` (aproximadamente)
+- Salida esperada: `4:22` (aproximadamente)`
 
 **Hint**: Las horas son la división entera, los minutos son el resto convertido.
 
@@ -601,17 +510,14 @@ Probá con las coordenadas de Sydney: latitud -33.9, longitud 151.2
 - Salida esperada:
   ```
   ============================================
-            FICHA DE UBICACIÓN
+  FICHA DE UBICACIÓN
   ============================================
   Lugar: Machu Picchu
-  
   Coordenadas:
-    Latitud:  13.16° Sur
-    Longitud: 72.55° Oeste
-  
+  Latitud:  13.16° Sur
+  Longitud: 72.55° Oeste
   Ubicación: Hemisferio Sur, Meridiano Oeste
   Huso horario aproximado: UTC-5
-  
   Estado: Coordenadas válidas
   ============================================
   ```

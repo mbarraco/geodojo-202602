@@ -213,10 +213,6 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># Ejemplo completo con type hints</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">calcular_area</span><span class="p">(</span><span class="n">base</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">altura</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">base</span> <span class="o">*</span> <span class="n">altura</span>
-</code></pre></div>
 </div>
 </details>
 
@@ -282,19 +278,6 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">funcion</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Breve descripción.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        arg: Descripción del argumento.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Descripción de lo que retorna.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-</code></pre></div>
-
 <hr />
 </div>
 </details>
@@ -420,7 +403,7 @@ El doble de 100 es 200
 
 <hr />
 <h4 id="ejemplo-5-funcion-que-calcula-y-retorna_1">Ejemplo 5: Función que calcula y retorna</h4>
-<p><strong>Enunciado</strong>: Crear una función <code>celsius_a_fahrenheit</code> que convierta temperatura.</p>
+<p><strong>Enunciado</strong>: Crear una función <code>celsius_a_fahrenheit</code> que convierta temperatura. Fórmula: F = C × 9/5 + 32</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">celsius_a_fahrenheit</span><span class="p">(</span><span class="n">celsius</span><span class="p">):</span>
     <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
     <span class="k">return</span> <span class="n">fahrenheit</span>
@@ -440,7 +423,7 @@ El doble de 100 es 200
 
 <hr />
 <h4 id="ejemplo-6-funcion-con-return-condicional_1">Ejemplo 6: Función con return condicional</h4>
-<p><strong>Enunciado</strong>: Crear una función <code>hemisferio</code> que reciba una latitud y retorne "Norte", "Sur" o "Ecuador".</p>
+<p><strong>Enunciado</strong>: Crear una función <code>hemisferio</code> que reciba una latitud y retorne "Norte", "Sur" o "Ecuador" según corresponda.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hemisferio</span><span class="p">(</span><span class="n">latitud</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">latitud</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;Norte&quot;</span>
@@ -462,7 +445,7 @@ Quito (0): Ecuador
 
 <hr />
 <h4 id="ejemplo-7-type-hints-basicos_1">Ejemplo 7: Type hints básicos</h4>
-<p><strong>Enunciado</strong>: Reescribir la función <code>celsius_a_fahrenheit</code> con type hints.</p>
+<p><strong>Enunciado</strong>: Reescribir la función <code>celsius_a_fahrenheit</code> agregando type hints para los argumentos y el retorno.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">celsius_a_fahrenheit</span><span class="p">(</span><span class="n">celsius</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
     <span class="k">return</span> <span class="n">fahrenheit</span>
@@ -482,7 +465,7 @@ Anotaciones: {&#39;celsius&#39;: &lt;class &#39;float&#39;&gt;, &#39;return&#39;
 
 <hr />
 <h4 id="ejemplo-8-argumento-con-valor-por-defecto_1">Ejemplo 8: Argumento con valor por defecto</h4>
-<p><strong>Enunciado</strong>: Crear una función <code>crear_punto</code> con coordenadas por defecto.</p>
+<p><strong>Enunciado</strong>: Crear una función <code>crear_punto</code> que reciba nombre y coordenadas con valores por defecto (0.0, 0.0).</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">crear_punto</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">: (</span><span class="si">{</span><span class="n">lat</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">lon</span><span class="si">}</span><span class="s2">)&quot;</span>
 
@@ -507,7 +490,7 @@ Ecuador: (0.0, -78.5)
 
 <hr />
 <h4 id="ejemplo-9-variable-local-vs-global_1">Ejemplo 9: Variable local vs global</h4>
-<p><strong>Enunciado</strong>: Demostrar scope de variables, constantes globales y uso de <code>global</code> para modificar variables.</p>
+<p><strong>Enunciado</strong>: Demostrar que una variable creada dentro de una función no existe fuera. Usar una constante global RADIO_TIERRA. Mostrar cómo modificar una variable global con <code>global</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Constante global (por convención en MAYÚSCULAS)</span>
 <span class="n">RADIO_TIERRA</span> <span class="o">=</span> <span class="mi">6371</span>  <span class="c1"># km</span>
 
@@ -551,10 +534,9 @@ Visitaste Mendoza. Total de ciudades: 3
 Total final: 3 ciudades
 </code></pre></div>
 
-<p><strong>Nota</strong>: Sin <code>global ciudades_visitadas</code>, Python crearía una variable local nueva en lugar de modificar la global.</p>
 <hr />
 <h4 id="ejemplo-10-funcion-con-docstring_1">Ejemplo 10: Función con docstring</h4>
-<p><strong>Enunciado</strong>: Crear una función completa con type hints y docstring.</p>
+<p><strong>Enunciado</strong>: Crear una función <code>distancia_al_ecuador</code> con type hints y docstring completo que documente qué hace, sus argumentos y retorno.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">distancia_al_ecuador</span><span class="p">(</span><span class="n">latitud</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calcula la distancia en grados desde una latitud hasta el ecuador.</span>

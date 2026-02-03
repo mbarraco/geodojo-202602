@@ -1,0 +1,193 @@
+unit:
+  number: 4
+  title: NumPy Básico
+  description: Ejercicios sobre arrays, creación y operaciones básicas con NumPy.
+categories:
+- id: A
+  title: Ejercicios fundamentales
+  description: Se recomienda hacerlos todos. Están ordenados por dificultad incremental.
+  blocks:
+  - name: Crear arrays
+    exercises:
+    - id: A1
+      title: Primer array
+      enunciado: 'Importá NumPy con el alias `np` y creá un array con las latitudes de tres ciudades: -34.6, -31.4, -32.9.'
+      ejemplo:
+        salida: array([-34.6, -31.4, -32.9])
+      hint: '`import numpy as np` y luego `np.array([...])`.'
+    - id: A2
+      title: Array de enteros
+      enunciado: 'Creá un array con las poblaciones de tres ciudades: 2890000, 1430000, 1270000. Verificá que el tipo de dato
+        sea entero.'
+      ejemplo:
+        salida: |-
+          array([2890000, 1430000, 1270000])
+          - Tipo: `int64`
+      hint: Usá `array.dtype` para ver el tipo.
+    - id: A3
+      title: Array con tipo específico
+      enunciado: Creá el mismo array de poblaciones pero forzando el tipo a `float64`.
+      ejemplo:
+        salida: array([2890000., 1430000., 1270000.])
+      hint: '`np.array([...], dtype=np.float64)` o `dtype=float`.'
+    - id: A4
+      title: Array desde rango
+      enunciado: Creá un array con los números del 0 al 9 usando `np.arange()`.
+      ejemplo:
+        salida: array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    - id: A5
+      title: Array con paso
+      enunciado: Creá un array con latitudes desde -40 hasta -20 con paso de 5 grados.
+      ejemplo:
+        salida: array([-40, -35, -30, -25, -20])
+      hint: '`np.arange(inicio, fin, paso)`. El fin no se incluye.'
+  - name: Forma y dimensiones
+    exercises:
+    - id: A6
+      title: Ver forma del array
+      enunciado: Creá un array con 6 elementos y mostrá su forma (shape).
+      ejemplo:
+        salida: (6,)
+      hint: '`array.shape` retorna una tupla con las dimensiones.'
+    - id: A7
+      title: Array 2D (matriz)
+      enunciado: 'Creá una matriz de 2x3 con coordenadas de dos puntos: `[[-34.6, -58.4], [-31.4, -64.2], [-32.9, -68.8]]`.
+        Mostrá su forma.'
+      ejemplo:
+        salida: (3, 2)
+    - id: A8
+      title: Reshape
+      enunciado: Creá un array del 1 al 12 y transformalo en una matriz de 3x4 usando `reshape()`.
+      ejemplo:
+        salida: |-
+          array([[ 1,  2,  3,  4],
+          [ 5,  6,  7,  8],
+          [ 9, 10, 11, 12]])
+    - id: A9
+      title: Flatten
+      enunciado: Tomá la matriz del ejercicio anterior y convertila de vuelta a un array 1D usando `flatten()`.
+      ejemplo:
+        salida: array([ 1,  2,  3, ..., 12])
+    - id: A10
+      title: Número de elementos
+      enunciado: Creá una matriz de 4x5 y mostrá el número total de elementos con `size`.
+      ejemplo:
+        salida: '20'
+  - name: Arrays especiales
+    exercises:
+    - id: A11
+      title: Array de ceros
+      enunciado: Creá un array de 5 ceros que representará valores de elevación sin datos.
+      ejemplo:
+        salida: array([0., 0., 0., 0., 0.])
+      hint: '`np.zeros(5)`.'
+    - id: A12
+      title: Matriz de ceros
+      enunciado: Creá una matriz de 3x4 de ceros.
+      ejemplo:
+        salida: matriz de ceros con forma (3, 4)
+      hint: '`np.zeros((3, 4))` - notar los paréntesis dobles.'
+    - id: A13
+      title: Array de unos
+      enunciado: Creá un array de 10 unos usando `np.ones()`.
+      ejemplo:
+        salida: array([1., 1., 1., ..., 1.])
+    - id: A14
+      title: Array con linspace
+      enunciado: Creá un array con 5 valores equiespaciados entre -90 (polo sur) y 90 (polo norte).
+      ejemplo:
+        salida: array([-90., -45.,   0.,  45.,  90.])
+      hint: '`np.linspace(inicio, fin, cantidad)`.'
+    - id: A15
+      title: Array de valores constantes
+      enunciado: Creá un array de 6 elementos todos con el valor -999 (valor típico para datos faltantes en geografía).
+      ejemplo:
+        salida: array([-999, -999, -999, -999, -999, -999])
+      hint: '`np.full(6, -999)` o `np.ones(6) * -999`.'
+  - name: Indexación y slicing
+    exercises:
+    - id: A16
+      title: Acceder a elemento
+      enunciado: Dado un array de latitudes `[-34.6, -31.4, -32.9, -24.8, -38.0]`, obtené la latitud del tercer elemento (índice
+        2).
+      ejemplo:
+        salida: '-32.9'
+    - id: A17
+      title: Slicing básico
+      enunciado: Del array anterior, obtené los primeros 3 elementos.
+      ejemplo:
+        salida: array([-34.6, -31.4, -32.9])
+      hint: '`array[0:3]` o `array[:3]`.'
+    - id: A18
+      title: Slicing con paso
+      enunciado: Del array de latitudes, obtené elementos alternados (posiciones 0, 2, 4).
+      ejemplo:
+        salida: array([-34.6, -32.9, -38.0])
+      hint: '`array[::2]` - paso de 2.'
+    - id: A19
+      title: Índices negativos
+      enunciado: Obtené el último elemento y los últimos 3 elementos del array.
+      hint: '`array[-1]` y `array[-3:]`.'
+    - id: A20
+      title: Modificar elemento
+      enunciado: Creá un array de ceros de tamaño 5. Modificá el elemento del medio (índice 2) para que valga 100.
+      ejemplo:
+        salida: array([  0.,   0., 100.,   0.,   0.])
+- id: B
+  title: Ejercicios de práctica extra
+  description: Recomendables para quienes quieran practicar más.
+  exercises:
+  - id: B1
+    title: Array de números aleatorios
+    enunciado: Generá un array de 10 latitudes aleatorias entre -55 y -20 (rango de Argentina).
+    hint: '`np.random.uniform(-55, -20, 10)`.'
+  - id: B2
+    title: Copiar array
+    enunciado: Creá una copia independiente de un array usando `copy()`. Modificá la copia y verificá que el original no cambió.
+  - id: B3
+    title: Array de coordenadas estructurado
+    enunciado: Creá una matriz de 5x2 donde cada fila sea [latitud, longitud] de una ciudad.
+  - id: B4
+    title: Transponer matriz
+    enunciado: Creá una matriz 3x2 y transponela a 2x3 usando `.T`.
+  - id: B5
+    title: Concatenar arrays
+    enunciado: Tenés dos arrays de latitudes de diferentes regiones. Concaténalos en uno solo con `np.concatenate()`.
+  - id: B6
+    title: Apilar arrays
+    enunciado: Tenés arrays separados de lat y lon. Apilalos verticalmente con `np.vstack()` y horizontalmente con `np.hstack()`.
+  - id: B7
+    title: Array identidad
+    enunciado: Creá una matriz identidad 4x4 con `np.eye()`.
+  - id: B8
+    title: Diagonales
+    enunciado: Creá una matriz y extraé su diagonal con `np.diag()`.
+  - id: B9
+    title: Repetir array
+    enunciado: Repetí un array [1, 2, 3] tres veces con `np.tile()`.
+  - id: B10
+    title: Meshgrid
+    enunciado: Creá una grilla de coordenadas usando `np.meshgrid()` para cubrir un área rectangular.
+- id: C
+  title: Desafíos
+  description: Ejercicios opcionales que requieren mayor dificultad o investigación.
+  exercises:
+  - id: C1
+    title: Matriz de distancias
+    enunciado: Dado un array de N puntos (lat, lon), creá una matriz NxN donde cada elemento [i,j] sea la distancia entre
+      el punto i y el punto j.
+  - id: C2
+    title: Broadcasting avanzado
+    enunciado: Investigá cómo funciona el broadcasting de NumPy. Creá un ejemplo donde sumes un array 1D a cada fila de una
+      matriz 2D.
+  - id: C3
+    title: Memoria y vistas
+    enunciado: Investigá la diferencia entre una vista (slice) y una copia en NumPy. Demostrá cómo un slice comparte memoria
+      con el array original.
+  - id: C4
+    title: Tipos de datos personalizados
+    enunciado: Creá un array estructurado con campos "nombre" (string), "lat" (float) y "lon" (float) usando `np.dtype`.
+  - id: C5
+    title: Guardar y cargar arrays
+    enunciado: Guardá un array a archivo con `np.save()` y cargalo con `np.load()`. Probá también con `np.savetxt()` para
+      formato texto.
