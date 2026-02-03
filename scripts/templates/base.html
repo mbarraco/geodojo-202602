@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title == "GeoDojo" %}GeoDojo - Python para Geografía{% else %}{{ title }} - GeoDojo{% endif %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="{{ static_path }}styles.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-content">
+            <a href="{{ home_path }}" class="navbar-brand">GeoDojo</a>
+            <ul class="navbar-nav">
+                <li><a href="{{ home_path }}">Inicio</a></li>
+                <li><a href="{{ home_path }}#clases">Clases</a></li>
+                <li><a href="{{ home_path }}#ejercicios">Ejercicios</a></li>
+            </ul>
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+    {% block footer %}
+    <footer class="container">
+        <small>GeoDojo - Curso de Python para aplicaciones geográficas</small>
+    </footer>
+    {% endblock %}
+</body>
+
+</html>

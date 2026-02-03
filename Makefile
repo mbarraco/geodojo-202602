@@ -16,7 +16,7 @@ install: $(VENV)/bin/activate
 
 # Convertir Markdown a HTML
 html: install
-	$(PYTHON) export-to-html.py $(OUTPUT_DIR)
+	$(PYTHON) scripts/export_to_html.py $(OUTPUT_DIR)
 
 # Limpiar archivos generados
 clean:

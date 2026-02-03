@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-layout">
+    <aside class="sidebar">
+        <div class="toc-title">En esta página</div>
+        <nav class="toc">
+            {{ toc_html | safe }}
+        </nav>
+    </aside>
+    <main class="main-content">
+        {{ content | safe }}
+    </main>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

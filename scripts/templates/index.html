@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="container">
+    <header>
+        <h1>GeoDojo</h1>
+        <p>Curso de Python orientado a aplicaciones geográficas</p>
+    </header>
+
+    <div class="grid">
+        {% if sections.clases %}
+        <section>
+            <h2 id="clases">Clases</h2>
+            {% for unit_num, files in sections.clases | dictsort %}
+            <details open>
+                <summary>Unidad {{ unit_num }}: {{ unit_names.get(unit_num, "Unidad " ~ unit_num) }}</summary>
+                <ul>
+                    {% for file in files %}
+                    <li><a href="clases/{{ unit_num }}/{{ file.name }}">{{ file.display_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </details>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if sections.ejercicios %}
+        <section>
+            <h2 id="ejercicios">Ejercicios</h2>
+            {% for unit_num, files in sections.ejercicios | dictsort %}
+            <details open>
+                <summary>Unidad {{ unit_num }}: {{ unit_names.get(unit_num, "Unidad " ~ unit_num) }}</summary>
+                <ul>
+                    {% for file in files %}
+                    <li><a href="ejercicios/{{ unit_num }}/{{ file.name }}">{{ file.display_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </details>
+            {% endfor %}
+        </section>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}
