@@ -3,84 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01 Fundamentos</title>
+    <title>01 Fundamentos - GeoDojo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     
 <style>
+    /* Tipografía general más suave */
     :root {
-        --bg-color: #ffffff;
-        --text-color: #24292e;
-        --code-bg: #f6f8fa;
-        --border-color: #e1e4e8;
-        --link-color: #0366d6;
-        --heading-color: #24292e;
+        --pico-font-size: 0.9375rem;
     }
     
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.6;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 40px 20px;
-        color: var(--text-color);
-        background-color: var(--bg-color);
+        font-weight: 400;
     }
     
     h1, h2, h3, h4, h5, h6 {
-        color: var(--heading-color);
-        margin-top: 24px;
-        margin-bottom: 16px;
-        font-weight: 600;
-        line-height: 1.25;
+        font-weight: 500;
     }
     
-    h1 {
-        font-size: 2em;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 0.3em;
+    strong, b {
+        font-weight: 500;
     }
     
-    h2 {
-        font-size: 1.5em;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 0.3em;
+    /* Layout con sidebar */
+    .page-layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1rem;
     }
     
-    h3 {
-        font-size: 1.25em;
+    /* Sidebar con TOC */
+    .sidebar {
+        position: sticky;
+        top: 1rem;
+        height: fit-content;
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+        padding-right: 1rem;
+        border-right: 1px solid var(--pico-muted-border-color);
     }
     
-    code {
-        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-        font-size: 85%;
-        background-color: var(--code-bg);
-        padding: 0.2em 0.4em;
-        border-radius: 6px;
+    .sidebar nav {
+        font-size: 0.8125rem;
     }
     
-    pre {
-        background-color: var(--code-bg);
-        padding: 16px;
-        overflow: auto;
-        font-size: 85%;
-        line-height: 1.45;
-        border-radius: 6px;
-        border: 1px solid var(--border-color);
+    .sidebar .toc-title {
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+        color: var(--pico-muted-color);
+        text-transform: uppercase;
+        font-size: 0.6875rem;
+        letter-spacing: 0.05em;
     }
     
-    pre code {
-        background-color: transparent;
+    .sidebar .toc ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+    
+    .sidebar .toc ul ul {
+        padding-left: 0.875rem;
+        margin-top: 0.125rem;
+    }
+    
+    .sidebar .toc li {
+        margin: 0.125rem 0;
+    }
+    
+    .sidebar .toc a {
+        color: var(--pico-muted-color);
+        text-decoration: none;
+        display: block;
+        padding: 0.125rem 0;
+        transition: color 0.2s;
+    }
+    
+    .sidebar .toc a:hover {
+        color: var(--pico-primary);
+    }
+    
+    /* Contenido principal */
+    .main-content {
+        min-width: 0;
+    }
+    
+    /* Navbar superior */
+    .navbar {
+        background-color: var(--pico-card-background-color);
+        border-bottom: 1px solid var(--pico-muted-border-color);
+        padding: 0.5rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .navbar-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .navbar-brand {
+        font-weight: 500;
+        font-size: 0.9375rem;
+        color: var(--pico-muted-color);
+        text-decoration: none;
+    }
+    
+    .navbar-brand:hover {
+        color: var(--pico-color);
+    }
+    
+    .navbar-nav {
+        display: flex;
+        gap: 1.25rem;
+        list-style: none;
+        margin: 0;
         padding: 0;
-        font-size: 100%;
     }
     
-    /* Syntax highlighting (Pygments) */
+    .navbar-nav a {
+        color: var(--pico-muted-color);
+        text-decoration: none;
+        font-size: 0.8125rem;
+    }
+    
+    .navbar-nav a:hover {
+        color: var(--pico-color);
+    }
+    
+    /* Index page styles */
+    .container header h1 {
+        font-size: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+    
+    .container header p {
+        font-size: 0.875rem;
+        color: var(--pico-muted-color);
+    }
+    
+    .container h2 {
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+    
+    details summary {
+        font-weight: 400;
+        font-size: 0.875rem;
+    }
+    
+    details ul {
+        font-size: 0.8125rem;
+    }
+    
+    /* Navegación en sidebar */
+    .nav-home {
+        margin-bottom: 1.5rem;
+    }
+    
+    .nav-home a {
+        font-size: 0.8125rem;
+        color: var(--pico-muted-color);
+    }
+    
+    /* Responsive: ocultar sidebar en móvil */
+    @media (max-width: 900px) {
+        .page-layout {
+            grid-template-columns: 1fr;
+        }
+        
+        .sidebar {
+            display: none;
+        }
+    }
+    
+    /* Syntax highlighting (Pygments) - Light mode */
     .highlight {
-        background-color: var(--code-bg);
-        padding: 16px;
-        border-radius: 6px;
+        background-color: var(--pico-code-background-color);
+        padding: 1rem;
+        border-radius: var(--pico-border-radius);
         overflow-x: auto;
-        border: 1px solid var(--border-color);
+        margin-bottom: 1rem;
     }
     
     .highlight pre {
@@ -93,74 +204,30 @@
     .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
     .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
     .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
-    .highlight .n { color: #24292e; } /* Names */
+    .highlight .n { color: var(--pico-color); } /* Names */
     .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
     .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
-    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .o, .highlight .p { color: var(--pico-color); } /* Operators */
     .highlight .bp { color: #005cc5; } /* Built-in pseudo */
     
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 16px 0;
-    }
-    
-    th, td {
-        border: 1px solid var(--border-color);
-        padding: 8px 12px;
-        text-align: left;
-    }
-    
-    th {
-        background-color: var(--code-bg);
-        font-weight: 600;
-    }
-    
-    tr:nth-child(even) {
-        background-color: #f6f8fa;
-    }
-    
-    blockquote {
-        margin: 0;
-        padding: 0 1em;
-        color: #6a737d;
-        border-left: 0.25em solid var(--border-color);
-    }
-    
-    hr {
-        height: 0.25em;
-        padding: 0;
-        margin: 24px 0;
-        background-color: var(--border-color);
-        border: 0;
-    }
-    
-    a {
-        color: var(--link-color);
-        text-decoration: none;
-    }
-    
-    a:hover {
-        text-decoration: underline;
-    }
-    
-    ul, ol {
-        padding-left: 2em;
-    }
-    
-    li + li {
-        margin-top: 0.25em;
-    }
-    
-    strong {
-        font-weight: 600;
+    /* Dark mode syntax highlighting */
+    @media (prefers-color-scheme: dark) {
+        .highlight .c, .highlight .c1, .highlight .cm { color: #8b949e; }
+        .highlight .k, .highlight .kn, .highlight .kd { color: #ff7b72; }
+        .highlight .s, .highlight .s1, .highlight .s2 { color: #a5d6ff; }
+        .highlight .nf, .highlight .nb { color: #d2a8ff; }
+        .highlight .mi, .highlight .mf { color: #79c0ff; }
+        .highlight .bp { color: #79c0ff; }
     }
     
     /* Print styles */
     @media print {
-        body {
-            max-width: 100%;
-            padding: 20px;
+        .sidebar {
+            display: none;
+        }
+        
+        .page-layout {
+            display: block;
         }
         
         pre, .highlight {
@@ -180,7 +247,87 @@
 
 </head>
 <body>
-<h1 id="unidad-1-fundamentos-de-python">Unidad 1: Fundamentos de Python</h1>
+    <header class="navbar">
+        <div class="navbar-content">
+            <a href="../../index.html" class="navbar-brand">GeoDojo</a>
+            <ul class="navbar-nav">
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="../../index.html#clases">Clases</a></li>
+                <li><a href="../../index.html#ejercicios">Ejercicios</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="page-layout">
+        <aside class="sidebar">
+            <div class="toc-title">En esta página</div>
+            <nav class="toc">
+                <div class="toc">
+<ul>
+<li><a href="#unidad-1-fundamentos-de-python">Unidad 1: Fundamentos de Python</a><ul>
+<li><a href="#categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</a><ul>
+<li><a href="#bloque-1-variables-y-print">Bloque 1: Variables y print</a></li>
+<li><a href="#a1-mi-primera-ciudad">A1. Mi primera ciudad</a></li>
+<li><a href="#a2-latitud-de-buenos-aires">A2. Latitud de Buenos Aires</a></li>
+<li><a href="#a3-coordenadas-completas">A3. Coordenadas completas</a></li>
+<li><a href="#a4-datos-de-una-ubicacion">A4. Datos de una ubicación</a></li>
+<li><a href="#a5-tipos-de-datos">A5. Tipos de datos</a></li>
+<li><a href="#bloque-2-operadores-aritmeticos-y-funciones-numericas">Bloque 2: Operadores aritméticos y funciones numéricas</a></li>
+<li><a href="#a6-promedio-de-altitudes-redondeado">A6. Promedio de altitudes redondeado</a></li>
+<li><a href="#a7-distancia-entre-coordenadas">A7. Distancia entre coordenadas</a></li>
+<li><a href="#a8-area-y-diagonal-de-un-terreno">A8. Área y diagonal de un terreno</a></li>
+<li><a href="#a9-division-entera-y-resto">A9. División entera y resto</a></li>
+<li><a href="#a10-conversion-de-coordenadas">A10. Conversión de coordenadas</a></li>
+<li><a href="#bloque-3-strings-y-formateo">Bloque 3: Strings y formateo</a></li>
+<li><a href="#a11-concatenacion-de-texto">A11. Concatenación de texto</a></li>
+<li><a href="#a12-descripcion-con-f-string">A12. Descripción con f-string</a></li>
+<li><a href="#a13-longitud-de-un-nombre">A13. Longitud de un nombre</a></li>
+<li><a href="#a14-mayusculas-y-minusculas">A14. Mayúsculas y minúsculas</a></li>
+<li><a href="#a15-linea-divisoria">A15. Línea divisoria</a></li>
+<li><a href="#bloque-4-conversion-de-tipos-e-input">Bloque 4: Conversión de tipos e input</a></li>
+<li><a href="#a16-string-a-numero">A16. String a número</a></li>
+<li><a href="#a17-decimal-a-entero">A17. Decimal a entero</a></li>
+<li><a href="#a18-pedir-nombre-de-ciudad">A18. Pedir nombre de ciudad</a></li>
+<li><a href="#a19-pedir-coordenada">A19. Pedir coordenada</a></li>
+<li><a href="#a20-ficha-de-ubicacion-simple">A20. Ficha de ubicación simple</a></li>
+<li><a href="#bloque-5-comparaciones-y-booleanos">Bloque 5: Comparaciones y booleanos</a></li>
+<li><a href="#a21-hemisferio-norte">A21. Hemisferio norte</a></li>
+<li><a href="#a22-comparar-distancias">A22. Comparar distancias</a></li>
+<li><a href="#a23-altitud-alta">A23. Altitud alta</a></li>
+<li><a href="#a24-latitud-valida">A24. Latitud válida</a></li>
+<li><a href="#a25-ecuador-o-greenwich">A25. Ecuador o Greenwich</a></li>
+</ul>
+</li>
+<li><a href="#categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</a><ul>
+<li><a href="#b1-punto-medio">B1. Punto medio</a></li>
+<li><a href="#b2-grados-a-grados-y-minutos">B2. Grados a grados y minutos</a></li>
+<li><a href="#b3-diferencia-de-husos-horarios">B3. Diferencia de husos horarios</a></li>
+<li><a href="#b4-iniciales-de-un-lugar">B4. Iniciales de un lugar</a></li>
+<li><a href="#b5-celsius-a-fahrenheit">B5. Celsius a Fahrenheit</a></li>
+<li><a href="#b6-mismo-hemisferio">B6. Mismo hemisferio</a></li>
+<li><a href="#b7-perimetro-de-un-triangulo">B7. Perímetro de un triángulo</a></li>
+<li><a href="#b8-formatear-coordenadas-con-direccion">B8. Formatear coordenadas con dirección</a></li>
+<li><a href="#b9-validar-coordenadas-completas">B9. Validar coordenadas completas</a></li>
+<li><a href="#b10-sello-de-ubicacion">B10. Sello de ubicación</a></li>
+<li><a href="#b11-link-a-google-maps">B11. Link a Google Maps</a></li>
+</ul>
+</li>
+<li><a href="#categoria-c-desafios">Categoría C - Desafíos</a><ul>
+<li><a href="#c1-distancia-euclidiana-simplificada">C1. Distancia euclidiana simplificada</a></li>
+<li><a href="#c2-gradosminutossegundos-a-decimal">C2. Grados/Minutos/Segundos a decimal</a></li>
+<li><a href="#c3-cuadrante-del-planeta">C3. Cuadrante del planeta</a></li>
+<li><a href="#c4-tiempo-de-viaje">C4. Tiempo de viaje</a></li>
+<li><a href="#c5-ficha-de-ubicacion-completa">C5. Ficha de ubicación completa</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h1 id="unidad-1-fundamentos-de-python">Unidad 1: Fundamentos de Python</h1>
 <p>Ejercicios sobre tipos de datos, operadores y funciones básicas.</p>
 <hr />
 <h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2>
@@ -581,5 +728,7 @@ Estado: Coordenadas válidas
 <p><strong>Hint</strong>: Combiná todo lo aprendido: variables, operadores, strings, conversiones, comparaciones y formateo.</p>
 <hr />
 <p><em>Fin de los ejercicios de la Unidad 1</em></p>
+        </main>
+    </div>
 </body>
 </html>

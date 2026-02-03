@@ -27,87 +27,204 @@ MD_EXTENSION_CONFIGS = {
         "css_class": "highlight",
         "linenums": False,
         "guess_lang": True,
+    },
+    "toc": {
+        "permalink": False,
+        "toc_depth": 3,  # Solo h1, h2, h3
     }
 }
 
-# CSS para el estilo del documento
-CSS_STYLE = """
+# Pico CSS desde CDN + estilos personalizados para syntax highlighting
+CSS_LINK = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">'
+
+# Estilos adicionales para syntax highlighting, sidebar TOC y ajustes
+CUSTOM_STYLE = """
 <style>
+    /* Tipografía general más suave */
     :root {
-        --bg-color: #ffffff;
-        --text-color: #24292e;
-        --code-bg: #f6f8fa;
-        --border-color: #e1e4e8;
-        --link-color: #0366d6;
-        --heading-color: #24292e;
+        --pico-font-size: 0.9375rem;
     }
     
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.6;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 40px 20px;
-        color: var(--text-color);
-        background-color: var(--bg-color);
+        font-weight: 400;
     }
     
     h1, h2, h3, h4, h5, h6 {
-        color: var(--heading-color);
-        margin-top: 24px;
-        margin-bottom: 16px;
-        font-weight: 600;
-        line-height: 1.25;
+        font-weight: 500;
     }
     
-    h1 {
-        font-size: 2em;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 0.3em;
+    strong, b {
+        font-weight: 500;
     }
     
-    h2 {
-        font-size: 1.5em;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 0.3em;
+    /* Layout con sidebar */
+    .page-layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1rem;
     }
     
-    h3 {
-        font-size: 1.25em;
+    /* Sidebar con TOC */
+    .sidebar {
+        position: sticky;
+        top: 1rem;
+        height: fit-content;
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+        padding-right: 1rem;
+        border-right: 1px solid var(--pico-muted-border-color);
     }
     
-    code {
-        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-        font-size: 85%;
-        background-color: var(--code-bg);
-        padding: 0.2em 0.4em;
-        border-radius: 6px;
+    .sidebar nav {
+        font-size: 0.8125rem;
     }
     
-    pre {
-        background-color: var(--code-bg);
-        padding: 16px;
-        overflow: auto;
-        font-size: 85%;
-        line-height: 1.45;
-        border-radius: 6px;
-        border: 1px solid var(--border-color);
+    .sidebar .toc-title {
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+        color: var(--pico-muted-color);
+        text-transform: uppercase;
+        font-size: 0.6875rem;
+        letter-spacing: 0.05em;
     }
     
-    pre code {
-        background-color: transparent;
+    .sidebar .toc ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+    
+    .sidebar .toc ul ul {
+        padding-left: 0.875rem;
+        margin-top: 0.125rem;
+    }
+    
+    .sidebar .toc li {
+        margin: 0.125rem 0;
+    }
+    
+    .sidebar .toc a {
+        color: var(--pico-muted-color);
+        text-decoration: none;
+        display: block;
+        padding: 0.125rem 0;
+        transition: color 0.2s;
+    }
+    
+    .sidebar .toc a:hover {
+        color: var(--pico-primary);
+    }
+    
+    /* Contenido principal */
+    .main-content {
+        min-width: 0;
+    }
+    
+    /* Navbar superior */
+    .navbar {
+        background-color: var(--pico-card-background-color);
+        border-bottom: 1px solid var(--pico-muted-border-color);
+        padding: 0.5rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .navbar-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .navbar-brand {
+        font-weight: 500;
+        font-size: 0.9375rem;
+        color: var(--pico-muted-color);
+        text-decoration: none;
+    }
+    
+    .navbar-brand:hover {
+        color: var(--pico-color);
+    }
+    
+    .navbar-nav {
+        display: flex;
+        gap: 1.25rem;
+        list-style: none;
+        margin: 0;
         padding: 0;
-        font-size: 100%;
     }
     
-    /* Syntax highlighting (Pygments) */
+    .navbar-nav a {
+        color: var(--pico-muted-color);
+        text-decoration: none;
+        font-size: 0.8125rem;
+    }
+    
+    .navbar-nav a:hover {
+        color: var(--pico-color);
+    }
+    
+    /* Index page styles */
+    .container header h1 {
+        font-size: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+    
+    .container header p {
+        font-size: 0.875rem;
+        color: var(--pico-muted-color);
+    }
+    
+    .container h2 {
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+    
+    details summary {
+        font-weight: 400;
+        font-size: 0.875rem;
+    }
+    
+    details ul {
+        font-size: 0.8125rem;
+    }
+    
+    /* Navegación en sidebar */
+    .nav-home {
+        margin-bottom: 1.5rem;
+    }
+    
+    .nav-home a {
+        font-size: 0.8125rem;
+        color: var(--pico-muted-color);
+    }
+    
+    /* Responsive: ocultar sidebar en móvil */
+    @media (max-width: 900px) {
+        .page-layout {
+            grid-template-columns: 1fr;
+        }
+        
+        .sidebar {
+            display: none;
+        }
+    }
+    
+    /* Syntax highlighting (Pygments) - Light mode */
     .highlight {
-        background-color: var(--code-bg);
-        padding: 16px;
-        border-radius: 6px;
+        background-color: var(--pico-code-background-color);
+        padding: 1rem;
+        border-radius: var(--pico-border-radius);
         overflow-x: auto;
-        border: 1px solid var(--border-color);
+        margin-bottom: 1rem;
     }
     
     .highlight pre {
@@ -120,74 +237,30 @@ CSS_STYLE = """
     .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
     .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
     .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
-    .highlight .n { color: #24292e; } /* Names */
+    .highlight .n { color: var(--pico-color); } /* Names */
     .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
     .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
-    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .o, .highlight .p { color: var(--pico-color); } /* Operators */
     .highlight .bp { color: #005cc5; } /* Built-in pseudo */
     
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 16px 0;
-    }
-    
-    th, td {
-        border: 1px solid var(--border-color);
-        padding: 8px 12px;
-        text-align: left;
-    }
-    
-    th {
-        background-color: var(--code-bg);
-        font-weight: 600;
-    }
-    
-    tr:nth-child(even) {
-        background-color: #f6f8fa;
-    }
-    
-    blockquote {
-        margin: 0;
-        padding: 0 1em;
-        color: #6a737d;
-        border-left: 0.25em solid var(--border-color);
-    }
-    
-    hr {
-        height: 0.25em;
-        padding: 0;
-        margin: 24px 0;
-        background-color: var(--border-color);
-        border: 0;
-    }
-    
-    a {
-        color: var(--link-color);
-        text-decoration: none;
-    }
-    
-    a:hover {
-        text-decoration: underline;
-    }
-    
-    ul, ol {
-        padding-left: 2em;
-    }
-    
-    li + li {
-        margin-top: 0.25em;
-    }
-    
-    strong {
-        font-weight: 600;
+    /* Dark mode syntax highlighting */
+    @media (prefers-color-scheme: dark) {
+        .highlight .c, .highlight .c1, .highlight .cm { color: #8b949e; }
+        .highlight .k, .highlight .kn, .highlight .kd { color: #ff7b72; }
+        .highlight .s, .highlight .s1, .highlight .s2 { color: #a5d6ff; }
+        .highlight .nf, .highlight .nb { color: #d2a8ff; }
+        .highlight .mi, .highlight .mf { color: #79c0ff; }
+        .highlight .bp { color: #79c0ff; }
     }
     
     /* Print styles */
     @media print {
-        body {
-            max-width: 100%;
-            padding: 20px;
+        .sidebar {
+            display: none;
+        }
+        
+        .page-layout {
+            display: block;
         }
         
         pre, .highlight {
@@ -248,8 +321,13 @@ def preprocess_markdown(content: str) -> str:
     return '\n'.join(result)
 
 
-def convert_md_to_html(md_path: Path) -> str:
-    """Convierte un archivo Markdown a HTML con estilo."""
+def convert_md_to_html(md_path: Path, depth: int = 2) -> str:
+    """Convierte un archivo Markdown a HTML con estilo.
+    
+    Args:
+        md_path: Ruta al archivo markdown
+        depth: Profundidad desde web/ para calcular ruta al index (default: 2 para clases/01/)
+    """
     md_content = md_path.read_text(encoding="utf-8")
     
     # Preprocesar para arreglar bloques de código indentados
@@ -262,19 +340,47 @@ def convert_md_to_html(md_path: Path) -> str:
     )
     html_body = md.convert(md_content)
     
+    # Obtener tabla de contenidos generada por la extensión toc
+    # El atributo 'toc' es añadido dinámicamente por la extensión
+    toc_html = getattr(md, 'toc', "") or ""
+    
     # Crear documento HTML completo
     title = md_path.stem.replace("-", " ").title()
+    
+    # Calcular ruta relativa al index
+    home_path = "../" * depth + "index.html"
     
     html_doc = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
-    {CSS_STYLE}
+    <title>{title} - GeoDojo</title>
+    {CSS_LINK}
+    {CUSTOM_STYLE}
 </head>
 <body>
-{html_body}
+    <header class="navbar">
+        <div class="navbar-content">
+            <a href="{home_path}" class="navbar-brand">GeoDojo</a>
+            <ul class="navbar-nav">
+                <li><a href="{home_path}">Inicio</a></li>
+                <li><a href="{home_path}#clases">Clases</a></li>
+                <li><a href="{home_path}#ejercicios">Ejercicios</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="page-layout">
+        <aside class="sidebar">
+            <div class="toc-title">En esta página</div>
+            <nav class="toc">
+                {toc_html}
+            </nav>
+        </aside>
+        <main class="main-content">
+            {html_body}
+        </main>
+    </div>
 </body>
 </html>
 """
@@ -294,11 +400,14 @@ def export_directory(source_dir: Path, output_dir: Path):
         relative_path = md_file.relative_to(source_dir)
         html_path = output_dir / source_dir.name / relative_path.with_suffix(".html")
         
+        # Calcular profundidad (ej: clases/01/archivo.html = 2 niveles)
+        depth = len(relative_path.parts)
+        
         # Crear directorio si no existe
         html_path.parent.mkdir(parents=True, exist_ok=True)
         
         # Convertir y guardar
-        html_content = convert_md_to_html(md_file)
+        html_content = convert_md_to_html(md_file, depth=depth)
         html_path.write_text(html_content, encoding="utf-8")
         
         print(f"  ✓ {md_file} → {html_path}")
@@ -345,36 +454,51 @@ def generate_index_html(output_dir: Path):
                 if html_files:
                     sections[section][unit_num] = html_files
     
-    # Generar HTML
+    # Generar HTML del contenido
     html_content = []
-    html_content.append('<h1>GeoDojo - Python para Geografía</h1>')
-    html_content.append('<p>Curso de Python orientado a aplicaciones geográficas.</p>')
+    html_content.append('<header>')
+    html_content.append('  <h1>GeoDojo</h1>')
+    html_content.append('  <p>Curso de Python orientado a aplicaciones geográficas</p>')
+    html_content.append('</header>')
+    
+    # Grid de dos columnas para Clases y Ejercicios
+    html_content.append('<div class="grid">')
     
     # Sección de Clases
     if "clases" in sections:
-        html_content.append('<h2>Clases</h2>')
+        html_content.append('<section>')
+        html_content.append('<h2 id="clases">Clases</h2>')
         for unit_num, files in sorted(sections["clases"].items()):
             unit_name = UNIT_NAMES.get(unit_num, f"Unidad {unit_num}")
-            html_content.append(f'<h3>Unidad {unit_num}: {unit_name}</h3>')
-            html_content.append('<ul>')
+            html_content.append(f'<details open>')
+            html_content.append(f'  <summary>Unidad {unit_num}: {unit_name}</summary>')
+            html_content.append('  <ul>')
             for html_file in files:
                 rel_path = f"clases/{unit_num}/{html_file.name}"
                 display_name = format_file_name(html_file.name)
-                html_content.append(f'  <li><a href="{rel_path}">{display_name}</a></li>')
-            html_content.append('</ul>')
+                html_content.append(f'    <li><a href="{rel_path}">{display_name}</a></li>')
+            html_content.append('  </ul>')
+            html_content.append('</details>')
+        html_content.append('</section>')
     
     # Sección de Ejercicios
     if "ejercicios" in sections:
-        html_content.append('<h2>Ejercicios</h2>')
+        html_content.append('<section>')
+        html_content.append('<h2 id="ejercicios">Ejercicios</h2>')
         for unit_num, files in sorted(sections["ejercicios"].items()):
             unit_name = UNIT_NAMES.get(unit_num, f"Unidad {unit_num}")
-            html_content.append(f'<h3>Unidad {unit_num}: {unit_name}</h3>')
-            html_content.append('<ul>')
+            html_content.append(f'<details open>')
+            html_content.append(f'  <summary>Unidad {unit_num}: {unit_name}</summary>')
+            html_content.append('  <ul>')
             for html_file in files:
                 rel_path = f"ejercicios/{unit_num}/{html_file.name}"
                 display_name = format_file_name(html_file.name)
-                html_content.append(f'  <li><a href="{rel_path}">{display_name}</a></li>')
-            html_content.append('</ul>')
+                html_content.append(f'    <li><a href="{rel_path}">{display_name}</a></li>')
+            html_content.append('  </ul>')
+            html_content.append('</details>')
+        html_content.append('</section>')
+    
+    html_content.append('</div>')  # Cierre del grid
     
     # Crear documento HTML completo
     html_body = '\n'.join(html_content)
@@ -385,10 +509,25 @@ def generate_index_html(output_dir: Path):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoDojo - Python para Geografía</title>
-    {CSS_STYLE}
+    {CSS_LINK}
+    {CUSTOM_STYLE}
 </head>
 <body>
-{html_body}
+    <header class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" class="navbar-brand">GeoDojo</a>
+            <ul class="navbar-nav">
+                <li><a href="#clases">Clases</a></li>
+                <li><a href="#ejercicios">Ejercicios</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="container">
+        {html_body}
+    </main>
+    <footer class="container">
+        <small>GeoDojo - Curso de Python para aplicaciones geográficas</small>
+    </footer>
 </body>
 </html>
 """

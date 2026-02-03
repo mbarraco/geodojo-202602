@@ -3,84 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01 Archivos Csv</title>
+    <title>01 Archivos Csv - GeoDojo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     
 <style>
+    /* Tipografía general más suave */
     :root {
-        --bg-color: #ffffff;
-        --text-color: #24292e;
-        --code-bg: #f6f8fa;
-        --border-color: #e1e4e8;
-        --link-color: #0366d6;
-        --heading-color: #24292e;
+        --pico-font-size: 0.9375rem;
     }
     
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.6;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 40px 20px;
-        color: var(--text-color);
-        background-color: var(--bg-color);
+        font-weight: 400;
     }
     
     h1, h2, h3, h4, h5, h6 {
-        color: var(--heading-color);
-        margin-top: 24px;
-        margin-bottom: 16px;
-        font-weight: 600;
-        line-height: 1.25;
+        font-weight: 500;
     }
     
-    h1 {
-        font-size: 2em;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 0.3em;
+    strong, b {
+        font-weight: 500;
     }
     
-    h2 {
-        font-size: 1.5em;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 0.3em;
+    /* Layout con sidebar */
+    .page-layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1rem;
     }
     
-    h3 {
-        font-size: 1.25em;
+    /* Sidebar con TOC */
+    .sidebar {
+        position: sticky;
+        top: 1rem;
+        height: fit-content;
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+        padding-right: 1rem;
+        border-right: 1px solid var(--pico-muted-border-color);
     }
     
-    code {
-        font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-        font-size: 85%;
-        background-color: var(--code-bg);
-        padding: 0.2em 0.4em;
-        border-radius: 6px;
+    .sidebar nav {
+        font-size: 0.8125rem;
     }
     
-    pre {
-        background-color: var(--code-bg);
-        padding: 16px;
-        overflow: auto;
-        font-size: 85%;
-        line-height: 1.45;
-        border-radius: 6px;
-        border: 1px solid var(--border-color);
+    .sidebar .toc-title {
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+        color: var(--pico-muted-color);
+        text-transform: uppercase;
+        font-size: 0.6875rem;
+        letter-spacing: 0.05em;
     }
     
-    pre code {
-        background-color: transparent;
+    .sidebar .toc ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+    
+    .sidebar .toc ul ul {
+        padding-left: 0.875rem;
+        margin-top: 0.125rem;
+    }
+    
+    .sidebar .toc li {
+        margin: 0.125rem 0;
+    }
+    
+    .sidebar .toc a {
+        color: var(--pico-muted-color);
+        text-decoration: none;
+        display: block;
+        padding: 0.125rem 0;
+        transition: color 0.2s;
+    }
+    
+    .sidebar .toc a:hover {
+        color: var(--pico-primary);
+    }
+    
+    /* Contenido principal */
+    .main-content {
+        min-width: 0;
+    }
+    
+    /* Navbar superior */
+    .navbar {
+        background-color: var(--pico-card-background-color);
+        border-bottom: 1px solid var(--pico-muted-border-color);
+        padding: 0.5rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .navbar-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .navbar-brand {
+        font-weight: 500;
+        font-size: 0.9375rem;
+        color: var(--pico-muted-color);
+        text-decoration: none;
+    }
+    
+    .navbar-brand:hover {
+        color: var(--pico-color);
+    }
+    
+    .navbar-nav {
+        display: flex;
+        gap: 1.25rem;
+        list-style: none;
+        margin: 0;
         padding: 0;
-        font-size: 100%;
     }
     
-    /* Syntax highlighting (Pygments) */
+    .navbar-nav a {
+        color: var(--pico-muted-color);
+        text-decoration: none;
+        font-size: 0.8125rem;
+    }
+    
+    .navbar-nav a:hover {
+        color: var(--pico-color);
+    }
+    
+    /* Index page styles */
+    .container header h1 {
+        font-size: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+    
+    .container header p {
+        font-size: 0.875rem;
+        color: var(--pico-muted-color);
+    }
+    
+    .container h2 {
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+    
+    details summary {
+        font-weight: 400;
+        font-size: 0.875rem;
+    }
+    
+    details ul {
+        font-size: 0.8125rem;
+    }
+    
+    /* Navegación en sidebar */
+    .nav-home {
+        margin-bottom: 1.5rem;
+    }
+    
+    .nav-home a {
+        font-size: 0.8125rem;
+        color: var(--pico-muted-color);
+    }
+    
+    /* Responsive: ocultar sidebar en móvil */
+    @media (max-width: 900px) {
+        .page-layout {
+            grid-template-columns: 1fr;
+        }
+        
+        .sidebar {
+            display: none;
+        }
+    }
+    
+    /* Syntax highlighting (Pygments) - Light mode */
     .highlight {
-        background-color: var(--code-bg);
-        padding: 16px;
-        border-radius: 6px;
+        background-color: var(--pico-code-background-color);
+        padding: 1rem;
+        border-radius: var(--pico-border-radius);
         overflow-x: auto;
-        border: 1px solid var(--border-color);
+        margin-bottom: 1rem;
     }
     
     .highlight pre {
@@ -93,74 +204,30 @@
     .highlight .c, .highlight .c1, .highlight .cm { color: #6a737d; } /* Comments */
     .highlight .k, .highlight .kn, .highlight .kd { color: #d73a49; } /* Keywords */
     .highlight .s, .highlight .s1, .highlight .s2 { color: #032f62; } /* Strings */
-    .highlight .n { color: #24292e; } /* Names */
+    .highlight .n { color: var(--pico-color); } /* Names */
     .highlight .nf, .highlight .nb { color: #6f42c1; } /* Functions */
     .highlight .mi, .highlight .mf { color: #005cc5; } /* Numbers */
-    .highlight .o, .highlight .p { color: #24292e; } /* Operators */
+    .highlight .o, .highlight .p { color: var(--pico-color); } /* Operators */
     .highlight .bp { color: #005cc5; } /* Built-in pseudo */
     
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 16px 0;
-    }
-    
-    th, td {
-        border: 1px solid var(--border-color);
-        padding: 8px 12px;
-        text-align: left;
-    }
-    
-    th {
-        background-color: var(--code-bg);
-        font-weight: 600;
-    }
-    
-    tr:nth-child(even) {
-        background-color: #f6f8fa;
-    }
-    
-    blockquote {
-        margin: 0;
-        padding: 0 1em;
-        color: #6a737d;
-        border-left: 0.25em solid var(--border-color);
-    }
-    
-    hr {
-        height: 0.25em;
-        padding: 0;
-        margin: 24px 0;
-        background-color: var(--border-color);
-        border: 0;
-    }
-    
-    a {
-        color: var(--link-color);
-        text-decoration: none;
-    }
-    
-    a:hover {
-        text-decoration: underline;
-    }
-    
-    ul, ol {
-        padding-left: 2em;
-    }
-    
-    li + li {
-        margin-top: 0.25em;
-    }
-    
-    strong {
-        font-weight: 600;
+    /* Dark mode syntax highlighting */
+    @media (prefers-color-scheme: dark) {
+        .highlight .c, .highlight .c1, .highlight .cm { color: #8b949e; }
+        .highlight .k, .highlight .kn, .highlight .kd { color: #ff7b72; }
+        .highlight .s, .highlight .s1, .highlight .s2 { color: #a5d6ff; }
+        .highlight .nf, .highlight .nb { color: #d2a8ff; }
+        .highlight .mi, .highlight .mf { color: #79c0ff; }
+        .highlight .bp { color: #79c0ff; }
     }
     
     /* Print styles */
     @media print {
-        body {
-            max-width: 100%;
-            padding: 20px;
+        .sidebar {
+            display: none;
+        }
+        
+        .page-layout {
+            display: block;
         }
         
         pre, .highlight {
@@ -180,7 +247,86 @@
 
 </head>
 <body>
-<h1 id="unidad-3-archivos-y-csv">Unidad 3: Archivos y CSV</h1>
+    <header class="navbar">
+        <div class="navbar-content">
+            <a href="../../index.html" class="navbar-brand">GeoDojo</a>
+            <ul class="navbar-nav">
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="../../index.html#clases">Clases</a></li>
+                <li><a href="../../index.html#ejercicios">Ejercicios</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="page-layout">
+        <aside class="sidebar">
+            <div class="toc-title">En esta página</div>
+            <nav class="toc">
+                <div class="toc">
+<ul>
+<li><a href="#unidad-3-archivos-y-csv">Unidad 3: Archivos y CSV</a><ul>
+<li><a href="#categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</a><ul>
+<li><a href="#bloque-1-lectura-de-archivos-con-open">Bloque 1: Lectura de archivos con open()</a></li>
+<li><a href="#a1-leer-archivo-completo">A1. Leer archivo completo</a></li>
+<li><a href="#a2-leer-linea-por-linea">A2. Leer línea por línea</a></li>
+<li><a href="#a3-leer-con-context-manager">A3. Leer con context manager</a></li>
+<li><a href="#a4-contar-lineas-de-un-archivo">A4. Contar líneas de un archivo</a></li>
+<li><a href="#a5-leer-coordenadas-desde-archivo">A5. Leer coordenadas desde archivo</a></li>
+<li><a href="#bloque-2-escritura-de-archivos">Bloque 2: Escritura de archivos</a></li>
+<li><a href="#a6-escribir-texto-simple">A6. Escribir texto simple</a></li>
+<li><a href="#a7-escribir-multiples-lineas">A7. Escribir múltiples líneas</a></li>
+<li><a href="#a8-agregar-al-final-de-un-archivo">A8. Agregar al final de un archivo</a></li>
+<li><a href="#a9-guardar-coordenadas">A9. Guardar coordenadas</a></li>
+<li><a href="#a10-copiar-contenido-de-archivo">A10. Copiar contenido de archivo</a></li>
+<li><a href="#bloque-3-modulo-csv-lectura">Bloque 3: Módulo CSV - Lectura</a></li>
+<li><a href="#a11-leer-csv-simple">A11. Leer CSV simple</a></li>
+<li><a href="#a12-saltar-encabezado">A12. Saltar encabezado</a></li>
+<li><a href="#a13-csv-con-coordenadas">A13. CSV con coordenadas</a></li>
+<li><a href="#a14-calcular-con-datos-de-csv">A14. Calcular con datos de CSV</a></li>
+<li><a href="#a15-buscar-en-csv">A15. Buscar en CSV</a></li>
+<li><a href="#bloque-4-dictreader-y-dictwriter">Bloque 4: DictReader y DictWriter</a></li>
+<li><a href="#a16-leer-csv-como-diccionarios">A16. Leer CSV como diccionarios</a></li>
+<li><a href="#a17-acceder-por-nombre-de-columna">A17. Acceder por nombre de columna</a></li>
+<li><a href="#a18-escribir-csv-con-dictwriter">A18. Escribir CSV con DictWriter</a></li>
+<li><a href="#a19-agregar-fila-a-csv-existente">A19. Agregar fila a CSV existente</a></li>
+<li><a href="#a20-filtrar-y-guardar">A20. Filtrar y guardar</a></li>
+<li><a href="#bloque-5-combinando-lectura-y-escritura">Bloque 5: Combinando lectura y escritura</a></li>
+<li><a href="#a21-transformar-datos-de-csv">A21. Transformar datos de CSV</a></li>
+<li><a href="#a22-agregar-columna-calculada">A22. Agregar columna calculada</a></li>
+<li><a href="#a23-combinar-dos-archivos-csv">A23. Combinar dos archivos CSV</a></li>
+<li><a href="#a24-generar-reporte-desde-csv">A24. Generar reporte desde CSV</a></li>
+<li><a href="#a25-exportar-a-formato-google-maps">A25. Exportar a formato Google Maps</a></li>
+</ul>
+</li>
+<li><a href="#categoria-b-ejercicios-de-practica-extra">Categoría B - Ejercicios de práctica extra</a><ul>
+<li><a href="#b1-contar-palabras-en-archivo">B1. Contar palabras en archivo</a></li>
+<li><a href="#b2-validar-existencia-de-archivo">B2. Validar existencia de archivo</a></li>
+<li><a href="#b3-csv-con-delimitador-personalizado">B3. CSV con delimitador personalizado</a></li>
+<li><a href="#b4-estadisticas-de-coordenadas">B4. Estadísticas de coordenadas</a></li>
+<li><a href="#b5-ordenar-csv-por-columna">B5. Ordenar CSV por columna</a></li>
+<li><a href="#b6-backup-con-timestamp">B6. Backup con timestamp</a></li>
+<li><a href="#b7-validar-formato-de-csv">B7. Validar formato de CSV</a></li>
+<li><a href="#b8-convertir-csv-a-formato-vertical">B8. Convertir CSV a formato vertical</a></li>
+<li><a href="#b9-unir-multiples-archivos-csv">B9. Unir múltiples archivos CSV</a></li>
+<li><a href="#b10-leer-csv-desde-string">B10. Leer CSV desde string</a></li>
+</ul>
+</li>
+<li><a href="#categoria-c-desafios">Categoría C - Desafíos</a><ul>
+<li><a href="#c1-detector-de-encoding">C1. Detector de encoding</a></li>
+<li><a href="#c2-csv-con-campos-multilinea">C2. CSV con campos multilínea</a></li>
+<li><a href="#c3-comparar-dos-versiones-de-csv">C3. Comparar dos versiones de CSV</a></li>
+<li><a href="#c4-generar-csv-desde-api-simulada">C4. Generar CSV desde API simulada</a></li>
+<li><a href="#c5-sistema-de-log-en-archivo">C5. Sistema de log en archivo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h1 id="unidad-3-archivos-y-csv">Unidad 3: Archivos y CSV</h1>
 <p>Ejercicios sobre lectura y escritura de archivos, y manejo del módulo CSV.</p>
 <hr />
 <h2 id="categoria-a-ejercicios-fundamentales">Categoría A - Ejercicios fundamentales</h2>
@@ -548,5 +694,7 @@ Ciudad más poblada.&quot;
 
 <hr />
 <p><em>Fin de los ejercicios de la Unidad 3 - Archivos y CSV</em></p>
+        </main>
+    </div>
 </body>
 </html>
