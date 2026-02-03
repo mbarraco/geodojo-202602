@@ -29,6 +29,11 @@ def load_yaml(path: Path) -> dict:
         return yaml.safe_load(f)
 
 
+def is_proyecto_integrador(yaml_path: Path) -> bool:
+    """Check if a YAML file is a proyecto-integrador."""
+    return 'proyecto-integrador' in yaml_path.name
+
+
 def export_ejercicios(env: Environment, yaml_path: Path, output_dir: Path):
     """Genera un archivo markdown de ejercicios desde YAML."""
     data = load_yaml(yaml_path)
@@ -40,8 +45,12 @@ def export_ejercicios(env: Environment, yaml_path: Path, output_dir: Path):
     # Create directory if needed
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
-    # Render template
-    template = env.get_template('ejercicios.md.j2')
+    # Choose template based on file type
+    if is_proyecto_integrador(yaml_path):
+        template = env.get_template('proyecto-integrador.md.j2')
+    else:
+        template = env.get_template('ejercicios.md.j2')
+    
     content = template.render(**data)
     
     # Clean up extra blank lines

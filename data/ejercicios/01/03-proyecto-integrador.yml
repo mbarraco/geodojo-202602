@@ -1,4 +1,143 @@
 unit:
-  title: 'Proyecto Integrador: Calculadora de Coordenadas'
-  description: Un proyecto paso a paso para construir una calculadora que trabaja con puntos geográficos.
-categories: []
+  number: 1
+  title: "Proyecto Integrador: Calculadora de Coordenadas"
+  description: "Un proyecto paso a paso para construir una calculadora que trabaja con puntos geográficos."
+
+proyecto:
+  descripcion: |
+    Vamos a construir un programa que:
+    - Pide al usuario dos puntos geográficos (nombre, latitud, longitud)
+    - Calcula la distancia entre ellos
+    - Calcula el punto medio
+    - Genera links de Google Maps
+    - Muestra un reporte completo
+    
+    Este proyecto integra conceptos de la Unidad 1: variables, tipos, operadores, strings, f-strings, input/output y funciones.
+  nota: "Este proyecto NO usa estructuras de control de flujo (`if/else`, `for`, `while`). Es un programa lineal que se ejecuta de principio a fin."
+
+pasos:
+  - numero: 1
+    titulo: "Pedir el primer punto"
+    objetivo: "Pedir al usuario los datos de un punto geográfico (nombre, latitud, longitud) y mostrarlos."
+    ejemplo_ejecucion: |
+      === Punto 1 ===
+      Nombre del lugar: Buenos Aires
+      Latitud: -34.6
+      Longitud: -58.4
+      
+      Punto 1: Buenos Aires
+      Coordenadas: (-34.6, -58.4)
+    hint: "Usá `input()` para pedir texto y `float()` para convertir las coordenadas a números."
+
+  - numero: 2
+    titulo: "Pedir el segundo punto"
+    objetivo: "Agregar el ingreso del segundo punto y mostrar ambos puntos al final."
+    ejemplo_ejecucion: |
+      === Punto 1 ===
+      Nombre del lugar: Buenos Aires
+      Latitud: -34.6
+      Longitud: -58.4
+      
+      === Punto 2 ===
+      Nombre del lugar: Córdoba
+      Latitud: -31.4
+      Longitud: -64.2
+      
+      ------------------------------
+      Punto 1: Buenos Aires (-34.6, -58.4)
+      Punto 2: Córdoba (-31.4, -64.2)
+    hint: "Repetí la estructura del paso 1 pero con variables diferentes (`nombre2`, `lat2`, `lon2`)."
+
+  - numero: 3
+    titulo: "Función para calcular distancia"
+    objetivo: "Crear una función `distancia_euclidiana` que reciba las coordenadas de dos puntos y retorne la distancia simplificada."
+    ejemplo_ejecucion: |
+      Distancia: 6.68 grados
+      Distancia aproximada: 741 km
+    hint: |
+      - La raíz cuadrada se puede calcular con `** 0.5`
+      - Para convertir grados a km aproximados, multiplicá por 111 (1 grado ≈ 111 km)
+      - Usá type hints: `def distancia_euclidiana(lat1: float, lon1: float, ...) -> float:`
+      - Fórmula: distancia = √[(lat2-lat1)² + (lon2-lon1)²]
+
+  - numero: 4
+    titulo: "Función para calcular punto medio"
+    objetivo: "Crear una función `punto_medio` que reciba las coordenadas de dos puntos y retorne el punto medio como una tupla."
+    ejemplo_ejecucion: |
+      Punto medio: (-33.0, -61.3)
+    hint: "Retorná una tupla con `return (lat_media, lon_media)`. Después podés acceder a los valores con `resultado[0]` y `resultado[1]`."
+
+  - numero: 5
+    titulo: "Función para generar link de Google Maps"
+    objetivo: "Crear una función `generar_link_maps` que reciba latitud y longitud y retorne un link de Google Maps."
+    ejemplo_ejecucion: |
+      Link Buenos Aires: https://www.google.com/maps?q=-34.6,-58.4
+      Link Córdoba: https://www.google.com/maps?q=-31.4,-64.2
+    hint: "El formato del link es: `https://www.google.com/maps?q={lat},{lon}`"
+
+  - numero: 6
+    titulo: "Función para formatear coordenadas"
+    objetivo: "Crear una función `formatear_coordenada` que reciba lat/lon y retorne un string con formato cardinal (N/S, E/W)."
+    ejemplo_ejecucion: |
+      Buenos Aires: 34.6°S, 58.4°W
+      Nueva York: 40.7°N, 74.0°W
+    hint: "Usá `abs()` para el valor absoluto y determiná la dirección según el signo."
+
+  - numero: 7
+    titulo: "Reporte final completo"
+    objetivo: "Integrar todo en un programa con salida bien formateada."
+    ejemplo_ejecucion: |
+      ============================================
+            CALCULADORA DE COORDENADAS
+      ============================================
+      
+      === Punto 1 ===
+      Nombre del lugar: Buenos Aires
+      Latitud: -34.6
+      Longitud: -58.4
+      
+      === Punto 2 ===
+      Nombre del lugar: Córdoba
+      Latitud: -31.4
+      Longitud: -64.2
+      
+      ============================================
+                    RESULTADOS
+      ============================================
+      
+      Punto 1: Buenos Aires (34.6°S, 58.4°W)
+      Punto 2: Córdoba (31.4°S, 64.2°W)
+      
+      Distancia: 6.68 grados (~741 km)
+      Punto medio: 33.0°S, 61.3°W
+      
+      Links de Google Maps:
+      - Buenos Aires: https://www.google.com/maps?q=-34.6,-58.4
+      - Córdoba: https://www.google.com/maps?q=-31.4,-64.2
+      - Punto medio: https://www.google.com/maps?q=-33.0,-61.3
+      
+      ============================================
+
+conceptos_utilizados:
+  - concepto: "Variables y tipos"
+    donde: "Almacenar nombres, latitudes, longitudes"
+  - concepto: "Operadores aritméticos"
+    donde: "Cálculo de distancia y punto medio"
+  - concepto: "f-strings"
+    donde: "Formatear el reporte y los links"
+  - concepto: "input() y print()"
+    donde: "Entrada de datos y salida del reporte"
+  - concepto: "Funciones con parámetros"
+    donde: "distancia_euclidiana(), punto_medio(), etc."
+  - concepto: "return y tuplas"
+    donde: "Retornar múltiples valores desde punto_medio()"
+  - concepto: "Type hints"
+    donde: "Documentar tipos en las funciones"
+
+desafios_extra:
+  - "Agregar validación básica: verificar que latitud esté entre -90 y 90, y longitud entre -180 y 180"
+  - "Calcular el rumbo inicial entre los dos puntos (requiere investigar fórmulas de navegación)"
+  - "Agregar un tercer punto y calcular el centroide del triángulo"
+  - "Convertir la distancia a otras unidades (millas náuticas, millas terrestres)"
+  - "Agregar docstrings completos a todas las funciones"
+  - "Crear una función que genere un link de Google Maps con marcadores para ambos puntos"

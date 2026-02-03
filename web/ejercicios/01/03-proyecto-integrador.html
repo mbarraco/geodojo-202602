@@ -27,17 +27,247 @@
         <nav class="toc">
             <div class="toc">
 <ul>
-<li><a href="#unidad-proyecto-integrador-calculadora-de-coordenadas">Unidad : Proyecto Integrador: Calculadora de Coordenadas</a></li>
+<li><a href="#proyecto-integrador-calculadora-de-coordenadas">Proyecto Integrador: Calculadora de Coordenadas</a><ul>
+<li><a href="#descripcion-del-proyecto">Descripción del proyecto</a></li>
+<li><a href="#paso-1-pedir-el-primer-punto">Paso 1: Pedir el primer punto</a></li>
+<li><a href="#paso-2-pedir-el-segundo-punto">Paso 2: Pedir el segundo punto</a></li>
+<li><a href="#paso-3-funcion-para-calcular-distancia">Paso 3: Función para calcular distancia</a></li>
+<li><a href="#paso-4-funcion-para-calcular-punto-medio">Paso 4: Función para calcular punto medio</a></li>
+<li><a href="#paso-5-funcion-para-generar-link-de-google-maps">Paso 5: Función para generar link de Google Maps</a></li>
+<li><a href="#paso-6-funcion-para-formatear-coordenadas">Paso 6: Función para formatear coordenadas</a></li>
+<li><a href="#paso-7-reporte-final-completo">Paso 7: Reporte final completo</a></li>
+<li><a href="#conceptos-utilizados">Conceptos utilizados</a></li>
+<li><a href="#desafios-extra">Desafíos extra</a></li>
+</ul>
+</li>
 </ul>
 </div>
 
         </nav>
     </aside>
     <main class="main-content">
-        <h1 id="unidad-proyecto-integrador-calculadora-de-coordenadas">Unidad : Proyecto Integrador: Calculadora de Coordenadas</h1>
+        <h1 id="proyecto-integrador-calculadora-de-coordenadas">Proyecto Integrador: Calculadora de Coordenadas</h1>
 <p>Un proyecto paso a paso para construir una calculadora que trabaja con puntos geográficos.</p>
 <hr />
-<p>*Fin de los ejercicios de la Unidad *</p>
+
+<details class="section-collapsible">
+<summary><h2 id="descripcion-del-proyecto">Descripción del proyecto</h2></summary>
+<div class="section-content">
+<p>Vamos a construir un programa que:<br />
+- Pide al usuario dos puntos geográficos (nombre, latitud, longitud)<br />
+- Calcula la distancia entre ellos<br />
+- Calcula el punto medio<br />
+- Genera links de Google Maps<br />
+- Muestra un reporte completo</p>
+<p>Este proyecto integra conceptos de la Unidad 1: variables, tipos, operadores, strings, f-strings, input/output y funciones.</p>
+<p><strong>Nota</strong>: Este proyecto NO usa estructuras de control de flujo (<code>if/else</code>, <code>for</code>, <code>while</code>). Es un programa lineal que se ejecuta de principio a fin.</p>
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-1-pedir-el-primer-punto">Paso 1: Pedir el primer punto</h2></summary>
+<div class="section-content">
+<p><strong>Objetivo</strong>: Pedir al usuario los datos de un punto geográfico (nombre, latitud, longitud) y mostrarlos.</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>=== Punto 1 ===
+Nombre del lugar: Buenos Aires
+Latitud: -34.6
+Longitud: -58.4
+
+Punto 1: Buenos Aires
+Coordenadas: (-34.6, -58.4)
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>input()</code> para pedir texto y <code>float()</code> para convertir las coordenadas a números.</p>
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-2-pedir-el-segundo-punto">Paso 2: Pedir el segundo punto</h2></summary>
+<div class="section-content">
+<p><strong>Objetivo</strong>: Agregar el ingreso del segundo punto y mostrar ambos puntos al final.</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>=== Punto 1 ===
+Nombre del lugar: Buenos Aires
+Latitud: -34.6
+Longitud: -58.4
+
+=== Punto 2 ===
+Nombre del lugar: Córdoba
+Latitud: -31.4
+Longitud: -64.2
+
+------------------------------
+Punto 1: Buenos Aires (-34.6, -58.4)
+Punto 2: Córdoba (-31.4, -64.2)
+</code></pre></div>
+
+<p><strong>Hint</strong>: Repetí la estructura del paso 1 pero con variables diferentes (<code>nombre2</code>, <code>lat2</code>, <code>lon2</code>).</p>
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-3-funcion-para-calcular-distancia">Paso 3: Función para calcular distancia</h2></summary>
+<div class="section-content">
+<p><strong>Objetivo</strong>: Crear una función <code>distancia_euclidiana</code> que reciba las coordenadas de dos puntos y retorne la distancia simplificada.</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>Distancia: 6.68 grados
+Distancia aproximada: 741 km
+</code></pre></div>
+
+<p><strong>Hint</strong>: - La raíz cuadrada se puede calcular con <code>** 0.5</code><br />
+- Para convertir grados a km aproximados, multiplicá por 111 (1 grado ≈ 111 km)<br />
+- Usá type hints: <code>def distancia_euclidiana(lat1: float, lon1: float, ...) -&gt; float:</code><br />
+- Fórmula: distancia = √[(lat2-lat1)² + (lon2-lon1)²]</p>
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-4-funcion-para-calcular-punto-medio">Paso 4: Función para calcular punto medio</h2></summary>
+<div class="section-content">
+<p><strong>Objetivo</strong>: Crear una función <code>punto_medio</code> que reciba las coordenadas de dos puntos y retorne el punto medio como una tupla.</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>Punto medio: (-33.0, -61.3)
+</code></pre></div>
+
+<p><strong>Hint</strong>: Retorná una tupla con <code>return (lat_media, lon_media)</code>. Después podés acceder a los valores con <code>resultado[0]</code> y <code>resultado[1]</code>.</p>
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-5-funcion-para-generar-link-de-google-maps">Paso 5: Función para generar link de Google Maps</h2></summary>
+<div class="section-content">
+<p><strong>Objetivo</strong>: Crear una función <code>generar_link_maps</code> que reciba latitud y longitud y retorne un link de Google Maps.</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>Link Buenos Aires: https://www.google.com/maps?q=-34.6,-58.4
+Link Córdoba: https://www.google.com/maps?q=-31.4,-64.2
+</code></pre></div>
+
+<p><strong>Hint</strong>: El formato del link es: <code>https://www.google.com/maps?q={lat},{lon}</code></p>
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-6-funcion-para-formatear-coordenadas">Paso 6: Función para formatear coordenadas</h2></summary>
+<div class="section-content">
+<p><strong>Objetivo</strong>: Crear una función <code>formatear_coordenada</code> que reciba lat/lon y retorne un string con formato cardinal (N/S, E/W).</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>Buenos Aires: 34.6°S, 58.4°W
+Nueva York: 40.7°N, 74.0°W
+</code></pre></div>
+
+<p><strong>Hint</strong>: Usá <code>abs()</code> para el valor absoluto y determiná la dirección según el signo.</p>
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="paso-7-reporte-final-completo">Paso 7: Reporte final completo</h2></summary>
+<div class="section-content">
+<p><strong>Objetivo</strong>: Integrar todo en un programa con salida bien formateada.</p>
+<p><strong>Ejemplo de ejecución</strong>:</p>
+<div class="highlight"><pre><span></span><code>============================================
+      CALCULADORA DE COORDENADAS
+============================================
+
+=== Punto 1 ===
+Nombre del lugar: Buenos Aires
+Latitud: -34.6
+Longitud: -58.4
+
+=== Punto 2 ===
+Nombre del lugar: Córdoba
+Latitud: -31.4
+Longitud: -64.2
+
+============================================
+              RESULTADOS
+============================================
+
+Punto 1: Buenos Aires (34.6°S, 58.4°W)
+Punto 2: Córdoba (31.4°S, 64.2°W)
+
+Distancia: 6.68 grados (~741 km)
+Punto medio: 33.0°S, 61.3°W
+
+Links de Google Maps:
+- Buenos Aires: https://www.google.com/maps?q=-34.6,-58.4
+- Córdoba: https://www.google.com/maps?q=-31.4,-64.2
+- Punto medio: https://www.google.com/maps?q=-33.0,-61.3
+
+============================================
+</code></pre></div>
+
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="conceptos-utilizados">Conceptos utilizados</h2></summary>
+<div class="section-content">
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Dónde se usa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variables y tipos</td>
+<td>Almacenar nombres, latitudes, longitudes</td>
+</tr>
+<tr>
+<td>Operadores aritméticos</td>
+<td>Cálculo de distancia y punto medio</td>
+</tr>
+<tr>
+<td>f-strings</td>
+<td>Formatear el reporte y los links</td>
+</tr>
+<tr>
+<td>input() y print()</td>
+<td>Entrada de datos y salida del reporte</td>
+</tr>
+<tr>
+<td>Funciones con parámetros</td>
+<td>distancia_euclidiana(), punto_medio(), etc.</td>
+</tr>
+<tr>
+<td>return y tuplas</td>
+<td>Retornar múltiples valores desde punto_medio()</td>
+</tr>
+<tr>
+<td>Type hints</td>
+<td>Documentar tipos en las funciones</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</details>
+
+<details class="section-collapsible">
+<summary><h2 id="desafios-extra">Desafíos extra</h2></summary>
+<div class="section-content">
+<ol>
+<li>Agregar validación básica: verificar que latitud esté entre -90 y 90, y longitud entre -180 y 180</li>
+<li>Calcular el rumbo inicial entre los dos puntos (requiere investigar fórmulas de navegación)</li>
+<li>Agregar un tercer punto y calcular el centroide del triángulo</li>
+<li>Convertir la distancia a otras unidades (millas náuticas, millas terrestres)</li>
+<li>Agregar docstrings completos a todas las funciones</li>
+<li>Crear una función que genere un link de Google Maps con marcadores para ambos puntos</li>
+</ol>
+<hr />
+<p><em>Fin del proyecto integrador - Unidad 1</em></p>
+</div>
+</details>
     </main>
 </div>
 

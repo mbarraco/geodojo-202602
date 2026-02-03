@@ -1,0 +1,80 @@
+# {{ unit.title }}
+
+{{ unit.description }}
+
+---
+{% if proyecto is defined %}
+
+## Descripción del proyecto
+
+{{ proyecto.descripcion }}
+{% if proyecto.nota is defined %}
+
+**Nota**: {{ proyecto.nota }}
+{% endif %}
+
+---
+{% for paso in pasos %}
+
+## Paso {{ paso.numero }}: {{ paso.titulo }}
+
+**Objetivo**: {{ paso.objetivo }}
+
+**Ejemplo de ejecución**:
+```
+{{ paso.ejemplo_ejecucion }}
+```
+{% if paso.hint is defined %}
+
+**Hint**: {{ paso.hint }}
+{% endif %}
+
+---
+{% endfor %}
+{% if conceptos_utilizados is defined %}
+
+## Conceptos utilizados
+
+| Concepto | Dónde se usa |
+|----------|--------------|
+{% for item in conceptos_utilizados %}
+| {{ item.concepto }} | {{ item.donde }} |
+{% endfor %}
+
+---
+{% endif %}
+{% if desafios_extra is defined %}
+
+## Desafíos extra
+{% for desafio in desafios_extra %}
+{{ loop.index }}. {{ desafio }}
+{% endfor %}
+{% endif %}
+{% if conexion_unidad_anterior is defined %}
+
+---
+
+## Conexión con la Unidad anterior
+
+{{ conexion_unidad_anterior.descripcion }}
+
+| Aspecto | Unidad anterior | Esta unidad |
+|---------|-----------------|-------------|
+{% for item in conexion_unidad_anterior.comparativa %}
+| {{ item.aspecto }} | {{ item.antes }} | {{ item.despues }} |
+{% endfor %}
+
+**Funciones reutilizables**:
+{% for func in conexion_unidad_anterior.funciones_reutilizables %}
+- {{ func }}
+{% endfor %}
+{% endif %}
+{% else %}
+*Este proyecto integrador necesita ser actualizado al nuevo formato YAML.*
+
+*Ver `.cursor/skills/geodojo-proyecto-integrador/SKILL.md` para el formato correcto.*
+{% endif %}
+
+---
+
+*Fin del proyecto integrador - Unidad {{ unit.number | default("") }}*

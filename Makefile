@@ -15,11 +15,11 @@ install: $(VENV)/bin/activate
 	$(PIP) install -r requirements.txt
 
 # Generar Markdown desde YAML
-markdown: install
+markdown:
 	$(PYTHON) scripts/export_to_markdown.py
 
 # Convertir Markdown a HTML
-html: install
+html:
 	$(PYTHON) scripts/export_to_html.py $(OUTPUT_DIR)
 
 # Pipeline completo: YAML -> Markdown -> HTML

@@ -16,18 +16,20 @@ El programa del curso está en `README.md`. Consultarlo siempre para:
 
 ## Estructura de una unidad
 
-Cada unidad `NN` tiene:
+Cada unidad `NN` tiene archivos YAML en `data/`:
 
 ```
-ejercicios/NN/
-├── 01-grupo-conceptual-1.md
-├── 02-grupo-conceptual-2.md    # opcional, si el tema lo requiere
-└── 0X-proyecto-integrador.md   # siempre al final
+data/ejercicios/NN/
+├── 01-grupo-conceptual-1.yml
+├── 02-grupo-conceptual-2.yml    # opcional, si el tema lo requiere
+└── 0X-proyecto-integrador.yml   # siempre al final
 
-clases/NN/
-├── 01-grupo-conceptual-1.md
-└── 02-grupo-conceptual-2.md    # corresponde a cada archivo de ejercicios (excepto proyecto)
+data/clases/NN/
+├── 01-grupo-conceptual-1.yml
+└── 02-grupo-conceptual-2.yml    # corresponde a cada archivo de ejercicios (excepto proyecto)
 ```
+
+Los archivos markdown y HTML se **generan automáticamente** con `make all`.
 
 ## Proceso para crear una unidad
 
@@ -43,24 +45,24 @@ clases/NN/
 - ¿Es un prerequisito para otro grupo?
 
 **Ejemplo**: "Tipos de datos, operadores, funciones básicas" se dividió en:
-- `01-fundamentos.md` (tipos, variables, operadores)
-- `02-funciones.md` (funciones built-in)
+- `01-fundamentos.yml` (tipos, variables, operadores)
+- `02-funciones.yml` (funciones built-in)
 
 ### Paso 2: Crear estructura de directorios
 
 ```bash
-mkdir -p ejercicios/NN clases/NN
+mkdir -p data/ejercicios/NN data/clases/NN
 ```
 
 ### Paso 3: Crear archivos de ejercicios
 
-Para cada grupo conceptual, crear el archivo de ejercicios.
+Para cada grupo conceptual, crear el archivo YAML de ejercicios.
 
 **Delegar a**: `.cursor/skills/geodojo-ejercicios/SKILL.md`
 
 Orden:
-1. `ejercicios/NN/01-grupo-1.md`
-2. `ejercicios/NN/02-grupo-2.md` (si aplica)
+1. `data/ejercicios/NN/01-grupo-1.yml`
+2. `data/ejercicios/NN/02-grupo-2.yml` (si aplica)
 
 **Nota**: El proyecto integrador se crea en el Paso 5, con su propia skill.
 
@@ -84,21 +86,33 @@ Características:
 - No tiene archivo de clase asociado
 - Estructura de pasos incrementales, no categorías A/B/C
 
+### Paso 6: Generar archivos
+
+Después de crear todos los YAML, ejecutar:
+
+```bash
+make all
+```
+
+Esto genera:
+- Markdown en `ejercicios/` y `clases/`
+- HTML en `web/`
+
 ## Convenciones de nombres
 
 | Componente | Formato | Ejemplo |
 |------------|---------|---------|
 | Directorio unidad | `NN/` (dos dígitos) | `01/`, `02/` |
-| Archivo tema | `NN-nombre-descriptivo.md` | `01-fundamentos.md` |
-| Proyecto integrador | `0X-proyecto-integrador.md` | `03-proyecto-integrador.md` |
+| Archivo tema | `NN-nombre-descriptivo.yml` | `01-fundamentos.yml` |
+| Proyecto integrador | `0X-proyecto-integrador.yml` | `03-proyecto-integrador.yml` |
 
 ## Verificar estado actual
 
 Para saber qué está implementado:
 
 ```bash
-ls ejercicios/
-ls clases/
+ls data/ejercicios/
+ls data/clases/
 ```
 
 Comparar con el programa en `README.md`.
@@ -108,13 +122,22 @@ Comparar con el programa en `README.md`.
 | Skill | Cuándo usar |
 |-------|-------------|
 | `geodojo-ejercicios` | Al crear archivos de ejercicios (NO proyecto integrador) |
-| `geodojo-clase` | Al crear cada archivo en `clases/NN/` |
+| `geodojo-clase` | Al crear cada archivo en `data/clases/NN/` |
 | `geodojo-proyecto-integrador` | Al crear el proyecto integrador de la unidad |
+
+## Pipeline de generación
+
+```
+data/*.yml  →  make markdown  →  ejercicios/*.md, clases/*.md
+            →  make html      →  web/*.html
+            →  make all       →  ambos
+```
 
 ## Checklist para unidad completa
 
 - [ ] Tema analizado y dividido en grupos conceptuales
-- [ ] Directorios `ejercicios/NN/` y `clases/NN/` creados
-- [ ] Archivo de ejercicios para cada grupo conceptual
-- [ ] Archivo de clase para cada grupo conceptual
-- [ ] Proyecto integrador creado
+- [ ] Directorios `data/ejercicios/NN/` y `data/clases/NN/` creados
+- [ ] Archivo YAML de ejercicios para cada grupo conceptual
+- [ ] Archivo YAML de clase para cada grupo conceptual
+- [ ] Proyecto integrador YAML creado
+- [ ] `make all` ejecutado para generar markdown y HTML
